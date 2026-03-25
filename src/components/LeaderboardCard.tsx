@@ -8,9 +8,15 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
   const isBlue = theme === 'blue';
 
   const checkEligible = (ranker: any) => {
-    if (!data.categoryName.toLowerCase().includes('vàng')) return false;
-    return ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
+    if (ranker.highlight) return true;
+    if (data.categoryName.toLowerCase().includes('vàng')) {
+      return ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
+    }
+    return false;
   };
+
+  const isManager = data.categoryName.toLowerCase().includes('tiêu biểu');
+  const badgeText = isManager ? 'ĐẠT CHỈ TIÊU' : 'ĐẠT EGC';
 
   return (
     <motion.div 
@@ -127,7 +133,7 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
                                 isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400'
                               }`}>
                                 <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-amber-500 text-amber-500 relative -top-[0.5px] mr-1" />
-                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">Đạt EGC</span>
+                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">{badgeText}</span>
                               </div>
                             )}
                           </div>

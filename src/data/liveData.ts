@@ -9,6 +9,7 @@ export interface Ambassador {
   score2Label?: string;   // Label cột 2
   scoreLabel?: string;    // Label cột 1 (vd: Số lượng N-1 mới active)
   region?: string;
+  highlight?: boolean;    // Badge highlight cho người đạt target
 }
 
 export interface CategoryResult {
@@ -47,6 +48,11 @@ function isRecruitmentSheet(sheetName: string): boolean {
 function isGoldAmbassadorSheet(sheetName: string): boolean {
   const name = sheetName.toLowerCase().trim();
   return name.includes('vàng') || name.includes('egc');
+}
+
+function isManagerSheet(sheetName: string): boolean {
+  const name = sheetName.toLowerCase().trim();
+  return name.includes('tiêu biểu') && name.includes('quản lý');
 }
 
 export async function fetchLeaderboardData(): Promise<LeaderboardData> {
@@ -90,6 +96,107 @@ export async function fetchLeaderboardData(): Promise<LeaderboardData> {
     const headerRow = rows[headerRowIdx];
     const recruitment = isRecruitmentSheet(sheetName);
     const goldAmbassador = isGoldAmbassadorSheet(sheetName);
+    const manager = isManagerSheet(sheetName);
+
+    // ========== XỬ LÝ RIÊNG CHO SHEET QUẢN LÝ TIÊU BIỂU ==========
+    if (manager) {
+      let isHighlight = true;
+      let currentLevel = 'Cấp Nhóm';
+      
+      const levels: Record<string, Ambassador[]> = {
+        'Cấp Nhóm': [],
+        'Cấp Phòng': [],
+        'Cấp Khu vực': []
+      };
+
+      let nameIdx = -1, idIdx = -1, heSoIdx = -1, slActiveIdx = -1;
+      let heSoLabel = 'Hệ số % THMT';
+      let slActiveLabel = 'SL Đại sứ mới active';
+
+      for (let r = 0; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || row.length === 0) continue;
+
+        const rowStr = row.map((entry: any) => String(entry).toLowerCase()).join(' ');
+
+        // Phát hiện chuyển sang danh sách cận đạt
+        if (rowStr.includes('cận đạt')) {
+          isHighlight = false;
+        }
+
+        // Cập nhật header nếu thấy
+        if (rowStr.includes('tên') && rowStr.includes('hệ số')) {
+          row.forEach((col: any, idx: number) => {
+            if (typeof col !== 'string') return;
+            const c = col.toLowerCase().trim();
+            if (c.includes('tên')) nameIdx = idx;
+            if (c.includes('mã')) idIdx = idx;
+            if (c.includes('hệ số')) { heSoIdx = idx; heSoLabel = col.trim(); }
+            if (c.includes('số lượng') || c.includes('active')) { slActiveIdx = idx; slActiveLabel = col.trim(); }
+          });
+          continue;
+        }
+
+        if (nameIdx !== -1 && heSoIdx !== -1) {
+          const name = String(row[nameIdx] || '').trim();
+          if (!name || name.toLowerCase().includes('tên') || name.toLowerCase().includes('danh sách')) continue;
+          if (name.toLowerCase().includes('tổng') || name.toLowerCase().includes('đại sứ')) continue;
+
+          // Xem cột đầu tiên có ghi Cấp Nhóm/Phòng/Khu vực không
+          const levelCol = String(row[0] || '').trim();
+          if (levelCol.startsWith('Cấp')) {
+            currentLevel = levelCol;
+          }
+
+          const realId = idIdx !== -1 && row[idIdx] ? String(row[idIdx]) : `u_${r}`;
+          
+          let heSo = parseFloat(String(row[heSoIdx]).replace(/,/g, ''));
+          let slActive = slActiveIdx !== -1 ? parseFloat(String(row[slActiveIdx]).replace(/,/g, '')) : 0;
+          
+          if (isNaN(heSo)) continue;
+          if (isNaN(slActive)) slActive = 0;
+
+          if (heSo > 0 || slActive > 0) {
+            let targetKey = 'Cấp Nhóm';
+            if (currentLevel.includes('Phòng')) targetKey = 'Cấp Phòng';
+            if (currentLevel.includes('Khu vực')) targetKey = 'Cấp Khu vực';
+
+            levels[targetKey].push({
+              id: realId,
+              name,
+              score: heSo,
+              score2: slActive,
+              scoreLabel: heSoLabel,
+              score2Label: slActiveLabel,
+              highlight: isHighlight,
+              region: String(row[3] || '').trim() // Lấy cột Cấp bậc làm region
+            });
+          }
+        }
+      }
+
+      let baseCategoryName = sheetName.trim();
+      baseCategoryName = baseCategoryName.replace(/^Giải thưởng\s+/i, '');
+      baseCategoryName = baseCategoryName.replace(/\s*[T|Q][\d]+$/i, ''); // Remove T03, Q1 suffix
+      baseCategoryName = baseCategoryName.charAt(0).toUpperCase() + baseCategoryName.slice(1);
+
+      ['Cấp Nhóm', 'Cấp Phòng', 'Cấp Khu vực'].forEach((level, levelIdx) => {
+        const ambassadors = levels[level];
+        if (ambassadors.length === 0) return;
+
+        ambassadors.sort((a, b) => b.score - a.score || (b.score2 ?? 0) - (a.score2 ?? 0));
+
+        data[categoryType].push({
+          categoryId: `cat_${i}_lv_${levelIdx}`,
+          categoryName: `${baseCategoryName} - ${level}`,
+          topRankers: ambassadors.slice(0, 3),
+          otherRankers: ambassadors.slice(3),
+          hasMultipleScores: true,
+          scoreLabels: [heSoLabel, slActiveLabel],
+        });
+      });
+      continue;
+    }
 
     // ========== XỬ LÝ RIÊNG CHO SHEET ĐẠI SỨ VÀNG ==========
     // Sheet cấu trúc: Mã Đại sứ | Tên Đại sứ | Số lượng HV mới | Doanh số cá nhân
