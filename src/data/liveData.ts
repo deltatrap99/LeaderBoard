@@ -156,7 +156,7 @@ export async function fetchLeaderboardData(): Promise<LeaderboardData> {
       categoryName = categoryName.replace(/^Giải thưởng\s+/i, '');
       categoryName = categoryName.replace(/^EGC\s*-\s*/, '');
       if (categoryName.toLowerCase().includes('vàng q')) {
-        categoryName = categoryName.replace(/Vàng Q(?:uý)?(?:[^a-zA-Z0-9]*)/i, 'Đại sứ Vàng Quý I/2026');
+        categoryName = categoryName.replace(/Vàng Q(?:uý)?(?:[^a-zA-Z0-9]*)/i, 'Vàng Quý I/2026');
       }
       categoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
