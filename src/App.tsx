@@ -55,11 +55,11 @@ function App() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl sm:text-5xl lg:text-6xl font-heading font-black text-white mb-3 tracking-[-0.02em] text-center leading-tight"
+        className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white mb-3 tracking-[-0.01em] text-center leading-tight uppercase"
       >
-        Bảng Vàng{' '}
+        Đại sứ Giáo dục{' '}
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400">
-          Thi Đua
+          Galaxy Education
         </span>
       </motion.h2>
 
@@ -68,10 +68,10 @@ function App() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="text-sm sm:text-base text-white/70 max-w-xl mx-auto text-center font-medium leading-relaxed mb-7"
+        className="text-xs sm:text-sm text-white/70 max-w-2xl mx-auto text-center font-medium leading-relaxed mb-7 italic"
       >
-        Vinh danh những Đại sứ Giáo dục xuất sắc nhất trên toàn hệ thống{' '}
-        <strong className="text-amber-400">Galaxy Education</strong>.
+        "Đây không chỉ là những cái tên dẫn đầu thành tích, đây là những tấm gương truyền cảm hứng sự nỗ lực không ngừng trên hành trình lan tỏa những giải pháp giáo dục chất lượng cao đến{' '}
+        <strong className="text-amber-400">Phụ huynh</strong> và <strong className="text-amber-400">Học sinh</strong> trên mọi miền đất nước."
       </motion.p>
 
       {/* Stats row */}

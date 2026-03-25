@@ -235,6 +235,9 @@ export async function fetchLeaderboardData(): Promise<LeaderboardData> {
     if (categoryName.toLowerCase().includes('vàng q')) {
         categoryName = categoryName.replace(/Vàng Q(?:uý)?(?:[^a-zA-Z0-9]*)/i, 'Vàng Quý I/2026');
     }
+    // Fix "tiêu biểu T" → "tiêu biểu" (tên sheet bị cắt)
+    categoryName = categoryName.replace(/tiêu biểu\s+T$/i, 'tiêu biểu');
+    categoryName = categoryName.replace(/tiêu biểu\s+Q$/i, 'tiêu biểu');
     categoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
     data[categoryType].push({
