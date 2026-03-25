@@ -1,0 +1,94 @@
+import React from 'react';
+import logo from '../assets/ge-logo.png';
+import { Moon, Sun, Sparkles, Award } from 'lucide-react';
+
+interface LayoutProps {
+  heroContent: React.ReactNode;
+  bodyContent: React.ReactNode;
+  theme?: 'blue' | 'dark';
+  onToggleTheme?: () => void;
+}
+
+export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme }: LayoutProps) {
+  const isBlue = theme === 'blue';
+
+  return (
+    <div className={`min-h-screen font-body selection:bg-yellow-500/30 transition-all duration-700`}
+      style={{ background: isBlue ? '#f0f4f8' : '#0a0f1e', color: isBlue ? '#1e293b' : '#dbe1ff' }}
+    >
+      {/* Header — Galaxy Blue luôn */}
+      <header className="sticky top-0 z-50 bg-gradient-to-r from-[#1B3A7A] via-[#1a4fa0] to-[#1B3A7A] shadow-[0_4px_20px_rgba(27,58,122,0.3)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Galaxy Education" className="h-8 sm:h-10 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+            <div className="h-6 w-px bg-white/25 mx-1 hidden sm:block" />
+            <div className="hidden sm:flex items-center gap-2">
+              <Award size={16} className="text-amber-400" />
+              <h1 className="text-sm font-heading font-bold text-amber-400 tracking-widest uppercase">
+                Elite Awards
+              </h1>
+            </div>
+          </div>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {onToggleTheme && (
+              <button
+                onClick={onToggleTheme}
+                className="group flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 transition-all duration-300 text-xs font-medium text-white"
+              >
+                {isBlue 
+                  ? <Moon size={14} className="text-blue-200 group-hover:text-white transition-colors"/> 
+                  : <Sun size={14} className="text-amber-400 group-hover:rotate-90 transition-all duration-500"/>
+                }
+                <span className="hidden sm:inline">{isBlue ? 'Chế độ tối' : 'Galaxy Blue'}</span>
+              </button>
+            )}
+            <a href="#" className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-[0_4px_15px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.6)] hover:scale-105 transition-all duration-300">
+              <Sparkles size={12} />
+              Bảng Vàng Tôn Vinh
+            </a>
+          </div>
+        </div>
+      </header>
+
+      {/* Hero Banner — Gradient xanh sống động */}
+      <div className="relative overflow-hidden"
+        style={{
+          background: isBlue
+            ? 'linear-gradient(135deg, #1B3A7A 0%, #1a4fa0 30%, #2563eb 60%, #3b82f6 100%)'
+            : 'linear-gradient(135deg, #0f172a 0%, #1e1b4b 40%, #312e81 100%)',
+        }}
+      >
+        {/* Floating circles */}
+        <div className="absolute top-[10%] right-[5%] w-[200px] h-[200px] rounded-full border border-white/10 opacity-30 hidden sm:block" />
+        <div className="absolute bottom-[15%] left-[3%] w-[120px] h-[120px] rounded-full border border-white/10 opacity-20 hidden sm:block" />
+        <div className="absolute top-[50%] right-[20%] w-[60px] h-[60px] rounded-full bg-white/5 hidden sm:block" />
+        
+        {/* Hero content */}
+        <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-28 sm:pb-36">
+          {heroContent}
+        </div>
+
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 90" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full block" preserveAspectRatio="none">
+            <path d="M0,50 C320,90 720,10 1080,50 C1260,70 1380,80 1440,60 L1440,90 L0,90 Z" fill={isBlue ? '#f0f4f8' : '#0a0f1e'} />
+          </svg>
+        </div>
+      </div>
+
+      {/* Body Content — Light/Dark background */}
+      <div style={{ background: isBlue ? '#f0f4f8' : '#0a0f1e' }}>
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-8 -mt-8">
+          {bodyContent}
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className={`py-8 text-center text-xs ${
+        isBlue ? 'text-slate-400 bg-[#f0f4f8]' : 'text-gray-500 bg-[#0a0f1e]'
+      }`}>
+        <p>© 2026 Galaxy Education. Galaxy Elite Awards — Chương trình Vinh danh Đại sứ Giáo dục.</p>
+      </footer>
+    </div>
+  );
+}

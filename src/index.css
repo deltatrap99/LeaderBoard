@@ -1,0 +1,51 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,700;6..12,800;6..12,900&display=swap');
+
+@theme {
+  --color-ge-navy: #1B3A7A;
+  --color-ge-blue: #1A5CB8;
+  --color-ge-light: #F5F6F8;
+  --color-ge-dark: #2D3748;
+  --color-ge-accent-blue: #1E7ED4;
+  --color-ge-accent-green: #4CAF50;
+  --color-ge-accent-amber: #F5A623;
+  --color-ge-accent-red: #E84C3D;
+  --font-heading: Epilogue, "Nunito Sans", sans-serif;
+  --font-body: Manrope, Inter, sans-serif;
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    background-color: #f0f4f8;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148,163,184,0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148,163,184,0.5);
+}
+
+/* Shimmer animation for podium */
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(200%) skewX(-20deg); }
+}
+
+/* No scrollbar utility */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
