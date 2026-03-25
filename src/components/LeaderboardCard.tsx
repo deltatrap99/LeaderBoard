@@ -49,7 +49,7 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
       {/* Table */}
       {data.otherRankers.length > 0 && (
         <div className="px-3 sm:px-6 pb-6 pt-4">
-          <div className={`rounded-2xl overflow-hidden ${
+          <div className={`rounded-2xl overflow-x-auto ${
             isBlue 
               ? 'border border-slate-200 bg-slate-50/50' 
               : 'border border-white/[0.06] bg-white/[0.02]'
