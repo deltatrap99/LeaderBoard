@@ -177,7 +177,7 @@ export async function fetchLeaderboardData(): Promise<LeaderboardData> {
 
       let baseCategoryName = sheetName.trim();
       baseCategoryName = baseCategoryName.replace(/^Giải thưởng\s+/i, '');
-      baseCategoryName = baseCategoryName.replace(/\s*[T|Q][\d]+$/i, ''); // Remove T03, Q1 suffix
+      baseCategoryName = baseCategoryName.replace(/\s*[T|Q][\d]*$/i, ''); // Remove T, T03, Q, Q1 suffix
       baseCategoryName = baseCategoryName.charAt(0).toUpperCase() + baseCategoryName.slice(1);
 
       ['Cấp Nhóm', 'Cấp Phòng', 'Cấp Khu vực'].forEach((level, levelIdx) => {
