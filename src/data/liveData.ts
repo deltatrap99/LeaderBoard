@@ -44,6 +44,11 @@ function isRecruitmentSheet(sheetName: string): boolean {
   return name.includes('tuyển dụng') || name.includes('quản lý tuyển');
 }
 
+function isGoldAmbassadorSheet(sheetName: string): boolean {
+  const name = sheetName.toLowerCase().trim();
+  return name.includes('vàng') || name.includes('egc');
+}
+
 export async function fetchLeaderboardData(): Promise<LeaderboardData> {
   const res = await fetch(url);
   const buf = await res.arrayBuffer();
@@ -63,7 +68,7 @@ export async function fetchLeaderboardData(): Promise<LeaderboardData> {
     for (let r = 0; r < 10; r++) {
        if (!rows[r]) continue;
        const rowStr = rows[r].map((c: any) => String(c).toLowerCase()).join(' ');
-       if (rowStr.includes('tên') && (rowStr.includes('mã') || rowStr.includes('doanh số') || rowStr.includes('thành tích') || rowStr.includes('đại sứ') || rowStr.includes('n-1') || rowStr.includes('tuyển dụng') || rowStr.includes('active'))) {
+       if (rowStr.includes('tên') && (rowStr.includes('mã') || rowStr.includes('doanh số') || rowStr.includes('thành tích') || rowStr.includes('đại sứ') || rowStr.includes('n-1') || rowStr.includes('tuyển dụng') || rowStr.includes('active') || rowStr.includes('hv mới'))) {
          headerRowIdx = r;
          break;
        }
@@ -84,6 +89,87 @@ export async function fetchLeaderboardData(): Promise<LeaderboardData> {
 
     const headerRow = rows[headerRowIdx];
     const recruitment = isRecruitmentSheet(sheetName);
+    const goldAmbassador = isGoldAmbassadorSheet(sheetName);
+
+    // ========== XỬ LÝ RIÊNG CHO SHEET ĐẠI SỨ VÀNG ==========
+    // Sheet cấu trúc: Mã Đại sứ | Tên Đại sứ | Số lượng HV mới | Doanh số cá nhân
+    // Sort ưu tiên: Số lượng HV mới trước, Doanh số sau
+    if (goldAmbassador) {
+      let nameIdx = -1, idIdx = -1, hvMoiIdx = -1, doanhSoIdx = -1;
+      let hvMoiLabel = 'Số lượng HV mới';
+      let doanhSoLabel = 'Doanh số cá nhân';
+
+      headerRow.forEach((col: any, idx: number) => {
+        if (typeof col !== 'string') return;
+        const c = col.toLowerCase().trim();
+        if (c.includes('tên')) nameIdx = idx;
+        if (c.includes('mã')) idIdx = idx;
+        if (c.includes('số lượng') && c.includes('hv')) { hvMoiIdx = idx; hvMoiLabel = col.trim(); }
+        if (c.includes('hv mới') && hvMoiIdx === -1) { hvMoiIdx = idx; hvMoiLabel = col.trim(); }
+        if (c.includes('doanh số')) { doanhSoIdx = idx; doanhSoLabel = col.trim(); }
+      });
+
+      console.log(`[GoldAmbassador] nameIdx=${nameIdx}, idIdx=${idIdx}, hvMoiIdx=${hvMoiIdx}, doanhSoIdx=${doanhSoIdx}`);
+
+      if (nameIdx === -1 || (hvMoiIdx === -1 && doanhSoIdx === -1)) continue;
+
+      const ambassadors: Ambassador[] = [];
+      for (let r = headerRowIdx + 1; r < rows.length; r++) {
+        const row = rows[r];
+        if (!row || row.length === 0) continue;
+        
+        const name = row[nameIdx];
+        if (!name || typeof name !== 'string') continue;
+        if (name.toLowerCase().includes('tổng') || name.toLowerCase().includes('đại sứ')) continue;
+
+        const realId = idIdx !== -1 && row[idIdx] ? String(row[idIdx]) : `u_${r}`;
+        
+        let hvMoi = 0;
+        let doanhSo = 0;
+        
+        if (hvMoiIdx !== -1 && row[hvMoiIdx] != null) {
+          hvMoi = parseFloat(String(row[hvMoiIdx]).replace(/,/g, ''));
+          if (isNaN(hvMoi)) hvMoi = 0;
+        }
+        if (doanhSoIdx !== -1 && row[doanhSoIdx] != null) {
+          doanhSo = parseFloat(String(row[doanhSoIdx]).replace(/,/g, ''));
+          if (isNaN(doanhSo)) doanhSo = 0;
+        }
+
+        if (hvMoi > 0 || doanhSo > 0) {
+          ambassadors.push({
+            id: realId,
+            name: name.trim(),
+            score: hvMoi,           // score = Số lượng HV mới (ưu tiên sort)
+            score2: doanhSo,        // score2 = Doanh số cá nhân
+            scoreLabel: hvMoiLabel,
+            score2Label: doanhSoLabel,
+          });
+        }
+      }
+
+      // Sort ưu tiên: Số lượng HV mới trước, Doanh số sau
+      ambassadors.sort((a, b) => b.score - a.score || (b.score2 ?? 0) - (a.score2 ?? 0));
+      if (ambassadors.length === 0) continue;
+
+      let categoryName = sheetName.trim();
+      categoryName = categoryName.replace(/^Giải thưởng\s+/i, '');
+      categoryName = categoryName.replace(/^EGC\s*-\s*/, '');
+      if (categoryName.toLowerCase().includes('vàng q')) {
+        categoryName = categoryName.replace(/Vàng Q(?:uý)?(?:[^a-zA-Z0-9]*)/i, 'Đại sứ Vàng Quý I/2026');
+      }
+      categoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
+
+      data[categoryType].push({
+        categoryId: `cat_${i}`,
+        categoryName,
+        topRankers: ambassadors.slice(0, 3),
+        otherRankers: ambassadors.slice(3),
+        hasMultipleScores: true,
+        scoreLabels: [hvMoiLabel, doanhSoLabel],
+      });
+      continue;
+    }
 
     // ========== XỬ LÝ RIÊNG CHO SHEET TUYỂN DỤNG ==========
     // Sheet cấu trúc: Mã Đại sứ | Tên Đại sứ | Số lượng N-1 mới active | Doanh số N-1 mới
