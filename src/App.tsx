@@ -57,7 +57,8 @@ function App() {
         transition={{ duration: 0.6 }}
         className="text-2xl sm:text-4xl lg:text-5xl font-heading font-black text-white mb-3 tracking-[-0.01em] text-center leading-tight uppercase"
       >
-        Vinh danh Đại sứ Giáo dục{' '}
+        Vinh danh Đại sứ Giáo dục
+        <br />
         <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400">
           Galaxy Education
         </span>
