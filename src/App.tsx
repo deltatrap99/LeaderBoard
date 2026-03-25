@@ -68,7 +68,7 @@ function App() {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="text-xs sm:text-sm text-white/70 max-w-2xl mx-auto text-center font-medium leading-relaxed mb-7 italic"
+        className="text-xs sm:text-sm text-white/70 max-w-2xl mx-auto text-center font-medium leading-relaxed mb-7"
       >
         "Đây không chỉ là những cái tên dẫn đầu thành tích, đây là những tấm gương truyền cảm hứng sự nỗ lực không ngừng trên hành trình lan tỏa những giải pháp giáo dục chất lượng cao đến{' '}
         <strong className="text-amber-400">Phụ huynh</strong> và <strong className="text-amber-400">Học sinh</strong> trên mọi miền đất nước."
