@@ -1,11 +1,16 @@
 import type { CategoryResult } from '../data/liveData';
 import { Podium } from './Podium';
-import { Trophy, TrendingUp } from 'lucide-react';
+import { Trophy, TrendingUp, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function LeaderboardCard({ data, index, theme = 'blue' }: { data: CategoryResult, index: number, theme?: string }) {
   const getInitials = (name: string) => name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   const isBlue = theme === 'blue';
+
+  const checkEligible = (ranker: any) => {
+    if (!data.categoryName.toLowerCase().includes('vàng')) return false;
+    return ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
+  };
 
   return (
     <motion.div 
@@ -75,14 +80,18 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
                 </tr>
               </thead>
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
-                {data.otherRankers.map((ranker, i) => (
+                {data.otherRankers.map((ranker, i) => {
+                  const isEligible = checkEligible(ranker);
+                  return (
                   <motion.tr 
                     key={ranker.id} 
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.3 + i * 0.03 }}
                     className={`group transition-all duration-300 cursor-pointer ${
-                      isBlue ? 'hover:bg-blue-50/60' : 'hover:bg-white/[0.04]'
+                      isEligible 
+                        ? (isBlue ? 'bg-gradient-to-r from-amber-50/80 to-transparent hover:from-amber-100/80' : 'bg-gradient-to-r from-amber-500/10 to-transparent hover:from-amber-500/20')
+                        : (isBlue ? 'hover:bg-blue-50/60' : 'hover:bg-white/[0.04]')
                     }`}
                   >
                     <td className={`px-4 py-3.5 text-center font-bold text-sm ${
@@ -98,16 +107,30 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
                     <td className="px-4 py-3.5">
                       <div className="flex items-center gap-3">
                         <div className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-xs sm:text-sm shrink-0 ring-1 overflow-hidden transition-all ${
-                          isBlue 
-                            ? 'bg-gradient-to-br from-blue-100 to-indigo-100 text-[#1B3A7A] ring-blue-200 group-hover:ring-blue-400' 
-                            : 'bg-gradient-to-br from-blue-900/40 to-indigo-900/40 text-blue-300 ring-white/10'
+                          isEligible 
+                            ? (isBlue ? 'bg-gradient-to-br from-amber-100 to-yellow-200 text-amber-700 ring-amber-300 group-hover:ring-amber-500' : 'bg-gradient-to-br from-amber-900/60 to-yellow-900/40 text-amber-400 ring-amber-500/30 group-hover:ring-amber-500/60')
+                            : (isBlue 
+                              ? 'bg-gradient-to-br from-blue-100 to-indigo-100 text-[#1B3A7A] ring-blue-200 group-hover:ring-blue-400' 
+                              : 'bg-gradient-to-br from-blue-900/40 to-indigo-900/40 text-blue-300 ring-white/10')
                         }`}>
                           {ranker.avatar ? <img src={ranker.avatar} alt={ranker.name} className="w-full h-full object-cover"/> : getInitials(ranker.name)}
                         </div>
                         <div>
-                          <p className={`font-semibold text-[13px] sm:text-[15px] leading-tight transition-colors ${
-                            isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white'
-                          }`}>{ranker.name}</p>
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                            <p className={`font-semibold text-[13px] sm:text-[15px] leading-tight transition-colors ${
+                              isEligible
+                                ? (isBlue ? 'text-amber-800 group-hover:text-amber-950' : 'text-amber-400 group-hover:text-amber-300')
+                                : (isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white')
+                            }`}>{ranker.name}</p>
+                            {isEligible && (
+                              <div className={`flex items-center justify-center px-1.5 sm:px-2 py-0.5 rounded border ${
+                                isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400'
+                              }`}>
+                                <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-amber-500 text-amber-500 relative -top-[0.5px] mr-1" />
+                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">Đạt EGC</span>
+                              </div>
+                            )}
+                          </div>
                           {ranker.region && <p className={`text-xs mt-0.5 ${isBlue ? 'text-slate-400' : 'text-white/25'}`}>{ranker.region}</p>}
                         </div>
                       </div>
@@ -144,7 +167,8 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
                       </td>
                     )}
                   </motion.tr>
-                ))}
+                  );
+                })}
               </tbody>
             </table>
           </div>
