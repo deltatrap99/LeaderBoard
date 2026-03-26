@@ -141,16 +141,16 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                             // 4 cols: label | condition | condition2 OR quantity | prizeValue
                             cells.push(tier.label, tier.condition, tier.condition2 || tier.quantity, tier.prizeValue);
                           } else {
-                            // 5+ cols: map directly to columns from tier fields
+                            // 5+ cols: label | condition | prizeValue | condition2 | extraCondition
                             cells.push(tier.label);
                             cells.push(tier.condition);
-                            if (tier.condition2 !== undefined) cells.push(tier.condition2);
                             cells.push(tier.prizeValue);
+                            if (tier.condition2 !== undefined) cells.push(tier.condition2);
                             if (tier.extraCondition !== undefined) cells.push(tier.extraCondition || '—');
                           }
 
                           return cells.map((val, ci) => {
-                            const isPrize = val === tier.prizeValue;
+                            const isPrize = award.columns[ci]?.includes('Giá trị giải thưởng');
                             const isLabel = ci === 0 && colCount > 3;
                             const isEGC = isLabel && tier.label.includes('EGC');
 
