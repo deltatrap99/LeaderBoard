@@ -138,14 +138,13 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                             // 3 cols: condition | quantity | prizeValue
                             cells.push(tier.condition, tier.quantity, tier.prizeValue);
                           } else if (colCount === 4) {
-                            // 4 cols: label | condition OR condition2 | quantity | prizeValue
+                            // 4 cols: label | condition | condition2 OR quantity | prizeValue
                             cells.push(tier.label, tier.condition, tier.condition2 || tier.quantity, tier.prizeValue);
                           } else {
-                            // 5+ cols: label | condition | condition2 | quantity | prizeValue | extraCondition
+                            // 5+ cols: map directly to columns from tier fields
                             cells.push(tier.label);
                             cells.push(tier.condition);
                             if (tier.condition2 !== undefined) cells.push(tier.condition2);
-                            cells.push(tier.quantity);
                             cells.push(tier.prizeValue);
                             if (tier.extraCondition !== undefined) cells.push(tier.extraCondition || '—');
                           }
