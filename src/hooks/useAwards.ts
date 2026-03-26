@@ -82,6 +82,32 @@ const DEFAULT_AWARDS: Award[] = [
     footnote: '* Elite Galaxy Circle (sau đây viết tắt là: EGC) là vòng tròn danh giá quy tụ những Đại sứ Giáo dục đạt thành tích tuyển sinh xuất sắc, với tinh thần bền bỉ và nỗ lực vượt trội trong hành trình lan tỏa tri thức – Kiến tạo tương lai.',
     order: 4,
   },
+  {
+    id: 'ds-gd-xuat-sac-k1',
+    title: 'Thưởng Đại sứ Giáo dục Xuất sắc',
+    period: 'Kỳ I Năm 2026 (Từ 1/1 đến 30/6)',
+    category: 'semester',
+    mechanism: 'Thưởng Đại sứ đạt Top doanh số cá nhân, nhằm tôn vinh thành tích nổi bật và đóng góp tích cực trong hoạt động triển khai bán hàng.\n\n- Doanh số và thành tích tuyển sinh phát sinh trong kỳ xét giải.',
+    columns: ['Giải', 'Số lượng giải', 'Doanh số cá nhân', 'Giá trị giải thưởng'],
+    tiers: [
+      { label: 'Top 1 – 3', condition: '3', condition2: '>= 800,000,000', quantity: '3', prizeValue: '100% chuyến du lịch quốc tế' },
+      { label: 'Top 4 – 8', condition: '5', condition2: '>= 500,000,000', quantity: '5', prizeValue: '50% chuyến du lịch quốc tế' },
+    ],
+    order: 5,
+  },
+  {
+    id: 'ql-xuat-sac-k1',
+    title: 'Thưởng Quản lý Xuất sắc',
+    period: 'Kỳ I Năm 2026 (Từ 1/1 đến 30/6)',
+    category: 'semester',
+    mechanism: 'Thưởng ghi nhận đội ngũ tiên phong, dám cam kết và xuất sắc đạt các mốc thử thách doanh số 10 tỷ – 20 tỷ.\n\n- Doanh số và thành tích tuyển sinh phát sinh trong kỳ xét giải.',
+    columns: ['Doanh số đội ngũ', 'Số lượng giải', 'ĐS mới Active trong đội ngũ', 'Giá trị giải thưởng', 'Điều kiện cần'],
+    tiers: [
+      { label: '>= 10 tỷ', condition: '5', condition2: '>= 40', quantity: '5', prizeValue: '50% chuyến du lịch quốc tế', extraCondition: 'Chấp nhận và xuất sắc vượt qua thử thách' },
+      { label: '>= 20 tỷ', condition: '2', condition2: '>= 80', quantity: '2', prizeValue: '100% chuyến du lịch quốc tế', extraCondition: 'Chấp nhận và xuất sắc vượt qua thử thách' },
+    ],
+    order: 6,
+  },
 ];
 
 export function useAwards() {
