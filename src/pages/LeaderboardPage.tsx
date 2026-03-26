@@ -16,6 +16,7 @@ export function LeaderboardPage() {
   const [data, setData] = useState<LeaderboardData | null>(null);
   const [loading, setLoading] = useState(true);
   const [theme, setTheme] = useState<'blue' | 'dark'>(settings.defaultTheme || 'blue');
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
   // Sync default tab/theme khi settings thay đổi
   useEffect(() => {
@@ -36,6 +37,7 @@ export function LeaderboardPage() {
     const doFetch = () => {
       fetchLeaderboardData(settings.sheetUrl).then(d => {
         setData(d);
+        setLastUpdated(new Date());
         setLoading(false);
       }).catch(e => {
         console.error(e);
@@ -163,7 +165,7 @@ export function LeaderboardPage() {
         className="w-full flex flex-col gap-6"
       >
         {currentData.map((category, index) => (
-          <LeaderboardCard key={category.categoryId} data={category} index={index} theme={theme} />
+          <LeaderboardCard key={category.categoryId} data={category} index={index} theme={theme} lastUpdated={lastUpdated} />
         ))}
 
         {currentData.length === 0 && (

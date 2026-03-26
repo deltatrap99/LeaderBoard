@@ -1,9 +1,9 @@
 import type { CategoryResult } from '../data/liveData';
 import { Podium } from './Podium';
-import { Trophy, TrendingUp, Star } from 'lucide-react';
+import { Trophy, TrendingUp, Star, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export function LeaderboardCard({ data, index, theme = 'blue' }: { data: CategoryResult, index: number, theme?: string }) {
+export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { data: CategoryResult, index: number, theme?: string, lastUpdated?: Date | null }) {
   const getInitials = (name: string) => name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   const isBlue = theme === 'blue';
 
@@ -17,6 +17,17 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
 
   const isManager = data.categoryName.toLowerCase().includes('tiêu biểu');
   const badgeText = isManager ? 'ĐẠT CHỈ TIÊU' : 'ĐẠT EGC';
+
+  const formatLastUpdated = (date: Date) => {
+    return date.toLocaleString('vi-VN', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+  };
 
   return (
     <motion.div 
@@ -59,7 +70,7 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
 
       {/* Table */}
       {data.otherRankers.length > 0 && (
-        <div className="px-3 sm:px-6 pb-6 pt-4">
+        <div className="px-3 sm:px-6 pb-4 pt-4">
           <div className={`rounded-2xl overflow-x-auto ${
             isBlue 
               ? 'border border-slate-200 bg-slate-50/50' 
@@ -178,6 +189,18 @@ export function LeaderboardCard({ data, index, theme = 'blue' }: { data: Categor
               </tbody>
             </table>
           </div>
+        </div>
+      )}
+
+      {/* Last Updated Note */}
+      {lastUpdated && (
+        <div className={`px-6 py-3 flex items-center justify-end gap-2 text-[11px] font-medium border-t ${
+          isBlue 
+            ? 'border-slate-100 text-slate-400 bg-slate-50/30' 
+            : 'border-white/[0.04] text-white/30 bg-white/[0.01]'
+        }`}>
+          <Clock size={12} className={isBlue ? 'text-blue-400' : 'text-blue-400/60'} />
+          <span>Số liệu đang được cập nhật đến: <strong className={isBlue ? 'text-slate-600' : 'text-white/60'}>{formatLastUpdated(lastUpdated)}</strong></span>
         </div>
       )}
     </motion.div>
