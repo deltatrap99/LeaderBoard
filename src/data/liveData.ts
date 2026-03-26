@@ -15,6 +15,7 @@ export interface Ambassador {
 export interface CategoryResult {
   categoryId: string;
   categoryName: string;
+  categorySubtitle?: string;
   topRankers: Ambassador[]; 
   otherRankers: Ambassador[];
   hasMultipleScores?: boolean;
@@ -441,6 +442,38 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
       otherRankers: ambassadors.slice(3),
     });
   }
+
+  // Đổi tên "Bứt tốc quý" → "Đại sứ Bứt tốc Ấn tượng"
+  (['month', 'quarter', 'semester', 'challenge'] as const).forEach(tab => {
+    data[tab].forEach(cat => {
+      if (cat.categoryName.toLowerCase().includes('bứt tốc')) {
+        cat.categoryName = cat.categoryName.replace(/Bứt tốc\s*(quý|q\d*)/i, 'Đại sứ Bứt tốc Ấn tượng');
+      }
+    });
+  });
+
+  // Thêm prefix "Giải thưởng" cho các tab không phải Challenge
+  (['month', 'quarter', 'semester'] as const).forEach(tab => {
+    data[tab].forEach(cat => {
+      if (!cat.categoryName.toLowerCase().startsWith('giải thưởng')) {
+        cat.categoryName = 'Giải thưởng ' + cat.categoryName;
+      }
+    });
+  });
+
+  // Thêm subtitle cho các giải cụ thể
+  (['month', 'quarter', 'semester', 'challenge'] as const).forEach(tab => {
+    data[tab].forEach(cat => {
+      const name = cat.categoryName.toLowerCase();
+      if (
+        name.includes('đại sứ mới') ||
+        name.includes('vàng') ||
+        name.includes('bứt tốc')
+      ) {
+        cat.categorySubtitle = 'Biểu dương các Đại sứ mới xuất sắc, căn cứ theo số liệu tuyển sinh';
+      }
+    });
+  });
 
   return data;
 }

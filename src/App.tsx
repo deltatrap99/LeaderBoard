@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { LeaderboardPage } from './pages/LeaderboardPage';
 import { AwardsPage } from './pages/AwardsPage';
+import { PoliciesPage } from './pages/PoliciesPage';
 import { LoginPage } from './pages/LoginPage';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminOverview } from './pages/admin/AdminOverview';
@@ -15,6 +16,7 @@ function App() {
         {/* Public */}
         <Route path="/" element={<LeaderboardPage />} />
         <Route path="/awards" element={<AwardsPage />} />
+        <Route path="/policies" element={<PoliciesPage />} />
         <Route path="/login" element={<LoginPage />} />
 
         {/* Admin (protected) */}

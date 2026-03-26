@@ -42,12 +42,19 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     >
       {/* Card Header — Galaxy Blue gradient */}
       <div className="relative px-6 py-5 flex items-center justify-between overflow-hidden bg-gradient-to-r from-[#1B3A7A] via-[#1a4fa0] to-[#2563eb]">
-        <h2 className="text-lg sm:text-xl font-heading font-extrabold text-white flex items-center gap-3 select-none relative z-10">
-          <div className="p-2 bg-white/15 rounded-xl backdrop-blur-sm">
-            <Trophy className="w-5 h-5 text-amber-400" />
-          </div>
-          {data.categoryName}
-        </h2>
+        <div className="flex-1 min-w-0 relative z-10">
+          <h2 className="text-lg sm:text-xl font-heading font-extrabold text-white flex items-center gap-3 select-none">
+            <div className="p-2 bg-white/15 rounded-xl backdrop-blur-sm shrink-0">
+              <Trophy className="w-5 h-5 text-amber-400" />
+            </div>
+            <span className="truncate">{data.categoryName}</span>
+          </h2>
+          {data.categorySubtitle && (
+            <p className="text-[11px] sm:text-xs text-white/50 font-medium mt-1.5 ml-[52px] leading-relaxed">
+              {data.categorySubtitle}
+            </p>
+          )}
+        </div>
         <div className="relative z-10 hidden sm:flex items-center gap-2">
           <span className="flex items-center gap-1.5 text-[11px] font-bold px-4 py-2 bg-emerald-400/20 rounded-full text-emerald-300 border border-emerald-400/30 backdrop-blur-sm">
             <span className="relative flex h-2 w-2">

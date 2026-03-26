@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/ge-logo.png';
-import { Moon, Sun, Sparkles, Award, BarChart3, Gift } from 'lucide-react';
+import { Moon, Sun, Sparkles, Award, BarChart3, Gift, FileText } from 'lucide-react';
 
 interface LayoutProps {
   heroContent: React.ReactNode;
@@ -21,8 +21,9 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
   const currentPath = location.pathname;
 
   const pageNav = [
-    { path: '/', label: 'Bảng thi đua', icon: <BarChart3 size={14} /> },
+    { path: '/', label: 'Bảng xếp hạng', icon: <BarChart3 size={14} /> },
     { path: '/awards', label: 'Chi tiết Giải thưởng', icon: <Gift size={14} /> },
+    { path: '/policies', label: 'Chính sách & Quy định', icon: <FileText size={14} /> },
   ];
 
   return (
