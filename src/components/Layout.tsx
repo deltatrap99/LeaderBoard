@@ -7,9 +7,10 @@ interface LayoutProps {
   bodyContent: React.ReactNode;
   theme?: 'blue' | 'dark';
   onToggleTheme?: () => void;
+  footerText?: string;
 }
 
-export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme }: LayoutProps) {
+export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme, footerText }: LayoutProps) {
   const isBlue = theme === 'blue';
 
   return (
@@ -87,7 +88,7 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
       <footer className={`py-8 text-center text-xs ${
         isBlue ? 'text-slate-400 bg-[#f0f4f8]' : 'text-gray-500 bg-[#0a0f1e]'
       }`}>
-        <p>© 2026 Galaxy Education. Galaxy Elite Awards — Chương trình Vinh danh Đại sứ Giáo dục.</p>
+        <p>{footerText || '© 2026 Galaxy Education. Galaxy Elite Awards — Chương trình Vinh danh Đại sứ Giáo dục.'}</p>
       </footer>
     </div>
   );

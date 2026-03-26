@@ -6,16 +6,19 @@ interface TabsNavProps {
   activeTab: TabType;
   onTabChange: (tab: TabType) => void;
   theme?: string;
+  tabLabels?: { month: string; quarter: string; semester: string; challenge: string };
 }
 
-const TABS: { id: TabType; label: string; icon: string }[] = [
+const DEFAULT_TABS: { id: TabType; label: string; icon: string }[] = [
   { id: 'month', label: 'Tháng', icon: '📅' },
   { id: 'quarter', label: 'Quý', icon: '🏆' },
   { id: 'semester', label: 'Kỳ', icon: '⭐' },
   { id: 'challenge', label: 'Challenge', icon: '🔥' },
 ];
 
-export function TabsNav({ activeTab, onTabChange }: TabsNavProps) {
+export function TabsNav({ activeTab, onTabChange, tabLabels }: TabsNavProps) {
+  const TABS = DEFAULT_TABS.map(t => ({ ...t, label: tabLabels?.[t.id] || t.label }));
+
   return (
     <div className="flex space-x-1.5 bg-white/10 backdrop-blur-xl p-1.5 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.15)] border border-white/15 overflow-x-auto no-scrollbar w-full max-w-2xl mx-auto">
       {TABS.map((tab) => {

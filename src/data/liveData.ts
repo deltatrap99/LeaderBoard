@@ -28,7 +28,7 @@ export interface LeaderboardData {
   semester: CategoryResult[];
 }
 
-const url = 'https://docs.google.com/spreadsheets/d/1LktWs8p4xbTToJJaEu2y6RBwj5W26daoVFKiKMNHhJs/export?format=xlsx';
+const DEFAULT_URL = 'https://docs.google.com/spreadsheets/d/1LktWs8p4xbTToJJaEu2y6RBwj5W26daoVFKiKMNHhJs/export?format=xlsx';
 
 function categorizeSheet(sheetName: string): keyof LeaderboardData | null {
   const name = sheetName.toLowerCase();
@@ -55,7 +55,8 @@ function isManagerSheet(sheetName: string): boolean {
   return name.includes('tiêu biểu') && name.includes('quản lý');
 }
 
-export async function fetchLeaderboardData(): Promise<LeaderboardData> {
+export async function fetchLeaderboardData(sheetUrl?: string): Promise<LeaderboardData> {
+  const url = sheetUrl || DEFAULT_URL;
   const res = await fetch(url);
   const buf = await res.arrayBuffer();
   const wb = xlsx.read(buf, { type: 'array' });
