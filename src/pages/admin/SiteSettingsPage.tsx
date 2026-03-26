@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
-import { db } from '../../firebase';
+import { db as _db } from '../../firebase';
+const db = _db!;
 import { useSiteSettings, type SiteSettings } from '../../hooks/useSiteSettings';
 import { Settings, Save, RotateCcw, Check, AlertCircle } from 'lucide-react';
 

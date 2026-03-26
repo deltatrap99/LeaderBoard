@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { collection, getDocs, doc, setDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../../firebase';
+import { auth as _auth, db as _db } from '../../firebase';
+const auth = _auth!;
+const db = _db!;
 import { Users, Plus, Trash2, Shield, ShieldCheck, AlertCircle, X, Check } from 'lucide-react';
 
 interface UserRecord {
