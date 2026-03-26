@@ -1,6 +1,7 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import logo from '../assets/ge-logo.png';
-import { Moon, Sun, Sparkles, Award } from 'lucide-react';
+import { Moon, Sun, Sparkles, Award, BarChart3, Gift } from 'lucide-react';
 
 interface LayoutProps {
   heroContent: React.ReactNode;
@@ -16,6 +17,13 @@ interface LayoutProps {
 
 export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme, footerText, footerLinks, headerTagline, headerCtaText, headerCtaUrl }: LayoutProps) {
   const isBlue = theme === 'blue';
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const pageNav = [
+    { path: '/', label: 'Bảng thi đua', icon: <BarChart3 size={14} /> },
+    { path: '/awards', label: 'Chi tiết Giải thưởng', icon: <Gift size={14} /> },
+  ];
 
   return (
     <div className={`min-h-screen font-body selection:bg-yellow-500/30 transition-all duration-700`}
@@ -25,7 +33,9 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
       <header className="sticky top-0 z-50 bg-gradient-to-r from-[#1B3A7A] via-[#1a4fa0] to-[#1B3A7A] shadow-[0_4px_20px_rgba(27,58,122,0.3)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src={logo} alt="Galaxy Education" className="h-8 sm:h-10 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+            <a href="/" className="flex items-center gap-3">
+              <img src={logo} alt="Galaxy Education" className="h-8 sm:h-10 w-auto object-contain" style={{ filter: 'brightness(0) invert(1)' }} />
+            </a>
             <div className="h-6 w-px bg-white/25 mx-1 hidden sm:block" />
             <div className="hidden sm:flex items-center gap-2">
               <Award size={16} className="text-amber-400" />
@@ -51,6 +61,29 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
               <Sparkles size={12} />
               {headerCtaText || 'Bảng Vàng Tôn Vinh'}
             </a>
+          </div>
+        </div>
+
+        {/* Page Navigation */}
+        <div className="bg-[#132e63]/80 border-t border-white/[0.08]">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex gap-1">
+            {pageNav.map(nav => {
+              const isActive = currentPath === nav.path;
+              return (
+                <a
+                  key={nav.path}
+                  href={nav.path}
+                  className={`flex items-center gap-2 px-5 py-2.5 text-xs sm:text-sm font-semibold transition-all duration-200 border-b-2 ${
+                    isActive
+                      ? 'text-amber-400 border-amber-400'
+                      : 'text-white/50 border-transparent hover:text-white/80 hover:border-white/20'
+                  }`}
+                >
+                  {nav.icon}
+                  {nav.label}
+                </a>
+              );
+            })}
           </div>
         </div>
       </header>
