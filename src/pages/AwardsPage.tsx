@@ -130,24 +130,15 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                       >
                       {/* Render columns generically based on column definition */}
                         {(() => {
-                          // Build cell values in column order from tier data
-                          const cells: string[] = [];
+                          // Build cell values: prefer explicit cellValues, fallback to field mapping
                           const colCount = award.columns.length;
-                          
-                          if (colCount === 3) {
-                            // 3 cols: condition | quantity | prizeValue
-                            cells.push(tier.condition, tier.quantity, tier.prizeValue);
-                          } else if (colCount === 4) {
-                            // 4 cols: label | condition | condition2 OR quantity | prizeValue
-                            cells.push(tier.label, tier.condition, tier.condition2 || tier.quantity, tier.prizeValue);
-                          } else {
-                            // 5+ cols: label | condition | prizeValue | condition2 | extraCondition
-                            cells.push(tier.label);
-                            cells.push(tier.condition);
-                            cells.push(tier.prizeValue);
-                            if (tier.condition2 !== undefined) cells.push(tier.condition2);
-                            if (tier.extraCondition !== undefined) cells.push(tier.extraCondition || '—');
-                          }
+                          const cells: string[] = tier.cellValues
+                            ? tier.cellValues
+                            : colCount === 3
+                              ? [tier.condition, tier.quantity, tier.prizeValue]
+                              : colCount === 4
+                                ? [tier.label, tier.condition, tier.condition2 || tier.quantity, tier.prizeValue]
+                                : [tier.label, tier.condition, tier.prizeValue, ...(tier.condition2 !== undefined ? [tier.condition2] : []), ...(tier.extraCondition !== undefined ? [tier.extraCondition || '—'] : [])];
 
                           return cells.map((val, ci) => {
                             const isPrize = award.columns[ci]?.includes('Giá trị giải thưởng');
