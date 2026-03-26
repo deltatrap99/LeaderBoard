@@ -128,94 +128,53 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                             : `${i % 2 === 0 ? 'bg-white/[0.02]' : 'bg-white/[0.04]'} hover:bg-white/[0.06] border-t border-white/[0.06]`
                         }`}
                       >
-                        {/* Render columns based on the award structure */}
-                        {award.columns.length === 3 ? (
-                          <>
-                            <td className={`px-4 py-3.5 text-center font-semibold ${
-                              isBlue ? 'text-slate-700' : 'text-white/70'
-                            }`}>
-                              {tier.condition}
-                            </td>
-                            <td className={`px-4 py-3.5 text-center font-bold ${
-                              isBlue ? 'text-slate-700' : 'text-white/70'
-                            }`}>
-                              {tier.quantity}
-                            </td>
-                            <td className="px-4 py-3.5 text-center">
-                              <span className="font-black text-red-700 text-base">{tier.prizeValue}</span>
-                            </td>
-                          </>
-                        ) : award.columns.length === 4 ? (
-                          <>
-                            <td className={`px-4 py-3.5 text-center font-bold ${
-                              tier.label.includes('EGC') 
-                                ? 'text-amber-600' 
-                                : isBlue ? 'text-slate-700' : 'text-white/70'
-                            }`}>
-                              {tier.label.includes('EGC') ? (
-                                <span className="flex items-center justify-center gap-1">
-                                  <Star size={12} className="fill-amber-500 text-amber-500" />
-                                  {tier.label.replace('⭐ ', '')}
-                                </span>
-                              ) : tier.label}
-                            </td>
-                            <td className={`px-4 py-3.5 text-center font-semibold ${
-                              isBlue ? 'text-slate-600' : 'text-white/60'
-                            }`}>
-                              {tier.condition}
-                            </td>
-                            <td className={`px-4 py-3.5 text-center font-bold ${
-                              isBlue ? 'text-slate-700' : 'text-white/70'
-                            }`}>
-                              {tier.quantity}
-                            </td>
-                            <td className="px-4 py-3.5 text-center">
-                              <span className="font-black text-red-700 text-base">{tier.prizeValue}</span>
-                            </td>
-                          </>
-                        ) : (
-                          <>
-                            <td className={`px-4 py-3.5 text-center font-bold ${
-                              tier.label.includes('EGC') 
-                                ? 'text-amber-600' 
-                                : isBlue ? 'text-slate-700' : 'text-white/70'
-                            }`}>
-                              {tier.label.includes('EGC') ? (
-                                <span className="flex items-center justify-center gap-1">
-                                  <Star size={12} className="fill-amber-500 text-amber-500" />
-                                  {tier.label.replace('⭐ ', '')}
-                                </span>
-                              ) : tier.label}
-                            </td>
-                            <td className={`px-4 py-3.5 text-center font-semibold ${
-                              isBlue ? 'text-slate-600' : 'text-white/60'
-                            }`}>
-                              {tier.condition}
-                            </td>
-                            {tier.condition2 !== undefined && (
-                              <td className={`px-4 py-3.5 text-center font-semibold ${
-                                isBlue ? 'text-slate-600' : 'text-white/60'
+                      {/* Render columns generically based on column definition */}
+                        {(() => {
+                          // Build cell values in column order from tier data
+                          const cells: string[] = [];
+                          const colCount = award.columns.length;
+                          
+                          if (colCount === 3) {
+                            // 3 cols: condition | quantity | prizeValue
+                            cells.push(tier.condition, tier.quantity, tier.prizeValue);
+                          } else if (colCount === 4) {
+                            // 4 cols: label | condition OR condition2 | quantity | prizeValue
+                            cells.push(tier.label, tier.condition, tier.condition2 || tier.quantity, tier.prizeValue);
+                          } else {
+                            // 5+ cols: label | condition | condition2 | quantity | prizeValue | extraCondition
+                            cells.push(tier.label);
+                            cells.push(tier.condition);
+                            if (tier.condition2 !== undefined) cells.push(tier.condition2);
+                            cells.push(tier.quantity);
+                            cells.push(tier.prizeValue);
+                            if (tier.extraCondition !== undefined) cells.push(tier.extraCondition || '—');
+                          }
+
+                          return cells.map((val, ci) => {
+                            const isPrize = val === tier.prizeValue;
+                            const isLabel = ci === 0 && colCount > 3;
+                            const isEGC = isLabel && tier.label.includes('EGC');
+
+                            return (
+                              <td key={ci} className={`px-4 py-3.5 text-center ${
+                                isPrize
+                                  ? 'font-black text-red-700 text-base'
+                                  : isEGC
+                                    ? 'font-bold text-amber-600'
+                                    : isLabel
+                                      ? `font-bold ${isBlue ? 'text-slate-700' : 'text-white/70'}`
+                                      : `font-semibold ${isBlue ? 'text-slate-600' : 'text-white/60'}`
                               }`}>
-                                {tier.condition2}
+                                {isEGC ? (
+                                  <span className="flex items-center justify-center gap-1">
+                                    <Star size={12} className="fill-amber-500 text-amber-500" />
+                                    {val.replace('⭐ ', '')}
+                                  </span>
+                                ) : val}
                               </td>
-                            )}
-                            <td className={`px-4 py-3.5 text-center font-bold ${
-                              isBlue ? 'text-slate-700' : 'text-white/70'
-                            }`}>
-                              {tier.quantity}
-                            </td>
-                            <td className="px-4 py-3.5 text-center">
-                              <span className="font-black text-red-700 text-base">{tier.prizeValue}</span>
-                            </td>
-                            {tier.extraCondition !== undefined && (
-                              <td className={`px-4 py-3.5 text-center text-xs font-medium ${
-                                isBlue ? 'text-slate-500' : 'text-white/40'
-                              }`}>
-                                {tier.extraCondition || '—'}
-                              </td>
-                            )}
-                          </>
-                        )}
+                            );
+                          });
+                        })()}
                       </tr>
                     ))}
                   </tbody>
