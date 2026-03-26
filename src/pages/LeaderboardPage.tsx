@@ -6,18 +6,32 @@ import { fetchLeaderboardData } from '../data/liveData';
 import type { LeaderboardData } from '../data/liveData';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Users, Trophy, TrendingUp } from 'lucide-react';
+import { Star, Users, Trophy, TrendingUp, Info, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export type TabType = 'month' | 'quarter' | 'semester' | 'challenge';
 
 export function LeaderboardPage() {
-  const [activeTab, setActiveTab] = useState<TabType>('month');
+  const { settings } = useSiteSettings();
+  const [activeTab, setActiveTab] = useState<TabType>(settings.defaultTab || 'month');
   const [data, setData] = useState<LeaderboardData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState<'blue' | 'dark'>('blue');
-  const { settings } = useSiteSettings();
+  const [theme, setTheme] = useState<'blue' | 'dark'>(settings.defaultTheme || 'blue');
 
-  // Fetch lần đầu + auto-refresh mỗi 30 giây
+  // Sync default tab/theme khi settings thay đổi
+  useEffect(() => {
+    if (settings.defaultTab) setActiveTab(settings.defaultTab);
+  }, [settings.defaultTab]);
+
+  useEffect(() => {
+    if (settings.defaultTheme) setTheme(settings.defaultTheme);
+  }, [settings.defaultTheme]);
+
+  // Update page title
+  useEffect(() => {
+    document.title = settings.pageTitle || 'Bảng thi đua Galaxy Elite Awards 2026';
+  }, [settings.pageTitle]);
+
+  // Fetch lần đầu + auto-refresh
   useEffect(() => {
     const doFetch = () => {
       fetchLeaderboardData(settings.sheetUrl).then(d => {
@@ -28,20 +42,44 @@ export function LeaderboardPage() {
         setLoading(false);
       });
     };
-    
-    doFetch(); // Lần đầu
-    const interval = setInterval(doFetch, 30_000); // Mỗi 30s
+
+    doFetch();
+    const interval = setInterval(doFetch, (settings.refreshInterval || 30) * 1000);
     return () => clearInterval(interval);
-  }, [settings.sheetUrl]);
+  }, [settings.sheetUrl, settings.refreshInterval]);
 
   const currentData = data ? data[activeTab] : [];
   const isBlue = theme === 'blue';
   const totalAmbassadors = currentData.reduce((acc, cat) => acc + cat.topRankers.length + cat.otherRankers.length, 0);
 
+  // Announcement bar icon
+  const announcementIcons = {
+    info: <Info size={14} />,
+    success: <CheckCircle size={14} />,
+    warning: <AlertTriangle size={14} />,
+  };
+  const announcementColors = {
+    info: 'bg-blue-500/20 border-blue-500/30 text-blue-200',
+    success: 'bg-emerald-500/20 border-emerald-500/30 text-emerald-200',
+    warning: 'bg-amber-500/20 border-amber-500/30 text-amber-200',
+  };
+
   const heroContent = (
     <>
+      {/* Announcement Bar */}
+      {settings.announcementEnabled && settings.announcementText && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className={`flex items-center justify-center gap-2 px-4 py-2 rounded-xl border text-sm mb-4 ${announcementColors[settings.announcementType || 'info']}`}
+        >
+          {announcementIcons[settings.announcementType || 'info']}
+          {settings.announcementText}
+        </motion.div>
+      )}
+
       {/* Badge */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         className="flex justify-center mb-5"
@@ -53,7 +91,7 @@ export function LeaderboardPage() {
       </motion.div>
 
       {/* Title */}
-      <motion.h2 
+      <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
@@ -67,7 +105,7 @@ export function LeaderboardPage() {
       </motion.h2>
 
       {/* Subtitle */}
-      <motion.p 
+      <motion.p
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.15 }}
@@ -77,16 +115,16 @@ export function LeaderboardPage() {
       </motion.p>
 
       {/* Stats row */}
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.3 }}
         className="flex justify-center gap-8 sm:gap-14 mb-8"
       >
         {[
-          { icon: <Users size={18} />, value: `${totalAmbassadors}+`, label: 'Đại sứ' },
-          { icon: <Trophy size={18} />, value: currentData.length.toString(), label: 'Hạng mục' },
-          { icon: <TrendingUp size={18} />, value: 'Live', label: 'Cập nhật' },
+          { icon: <Users size={18} />, value: `${totalAmbassadors}+`, label: settings.statsLabels?.ambassadors || 'Đại sứ' },
+          { icon: <Trophy size={18} />, value: currentData.length.toString(), label: settings.statsLabels?.categories || 'Hạng mục' },
+          { icon: <TrendingUp size={18} />, value: 'Live', label: settings.statsLabels?.update || 'Cập nhật' },
         ].map((stat, i) => (
           <div key={i} className="text-center text-white">
             <div className="flex items-center justify-center gap-2 mb-1">
@@ -99,7 +137,13 @@ export function LeaderboardPage() {
       </motion.div>
 
       {/* Tabs */}
-      <TabsNav activeTab={activeTab} onTabChange={setActiveTab} theme={theme} tabLabels={settings.tabLabels} />
+      <TabsNav
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        theme={theme}
+        tabLabels={settings.tabLabels}
+        tabVisibility={settings.tabVisibility}
+      />
     </>
   );
 
@@ -121,11 +165,11 @@ export function LeaderboardPage() {
         {currentData.map((category, index) => (
           <LeaderboardCard key={category.categoryId} data={category} index={index} theme={theme} />
         ))}
-        
+
         {currentData.length === 0 && (
           <div className={`text-center py-20 rounded-3xl border ${
-            isBlue 
-              ? 'bg-white border-slate-200 text-slate-400 shadow-sm' 
+            isBlue
+              ? 'bg-white border-slate-200 text-slate-400 shadow-sm'
               : 'bg-white/[0.03] border-white/[0.06] text-white/30'
           }`}>
             <p className="text-lg font-medium">Chưa có dữ liệu cho bảng thi đua này.</p>
@@ -136,12 +180,16 @@ export function LeaderboardPage() {
   );
 
   return (
-    <Layout 
-      theme={theme} 
+    <Layout
+      theme={theme}
       onToggleTheme={() => setTheme(t => t === 'blue' ? 'dark' : 'blue')}
       heroContent={heroContent}
       bodyContent={bodyContent}
       footerText={settings.footerText}
+      footerLinks={settings.footerLinks}
+      headerTagline={settings.headerTagline}
+      headerCtaText={settings.headerCtaText}
+      headerCtaUrl={settings.headerCtaUrl}
     />
   );
 }

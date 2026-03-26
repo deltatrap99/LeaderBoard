@@ -8,9 +8,13 @@ interface LayoutProps {
   theme?: 'blue' | 'dark';
   onToggleTheme?: () => void;
   footerText?: string;
+  footerLinks?: { label: string; url: string }[];
+  headerTagline?: string;
+  headerCtaText?: string;
+  headerCtaUrl?: string;
 }
 
-export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme, footerText }: LayoutProps) {
+export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme, footerText, footerLinks, headerTagline, headerCtaText, headerCtaUrl }: LayoutProps) {
   const isBlue = theme === 'blue';
 
   return (
@@ -26,7 +30,7 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
             <div className="hidden sm:flex items-center gap-2">
               <Award size={16} className="text-amber-400" />
               <h1 className="text-sm font-heading font-bold text-amber-400 tracking-widest uppercase">
-                Elite Awards
+                {headerTagline || 'Elite Awards'}
               </h1>
             </div>
           </div>
@@ -36,16 +40,16 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
                 onClick={onToggleTheme}
                 className="group flex items-center gap-2 px-4 py-2 rounded-full border border-white/25 bg-white/10 hover:bg-white/20 transition-all duration-300 text-xs font-medium text-white"
               >
-                {isBlue 
-                  ? <Moon size={14} className="text-blue-200 group-hover:text-white transition-colors"/> 
+                {isBlue
+                  ? <Moon size={14} className="text-blue-200 group-hover:text-white transition-colors"/>
                   : <Sun size={14} className="text-amber-400 group-hover:rotate-90 transition-all duration-500"/>
                 }
                 <span className="hidden sm:inline">{isBlue ? 'Chế độ tối' : 'Galaxy Blue'}</span>
               </button>
             )}
-            <a href="#" className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-[0_4px_15px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.6)] hover:scale-105 transition-all duration-300">
+            <a href={headerCtaUrl || '#'} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-[0_4px_15px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.6)] hover:scale-105 transition-all duration-300">
               <Sparkles size={12} />
-              Bảng Vàng Tôn Vinh
+              {headerCtaText || 'Bảng Vàng Tôn Vinh'}
             </a>
           </div>
         </div>
@@ -63,7 +67,7 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
         <div className="absolute top-[10%] right-[5%] w-[200px] h-[200px] rounded-full border border-white/10 opacity-30 hidden sm:block" />
         <div className="absolute bottom-[15%] left-[3%] w-[120px] h-[120px] rounded-full border border-white/10 opacity-20 hidden sm:block" />
         <div className="absolute top-[50%] right-[20%] w-[60px] h-[60px] rounded-full bg-white/5 hidden sm:block" />
-        
+
         {/* Hero content */}
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 sm:pt-14 pb-28 sm:pb-36">
           {heroContent}
@@ -88,6 +92,17 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
       <footer className={`py-8 text-center text-xs ${
         isBlue ? 'text-slate-400 bg-[#f0f4f8]' : 'text-gray-500 bg-[#0a0f1e]'
       }`}>
+        {footerLinks && footerLinks.length > 0 && (
+          <div className="flex justify-center gap-6 mb-3">
+            {footerLinks.map((link, i) => (
+              <a key={i} href={link.url} target="_blank" rel="noopener noreferrer"
+                className={`hover:underline ${isBlue ? 'text-blue-500' : 'text-blue-400'}`}
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        )}
         <p>{footerText || '© 2026 Galaxy Education. Galaxy Elite Awards — Chương trình Vinh danh Đại sứ Giáo dục.'}</p>
       </footer>
     </div>
