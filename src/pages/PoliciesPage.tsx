@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import {
   Shield,
   Users,
-  BookOpen,
   AlertTriangle,
   CheckCircle2,
   XCircle,
@@ -153,17 +152,7 @@ function ViolationItem({ children, theme }: { children: React.ReactNode; theme: 
   );
 }
 
-function RequirementItem({ children, theme }: { children: React.ReactNode; theme: string }) {
-  const isBlue = theme === 'blue';
-  return (
-    <div className="flex gap-3 items-start">
-      <div className={`shrink-0 mt-0.5 p-1 rounded-lg ${isBlue ? 'bg-emerald-100 text-emerald-500' : 'bg-emerald-500/10 text-emerald-400'}`}>
-        <CheckCircle2 size={14} />
-      </div>
-      <div className={`text-sm leading-relaxed ${isBlue ? 'text-slate-600' : 'text-white/60'}`}>{children}</div>
-    </div>
-  );
-}
+
 
 function SectionDivider({ theme }: { theme: string }) {
   const isBlue = theme === 'blue';
