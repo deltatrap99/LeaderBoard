@@ -236,7 +236,7 @@ export function PoliciesPage() {
       <PolicySection
         icon={<Shield className="w-5 h-5 text-white" />}
         number="01"
-        title="Nguyên tắc bảo vệ quyền khai thác khách hàng"
+        title="Nguyên tắc ghi nhận quyền khai thác khách hàng"
         theme={theme}
         delay={0.05}
         accentColor="#1B3A7A"
@@ -247,23 +247,101 @@ export function PoliciesPage() {
             variant="highlight"
             theme={theme}
           >
-            <p className="font-semibold mb-1">Nguyên tắc ghi nhận quyền chăm sóc</p>
+            <p className="font-semibold mb-1">Căn cứ xác định dấu thời gian khách hàng</p>
             <p>
-              Quyền chăm sóc khách hàng <strong>CHỈ</strong> được ghi nhận dựa trên dữ liệu đăng ký trên <strong>Landing Page có gắn mã Đại sứ</strong>.
+              Khách hàng được hỗ trợ bởi Đại sứ được xác định dựa vào thông tin và dấu thời gian đăng ký trên <strong>Landing page có gắn Mã Đại sứ / Mã đối tác</strong> của anh chị.
             </p>
           </CalloutBox>
 
-          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-slate-50 border border-slate-100' : 'bg-white/[0.03] border border-white/[0.06]'}`}>
+          <CalloutBox
+            icon={<AlertTriangle size={18} />}
+            variant="danger"
+            theme={theme}
+          >
+            <p className="font-semibold">
+              ⚠️ Đây là cơ sở <strong>DUY NHẤT</strong> để ghi nhận khách hàng của Đại sứ, bất kỳ hình thức ghi nhận nào khác đều <strong>không có giá trị</strong>.
+            </p>
+          </CalloutBox>
+        </div>
+      </PolicySection>
+
+      {/* ═══════  SECTION 2  ═══════ */}
+      <PolicySection
+        icon={<Scale className="w-5 h-5 text-white" />}
+        number="02"
+        title="Quy tắc xác định quyền ưu tiên chăm sóc khách hàng"
+        theme={theme}
+        delay={0.1}
+        accentColor="#7c3aed"
+      >
+        <div className="space-y-5">
+          {/* Trùng trước khi đóng học phí */}
+          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-amber-50/50 border border-amber-100' : 'bg-amber-950/20 border border-amber-500/10'}`}>
             <SubHeading theme={theme}>
-              <Clock size={15} className={isBlue ? 'text-blue-500' : 'text-blue-400'} />
-              Yêu cầu đối với Đại sứ
+              <Clock size={15} className={isBlue ? 'text-amber-600' : 'text-amber-400'} />
+              Trường hợp khách hàng trùng TRƯỚC khi đóng học phí
             </SubHeading>
-            <div className="space-y-4">
+            <div className="space-y-3">
               <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
-                <span className="font-semibold">Ngay tại thời điểm</span> (thậm chí sớm hơn) tiếp cận khách hàng, bắt đầu tư vấn → Đại sứ <strong>phải chủ động khai báo lead trên hệ thống</strong>.
+                Khách hàng hệ thống làm việc của <strong>kênh bán nào trước</strong> thì kênh đó được <strong>ưu tiên chăm sóc tiếp</strong>.
               </BulletItem>
               <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
-                Nếu Anh/Chị Đại sứ thu thập được dữ liệu khách hàng theo dạng <strong>danh sách</strong>, Agent Success luôn sẵn sàng tiếp nhận để <strong>đẩy dữ liệu đồng bộ lên AMS</strong> thay vì Anh/Chị phải nhập tay từng dữ liệu.
+                Thời gian tối đa thuộc quyền ưu tiên chăm sóc khách hàng là <strong>30 ngày</strong> kể từ thời điểm vào kho dữ liệu.
+              </BulletItem>
+              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
+                Sau 30 ngày nếu khách hàng vẫn chưa đóng học phí, các bên khác được quyền chăm sóc tự do và <strong>thiết lập lại vòng lặp 30 ngày</strong> chăm sóc tiếp theo.
+              </BulletItem>
+            </div>
+          </div>
+
+          <SectionDivider theme={theme} />
+
+          {/* Trùng sau khi đóng học phí */}
+          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-blue-50/50 border border-blue-100' : 'bg-blue-950/20 border border-blue-500/10'}`}>
+            <SubHeading theme={theme}>
+              <CheckCircle2 size={15} className={isBlue ? 'text-blue-600' : 'text-blue-400'} />
+              Trường hợp khách hàng trùng SAU khi đóng học phí
+            </SubHeading>
+            <div className="space-y-3">
+              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
+                Nếu check trùng <strong>trong vòng 24 giờ</strong> kể từ thời điểm thanh toán thành công → việc xử lý được áp dụng theo <strong>nguyên tắc trùng trước khi thanh toán</strong>.
+              </BulletItem>
+              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
+                Nếu check trùng <strong>sau 24 giờ</strong> → quyền lợi được xác định theo <strong>dữ liệu thanh toán</strong>: khách hàng thanh toán qua đường link hoặc số tài khoản gắn mã của bên nào thì bên đó được ghi nhận quyền lợi.
+              </BulletItem>
+            </div>
+          </div>
+        </div>
+      </PolicySection>
+
+      {/* ═══════  SECTION 3  ═══════ */}
+      <PolicySection
+        icon={<BadgeAlert className="w-5 h-5 text-white" />}
+        number="03"
+        title="Hành xử khi có dấu hiệu trùng / được thông báo trùng khai thác"
+        theme={theme}
+        delay={0.15}
+        accentColor="#b45309"
+      >
+        <div className="space-y-5">
+          <p className={`text-sm leading-relaxed ${isBlue ? 'text-slate-500' : 'text-white/50'}`}>
+            Khi tư vấn, Đại sứ/Đối tác cần <strong className={isBlue ? 'text-slate-700' : 'text-white/80'}>chủ động xác minh</strong> thông tin khách hàng bằng các cách sau:
+          </p>
+
+          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-amber-50/50 border border-amber-100' : 'bg-amber-950/20 border border-amber-500/10'}`}>
+            <SubHeading theme={theme}>
+              <BadgeAlert size={15} className={isBlue ? 'text-amber-600' : 'text-amber-400'} />
+              Các cách xác minh thông tin khách hàng
+            </SubHeading>
+            <div className="space-y-3">
+              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
+                Trao đổi với khách hàng về <strong>lịch sử đã từng đăng ký, học tập hoặc tìm hiểu</strong> khóa học tại GE.
+              </BulletItem>
+              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
+                Kiểm tra trạng thái contact tại mục <strong>Kho Contact trên hệ thống AMS</strong>.
+              </BulletItem>
+              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
+                Khi lên đơn nếu hệ thống thông báo khách hàng <strong>đã có tài khoản hoặc đang bị khóa</strong>.
               </BulletItem>
             </div>
           </div>
@@ -274,146 +352,60 @@ export function PoliciesPage() {
             theme={theme}
           >
             <p>
-              Mọi trường hợp <strong>không có dấu thời gian hợp lệ</strong> trên hệ thống → <strong>không được bảo vệ quyền lợi</strong>.
+              Nếu có <strong>ít nhất 1</strong> trong các dấu hiệu trên, Đối tác/Đại sứ <strong>lập tức báo về Support</strong> thực hiện kiểm tra trùng.
             </p>
           </CalloutBox>
 
           <CalloutBox
-            icon={<Shield size={18} />}
+            icon={<Info size={18} />}
             variant="info"
             theme={theme}
           >
-            <p className="font-semibold">
-              👉 Đây là nguyên tắc cốt lõi, áp dụng cho tất cả các kênh bán trong Galaxy Education.
+            <p>
+              Khi phát sinh việc trùng khai thác: Support sẽ <strong>thông báo lại quyền ưu tiên khai thác tạm thời</strong> / doanh thu phát sinh nếu có ghi nhận về bên nào theo quy định chung.
             </p>
           </CalloutBox>
         </div>
       </PolicySection>
 
-      {/* ═══════  SECTION 2  ═══════ */}
+      {/* ═══════  SECTION 4  ═══════ */}
       <PolicySection
         icon={<Handshake className="w-5 h-5 text-white" />}
-        number="02"
-        title="Nguyên tắc hành xử khi cùng tiếp cận & chăm sóc khách hàng"
+        number="04"
+        title="Nguyên tắc ứng xử khi phát sinh trùng khai thác"
         theme={theme}
-        delay={0.1}
-        accentColor="#7c3aed"
-      >
-        <div className="space-y-5">
-          <p className={`text-sm leading-relaxed ${isBlue ? 'text-slate-500' : 'text-white/50'}`}>
-            Trong hệ thống đa kênh, việc nhiều người tư vấn (Đại sứ Giáo dục, Tư vấn viên, Cộng tác viên…) đồng thời tiếp cận và chăm sóc <strong className={isBlue ? 'text-slate-700' : 'text-white/80'}>cùng một khách hàng</strong> là tình huống thường xuyên xảy ra, đặc biệt gia tăng trong các giai đoạn cao điểm tuyển sinh.
-          </p>
-
-          <CalloutBox
-            icon={<Scale size={18} />}
-            variant="highlight"
-            theme={theme}
-          >
-            Trong mọi trường hợp phát sinh trùng khai thác, tất cả các kênh bán và cá nhân liên quan <strong>bắt buộc phải tuân thủ nguyên tắc hành xử chung</strong> nhằm đảm bảo trải nghiệm khách hàng nhất quán, duy trì uy tín thương hiệu và bảo vệ quyền lợi hợp lệ của các bên.
-          </CalloutBox>
-
-          {/* Dấu hiệu trùng */}
-          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-amber-50/50 border border-amber-100' : 'bg-amber-950/20 border border-amber-500/10'}`}>
-            <SubHeading theme={theme}>
-              <BadgeAlert size={15} className={isBlue ? 'text-amber-600' : 'text-amber-400'} />
-              Dấu hiệu trùng khai thác — Báo ngay về Support
-            </SubHeading>
-            <p className={`text-sm mb-4 ${isBlue ? 'text-slate-500' : 'text-white/50'}`}>
-              Ngay khi nhận thấy có <strong className={isBlue ? 'text-slate-700' : 'text-white/80'}>1 trong các dấu hiệu</strong> dưới đây, Anh/Chị Đại sứ <strong className={isBlue ? 'text-slate-700' : 'text-white/80'}>lập tức báo về Support</strong> để kiểm trùng:
-            </p>
-            <div className="space-y-3">
-              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
-                Khách hàng báo đã từng tìm hiểu trên <strong>fanpage / website</strong>, có tài khoản học thử, hoặc đã từng đăng ký khóa học cụ thể khác trước đó.
-              </BulletItem>
-              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
-                Contact hiển thị <strong>Khóa</strong> trên kho Contact AMS.
-              </BulletItem>
-              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
-                Cảnh báo <strong>"Đã có tài khoản / Liên kết tài khoản"</strong> khi nhập thông tin khách hàng lên đơn.
-              </BulletItem>
-              <BulletItem icon={<ArrowRight size={14} />} theme={theme}>
-                Hoặc <strong>các dấu hiệu nghi vấn khác</strong>...
-              </BulletItem>
-            </div>
-          </div>
-
-          <SectionDivider theme={theme} />
-
-          {/* Hành vi vi phạm */}
-          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-red-50/50 border border-red-100' : 'bg-red-950/20 border border-red-500/10'}`}>
-            <SubHeading theme={theme}>
-              <FileWarning size={15} className={isBlue ? 'text-red-600' : 'text-red-400'} />
-              Hành vi bị xác định là VI PHẠM — Hủy bỏ / thu hồi mọi quyền lợi
-            </SubHeading>
-            <p className={`text-sm mb-4 ${isBlue ? 'text-slate-500' : 'text-white/50'}`}>
-              Quyền chăm sóc, ghi nhận doanh thu và thù lao đối với khách hàng trùng sẽ bị <strong className={isBlue ? 'text-red-700' : 'text-red-300'}>hủy bỏ / thu hồi</strong> nếu:
-            </p>
-            <div className="space-y-3">
-              <ViolationItem theme={theme}>
-                Nhận biết trùng nhưng <strong>không tiến hành khai báo</strong> và yêu cầu Support kiểm tra tình trạng trùng.
-              </ViolationItem>
-              <ViolationItem theme={theme}>
-                <strong>Tự ý thay đổi thông tin khách hàng</strong> để lên đơn.
-              </ViolationItem>
-              <ViolationItem theme={theme}>
-                Tiếp tục tư vấn, <strong>lôi kéo khách hàng</strong> / trao đổi thông tin theo hướng tiêu cực khiến khách hàng hiểu không đúng về chất lượng sản phẩm, khung dịch vụ chăm sóc và <strong>làm ảnh hưởng tới thương hiệu GE</strong> — khi đã được thông báo khách hàng thuộc quyền chăm sóc của kênh/người tư vấn khác.
-              </ViolationItem>
-            </div>
-          </div>
-        </div>
-      </PolicySection>
-
-      {/* ═══════  SECTION 3  ═══════ */}
-      <PolicySection
-        icon={<BookOpen className="w-5 h-5 text-white" />}
-        number="03"
-        title="Tuân thủ chính sách học phí & Quy trình tư vấn sản phẩm"
-        theme={theme}
-        delay={0.15}
+        delay={0.2}
         accentColor="#b91c1c"
       >
         <div className="space-y-5">
-          <p className={`text-sm leading-relaxed ${isBlue ? 'text-slate-500' : 'text-white/50'}`}>
-            Hiện tại, GE đã ghi nhận một số trường hợp <strong className={isBlue ? 'text-slate-700' : 'text-white/80'}>vi phạm chính sách học phí</strong> như:
-          </p>
-
-          {/* Vi phạm đã ghi nhận */}
-          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-red-50/50 border border-red-100' : 'bg-red-950/20 border border-red-500/10'}`}>
+          {/* Thông điệp mẫu */}
+          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-emerald-50/50 border border-emerald-100' : 'bg-emerald-950/20 border border-emerald-500/10'}`}>
             <SubHeading theme={theme}>
-              <AlertTriangle size={15} className={isBlue ? 'text-red-600' : 'text-red-400'} />
-              Các vi phạm đã ghi nhận
+              <CheckCircle2 size={15} className={isBlue ? 'text-emerald-600' : 'text-emerald-400'} />
+              Thông điệp trao đổi đúng mực tới khách hàng
             </SubHeading>
-            <div className="space-y-3">
-              <ViolationItem theme={theme}>
-                Báo giá <strong>không đúng chính sách</strong>.
-              </ViolationItem>
-              <ViolationItem theme={theme}>
-                <strong>Tự ý giảm giá</strong> để chốt sale.
-              </ViolationItem>
-              <ViolationItem theme={theme}>
-                Tư vấn <strong>gây hiểu nhầm</strong> về sản phẩm / quyền lợi.
-              </ViolationItem>
+            <div className={`rounded-xl p-4 italic text-sm leading-relaxed ${
+              isBlue ? 'bg-white border border-emerald-200 text-slate-600' : 'bg-white/[0.03] border border-emerald-500/10 text-white/60'
+            }`}>
+              "Hiện tại trên hệ thống GE có nhiều kênh chăm sóc khách hàng. Theo dữ liệu kiểm tra, Anh/Chị đang được một kênh khác hỗ trợ. Bộ phận liên quan sẽ phối hợp để đảm bảo Anh/Chị được tiếp tục chăm sóc theo đúng quy trình. Các chính sách bán hàng của GE là thống nhất trên toàn hệ thống."
             </div>
           </div>
 
           <SectionDivider theme={theme} />
 
-          {/* Yêu cầu bắt buộc */}
-          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-emerald-50/50 border border-emerald-100' : 'bg-emerald-950/20 border border-emerald-500/10'}`}>
+          {/* Hành vi bị cấm */}
+          <div className={`rounded-2xl p-5 ${isBlue ? 'bg-red-50/50 border border-red-100' : 'bg-red-950/20 border border-red-500/10'}`}>
             <SubHeading theme={theme}>
-              <CheckCircle2 size={15} className={isBlue ? 'text-emerald-600' : 'text-emerald-400'} />
-              Yêu cầu bắt buộc
+              <FileWarning size={15} className={isBlue ? 'text-red-600' : 'text-red-400'} />
+              Đại sứ / Đối tác KHÔNG thực hiện các hành vi sau
             </SubHeading>
             <div className="space-y-3">
-              <RequirementItem theme={theme}>
-                Sử dụng <strong>chính sách học phí chung, chính thức từ GE</strong>.
-              </RequirementItem>
-              <RequirementItem theme={theme}>
-                Tư vấn <strong>đúng – đủ – minh bạch</strong> về các quyền lợi.
-              </RequirementItem>
-              <RequirementItem theme={theme}>
-                <strong>Không sử dụng giá</strong> như công cụ cạnh tranh không lành mạnh.
-              </RequirementItem>
+              <ViolationItem theme={theme}>
+                Cung cấp <strong>thông tin sai lệch hoặc tiêu cực</strong> về kênh khác.
+              </ViolationItem>
+              <ViolationItem theme={theme}>
+                Tự ý <strong>điều chỉnh thông tin cá nhân</strong> của học viên nhằm thay đổi trạng thái ghi nhận trên hệ thống.
+              </ViolationItem>
             </div>
           </div>
 
@@ -422,8 +414,12 @@ export function PoliciesPage() {
             variant="danger"
             theme={theme}
           >
-            <p className="font-semibold">
-              ⚠️ Mọi sai lệch về giá không chỉ ảnh hưởng cá nhân, mà trực tiếp làm <strong>suy giảm uy tín hệ thống</strong>.
+            <p className="font-semibold mb-2">⚠️ Lưu ý quan trọng</p>
+            <p>
+              Đại sứ <strong>không tự ý thay đổi thông tin cá nhân</strong> của học viên khi lên đơn khi thấy có dấu hiệu trùng. Mọi hành vi chỉnh sửa thông tin của học viên đều được <strong>phát hiện sau đó bởi hệ thống/con người</strong> và khi phát hiện trùng (dù vô tình hay cố ý) đều được xem là <strong>vi phạm Quy định</strong> — quyền ưu tiên khai thác khách hàng mặc định thuộc về bên còn lại và có thể bị xử lý theo quy định đã ban hành.
+            </p>
+            <p className={`mt-2 font-semibold ${isBlue ? 'text-red-700' : 'text-red-300'}`}>
+              👉 Điều này là bất lợi cho Đại sứ trong mọi đề xuất nếu có sau đó.
             </p>
           </CalloutBox>
         </div>
