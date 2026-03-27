@@ -83,29 +83,41 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
               ? 'border border-slate-200 bg-slate-50/50' 
               : 'border border-white/[0.06] bg-white/[0.02]'
           }`} style={{ WebkitOverflowScrolling: 'touch' as any }}>
-            <table className="w-full text-left text-xs sm:text-sm whitespace-nowrap">
-              <thead className={`font-semibold uppercase text-[9px] sm:text-[10px] tracking-[0.1em] sm:tracking-[0.15em] ${
+            <table className="w-full text-left whitespace-nowrap">
+              <thead className={`font-semibold uppercase text-[8px] sm:text-[10px] tracking-[0.05em] sm:tracking-[0.15em] ${
                 isBlue 
                   ? 'bg-slate-100 text-slate-400 border-b border-slate-200' 
                   : 'bg-white/[0.03] text-white/30 border-b border-white/[0.06]'
               }`}>
                 <tr>
-                  <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-center w-8 sm:w-16 hidden sm:table-cell">STT</th>
-                  <th className="px-1 sm:px-4 py-2.5 sm:py-3.5 w-14 sm:w-28 text-center hidden sm:table-cell">Mã ĐS</th>
-                  <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5">Tên Đại sứ</th>
+                  <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-center w-6 sm:w-16"></th>
+                  <th className="px-0.5 sm:px-4 py-2 sm:py-3.5 w-10 sm:w-28 text-center">Mã</th>
+                  <th className="px-0.5 sm:px-4 py-2 sm:py-3.5">Tên Đại sứ</th>
                   {data.hasMultipleScores ? (
                     <>
-                      <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right whitespace-normal sm:whitespace-nowrap">{data.scoreLabels?.[0] || 'SL N-1 active'}</th>
-                      <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right whitespace-normal sm:whitespace-nowrap">{data.scoreLabels?.[1] || 'DS N-1 mới'}</th>
+                      <th className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">{data.scoreLabels?.[0] || 'SL N-1'}</th>
+                      <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">{data.scoreLabels?.[1] || 'DS N-1'}</th>
                     </>
                   ) : (
-                    <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">Thành tích</th>
+                    <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-right">Thành tích</th>
                   )}
                 </tr>
               </thead>
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
                 {data.otherRankers.map((ranker, i) => {
                   const isEligible = checkEligible(ranker);
+                  const rank = data.topRankers.length + i + 1;
+
+                  // Format number compactly for mobile
+                  const formatCompact = (n: number) => {
+                    if (typeof window !== 'undefined' && window.innerWidth < 640) {
+                      if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
+                      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
+                      if (n >= 1_000) return (n / 1_000).toFixed(0) + 'K';
+                    }
+                    return n.toLocaleString();
+                  };
+
                   return (
                   <motion.tr 
                     key={ranker.id} 
@@ -118,19 +130,23 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                         : (isBlue ? 'hover:bg-blue-50/60' : 'hover:bg-white/[0.04]')
                     }`}
                   >
-                    <td className={`px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-center font-bold text-xs sm:text-sm hidden sm:table-cell ${
+                    {/* STT */}
+                    <td className={`px-1 sm:px-4 py-2 sm:py-3.5 text-center font-bold text-[10px] sm:text-sm ${
                       isBlue ? 'text-slate-300 group-hover:text-[#1B3A7A]' : 'text-white/25 group-hover:text-amber-400'
                     } transition-colors`}>
-                      {data.topRankers.length + i + 1}
+                      {rank}
                     </td>
-                    <td className={`px-1 sm:px-4 py-2.5 sm:py-3.5 text-center font-mono font-medium text-[10px] sm:text-sm hidden sm:table-cell ${
+                    {/* Mã ĐS */}
+                    <td className={`px-0.5 sm:px-4 py-2 sm:py-3.5 text-center font-mono font-medium text-[9px] sm:text-sm ${
                       isBlue ? 'text-slate-400' : 'text-blue-300/40'
                     }`}>
                       {ranker.id}
                     </td>
-                    <td className="px-1.5 sm:px-4 py-2.5 sm:py-3.5">
-                      <div className="flex items-center gap-1.5 sm:gap-3">
-                        <div className={`w-7 h-7 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-[10px] sm:text-sm shrink-0 ring-1 overflow-hidden transition-all ${
+                    {/* Tên Đại sứ */}
+                    <td className="px-0.5 sm:px-4 py-2 sm:py-3.5">
+                      <div className="flex items-center gap-1 sm:gap-3">
+                        {/* Avatar — ẩn trên mobile để tiết kiệm chỗ */}
+                        <div className={`hidden sm:flex w-10 h-10 rounded-full items-center justify-center font-bold text-sm shrink-0 ring-1 overflow-hidden transition-all ${
                           isEligible 
                             ? (isBlue ? 'bg-gradient-to-br from-amber-100 to-yellow-200 text-amber-700 ring-amber-300 group-hover:ring-amber-500' : 'bg-gradient-to-br from-amber-900/60 to-yellow-900/40 text-amber-400 ring-amber-500/30 group-hover:ring-amber-500/60')
                             : (isBlue 
@@ -140,49 +156,49 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                           {ranker.avatar ? <img src={ranker.avatar} alt={ranker.name} className="w-full h-full object-cover"/> : getInitials(ranker.name)}
                         </div>
                         <div className="min-w-0">
-                          <div className="flex flex-wrap items-center gap-1 sm:gap-2">
-                            <p className={`font-semibold text-[11px] sm:text-[15px] leading-tight transition-colors truncate ${
-                              isEligible
-                                ? (isBlue ? 'text-amber-800 group-hover:text-amber-950' : 'text-amber-400 group-hover:text-amber-300')
-                                : (isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white')
-                            }`}>{ranker.name}</p>
-                            {isEligible && (
-                              <div className={`hidden sm:flex items-center justify-center px-1.5 sm:px-2 py-0.5 rounded border ${
-                                isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400'
-                              }`}>
-                                <Star className="w-2.5 h-2.5 sm:w-3 sm:h-3 fill-amber-500 text-amber-500 relative -top-[0.5px] mr-1" />
-                                <span className="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">{badgeText}</span>
-                              </div>
-                            )}
-                          </div>
-                          {ranker.region && <p className={`text-[10px] sm:text-xs mt-0.5 ${isBlue ? 'text-slate-400' : 'text-white/25'} hidden sm:block`}>{ranker.region}</p>}
+                          <p className={`font-semibold text-[10px] sm:text-[15px] leading-tight transition-colors truncate max-w-[100px] sm:max-w-none ${
+                            isEligible
+                              ? (isBlue ? 'text-amber-800 group-hover:text-amber-950' : 'text-amber-400 group-hover:text-amber-300')
+                              : (isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white')
+                          }`}>{ranker.name}</p>
+                          {isEligible && (
+                            <div className={`hidden sm:flex items-center mt-0.5 px-1.5 py-0.5 rounded border w-fit ${
+                              isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400'
+                            }`}>
+                              <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500 mr-1" />
+                              <span className="text-[9px] font-bold uppercase tracking-wider">{badgeText}</span>
+                            </div>
+                          )}
+                          {ranker.region && <p className={`text-[10px] mt-0.5 ${isBlue ? 'text-slate-400' : 'text-white/25'} hidden sm:block`}>{ranker.region}</p>}
                         </div>
                       </div>
                     </td>
+                    {/* Score columns */}
                     {data.hasMultipleScores ? (
                       <>
-                        <td className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">
-                          <span className={`font-black text-[11px] sm:text-base transition-colors ${
+                        <td className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right">
+                          <span className={`font-black text-[10px] sm:text-base transition-colors ${
                             isBlue ? 'text-[#1B3A7A] group-hover:text-blue-700' : 'text-amber-400/80 group-hover:text-amber-400'
                           }`}>
                             {ranker.score.toLocaleString()}
                           </span>
                         </td>
-                        <td className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">
-                          <span className={`font-black text-[11px] sm:text-base transition-colors ${
+                        <td className="px-1 sm:px-4 py-2 sm:py-3.5 text-right">
+                          <span className={`font-black text-[10px] sm:text-base transition-colors ${
                             isBlue ? 'text-emerald-600 group-hover:text-emerald-700' : 'text-emerald-400/80 group-hover:text-emerald-400'
                           }`}>
-                            {(ranker.score2 ?? 0).toLocaleString()}
+                            <span className="sm:hidden">{formatCompact(ranker.score2 ?? 0)}</span>
+                            <span className="hidden sm:inline">{(ranker.score2 ?? 0).toLocaleString()}</span>
                           </span>
                         </td>
                       </>
                     ) : (
-                      <td className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">
+                      <td className="px-1 sm:px-4 py-2 sm:py-3.5 text-right">
                         <div className="flex items-center justify-end gap-1 sm:gap-2">
                           <TrendingUp size={14} className={`hidden sm:block transition-colors ${
                             isBlue ? 'text-emerald-400/40 group-hover:text-emerald-500' : 'text-emerald-400/30 group-hover:text-emerald-400'
                           }`} />
-                          <span className={`font-black text-[11px] sm:text-base transition-colors ${
+                          <span className={`font-black text-[10px] sm:text-base transition-colors ${
                             isBlue ? 'text-[#1B3A7A] group-hover:text-blue-700' : 'text-amber-400/80 group-hover:text-amber-400'
                           }`}>
                             {ranker.score.toLocaleString()}
