@@ -164,6 +164,16 @@ export function LeaderboardPage() {
         transition={{ duration: 0.4, ease: "easeInOut" }}
         className="w-full flex flex-col gap-6"
       >
+        {/* Disclaimer note */}
+        <div className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border text-xs sm:text-sm font-medium ${
+          isBlue
+            ? 'bg-amber-50 border-amber-200 text-amber-700'
+            : 'bg-amber-500/10 border-amber-500/20 text-amber-300'
+        }`}>
+          <Info size={14} className="shrink-0" />
+          <span>Số liệu tạm tính, chưa phải kết quả chính xác cuối cùng</span>
+        </div>
+
         {currentData.map((category, index) => (
           <LeaderboardCard key={category.categoryId} data={category} index={index} theme={theme} lastUpdated={lastUpdated} />
         ))}
