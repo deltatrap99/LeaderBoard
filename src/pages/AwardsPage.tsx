@@ -24,7 +24,7 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
     >
       {/* Card Header — Red/Gold Galaxy gradient */}
       <div
-        className="relative px-6 py-5 cursor-pointer overflow-hidden"
+        className="relative px-4 sm:px-6 py-4 sm:py-5 cursor-pointer overflow-hidden"
         onClick={() => setExpanded(!expanded)}
         style={{
           background: 'linear-gradient(135deg, #8B1A1A 0%, #C62828 30%, #B71C1C 60%, #8B1A1A 100%)',
@@ -40,7 +40,7 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
               <Trophy className="w-5 h-5 text-white" />
             </div>
             <div>
-              <h2 className="text-lg sm:text-xl font-heading font-extrabold text-white uppercase tracking-wide">
+              <h2 className="text-base sm:text-xl font-heading font-extrabold text-white uppercase tracking-wide leading-tight">
                 {award.title}
               </h2>
               <p className="text-amber-300/80 text-xs font-semibold mt-0.5">{award.period}</p>
@@ -71,7 +71,7 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
             className="overflow-hidden"
           >
             {/* Mechanism */}
-            <div className={`px-6 py-5 ${isBlue ? 'bg-amber-50/50' : 'bg-amber-950/20'}`}>
+            <div className={`px-4 sm:px-6 py-4 sm:py-5 ${isBlue ? 'bg-amber-50/50' : 'bg-amber-950/20'}`}>
               <h3 className={`text-sm font-bold mb-2.5 flex items-center gap-2 ${
                 isBlue ? 'text-red-800' : 'text-amber-400'
               }`}>
@@ -90,7 +90,7 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
             </div>
 
             {/* Criteria Table */}
-            <div className={`px-6 py-5 ${isBlue ? 'bg-white' : ''}`}>
+            <div className={`px-4 sm:px-6 py-4 sm:py-5 ${isBlue ? 'bg-white' : ''}`}>
               <h3 className={`text-sm font-bold mb-4 flex items-center gap-2 ${
                 isBlue ? 'text-red-800' : 'text-amber-400'
               }`}>
@@ -98,10 +98,10 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                 2. Chỉ tiêu xét thưởng và Giá trị giải thưởng
               </h3>
 
-              <div className={`rounded-2xl overflow-hidden border ${
+              <div className={`rounded-2xl border ${
                 isBlue ? 'border-red-200/60' : 'border-amber-500/20'
-              }`}>
-                <table className="w-full text-sm">
+              } overflow-x-auto`} style={{ WebkitOverflowScrolling: 'touch' }}>
+                <table className="w-full text-sm min-w-[600px]">
                   <thead>
                     <tr style={{
                       background: isBlue
@@ -111,7 +111,7 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                       {award.columns.map((col, i) => (
                         <th
                           key={i}
-                          className="px-4 py-3.5 text-center text-[11px] font-bold text-white uppercase tracking-wider"
+                          className="px-2.5 sm:px-4 py-3 sm:py-3.5 text-center text-[10px] sm:text-[11px] font-bold text-white uppercase tracking-wider whitespace-nowrap"
                         >
                           {col}
                         </th>
@@ -146,7 +146,7 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                             const isEGC = isLabel && tier.label.includes('EGC');
 
                             return (
-                              <td key={ci} className={`px-4 py-3.5 text-center ${
+                              <td key={ci} className={`px-2.5 sm:px-4 py-3 sm:py-3.5 text-center whitespace-nowrap ${
                                 isPrize
                                   ? 'font-black text-red-700 text-base'
                                   : isEGC

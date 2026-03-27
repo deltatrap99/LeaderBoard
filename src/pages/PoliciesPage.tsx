@@ -48,7 +48,7 @@ function PolicySection({ icon, number, title, children, theme, delay = 0, accent
     >
       {/* Section Header */}
       <div
-        className="relative px-6 py-5 cursor-pointer overflow-hidden"
+        className="relative px-4 sm:px-6 py-4 sm:py-5 cursor-pointer overflow-hidden"
         onClick={() => setExpanded(!expanded)}
         style={{
           background: `linear-gradient(135deg, ${accentColor} 0%, ${accentColor}dd 50%, ${accentColor}bb 100%)`,
@@ -59,7 +59,7 @@ function PolicySection({ icon, number, title, children, theme, delay = 0, accent
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/[0.05] rounded-full translate-y-8 -translate-x-8" />
 
         <div className="flex items-center justify-between relative z-10">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 min-w-0 flex-1">
             <div className="p-3 bg-white/15 rounded-2xl backdrop-blur-sm border border-white/10 shadow-lg">
               {icon}
             </div>
@@ -69,7 +69,7 @@ function PolicySection({ icon, number, title, children, theme, delay = 0, accent
                   Điều {number}
                 </span>
               </div>
-              <h2 className="text-base sm:text-lg font-heading font-extrabold text-white leading-tight">
+              <h2 className="text-sm sm:text-lg font-heading font-extrabold text-white leading-tight">
                 {title}
               </h2>
             </div>
@@ -124,7 +124,7 @@ function CalloutBox({ icon, children, variant = 'info', theme }: { icon: React.R
   };
 
   return (
-    <div className={`flex gap-3 px-5 py-4 rounded-2xl border ${styles[variant]} text-sm leading-relaxed`}>
+    <div className={`flex gap-2.5 sm:gap-3 px-3.5 sm:px-5 py-3 sm:py-4 rounded-2xl border ${styles[variant]} text-sm leading-relaxed`}>
       <div className="shrink-0 mt-0.5">{icon}</div>
       <div className="flex-1">{children}</div>
     </div>
