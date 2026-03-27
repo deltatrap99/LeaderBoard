@@ -90,13 +90,13 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                   : 'bg-white/[0.03] text-white/30 border-b border-white/[0.06]'
               }`}>
                 <tr>
-                  <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-center w-8 sm:w-16">STT</th>
-                  <th className="px-1 sm:px-4 py-2.5 sm:py-3.5 w-14 sm:w-28 text-center">Mã ĐS</th>
+                  <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-center w-8 sm:w-16 hidden sm:table-cell">STT</th>
+                  <th className="px-1 sm:px-4 py-2.5 sm:py-3.5 w-14 sm:w-28 text-center hidden sm:table-cell">Mã ĐS</th>
                   <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5">Tên Đại sứ</th>
                   {data.hasMultipleScores ? (
                     <>
-                      <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">{data.scoreLabels?.[0] || 'SL N-1 active'}</th>
-                      <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">{data.scoreLabels?.[1] || 'DS N-1 mới'}</th>
+                      <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right whitespace-normal sm:whitespace-nowrap">{data.scoreLabels?.[0] || 'SL N-1 active'}</th>
+                      <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right whitespace-normal sm:whitespace-nowrap">{data.scoreLabels?.[1] || 'DS N-1 mới'}</th>
                     </>
                   ) : (
                     <th className="px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-right">Thành tích</th>
@@ -118,12 +118,12 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                         : (isBlue ? 'hover:bg-blue-50/60' : 'hover:bg-white/[0.04]')
                     }`}
                   >
-                    <td className={`px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-center font-bold text-xs sm:text-sm ${
+                    <td className={`px-1.5 sm:px-4 py-2.5 sm:py-3.5 text-center font-bold text-xs sm:text-sm hidden sm:table-cell ${
                       isBlue ? 'text-slate-300 group-hover:text-[#1B3A7A]' : 'text-white/25 group-hover:text-amber-400'
                     } transition-colors`}>
                       {data.topRankers.length + i + 1}
                     </td>
-                    <td className={`px-1 sm:px-4 py-2.5 sm:py-3.5 text-center font-mono font-medium text-[10px] sm:text-sm ${
+                    <td className={`px-1 sm:px-4 py-2.5 sm:py-3.5 text-center font-mono font-medium text-[10px] sm:text-sm hidden sm:table-cell ${
                       isBlue ? 'text-slate-400' : 'text-blue-300/40'
                     }`}>
                       {ranker.id}
