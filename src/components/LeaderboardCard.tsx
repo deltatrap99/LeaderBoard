@@ -103,6 +103,15 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                   )}
                 </tr>
               </thead>
+              {/* Chú thích trên mobile — giải thích nền vàng = Đạt EGC */}
+              <caption className={`sm:hidden caption-bottom py-1.5 px-3 text-left ${
+                isBlue ? 'text-amber-700 bg-amber-50/80' : 'text-amber-400 bg-amber-950/30'
+              }`}>
+                <div className="flex items-center gap-1.5 text-[10px] font-medium">
+                  <Star size={10} className="fill-amber-500 text-amber-500 shrink-0" />
+                  <span>Nền <span className={`inline-block w-3 h-2.5 rounded-sm align-middle mx-0.5 ${isBlue ? 'bg-amber-100 border border-amber-300' : 'bg-amber-500/20 border border-amber-500/30'}`}></span> = {badgeText}</span>
+                </div>
+              </caption>
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
                 {data.otherRankers.map((ranker, i) => {
                   const isEligible = checkEligible(ranker);
