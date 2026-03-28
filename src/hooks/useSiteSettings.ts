@@ -48,7 +48,7 @@ const DEFAULTS: SiteSettings = {
 
   // Header
   headerTagline: 'Elite Awards',
-  headerCtaText: 'Bảng Vàng Tôn Vinh',
+  headerCtaText: 'Kết quả Thi đua',
   headerCtaUrl: '#',
 
   // Announcement Bar

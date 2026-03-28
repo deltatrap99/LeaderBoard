@@ -60,10 +60,10 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
                 <span className="hidden sm:inline">{isBlue ? 'Chế độ tối' : 'Galaxy Blue'}</span>
               </button>
             )}
-            <a href={headerCtaUrl || '#'} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-[0_4px_15px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.6)] hover:scale-105 transition-all duration-300">
+            <button onClick={() => setShowResultsPopup(true)} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-[0_4px_15px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.6)] hover:scale-105 transition-all duration-300">
               <Sparkles size={12} />
-              {headerCtaText || 'Bảng Vàng Tôn Vinh'}
-            </a>
+              {headerCtaText === 'Bảng Vàng Tôn Vinh' ? 'Kết quả Thi đua' : (headerCtaText || 'Kết quả Thi đua')}
+            </button>
           </div>
         </div>
 

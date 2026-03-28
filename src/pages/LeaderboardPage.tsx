@@ -171,7 +171,7 @@ export function LeaderboardPage() {
             : 'bg-amber-500/10 border-amber-500/20 text-amber-300'
         }`}>
           <Info size={14} className="shrink-0" />
-          <span>Số liệu tạm tính, chưa phải kết quả chính xác cuối cùng</span>
+          <span>Bảng xếp hạng hiển thị theo dữ liệu realtime tại thời điểm truy cập, thứ hạng có thể thay đổi liên tục!</span>
         </div>
 
         {currentData.map((category, index) => (

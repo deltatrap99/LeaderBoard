@@ -9,14 +9,25 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
 
   const checkEligible = (ranker: any) => {
     if (ranker.highlight) return true;
-    if (data.categoryName.toLowerCase().includes('vàng')) {
+    const catNameLower = data.categoryName.toLowerCase();
+    if (catNameLower.includes('vàng')) {
       return ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
+    }
+    if (catNameLower.includes('đại sứ mới') && (catNameLower.includes('tháng 03') || catNameLower.includes('tháng 3') || catNameLower.includes('t03') || catNameLower.includes('t3'))) {
+      return (ranker.score ?? 0) >= 30000000 || (ranker.score2 ?? 0) >= 30000000;
     }
     return false;
   };
 
   const isManager = data.categoryName.toLowerCase().includes('tiêu biểu');
-  const badgeText = isManager ? 'ĐẠT CHỈ TIÊU' : 'ĐẠT EGC';
+  let badgeText = 'ĐẠT ĐIỀU KIỆN';
+  let showBadge = true;
+  if (isManager) badgeText = 'ĐẠT CHỈ TIÊU';
+  else if (data.categoryName.toLowerCase().includes('vàng')) badgeText = 'ĐẠT EGC';
+  else if (data.categoryName.toLowerCase().includes('đại sứ mới')) {
+    badgeText = '';
+    showBadge = false;
+  }
 
   const formatLastUpdated = (date: Date) => {
     return date.toLocaleString('vi-VN', {
@@ -41,29 +52,41 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
       }`}
     >
       {/* Card Header — Galaxy Blue gradient */}
-      <div className="relative px-4 sm:px-6 py-4 sm:py-5 flex items-center justify-between overflow-hidden bg-gradient-to-r from-[#1B3A7A] via-[#1a4fa0] to-[#2563eb]">
-        <div className="flex-1 min-w-0 relative z-10">
-          <h2 className="text-base sm:text-xl font-heading font-extrabold text-white flex items-center gap-2 sm:gap-3 select-none">
-            <div className="p-2 bg-white/15 rounded-xl backdrop-blur-sm shrink-0">
-              <Trophy className="w-5 h-5 text-amber-400" />
-            </div>
-            <span className="truncate">{data.categoryName}</span>
-          </h2>
-          {data.categorySubtitle && (
-            <p className="text-[11px] sm:text-xs text-white/50 font-medium mt-1.5 ml-[52px] leading-relaxed">
-              {data.categorySubtitle}
-            </p>
-          )}
-        </div>
-        <div className="relative z-10 hidden sm:flex items-center gap-2">
-          <span className="flex items-center gap-1.5 text-[11px] font-bold px-4 py-2 bg-emerald-400/20 rounded-full text-emerald-300 border border-emerald-400/30 backdrop-blur-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+      <div className="relative px-4 sm:px-6 py-4 sm:py-5 flex items-start justify-between overflow-hidden bg-gradient-to-r from-[#1B3A7A] via-[#1a4fa0] to-[#2563eb]">
+        <div className="flex-1 min-w-0 relative z-10 w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex-1">
+            <h2 className="text-base sm:text-xl font-heading font-extrabold text-white flex items-center gap-2 sm:gap-3 select-none">
+              <div className="p-2 bg-white/15 rounded-xl backdrop-blur-sm shrink-0">
+                <Trophy className="w-5 h-5 text-amber-400" />
+              </div>
+              <span className="truncate">{data.categoryName}</span>
+            </h2>
+            {data.categorySubtitle && (
+              <p className="text-[11px] sm:text-xs text-white/50 font-medium mt-1.5 ml-[52px] leading-relaxed pr-2">
+                {data.categorySubtitle}
+              </p>
+            )}
+          </div>
+          <div className="ml-[52px] sm:ml-0 shrink-0 flex items-center gap-2">
+            <span className="hidden sm:flex items-center gap-1.5 text-[11px] font-bold px-4 py-2 bg-emerald-400/20 rounded-full text-emerald-300 border border-emerald-400/30 backdrop-blur-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+              </span>
+              Trực tuyến
             </span>
-            Trực tuyến
-          </span>
+            <a href="/awards" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold px-4 py-2 bg-white/10 hover:bg-white/20 rounded-full text-white border border-white/20 transition-colors whitespace-nowrap">
+              Xem lại Chương trình thi đua
+            </a>
+          </div>
         </div>
+      </div>
+
+      <div className={`px-4 sm:px-6 py-2.5 text-[10px] sm:text-[11px] font-medium italic border-b flex gap-2 ${
+        isBlue ? 'bg-amber-50 text-amber-800 border-amber-100/50' : 'bg-amber-500/10 text-amber-200/80 border-amber-500/20'
+      }`}>
+        <span className={isBlue ? 'text-amber-500 font-black' : 'text-amber-400 font-black'}>*</span> 
+        <span>Kết quả đạt giải chính thức sẽ được công bố sau khi tổng kết kỳ xét giải dựa trên dữ liệu đã được đối soát theo quy định của Galaxy Education.</span>
       </div>
       
       {/* Podium */}
@@ -104,14 +127,16 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                 </tr>
               </thead>
               {/* Chú thích trên mobile — giải thích nền vàng = Đạt EGC */}
-              <caption className={`sm:hidden caption-bottom py-1.5 px-3 text-left ${
-                isBlue ? 'text-amber-700 bg-amber-50/80' : 'text-amber-400 bg-amber-950/30'
-              }`}>
-                <div className="flex items-center gap-1.5 text-[10px] font-medium">
-                  <Star size={10} className="fill-amber-500 text-amber-500 shrink-0" />
-                  <span>Nền <span className={`inline-block w-3 h-2.5 rounded-sm align-middle mx-0.5 ${isBlue ? 'bg-amber-100 border border-amber-300' : 'bg-amber-500/20 border border-amber-500/30'}`}></span> = {badgeText}</span>
-                </div>
-              </caption>
+              {showBadge && (
+                <caption className={`sm:hidden caption-bottom py-1.5 px-3 text-left ${
+                  isBlue ? 'text-amber-700 bg-amber-50/80' : 'text-amber-400 bg-amber-950/30'
+                }`}>
+                  <div className="flex items-center gap-1.5 text-[10px] font-medium">
+                    <Star size={10} className="fill-amber-500 text-amber-500 shrink-0" />
+                    <span>Nền <span className={`inline-block w-3 h-2.5 rounded-sm align-middle mx-0.5 ${isBlue ? 'bg-amber-100 border border-amber-300' : 'bg-amber-500/20 border border-amber-500/30'}`}></span> = {badgeText}</span>
+                  </div>
+                </caption>
+              )}
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
                 {data.otherRankers.map((ranker, i) => {
                   const isEligible = checkEligible(ranker);
@@ -170,7 +195,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                               ? (isBlue ? 'text-amber-800 group-hover:text-amber-950' : 'text-amber-400 group-hover:text-amber-300')
                               : (isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white')
                           }`}>{ranker.name}</p>
-                          {isEligible && (
+                          {isEligible && showBadge && (
                             <div className={`hidden sm:flex items-center mt-0.5 px-1.5 py-0.5 rounded border w-fit ${
                               isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400'
                             }`}>

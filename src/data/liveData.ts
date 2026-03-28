@@ -458,6 +458,9 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
       if (!cat.categoryName.toLowerCase().startsWith('giải thưởng')) {
         cat.categoryName = 'Giải thưởng ' + cat.categoryName;
       }
+      if (cat.categoryName.toLowerCase().includes('quản lý tuyển dụng') && !cat.categoryName.toLowerCase().includes('xuất sắc')) {
+        cat.categoryName = cat.categoryName.replace(/Quản lý tuyển dụng/i, 'Quản lý Tuyển dụng Xuất sắc');
+      }
     });
   });
 
