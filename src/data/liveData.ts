@@ -36,7 +36,7 @@ function categorizeSheet(sheetName: string): keyof LeaderboardData | null {
   if (name.includes('trang tính') || name.includes('mục lục') || name.includes('index')) return null;
   if (name.includes('tháng') || name.includes('t03') || name.includes('tiêu biểu t')) return 'month';
   if (name.includes('quý') || name.includes('vàng q') || name.includes('tiêu biểu q')) return 'quarter';
-  if (name.includes('kỳ') || name.includes('giáo d')) return 'semester';
+  if (name.includes('kỳ') || name.includes('giáo d') || name.includes('k1') || name.includes('k 1') || (name.includes('quản lý') && !name.includes('tuyển dụng')) || name.includes('qlxs')) return 'semester';
   if (name.includes('challenge') || name.includes('cá nhân')) return 'challenge';
   return 'month';
 }
@@ -53,7 +53,8 @@ function isGoldAmbassadorSheet(sheetName: string): boolean {
 
 function isManagerSheet(sheetName: string): boolean {
   const name = sheetName.toLowerCase().trim();
-  return name.includes('tiêu biểu') && name.includes('quản lý');
+  if (name.includes('tuyển dụng')) return false;
+  return ((name.includes('tiêu biểu') || name.includes('xuất sắc')) && name.includes('quản lý')) || name.includes('qlxs');
 }
 
 export async function fetchLeaderboardData(sheetUrl?: string): Promise<LeaderboardData> {
@@ -76,7 +77,7 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
     for (let r = 0; r < 10; r++) {
        if (!rows[r]) continue;
        const rowStr = rows[r].map((c: any) => String(c).toLowerCase()).join(' ');
-       if (rowStr.includes('tên') && (rowStr.includes('mã') || rowStr.includes('doanh số') || rowStr.includes('thành tích') || rowStr.includes('đại sứ') || rowStr.includes('n-1') || rowStr.includes('tuyển dụng') || rowStr.includes('active') || rowStr.includes('hv mới'))) {
+       if ((rowStr.includes('tên') || rowStr.includes('đại sứ') || rowStr.includes('họ và')) && (rowStr.includes('mã') || rowStr.includes('doanh số') || rowStr.includes('thành tích') || rowStr.includes('n-1') || rowStr.includes('tuyển dụng') || rowStr.includes('active') || rowStr.includes('hv mới') || rowStr.includes('hệ số'))) {
          headerRowIdx = r;
          break;
        }
@@ -86,7 +87,7 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
        for (let r = 0; r < 10; r++) {
          if (!rows[r]) continue;
          const rowStr = rows[r].map((c: any) => String(c).toLowerCase()).join(' ');
-         if ((rowStr.includes('mã') || rowStr.includes('stt')) && rowStr.includes('đại sứ')) {
+         if ((rowStr.includes('mã') || rowStr.includes('stt') || rowStr.includes('nhóm')) && (rowStr.includes('đại sứ') || rowStr.includes('doanh số') || rowStr.includes('hệ số'))) {
            headerRowIdx = r;
            break;
          }
@@ -127,14 +128,14 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
         }
 
         // Cập nhật header nếu thấy
-        if (rowStr.includes('tên') && rowStr.includes('hệ số')) {
+        if ((rowStr.includes('tên') || rowStr.includes('đại sứ')) && (rowStr.includes('hệ số') || rowStr.includes('doanh số'))) {
           row.forEach((col: any, idx: number) => {
             if (typeof col !== 'string') return;
             const c = col.toLowerCase().trim();
-            if (c.includes('tên')) nameIdx = idx;
+            if (c.includes('tên') || c.includes('đại sứ')) nameIdx = idx;
             if (c.includes('mã')) idIdx = idx;
-            if (c.includes('hệ số')) { heSoIdx = idx; heSoLabel = col.trim(); }
-            if (c.includes('số lượng') || c.includes('active')) { slActiveIdx = idx; slActiveLabel = col.trim(); }
+            if (c.includes('hệ số') || c.includes('doanh số')) { heSoIdx = idx; heSoLabel = col.trim(); }
+            if (c.includes('số lượng') || c.includes('active') || c.includes('đs mới active')) { slActiveIdx = idx; slActiveLabel = col.trim(); }
           });
           continue;
         }
@@ -184,14 +185,14 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
 
       ['Cấp Nhóm', 'Cấp Phòng', 'Cấp Khu vực'].forEach((level, levelIdx) => {
         const ambassadors = levels[level];
-        if (ambassadors.length === 0) return;
+        if (ambassadors.length === 0 && level !== 'Cấp Nhóm') return;
 
         ambassadors.sort((a, b) => b.score - a.score || (b.score2 ?? 0) - (a.score2 ?? 0));
 
         data[categoryType].push({
           categoryId: `cat_${i}_lv_${levelIdx}`,
           categoryName: `${baseCategoryName} - ${level}`,
-          topRankers: ambassadors.slice(0, 3),
+          topRankers: ambassadors.length > 0 ? ambassadors.slice(0, 3) : [{ id: 'dummy', name: 'Đang cập nhật dữ liệu do cấu trúc cột chưa chuẩn khớp...', score: 0 }],
           otherRankers: ambassadors.slice(3),
           hasMultipleScores: true,
           scoreLabels: [heSoLabel, slActiveLabel],
