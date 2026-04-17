@@ -29,6 +29,9 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     showBadge = false;
   }
 
+  const hasPodium = !isManager && data.topRankers.length > 0;
+  const tableRankers = isManager ? [...data.topRankers, ...data.otherRankers] : data.otherRankers;
+
   const formatLastUpdated = (date: Date) => {
     return date.toLocaleString('vi-VN', {
       day: '2-digit',
@@ -90,16 +93,18 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
       </div>
       
       {/* Podium */}
-      <div className={`p-2 sm:p-6 pb-0 ${
-        isBlue 
-          ? 'bg-gradient-to-b from-[#e8f0fe] via-[#dce8fa] to-white' 
-          : 'bg-gradient-to-b from-[#121e40] via-[#0d1a3c] to-transparent'
-      }`}>
-        {data.topRankers.length > 0 && <Podium topRankers={data.topRankers} theme={theme} />}
-      </div>
+      {hasPodium && (
+        <div className={`p-2 sm:p-6 pb-0 ${
+          isBlue 
+            ? 'bg-gradient-to-b from-[#e8f0fe] via-[#dce8fa] to-white' 
+            : 'bg-gradient-to-b from-[#121e40] via-[#0d1a3c] to-transparent'
+        }`}>
+          <Podium topRankers={data.topRankers} theme={theme} />
+        </div>
+      )}
 
       {/* Table */}
-      {data.otherRankers.length > 0 && (
+      {tableRankers.length > 0 && (
         <div className="px-2 sm:px-6 pb-4 pt-4">
           <div className={`rounded-2xl overflow-x-auto ${
             isBlue 
@@ -138,9 +143,9 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                 </caption>
               )}
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
-                {data.otherRankers.map((ranker, i) => {
+                {tableRankers.map((ranker, i) => {
                   const isEligible = checkEligible(ranker);
-                  const rank = data.topRankers.length + i + 1;
+                  const rank = isManager ? i + 1 : data.topRankers.length + i + 1;
 
                   // Format number compactly for mobile
                   const formatCompact = (n: number) => {

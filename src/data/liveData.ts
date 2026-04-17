@@ -76,8 +76,14 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
     let headerRowIdx = -1;
     for (let r = 0; r < 10; r++) {
        if (!rows[r]) continue;
-       const rowStr = rows[r].map((c: any) => String(c).toLowerCase()).join(' ');
-       if ((rowStr.includes('tên') || rowStr.includes('đại sứ') || rowStr.includes('họ và')) && (rowStr.includes('mã') || rowStr.includes('doanh số') || rowStr.includes('thành tích') || rowStr.includes('n-1') || rowStr.includes('tuyển dụng') || rowStr.includes('active') || rowStr.includes('hv mới') || rowStr.includes('hệ số'))) {
+       // Kiểm tra row có ít nhất 2 cột non-null riêng biệt (loại bỏ title rows gộp)
+       const nonNullCells = rows[r].filter((c: any) => c != null && String(c).trim() !== '');
+       if (nonNullCells.length < 2) continue;
+       // Kiểm tra các cột keyword phải là cột ngắn (header), không phải title dài
+       const shortCells = rows[r].filter((c: any) => c != null && typeof c === 'string' && c.trim().length > 0 && c.trim().length < 50);
+       if (shortCells.length < 2) continue;
+       const rowStr = shortCells.map((c: any) => String(c).toLowerCase()).join(' ');
+       if ((rowStr.includes('tên') || rowStr.includes('đại sứ') || rowStr.includes('họ và')) && (rowStr.includes('mã') || rowStr.includes('doanh số') || rowStr.includes('thành tích') || rowStr.includes('n-1') || rowStr.includes('tuyển dụng') || rowStr.includes('active') || rowStr.includes('hv mới') || rowStr.includes('hệ số') || rowStr.includes('thực đạt') || rowStr.includes('mục tiêu'))) {
          headerRowIdx = r;
          break;
        }
@@ -128,14 +134,21 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
         }
 
         // Cập nhật header nếu thấy
-        if ((rowStr.includes('tên') || rowStr.includes('đại sứ')) && (rowStr.includes('hệ số') || rowStr.includes('doanh số'))) {
+        if ((rowStr.includes('tên') || rowStr.includes('đại sứ')) && (rowStr.includes('hệ số') || rowStr.includes('doanh số') || rowStr.includes('thực đạt') || rowStr.includes('mục tiêu'))) {
+          // Pass 1: Detect score/metric columns FIRST to avoid misidentifying them as name
+          const usedIdxs = new Set<number>();
           row.forEach((col: any, idx: number) => {
             if (typeof col !== 'string') return;
             const c = col.toLowerCase().trim();
-            if (c.includes('tên') || c.includes('đại sứ')) nameIdx = idx;
-            if (c.includes('mã')) idIdx = idx;
-            if (c.includes('hệ số') || c.includes('doanh số')) { heSoIdx = idx; heSoLabel = col.trim(); }
-            if (c.includes('số lượng') || c.includes('active') || c.includes('đs mới active')) { slActiveIdx = idx; slActiveLabel = col.trim(); }
+            if (c.includes('mã')) { idIdx = idx; usedIdxs.add(idx); }
+            if (c.includes('hệ số') || c.includes('doanh số') || c.includes('thực đạt') || c.includes('mục tiêu cam kết')) { heSoIdx = idx; heSoLabel = col.trim(); usedIdxs.add(idx); }
+            if (c.includes('số lượng') || c.includes('active') || c.includes('đs mới active') || c.includes('đại sứ mới')) { slActiveIdx = idx; slActiveLabel = col.trim(); usedIdxs.add(idx); }
+          });
+          // Pass 2: Detect name column, skipping columns already assigned
+          row.forEach((col: any, idx: number) => {
+            if (typeof col !== 'string' || usedIdxs.has(idx)) return;
+            const c = col.toLowerCase().trim();
+            if (c.includes('tên') || c === 'đại sứ' || c === 'tên đại sứ') nameIdx = idx;
           });
           continue;
         }
@@ -368,7 +381,7 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
         }
         for (let j = idx + 1; j <= idx + 5 && j < headerRow.length; j++) {
            const c = String(headerRow[j]).toLowerCase();
-           if (c.includes('doanh số') || c.includes('tuyển dụng') || c.includes('điểm') || c.includes('tổng số') || c.includes('hệ số') || c.includes('thành tích')) {
+           if (c.includes('doanh số') || c.includes('tuyển dụng') || c.includes('điểm') || c.includes('tổng số') || c.includes('hệ số') || c.includes('thành tích') || c.includes('thực đạt') || c.includes('mục tiêu')) {
                scoreIdx = j; break;
            }
         }
@@ -384,7 +397,7 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
             if (typeof col === 'string') {
                const c = col.toLowerCase();
                if (nIdx === -1 && c.includes('tên')) nIdx = idx;
-               if (sIdx === -1 && (c.includes('doanh số') || c.includes('điểm') || c.includes('thành tích'))) sIdx = idx;
+               if (sIdx === -1 && (c.includes('doanh số') || c.includes('điểm') || c.includes('thành tích') || c.includes('thực đạt') || c.includes('mục tiêu'))) sIdx = idx;
                if (iIdx === -1 && c.includes('mã')) iIdx = idx;
             }
         });
@@ -393,6 +406,71 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
         }
     }
 
+    // ===== CHALLENGE SIDE-BY-SIDE: Tách mỗi bảng thành category riêng =====
+    if (categoryType === 'challenge' && pairs.length > 1) {
+      for (let pairIdx = 0; pairIdx < pairs.length; pairIdx++) {
+        const p = pairs[pairIdx];
+        const ambassadors: Ambassador[] = [];
+
+        for (let r = headerRowIdx + 1; r < rows.length; r++) {
+          const row = rows[r];
+          if (!row || row.length === 0) continue;
+
+          const name = row[p.nameIdx];
+          const score = row[p.scoreIdx];
+
+          if (!name || typeof name !== 'string') continue;
+          const nameLower = name.toLowerCase();
+          if (nameLower.includes('tổng') || nameLower.includes('đại sứ') || nameLower.includes('chưa có')) continue;
+
+          let numScore = parseFloat(String(score).replace(/,/g, ''));
+          if (isNaN(numScore)) continue;
+
+          const realId = p.idIdx !== -1 && row[p.idIdx] ? String(row[p.idIdx]) : `u_${r}_${p.nameIdx}`;
+          if (numScore > 0) {
+            ambassadors.push({ id: realId, name: name.trim(), score: numScore });
+          }
+        }
+
+        ambassadors.sort((a, b) => b.score - a.score);
+        if (ambassadors.length === 0) continue;
+
+        // Lấy tên category từ Row 1 (tiêu đề bảng side-by-side)
+        let subTitle = '';
+        const titleRow = rows[1] || rows[0];
+        if (titleRow) {
+          for (let ci = p.nameIdx; ci >= Math.max(0, p.nameIdx - 3); ci--) {
+            if (titleRow[ci] && typeof titleRow[ci] === 'string' && titleRow[ci].trim().length > 5) {
+              subTitle = String(titleRow[ci]).trim().replace(/\n/g, ' ');
+              break;
+            }
+          }
+        }
+
+        let categoryName = subTitle || sheetName.trim();
+        // Clean up: "DANH SÁCH ĐẠI SỨ MỚI THÁNG 03 ĐỦ ĐIỀU KIỆN..." → "Đại sứ mới Tháng 03"
+        categoryName = categoryName.replace(/^DANH SÁCH\s+/i, '');
+        categoryName = categoryName.replace(/\s*ĐỦ ĐIỀU KIỆN.*/i, '');
+        categoryName = categoryName.replace(/\s*NHẬN THƯỞNG.*/i, '');
+        // Capitalize: first letter uppercase, rest keep original case
+        if (categoryName === categoryName.toUpperCase()) {
+          // All-caps title → title case
+          categoryName = categoryName.toLowerCase()
+            .replace(/(^|\s)(đại|sứ|mới|tháng|quý|doanh|số|từ|triệu|trong|đạt|mốc|cá|nhân)/g, (m) => m.charAt(0) + m.slice(1))
+            .replace(/^./, c => c.toUpperCase());
+        }
+
+        data.challenge.push({
+          categoryId: `cat_${i}_p${pairIdx}`,
+          categoryName,
+          topRankers: ambassadors.slice(0, 3),
+          otherRankers: ambassadors.slice(3),
+        });
+      }
+      continue;
+    }
+
+    // ===== XỬ LÝ SHEET 1 BẢNG (thông thường hoặc challenge đơn) =====
     const ambassadors: Ambassador[] = [];
     for (let r = headerRowIdx + 1; r < rows.length; r++) {
       const row = rows[r];
@@ -434,6 +512,8 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
     // Fix "tiêu biểu T" → "tiêu biểu" (tên sheet bị cắt)
     categoryName = categoryName.replace(/tiêu biểu\s+T$/i, 'tiêu biểu');
     categoryName = categoryName.replace(/tiêu biểu\s+Q$/i, 'tiêu biểu');
+    // Fix "cấp q" → "cấp Quản lý" (tên sheet bị cắt)
+    categoryName = categoryName.replace(/cấp q$/i, 'cấp Quản lý');
     categoryName = categoryName.charAt(0).toUpperCase() + categoryName.slice(1);
 
     data[categoryType].push({
