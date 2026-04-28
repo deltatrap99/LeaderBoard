@@ -2,7 +2,6 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/ge-logo.png';
 import { Moon, Sun, Sparkles, Award, BarChart3, Gift, FileText, Medal } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 interface LayoutProps {
   heroContent: React.ReactNode;
@@ -16,7 +15,7 @@ interface LayoutProps {
   headerCtaUrl?: string;
 }
 
-export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme, footerText, footerLinks, headerTagline, headerCtaText, headerCtaUrl }: LayoutProps) {
+export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme, footerText, footerLinks, headerTagline }: LayoutProps) {
   const isBlue = theme === 'blue';
   const location = useLocation();
   const currentPath = location.pathname;

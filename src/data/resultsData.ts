@@ -20,7 +20,6 @@ export interface ResultsData {
 }
 
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/1LktWs8p4xbTToJJaEu2y6RBwj5W26daoVFKiKMNHhJs/export?format=xlsx';
-const TARGET_SHEET = 'Giải thưởng Quý I';
 
 function formatNumber(val: any): string {
   if (val == null) return '';
@@ -67,7 +66,7 @@ export async function fetchResultsData(): Promise<ResultsData> {
   const wb = cachedWb;
 
   // Find the target sheet
-  const sheetIdx = wb.SheetNames.findIndex(n => n.includes('Giải thưởng Quý'));
+  const sheetIdx = wb.SheetNames.findIndex((n: string) => n.includes('Giải thưởng Quý'));
   if (sheetIdx === -1) {
     return { mainTitle: 'Kết quả Thi đua Quý I/2026', sections: [] };
   }
@@ -93,7 +92,6 @@ export async function fetchResultsData(): Promise<ResultsData> {
     if (nonNull.length === 0) { r++; continue; }
 
     // Check if this is a section title (single cell with text, not a header row)
-    const firstCell = String(row[0] || '').trim();
 
     // Skip the main title row
     if (r === 0) { r++; continue; }

@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "clsx": "^2.1.1",
+    "csv-parse": "^6.2.1",
     "firebase": "^12.11.0",
     "framer-motion": "^12.38.0",
     "lucide-react": "^1.6.0",
