@@ -181,10 +181,28 @@ export function LeaderboardPage() {
         {currentData.length === 0 && (
           <div className={`text-center py-20 rounded-3xl border ${
             isBlue
-              ? 'bg-white border-slate-200 text-slate-400 shadow-sm'
-              : 'bg-white/[0.03] border-white/[0.06] text-white/30'
+              ? 'bg-white border-slate-200 shadow-sm'
+              : 'bg-white/[0.03] border-white/[0.06]'
           }`}>
-            <p className="text-lg font-medium">Chưa có dữ liệu cho bảng thi đua này.</p>
+            {activeTab === 'challenge' ? (
+              <>
+                <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 ${
+                  isBlue ? 'bg-orange-100' : 'bg-orange-500/10'
+                }`}>
+                  <Trophy size={28} className={isBlue ? 'text-orange-400' : 'text-orange-400/60'} />
+                </div>
+                <p className={`text-lg font-bold mb-2 ${isBlue ? 'text-slate-700' : 'text-white/70'}`}>
+                  Hiện tại chưa có Challenge nào cả
+                </p>
+                <p className={`text-sm max-w-md mx-auto ${isBlue ? 'text-slate-400' : 'text-white/30'}`}>
+                  Các Challenge mới sẽ được cập nhật khi có chương trình thi đua mới. Hãy quay lại sau nhé!
+                </p>
+              </>
+            ) : (
+              <p className={`text-lg font-medium ${isBlue ? 'text-slate-400' : 'text-white/30'}`}>
+                Chưa có dữ liệu cho bảng thi đua này.
+              </p>
+            )}
           </div>
         )}
       </motion.div>
