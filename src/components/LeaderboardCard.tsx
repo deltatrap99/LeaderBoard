@@ -13,7 +13,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     if (catNameLower.includes('vàng')) {
       return ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
     }
-    if (catNameLower.includes('đại sứ mới') && (catNameLower.includes('tháng 03') || catNameLower.includes('tháng 3') || catNameLower.includes('t03') || catNameLower.includes('t3'))) {
+    if (catNameLower.includes('đại sứ mới') && /tháng\s*\d+|t\d+/.test(catNameLower)) {
       return (ranker.score ?? 0) >= 30000000 || (ranker.score2 ?? 0) >= 30000000;
     }
     return false;

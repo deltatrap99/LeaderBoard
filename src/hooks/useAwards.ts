@@ -15,7 +15,7 @@ export interface AwardTier {
 export interface Award {
   id?: string;
   title: string;          // "Thưởng Đại sứ Mới"
-  period: string;         // "Tháng 03 Năm 2026"
+  period: string;         // "Tháng 04 Năm 2026"
   category: 'month' | 'quarter' | 'semester';
   mechanism: string;      // Cơ chế thưởng (mô tả)
   columns: string[];      // Header cột bảng
@@ -27,9 +27,9 @@ export interface Award {
 // Default awards data from reference images
 const DEFAULT_AWARDS: Award[] = [
   {
-    id: 'dai-su-moi-t03',
+    id: 'dai-su-moi-t04',
     title: 'Thưởng Đại sứ Mới',
-    period: 'Tháng 03 Năm 2026',
+    period: 'Tháng 04 Năm 2026',
     category: 'month',
     mechanism: 'Thưởng Đại sứ mới lần đầu phát sinh doanh số, ghi nhận nỗ lực triển khai tuyển sinh trong giai đoạn đầu tham gia cộng đồng và đạt khởi đầu tích cực với doanh số tổng tháng từ 3 triệu trở lên.\n\nDoanh số xét thưởng là doanh số tổng của tháng đầu tiên Đại sứ phát sinh doanh số.',
     columns: ['Doanh số xét thưởng', 'Số lượng giải thưởng', 'Giá trị giải thưởng'],
@@ -42,9 +42,9 @@ const DEFAULT_AWARDS: Award[] = [
     order: 1,
   },
   {
-    id: 'ds-gd-xuat-sac-t03',
+    id: 'ds-gd-xuat-sac-t04',
     title: 'Thưởng Đại sứ Giáo dục Xuất sắc',
-    period: 'Tháng 03 Năm 2026',
+    period: 'Tháng 04 Năm 2026',
     category: 'month',
     mechanism: 'Thưởng Đại sứ đạt Top doanh số cá nhân, nhằm tôn vinh thành tích nổi bật và đóng góp tích cực trong hoạt động triển khai bán hàng.',
     columns: ['Giải', 'Doanh số', 'Số lượng giải', 'Giá trị giải thưởng'],
@@ -56,9 +56,9 @@ const DEFAULT_AWARDS: Award[] = [
     order: 2,
   },
   {
-    id: 'ql-tuyen-dung-t03',
+    id: 'ql-tuyen-dung-t04',
     title: 'Thưởng Quản lý Tuyển dụng Xuất sắc',
-    period: 'Tháng 03 Năm 2026',
+    period: 'Tháng 04 Năm 2026',
     category: 'month',
     mechanism: 'Thưởng ghi nhận Đại sứ tuyển dụng hiệu quả, đóng góp vào tăng trưởng đội ngũ.\n\nĐiều kiện active của Đại sứ mới: tuyển sinh thành công (phát sinh đơn hàng thành công) tối thiểu 1 khoá học chính (không bao gồm các sản phẩm, khoá học VAS/ dẫn nhập, ví dụ như: English Adventure with Milo, IELTS self-learn course, Sách,...)',
     columns: ['Giải', 'SL Đại sứ mới Active', 'Tổng DS Đại sứ mới Active', 'Số lượng giải', 'Giá trị giải thưởng'],

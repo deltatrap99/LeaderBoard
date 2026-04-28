@@ -34,7 +34,11 @@ const DEFAULT_URL = 'https://docs.google.com/spreadsheets/d/1LktWs8p4xbTToJJaEu2
 function categorizeSheet(sheetName: string): keyof LeaderboardData | null {
   const name = sheetName.toLowerCase();
   if (name.includes('trang tính') || name.includes('mục lục') || name.includes('index')) return null;
-  if (name.includes('tháng') || name.includes('t03') || name.includes('tiêu biểu t')) return 'month';
+  // Skip the Q1 results summary sheet (displayed on dedicated Results page)
+  if (name.includes('giải thưởng quý')) return null;
+  // Skip old Tháng 03 sheets — Tháng 04 is now the current program
+  if (/tháng\s*0?3/.test(name)) return null;
+  if (name.includes('tháng') || /t\d{1,2}(?!\w)/.test(name) || name.includes('tiêu biểu t')) return 'month';
   if (name.includes('quý') || name.includes('vàng q') || name.includes('tiêu biểu q')) return 'quarter';
   if (name.includes('kỳ') || name.includes('giáo d') || name.includes('k1') || name.includes('k 1') || (name.includes('quản lý') && !name.includes('tuyển dụng')) || name.includes('qlxs')) return 'semester';
   if (name.includes('challenge') || name.includes('cá nhân')) return 'challenge';
@@ -65,7 +69,37 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
   
   const data: LeaderboardData = { month: [], quarter: [], challenge: [], semester: [] };
 
+  // Build list of sheets to process, deduplicating by base name.
+  // When multiple sheets share the same base (e.g. "Giải thưởng Đại sứ mới Tháng 03" 
+  // and "...Tháng 04"), keep only the last one (newest month).
+  function getSheetBaseName(name: string): string {
+    // Remove trailing month/quarter identifiers and numbers
+    // "Giải thưởng Đại sứ mới Tháng 04" → "giải thưởng đại sứ mới"
+    // "Giải thưởng Quản lý tiêu biểu 0" (truncated "04") → "giải thưởng quản lý tiêu biểu"
+    return name.toLowerCase()
+      .replace(/\s*tháng\s*\d+.*$/i, '')
+      .replace(/\s*quý\s*\d+.*$/i, '')
+      .replace(/\s+[tqk]\d*\s*$/i, '')  // trailing T03, Q1, K1
+      .replace(/\s+\d+\s*$/i, '')       // trailing "04", "03" (from truncated names like "...biểu 0")
+      .replace(/\s+[tqk]\s*$/i, '')     // trailing single T, Q, K (truncated)
+      .trim();
+  }
+
+  const baseNameMap = new Map<string, number>(); // baseName → latest sheet index
   for (let i = 1; i < wb.SheetNames.length; i++) {
+    const sheetName = wb.SheetNames[i];
+    const categoryType = categorizeSheet(sheetName);
+    if (!categoryType) continue;
+    
+    const base = getSheetBaseName(sheetName);
+    // Always overwrite with later index (later sheet = newer month)
+    baseNameMap.set(base, i);
+  }
+  
+  const sheetsToProcess = new Set(baseNameMap.values());
+
+  for (let i = 1; i < wb.SheetNames.length; i++) {
+    if (!sheetsToProcess.has(i)) continue;
     const sheetName = wb.SheetNames[i];
     const categoryType = categorizeSheet(sheetName);
     if (!categoryType) continue;
@@ -193,7 +227,7 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
 
       let baseCategoryName = sheetName.trim();
       baseCategoryName = baseCategoryName.replace(/^Giải thưởng\s+/i, '');
-      baseCategoryName = baseCategoryName.replace(/\s*[T|Q][\d]*$/i, ''); // Remove T, T03, Q, Q1 suffix
+      baseCategoryName = baseCategoryName.replace(/\s*[TQ]\d*$/i, ''); // Remove T, T03, T04, Q, Q1 suffix
       baseCategoryName = baseCategoryName.charAt(0).toUpperCase() + baseCategoryName.slice(1);
 
       ['Cấp Nhóm', 'Cấp Phòng', 'Cấp Khu vực'].forEach((level, levelIdx) => {
@@ -448,7 +482,7 @@ export async function fetchLeaderboardData(sheetUrl?: string): Promise<Leaderboa
         }
 
         let categoryName = subTitle || sheetName.trim();
-        // Clean up: "DANH SÁCH ĐẠI SỨ MỚI THÁNG 03 ĐỦ ĐIỀU KIỆN..." → "Đại sứ mới Tháng 03"
+        // Clean up: "DANH SÁCH ĐẠI SỨ MỚI THÁNG 04 ĐỦ ĐIỀU KIỆN..." → "Đại sứ mới Tháng 04"
         categoryName = categoryName.replace(/^DANH SÁCH\s+/i, '');
         categoryName = categoryName.replace(/\s*ĐỦ ĐIỀU KIỆN.*/i, '');
         categoryName = categoryName.replace(/\s*NHẬN THƯỞNG.*/i, '');
