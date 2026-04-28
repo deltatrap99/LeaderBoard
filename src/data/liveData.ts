@@ -38,10 +38,11 @@ function categorizeSheet(sheetName: string): keyof LeaderboardData | null {
   if (name.includes('giải thưởng quý')) return null;
   // Skip old Tháng 03 sheets — Tháng 04 is now the current program
   if (/tháng\s*0?3/.test(name)) return null;
+  // Skip Q1 challenge sheets (Q1 đã kết thúc, chưa có challenge Q2/T04)
+  if (name.includes('challenge') || name.includes('cá nhân')) return null;
   if (name.includes('tháng') || /t\d{1,2}(?!\w)/.test(name) || name.includes('tiêu biểu t')) return 'month';
   if (name.includes('quý') || name.includes('vàng q') || name.includes('tiêu biểu q')) return 'quarter';
   if (name.includes('kỳ') || name.includes('giáo d') || name.includes('k1') || name.includes('k 1') || (name.includes('quản lý') && !name.includes('tuyển dụng')) || name.includes('qlxs')) return 'semester';
-  if (name.includes('challenge') || name.includes('cá nhân')) return 'challenge';
   return 'month';
 }
 
