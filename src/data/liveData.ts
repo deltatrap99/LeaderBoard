@@ -1,0 +1,56 @@
+export interface Ambassador {
+  id: string;
+  name: string;
+  avatar?: string;
+  score: number;
+  score2?: number;        // Cột thứ 2 (vd: Doanh số N-1 mới)
+  score2Label?: string;   // Label cột 2
+  scoreLabel?: string;    // Label cột 1 (vd: Số lượng N-1 mới active)
+  region?: string;
+  highlight?: boolean;    // Badge highlight cho người đạt target
+}
+
+export interface CategoryResult {
+  categoryId: string;
+  categoryName: string;
+  categorySubtitle?: string;
+  topRankers: Ambassador[]; 
+  otherRankers: Ambassador[];
+  hasMultipleScores?: boolean;
+  scoreLabels?: string[];
+}
+
+export interface LeaderboardData {
+  month: CategoryResult[];
+  quarter: CategoryResult[];
+  challenge: CategoryResult[];
+  semester: CategoryResult[];
+}
+
+/**
+ * Fetch leaderboard data from Vercel API (cached, pre-parsed JSON).
+ * Fallback: fetch directly from Apps Script URL.
+ */
+export async function fetchLeaderboardData(_sheetUrl?: string): Promise<LeaderboardData> {
+  // Try Vercel API first (has CDN cache)
+  try {
+    const res = await fetch('/api/leaderboard');
+    if (res.ok) {
+      return await res.json();
+    }
+  } catch {
+    // Fallback below
+  }
+
+  // Fallback: direct Apps Script call
+  const appsScriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL;
+  if (appsScriptUrl) {
+    const res = await fetch(`${appsScriptUrl}?action=leaderboard`);
+    if (res.ok) {
+      return await res.json();
+    }
+  }
+
+  // Empty data if everything fails
+  return { month: [], quarter: [], challenge: [], semester: [] };
+}

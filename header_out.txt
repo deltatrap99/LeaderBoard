@@ -1,0 +1,8 @@
+
+--- Sheet: Giải thưởng EGC - Đại sứ Vàng Q ---
+Row 0: []
+Row 1: ["DANH SÁCH ĐẠI SỨ GIÁO DỤC ĐỦ ĐIỀU KIỆN XÉT GIẢI"]
+Row 2: ["*Số liệu tạm tính (chưa đối soát)"]
+Row 3: ["Mã Đại sứ","Tên Đại sứ","Số lượng HV mới","Doanh số cá nhân"]
+Row 4: [2784,"Phạm Thị Thu Thủy",36,354692800]
+Row 5: [13734,"Nguyễn Thị Thảo",33,300283200]
