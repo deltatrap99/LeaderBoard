@@ -9,10 +9,12 @@ import { AdminOverview } from './pages/admin/AdminOverview';
 import { SiteSettingsPage } from './pages/admin/SiteSettingsPage';
 import { UserManagementPage } from './pages/admin/UserManagementPage';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { NotificationBanner } from './components/NotificationBanner';
 
 function App() {
   return (
     <BrowserRouter>
+      <NotificationBanner />
       <Routes>
         {/* Public */}
         <Route path="/" element={<LeaderboardPage />} />

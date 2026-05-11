@@ -1,6 +1,7 @@
 import { initializeApp, type FirebaseApp } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
 import { getFirestore, type Firestore } from 'firebase/firestore';
+import { getMessaging, getToken, onMessage, type Messaging } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -21,16 +22,27 @@ export const isFirebaseConfigured = Boolean(
 let app: FirebaseApp | null = null;
 let auth: Auth | null = null;
 let db: Firestore | null = null;
+let messaging: Messaging | null = null;
 
 if (isFirebaseConfigured) {
   try {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
     db = getFirestore(app);
+
+    // Only init messaging in browser with service worker support
+    if (typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+      try {
+        messaging = getMessaging(app);
+      } catch (err) {
+        console.warn('[Firebase] Messaging init skipped:', err);
+      }
+    }
   } catch (err) {
     console.warn('[Firebase] Initialization failed:', err);
   }
 }
 
-export { auth, db };
+export { auth, db, messaging, getToken, onMessage };
 export default app;
+
