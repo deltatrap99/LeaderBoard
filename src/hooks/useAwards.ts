@@ -96,8 +96,8 @@ const DEFAULT_AWARDS: Award[] = [
     columns: ['Giải', 'Chỉ tiêu số lượng học sinh mới', 'Số lượng giải', 'Giá trị giải thưởng', '', 'Điều kiện ràng buộc doanh số'],
     tiers: [
       { label: 'Top 1', condition: '>= 55', quantity: '1', prizeValue: '1,500,000', cellValues: ['Top 1', '>= 55', '1', '1.500.000 đ', 'Suất tham dự GEA', '>= 250 triệu đồng'] },
-      { label: 'Top 2', condition: '>= 40', quantity: '1', prizeValue: '1,000,000', cellValues: ['Top 2', '>= 40', '1', '1.000.000 đ', 'Suất tham dự GEA', ''] },
-      { label: 'Top 3', condition: '>= 25', quantity: '1', prizeValue: '800,000', cellValues: ['Top 3', '>= 25', '1', '800.000 đ', 'Suất tham dự GEA', ''] },
+      { label: 'Top 2', condition: '>= 40', quantity: '1', prizeValue: '1,000,000', cellValues: ['Top 2', '>= 40', '1', '1.000.000 đ', 'Suất tham dự GEA', '>= 250 triệu đồng'] },
+      { label: 'Top 3', condition: '>= 25', quantity: '1', prizeValue: '800,000', cellValues: ['Top 3', '>= 25', '1', '800.000 đ', 'Suất tham dự GEA', '>= 250 triệu đồng'] },
     ],
     footnote: '* Elite Galaxy Circle (sau đây viết tắt là: EGC) là vòng tròn danh giá quy tụ những Đại sứ Giáo dục đạt thành tích tuyển sinh xuất sắc, với tinh thần bền bỉ và nỗ lực vượt trội trong hành trình lan tỏa tri thức – Kiến tạo tương lai.',
     order: 5,
