@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Layout } from '../components/Layout';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { fetchResultsData, type ResultsData, type ResultSection } from '../data/resultsData';
+import { t05ResultsData } from '../data/t05Results';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Medal, Star, Crown, ChevronDown, ChevronUp, Award, Sparkles, Users, TrendingUp, Target } from 'lucide-react';
 
@@ -31,7 +32,7 @@ function getSectionGradient(title: string): string {
 
 function isMoneyColumn(colName: string): boolean {
   const c = colName.toLowerCase();
-  return c.includes('doanh số') || c.includes('doanh thu') || c.includes('thưởng') || c.includes('team dsc');
+  return c.includes('doanh số') || c.includes('doanh thu') || c.includes('thưởng') || c.includes('team dsc') || c.includes('l5');
 }
 
 function shouldShowRanking(title: string): boolean {
@@ -205,10 +206,11 @@ function ResultSectionCard({ section, index, theme }: { section: ResultSection; 
   );
 }
 
-type ResultPeriod = 'q1' | 't04';
+type ResultPeriod = 'q1' | 't04' | 't05';
 
 const RESULT_PERIODS: { key: ResultPeriod; label: string; icon: string }[] = [
   { key: 'q1', label: 'Quý I', icon: '⭐' },
+  { key: 't05', label: 'Tháng 5', icon: '🔥' },
   { key: 't04', label: 'Tháng 4', icon: '📅' },
 ];
 
@@ -217,6 +219,11 @@ const PERIOD_HERO: Record<ResultPeriod, { title: string; subtitle: string; descr
     title: 'Quý I / 2026',
     subtitle: 'Kết quả chính thức',
     description: 'Danh sách các Đại sứ đạt giải chính thức trong chương trình Galaxy Elite Awards Quý I/2026',
+  },
+  t05: {
+    title: 'Tháng 05 / 2026',
+    subtitle: 'Kết quả chính thức',
+    description: 'Danh sách các Đại sứ đạt giải Thưởng bứt phá vượt giới hạn Tháng 5/2026',
   },
   t04: {
     title: 'Tháng 04 / 2026',
@@ -235,6 +242,7 @@ export function ResultsPage() {
 
   const isBlue = theme === 'blue';
   const hero = PERIOD_HERO[activePeriod];
+  const displayData = activePeriod === 't05' ? t05ResultsData : data;
 
   useEffect(() => {
     fetchResultsData()
@@ -362,7 +370,7 @@ export function ResultsPage() {
         </div>
       </motion.div>
     </AnimatePresence>
-  ) : loading ? (
+  ) : (activePeriod !== 't05' && loading) ? (
     <div className="flex justify-center flex-col items-center py-20 gap-6">
       <div className="animate-spin rounded-full h-12 w-12 border-4 border-slate-200 border-t-blue-600" />
       <p className={`font-medium text-sm ${isBlue ? 'text-slate-400' : 'text-white/50'}`}>
@@ -373,10 +381,10 @@ export function ResultsPage() {
     <div className="text-center py-20">
       <p className="text-red-500 font-medium">Lỗi: {error}</p>
     </div>
-  ) : data ? (
+  ) : displayData ? (
     <AnimatePresence mode="wait">
       <motion.div
-        key="q1-results"
+        key={`${activePeriod}-results`}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
@@ -395,12 +403,12 @@ export function ResultsPage() {
         >
           <Medal className="w-5 h-5 shrink-0" />
           <p className="text-sm font-medium">
-            <span className="font-bold">{data.sections.length} hạng mục</span> giải thưởng đã được công bố chính thức.
+            <span className="font-bold">{displayData.sections.length} hạng mục</span> giải thưởng đã được công bố chính thức.
             Xin chúc mừng tất cả các Đại sứ đạt giải!
           </p>
         </motion.div>
 
-        {data.sections.map((section, index) => (
+        {displayData.sections.map((section, index) => (
           <ResultSectionCard key={section.id} section={section} index={index} theme={theme} />
         ))}
       </motion.div>

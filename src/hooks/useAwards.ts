@@ -83,6 +83,23 @@ const DEFAULT_AWARDS: Award[] = [
     ],
     order: 4,
   },
+  {
+    id: 'thuong-but-pha-vuot-gioi-han-t05',
+    title: 'Thưởng bứt phá vượt giới hạn',
+    period: 'Tháng 05 Năm 2026',
+    category: 'month',
+    mechanism: 'Đối tượng: Toàn bộ Đại sứ phát sinh doanh số ICANCONNECT trong thời gian diễn ra chương trình\nThời gian áp dụng: 16/5 - 22/5\n\n* Việc khấu trừ thuế thu nhập cá nhân của các khoản thưởng đều tuân thủ theo quy định của nhà nước.',
+    columns: ['Mốc doanh thu hợp lệ', 'Điều kiện lead học thử', 'Mức thưởng', 'Số lượng giải'],
+    tiers: [
+      { label: '10.000.000', condition: '10.000.000', condition2: '3', quantity: '30', prizeValue: '68.000', cellValues: ['10.000.000', '3', '68.000 đ', '30'] },
+      { label: '20.000.000', condition: '20.000.000', condition2: '5', quantity: '20', prizeValue: '139.000', cellValues: ['20.000.000', '5', '139.000 đ', '20'] },
+      { label: '30.000.000', condition: '30.000.000', condition2: '5', quantity: '20', prizeValue: '168.000', cellValues: ['30.000.000', '5', '168.000 đ', '20'] },
+      { label: '50.000.000', condition: '50.000.000', condition2: '10', quantity: '20', prizeValue: '268.000', cellValues: ['50.000.000', '10', '268.000 đ', '20'] },
+      { label: '80.000.000', condition: '80.000.000', condition2: '10', quantity: '8', prizeValue: '368.000', cellValues: ['80.000.000', '10', '368.000 đ', '8'] },
+      { label: '120.000.000', condition: '120.000.000', condition2: '10', quantity: '5', prizeValue: '500.000', cellValues: ['120.000.000', '10', '500.000 đ', '5'] },
+    ],
+    order: 4.5,
+  },
 
   // ============================================================
   // II. Thưởng Quý II/2026
