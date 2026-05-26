@@ -7,19 +7,42 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
   const getInitials = (name: string) => name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   const isBlue = theme === 'blue';
 
-  const checkEligible = (ranker: any) => {
-    if (ranker.highlight) return true;
+  const getEligibilityInfo = (ranker: any) => {
     const catNameLower = data.categoryName.toLowerCase();
-    if (catNameLower.includes('vàng')) {
-      if (catNameLower.includes('quý ii') || catNameLower.includes('quý 2')) {
-        return ranker.score >= 25; // User confirmed they qualify even though Doanh số < 200tr
+    
+    if (catNameLower.includes('quản lý xuất sắc kỳ i')) {
+      let targetDS = 10000000000; // 10 tỷ
+      let targetActive = 40;
+      if (catNameLower.includes('phòng') || catNameLower.includes('khu vực')) {
+        targetDS = 20000000000; // 20 tỷ
+        targetActive = 80;
       }
-      return ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
+      
+      const ds = ranker.score || 0;
+      const active = ranker.score2 || 0;
+      const passDS = ds >= targetDS;
+      const passActive = active >= targetActive;
+      
+      if (passDS && passActive) return { isEligible: true, text: 'ĐẠT ĐIỀU KIỆN' };
+      if (!passDS && !passActive) return { isEligible: false, text: 'Chưa đạt DS & SL Active' };
+      if (!passDS) return { isEligible: false, text: 'Chưa đạt Doanh số' };
+      return { isEligible: false, text: 'Chưa đạt SL Active' };
     }
-    if (catNameLower.includes('đại sứ mới') && /tháng\s*\d+|t\d+/.test(catNameLower)) {
-      return (ranker.score ?? 0) >= 30000000 || (ranker.score2 ?? 0) >= 30000000;
+
+    let isEligible = false;
+    if (ranker.highlight) {
+      isEligible = true;
+    } else if (catNameLower.includes('vàng')) {
+      if (catNameLower.includes('quý ii') || catNameLower.includes('quý 2')) {
+        isEligible = ranker.score >= 25;
+      } else {
+        isEligible = ranker.score >= 15 && (ranker.score2 ?? 0) >= 150000000;
+      }
+    } else if (catNameLower.includes('đại sứ mới') && /tháng\s*\d+|t\d+/.test(catNameLower)) {
+      isEligible = (ranker.score ?? 0) >= 30000000 || (ranker.score2 ?? 0) >= 30000000;
     }
-    return false;
+    
+    return { isEligible, text: isEligible ? badgeText : 'Chưa đủ điều kiện' };
   };
 
   const isManager = data.categoryName.toLowerCase().includes('tiêu biểu');
@@ -147,7 +170,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
               )}
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
                 {tableRankers.map((ranker, i) => {
-                  const isEligible = checkEligible(ranker);
+                  const { isEligible, text: statusText } = getEligibilityInfo(ranker);
                   const rank = isManager ? i + 1 : data.topRankers.length + i + 1;
 
                   // Format number compactly for mobile
@@ -211,7 +234,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                             }`}>
                               {isEligible && <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500 mr-1" />}
                               <span className={`text-[9px] font-bold uppercase tracking-wider ${!isEligible ? 'opacity-80' : ''}`}>
-                                {isEligible ? badgeText : 'Chưa đủ điều kiện'}
+                                {statusText}
                               </span>
                             </div>
                           )}
@@ -223,7 +246,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                               ) : (
                                 <div className={`flex items-center gap-1`}>
                                   <div className={`w-1 h-1 rounded-full ${isBlue ? 'bg-slate-300' : 'bg-white/20'}`} />
-                                  <span className={`text-[8px] italic ${isBlue ? 'text-slate-400' : 'text-white/30'}`}>Chưa đủ ĐK</span>
+                                  <span className={`text-[8px] italic ${isBlue ? 'text-slate-400' : 'text-white/30'}`}>{!isEligible && statusText.includes('Chưa đạt') ? statusText : 'Chưa đủ ĐK'}</span>
                                 </div>
                               )}
                             </div>
