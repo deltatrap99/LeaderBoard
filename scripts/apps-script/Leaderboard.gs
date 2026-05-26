@@ -111,6 +111,10 @@ function parseManagerSheet(data, categoryType, rows, headerRow, sheetName, idx) 
         if (c.indexOf('hệ số') >= 0 || c.indexOf('doanh số') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu cam kết') >= 0) { heSoIdx = ci; heSoLabel = col.trim(); usedIdxs[ci] = true; }
         if (c.indexOf('số lượng') >= 0 || c.indexOf('active') >= 0 || c.indexOf('đs mới active') >= 0 || c.indexOf('đại sứ mới') >= 0) { slActiveIdx = ci; slActiveLabel = col.trim(); usedIdxs[ci] = true; }
       });
+      if (sheetName.toLowerCase().indexOf('kỳ i') >= 0 && sheetName.toLowerCase().indexOf('quản lý xuất sắc') >= 0) {
+        slActiveIdx = 4; // Cột E
+        slActiveLabel = 'SL Đại sứ mới active';
+      }
       row.forEach(function(col, ci) {
         if (typeof col !== 'string' || usedIdxs[ci]) return;
         var c = col.toLowerCase().trim();
