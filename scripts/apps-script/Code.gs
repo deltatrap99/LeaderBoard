@@ -107,9 +107,9 @@ function cleanCategoryName(sheetName, categoryType) {
   name = name.replace(/^EGC\s*-\s*/, '');
   if (name.toLowerCase().indexOf('vàng q') >= 0) {
     if (name.toLowerCase().indexOf('ii') >= 0 || name.indexOf('2') >= 0) {
-      name = 'Vàng Quý II/2026';
+      name = 'Đại sứ Vàng Quý II/2026';
     } else {
-      name = 'Vàng Quý I/2026';
+      name = 'Đại sứ Vàng Quý I/2026';
     }
   }
   name = name.replace(/tiêu biểu\s+T$/i, 'tiêu biểu');

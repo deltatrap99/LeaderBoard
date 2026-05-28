@@ -69,7 +69,7 @@ function getLeaderboardData() {
         cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Tháng 5';
       }
       if (cat.categoryName.toLowerCase().indexOf('trang tính25') >= 0) cat.categoryName = 'Giải thưởng Đại sứ Giáo dục xuất sắc Quý II/2026';
-      if (cat.categoryName.toLowerCase().indexOf('trang tính26') >= 0) cat.categoryName = 'Giải thưởng EGC - Đại sứ Vàng Quý II/2026';
+      if (cat.categoryName.toLowerCase().indexOf('trang tính26') >= 0) cat.categoryName = 'Giải thưởng Đại sứ Vàng Quý II/2026';
       if (cat.categoryName.toLowerCase().indexOf('trang tính29') >= 0) cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Quý II/2026';
       if (cat.categoryName.toLowerCase().indexOf('trang tính30') >= 0) cat.categoryName = 'Giải thưởng Quản lý tiêu biểu Quý II/2026';
     });
@@ -78,8 +78,11 @@ function getLeaderboardData() {
   ['month','quarter','semester','challenge'].forEach(function(tab) {
     data[tab].forEach(function(cat) {
       var n = cat.categoryName.toLowerCase();
-      if (n.indexOf('đại sứ mới') >= 0 || n.indexOf('vàng') >= 0 || n.indexOf('bứt tốc') >= 0 || n.indexOf('giáo dục xuất sắc') >= 0) {
+      if (n.indexOf('đại sứ mới') >= 0 || n.indexOf('bứt tốc') >= 0 || n.indexOf('giáo dục xuất sắc') >= 0) {
         cat.categorySubtitle = 'Biểu dương các Đại sứ mới xuất sắc, căn cứ theo số liệu tuyển sinh';
+      }
+      if (n.indexOf('vàng') >= 0) {
+        cat.categorySubtitle = 'Biểu dương các Đại sứ Giáo dục có thành tích tuyển sinh xuất sắc';
       }
     });
   });
@@ -213,9 +216,9 @@ function parseGoldSheet(data, categoryType, rows, headerRow, headerRowIdx, sheet
   var catName = sheetName.trim().replace(/^Giải thưởng\s+/i, '').replace(/^EGC\s*-\s*/, '');
   if (catName.toLowerCase().indexOf('vàng q') >= 0) {
     if (catName.toLowerCase().indexOf('ii') >= 0 || catName.indexOf('2') >= 0) {
-      catName = 'Vàng Quý II/2026';
+      catName = 'Đại sứ Vàng Quý II/2026';
     } else {
-      catName = 'Vàng Quý I/2026';
+      catName = 'Đại sứ Vàng Quý I/2026';
     }
   }
   catName = catName.charAt(0).toUpperCase() + catName.slice(1);
