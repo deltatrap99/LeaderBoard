@@ -66,7 +66,7 @@ function getLeaderboardData() {
         cat.categoryName = 'Giải thưởng ' + cat.categoryName;
       }
       if (cat.categoryName.toLowerCase().indexOf('quản lý tuyển dụng') >= 0 || cat.categoryName.toLowerCase().indexOf('trang tính20') >= 0) {
-        cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Tháng 5';
+        cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Quý II/2026';
       }
       if (cat.categoryName.toLowerCase().indexOf('trang tính25') >= 0) cat.categoryName = 'Giải thưởng Đại sứ Giáo dục xuất sắc Quý II/2026';
       if (cat.categoryName.toLowerCase().indexOf('trang tính26') >= 0) cat.categoryName = 'Giải thưởng Đại sứ Vàng Quý II/2026';
