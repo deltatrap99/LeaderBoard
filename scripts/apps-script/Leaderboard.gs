@@ -29,6 +29,12 @@ function getLeaderboardData() {
     if (!categoryType) continue;
 
     var rows = sheet.getDataRange().getValues();
+    if (!rows || rows.length < 2) continue;
+
+    if (sheetName.toLowerCase().indexOf('ge.t6') >= 0 || sheetName.toLowerCase().indexOf('tổng hợp') >= 0 || (rows[0] && rows[0][0] && String(rows[0][0]).trim().match(/^[0-9]\.\s+[A-ZĐ]/))) {
+      parseStackedSheet(data, categoryType, rows, sheetName, i);
+      continue;
+    }
     var headerRowIdx = findHeaderRow(rows);
     if (headerRowIdx === -1) continue;
 
@@ -256,9 +262,9 @@ function parseRecruitmentSheet(data, categoryType, rows, headerRow, headerRowIdx
     var c = col.toLowerCase().trim();
     if (c.indexOf('tên') >= 0) nameIdx = ci;
     if (c.indexOf('mã') >= 0) idIdx = ci;
-    if (c.indexOf('số lượng') >= 0 && c.indexOf('n-1') >= 0) { n1ActiveIdx = ci; n1ActiveLabel = col.trim(); }
+    if ((c.indexOf('số lượng') >= 0 && c.indexOf('n-1') >= 0) || c.indexOf('sl đại sứ mới psdt') >= 0 || c.indexOf('sl đại sứ mới') >= 0) { n1ActiveIdx = ci; n1ActiveLabel = col.trim(); }
     if (c.indexOf('active') >= 0 && c.indexOf('số lượng') < 0 && c.indexOf('n-1') >= 0) { n1ActiveIdx = ci; n1ActiveLabel = col.trim(); }
-    if (c.indexOf('doanh số') >= 0 && c.indexOf('n-1') >= 0) { n1RevenueIdx = ci; n1RevenueLabel = col.trim(); }
+    if ((c.indexOf('doanh số') >= 0 && c.indexOf('n-1') >= 0) || c.indexOf('doanh thu đs mới') >= 0) { n1RevenueIdx = ci; n1RevenueLabel = col.trim(); }
   });
 
   if (nameIdx === -1 || (n1ActiveIdx === -1 && n1RevenueIdx === -1)) return;
@@ -413,5 +419,40 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
   data[categoryType].push({
     categoryId: 'cat_' + idx, categoryName: catName,
     topRankers: ambassadors.slice(0, 3), otherRankers: ambassadors.slice(3)
+  });
+}
+
+// ============ STACKED SHEET ============
+function parseStackedSheet(data, categoryType, rows, sheetName, idx) {
+  var blocks = [];
+  var currentBlock = null;
+  for (var r = 0; r < rows.length; r++) {
+    var row = rows[r];
+    var firstCell = String(row[0] || '').trim();
+    if (/^[0-9]+\.\s/.test(firstCell) && firstCell.toUpperCase() === firstCell) {
+      if (currentBlock) blocks.push(currentBlock);
+      currentBlock = { title: firstCell, rows: [] };
+    }
+    if (currentBlock) {
+      currentBlock.rows.push(row);
+    }
+  }
+  if (currentBlock) blocks.push(currentBlock);
+
+  blocks.forEach(function(block, bIdx) {
+    var title = block.title.replace(/^[0-9]+\.\s*/, '');
+    var bRows = block.rows;
+    var headerRowIdx = findHeaderRow(bRows);
+    if (headerRowIdx === -1) return;
+    var headerRow = bRows[headerRowIdx];
+    
+    var subIdx = idx + '_' + bIdx;
+    if (title.toLowerCase().indexOf('tuyển dụng') >= 0) {
+      parseRecruitmentSheet(data, categoryType, bRows, headerRow, headerRowIdx, title, subIdx);
+    } else if (title.toLowerCase().indexOf('tiêu biểu') >= 0) {
+      parseManagerSheet(data, categoryType, bRows, headerRow, title, subIdx);
+    } else {
+      parseNormalSheet(data, categoryType, bRows, headerRow, headerRowIdx, title, subIdx);
+    }
   });
 }

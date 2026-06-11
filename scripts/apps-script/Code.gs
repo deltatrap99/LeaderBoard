@@ -24,7 +24,7 @@ function categorizeSheet(name) {
   if ((n.indexOf('trang tính') >= 0 && ['trang tính20','trang tính25','trang tính26','trang tính29','trang tính30'].indexOf(n) < 0) ||
       n.indexOf('mục lục') >= 0 || n.indexOf('index') >= 0 || n.indexOf('diễn giải') >= 0) return null;
   if (n.indexOf('giải thưởng quý') >= 0 && n.indexOf('tiêu biểu') < 0 && n.indexOf('xuất sắc') < 0) return null;
-  if (/tháng\s*0?3/.test(n)) return null;
+  if (/tháng\s*0?[345]/.test(n) || n.indexOf('05.2026') >= 0 || n.indexOf('t5') >= 0 || n === 'trang tính20') return null;
   if (n.indexOf('challenge') >= 0 || n.indexOf('cá nhân') >= 0) return null;
 
   if (['trang tính25','trang tính26','trang tính29','trang tính30'].indexOf(n) >= 0) return 'quarter';
@@ -94,7 +94,7 @@ function findHeaderRow(rows) {
 
 function cleanCategoryName(sheetName, categoryType) {
   var name = sheetName.trim();
-  name = name.replace(/^Giải thưởng\s+/i, '');
+  name = name.replace(/^(Giải thưởng|Thưởng)\s+/i, '');
   
   if (name.toLowerCase().endsWith('giáo d')) {
     name = name.slice(0, -6) + 'Giáo dục';
