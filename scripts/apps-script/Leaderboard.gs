@@ -103,7 +103,7 @@ function getLeaderboardData() {
 function parseManagerSheet(data, categoryType, rows, headerRow, sheetName, idx) {
   var isHighlight = true, currentLevel = 'Cấp Nhóm';
   var levels = { 'Cấp Nhóm': [], 'Cấp Phòng': [], 'Cấp Khu vực': [] };
-  var nameIdx = -1, idIdx = -1, heSoIdx = -1, slActiveIdx = -1;
+  var currentPairs = null;
   var heSoLabel = 'Hệ số % THMT', slActiveLabel = 'SL Đại sứ mới active';
 
   for (var r = 0; r < rows.length; r++) {
@@ -115,50 +115,56 @@ function parseManagerSheet(data, categoryType, rows, headerRow, sheetName, idx) 
 
     if ((rowStr.indexOf('tên') >= 0 || rowStr.indexOf('đại sứ') >= 0) &&
         (rowStr.indexOf('hệ số') >= 0 || rowStr.indexOf('doanh số') >= 0 || rowStr.indexOf('thực đạt') >= 0 || rowStr.indexOf('mục tiêu') >= 0)) {
-      var usedIdxs = {};
+      currentPairs = [];
       row.forEach(function(col, ci) {
-        if (typeof col !== 'string') return;
-        var c = col.toLowerCase().trim();
-        if (c.indexOf('mã') >= 0) { idIdx = ci; usedIdxs[ci] = true; }
-        if (c.indexOf('hệ số') >= 0 || c.indexOf('doanh số') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu cam kết') >= 0) { heSoIdx = ci; heSoLabel = col.trim(); usedIdxs[ci] = true; }
-        if (c.indexOf('số lượng') >= 0 || c.indexOf('active') >= 0 || c.indexOf('đs mới active') >= 0 || c.indexOf('đại sứ mới') >= 0) { slActiveIdx = ci; slActiveLabel = col.trim(); usedIdxs[ci] = true; }
+        if (typeof col === 'string' && col.toLowerCase().trim().indexOf('tên') >= 0) {
+          currentPairs.push({ nameIdx: ci, idIdx: -1, heSoIdx: -1, slActiveIdx: -1 });
+        }
       });
-      if (sheetName.toLowerCase().indexOf('kỳ i') >= 0 && sheetName.toLowerCase().indexOf('quản lý xuất sắc') >= 0) {
-        slActiveIdx = 4; // Cột E
+      currentPairs.forEach(function(p) {
+        for (var j = Math.max(0, p.nameIdx - 2); j <= p.nameIdx + 5 && j < row.length; j++) {
+          var c = String(row[j]).toLowerCase().trim();
+          if (c.indexOf('mã') >= 0) p.idIdx = j;
+          if (c.indexOf('hệ số') >= 0 || c.indexOf('doanh số') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu cam kết') >= 0) { p.heSoIdx = j; heSoLabel = row[j].trim(); }
+          if (c.indexOf('số lượng') >= 0 || c.indexOf('active') >= 0 || c.indexOf('đs mới active') >= 0 || c.indexOf('đại sứ mới') >= 0) { p.slActiveIdx = j; slActiveLabel = row[j].trim(); }
+        }
+      });
+      if (sheetName.toLowerCase().indexOf('kỳ i') >= 0 && sheetName.toLowerCase().indexOf('quản lý xuất sắc') >= 0 && currentPairs.length > 0) {
+        currentPairs[0].slActiveIdx = 4; // Cột E
         slActiveLabel = 'SL Đại sứ mới active';
       }
-      row.forEach(function(col, ci) {
-        if (typeof col !== 'string' || usedIdxs[ci]) return;
-        var c = col.toLowerCase().trim();
-        if (c.indexOf('tên') >= 0 || c === 'đại sứ' || c === 'tên đại sứ') nameIdx = ci;
-      });
       continue;
     }
 
-    if (nameIdx !== -1 && heSoIdx !== -1) {
-      var name = String(row[nameIdx] || '').trim();
-      if (!name || name.toLowerCase().indexOf('tên') >= 0 || name.toLowerCase().indexOf('danh sách') >= 0) continue;
-      if (name.toLowerCase().indexOf('tổng') >= 0 || name.toLowerCase().indexOf('đại sứ') >= 0) continue;
-
+    if (currentPairs && currentPairs.length > 0) {
       var levelCol = String(row[0] || '').trim();
       if (levelCol.indexOf('Cấp') === 0) currentLevel = levelCol;
 
-      var realId = (idIdx !== -1 && row[idIdx]) ? String(row[idIdx]) : 'u_' + r;
-      var heSo = parseFloat(String(row[heSoIdx]).replace(/,/g, ''));
-      var slActive = (slActiveIdx !== -1) ? parseFloat(String(row[slActiveIdx]).replace(/,/g, '')) : 0;
-      if (isNaN(heSo)) continue;
-      if (isNaN(slActive)) slActive = 0;
+      currentPairs.forEach(function(p, pi) {
+        var name = String(row[p.nameIdx] || '').trim();
+        if (!name || name.toLowerCase().indexOf('tên') >= 0 || name.toLowerCase().indexOf('danh sách') >= 0) return;
+        if (name.toLowerCase().indexOf('tổng') >= 0 || name.toLowerCase().indexOf('đại sứ') >= 0) return;
 
-      if (heSo > 0 || slActive > 0) {
-        var targetKey = 'Cấp Nhóm';
-        if (currentLevel.indexOf('Phòng') >= 0) targetKey = 'Cấp Phòng';
-        if (currentLevel.indexOf('Khu vực') >= 0) targetKey = 'Cấp Khu vực';
-        levels[targetKey].push({
-          id: realId, name: name, score: heSo, score2: slActive,
-          scoreLabel: heSoLabel, score2Label: slActiveLabel,
-          highlight: isHighlight, region: String(row[3] || '').trim()
-        });
-      }
+        var realId = (p.idIdx !== -1 && row[p.idIdx]) ? String(row[p.idIdx]) : 'u_' + r + '_' + p.nameIdx;
+        var heSoStr = String(row[p.heSoIdx]).replace(/,/g, '');
+        if (heSoStr.endsWith('%')) heSoStr = heSoStr.slice(0, -1);
+        var heSo = parseFloat(heSoStr);
+        var slActive = (p.slActiveIdx !== -1) ? parseFloat(String(row[p.slActiveIdx]).replace(/,/g, '')) : 0;
+        if (isNaN(heSo)) return;
+        if (isNaN(slActive)) slActive = 0;
+
+        if (heSo > 0 || slActive > 0) {
+          var targetKey = 'Cấp Nhóm';
+          if (currentLevel.indexOf('Phòng') >= 0) targetKey = 'Cấp Phòng';
+          if (currentLevel.indexOf('Khu vực') >= 0) targetKey = 'Cấp Khu vực';
+          levels[targetKey].push({
+            id: realId, name: name, score: heSo, score2: slActive,
+            scoreLabel: heSoLabel, score2Label: slActiveLabel,
+            highlight: (currentPairs.length > 1) ? (pi === 0) : isHighlight,
+            region: String(row[3] || '').trim()
+          });
+        }
+      });
     }
   }
 
@@ -254,45 +260,51 @@ function parseGoldSheet(data, categoryType, rows, headerRow, headerRowIdx, sheet
 
 // ============ RECRUITMENT SHEET ============
 function parseRecruitmentSheet(data, categoryType, rows, headerRow, headerRowIdx, sheetName, idx) {
-  var nameIdx = -1, idIdx = -1, n1ActiveIdx = -1, n1RevenueIdx = -1;
-  var n1ActiveLabel = 'SL N-1 active', n1RevenueLabel = 'DS N-1 mới';
-
+  var pairs = [];
   headerRow.forEach(function(col, ci) {
-    if (typeof col !== 'string') return;
-    var c = col.toLowerCase().trim();
-    if (c.indexOf('tên') >= 0) nameIdx = ci;
-    if (c.indexOf('mã') >= 0) idIdx = ci;
-    if ((c.indexOf('số lượng') >= 0 && c.indexOf('n-1') >= 0) || c.indexOf('sl đại sứ mới psdt') >= 0 || c.indexOf('sl đại sứ mới') >= 0) { n1ActiveIdx = ci; n1ActiveLabel = col.trim(); }
-    if (c.indexOf('active') >= 0 && c.indexOf('số lượng') < 0 && c.indexOf('n-1') >= 0) { n1ActiveIdx = ci; n1ActiveLabel = col.trim(); }
-    if ((c.indexOf('doanh số') >= 0 && c.indexOf('n-1') >= 0) || c.indexOf('doanh thu đs mới') >= 0) { n1RevenueIdx = ci; n1RevenueLabel = col.trim(); }
+    if (typeof col === 'string' && col.toLowerCase().trim().indexOf('tên') >= 0) {
+      pairs.push({ nameIdx: ci, idIdx: -1, n1ActiveIdx: -1, n1RevenueIdx: -1 });
+    }
   });
 
-  if (nameIdx === -1 || (n1ActiveIdx === -1 && n1RevenueIdx === -1)) return;
+  pairs.forEach(function(p) {
+    for (var j = Math.max(0, p.nameIdx - 2); j <= p.nameIdx + 5 && j < headerRow.length; j++) {
+      var c = String(headerRow[j]).toLowerCase().trim();
+      if (c.indexOf('mã') >= 0) p.idIdx = j;
+      if ((c.indexOf('số lượng') >= 0 && c.indexOf('n-1') >= 0) || c.indexOf('sl đại sứ mới psdt') >= 0 || c.indexOf('sl đại sứ mới') >= 0) p.n1ActiveIdx = j;
+      if ((c.indexOf('doanh số') >= 0 && c.indexOf('n-1') >= 0) || c.indexOf('doanh thu đs mới') >= 0) p.n1RevenueIdx = j;
+    }
+  });
 
-  var isHighlight = true;
+  if (pairs.length === 0) return;
+
   var ambassadors = [];
+  var isHighlight = true;
   for (var r = headerRowIdx + 1; r < rows.length; r++) {
     var row = rows[r];
     if (!row || row.length === 0) continue;
     var rowStr = row.map(function(e) { return String(e).toLowerCase(); }).join(' ');
     if (rowStr.indexOf('cận đạt') >= 0) isHighlight = false;
 
-    var name = row[nameIdx];
-    if (!name || typeof name !== 'string') continue;
-    if (name.toLowerCase().indexOf('tổng') >= 0 || name.toLowerCase().indexOf('đại sứ') >= 0) continue;
+    pairs.forEach(function(p, pi) {
+      var name = row[p.nameIdx];
+      if (!name || typeof name !== 'string') return;
+      if (name.toLowerCase().indexOf('tổng') >= 0 || name.toLowerCase().indexOf('đại sứ') >= 0) return;
 
-    var realId = (idIdx !== -1 && row[idIdx]) ? String(row[idIdx]) : 'u_' + r;
-    var n1Active = (n1ActiveIdx !== -1 && row[n1ActiveIdx] != null) ? parseFloat(String(row[n1ActiveIdx]).replace(/,/g, '')) : 0;
-    var n1Revenue = (n1RevenueIdx !== -1 && row[n1RevenueIdx] != null) ? parseFloat(String(row[n1RevenueIdx]).replace(/,/g, '')) : 0;
-    if (isNaN(n1Active)) n1Active = 0;
-    if (isNaN(n1Revenue)) n1Revenue = 0;
+      var realId = (p.idIdx !== -1 && row[p.idIdx]) ? String(row[p.idIdx]) : 'u_' + r + '_' + p.nameIdx;
+      var n1Active = (p.n1ActiveIdx !== -1 && row[p.n1ActiveIdx] != null) ? parseFloat(String(row[p.n1ActiveIdx]).replace(/,/g, '')) : 0;
+      var n1Revenue = (p.n1RevenueIdx !== -1 && row[p.n1RevenueIdx] != null) ? parseFloat(String(row[p.n1RevenueIdx]).replace(/,/g, '')) : 0;
+      if (isNaN(n1Active)) n1Active = 0;
+      if (isNaN(n1Revenue)) n1Revenue = 0;
 
-    if (n1Active > 0 || n1Revenue > 0) {
-      ambassadors.push({
-        id: realId, name: name.trim(), score: n1Active, score2: n1Revenue,
-        scoreLabel: n1ActiveLabel, score2Label: n1RevenueLabel, highlight: isHighlight
-      });
-    }
+      if (n1Active > 0 || n1Revenue > 0) {
+        ambassadors.push({
+          id: realId, name: name.trim(), score: n1Active, score2: n1Revenue,
+          scoreLabel: n1ActiveLabel, score2Label: n1RevenueLabel,
+          highlight: (pairs.length > 1) ? (pi === 0) : isHighlight
+        });
+      }
+    });
   }
 
   ambassadors.sort(function(a, b) { return (b.score2||0) - (a.score2||0) || b.score - a.score; });
@@ -398,17 +410,24 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
 
   // Normal single table
   var ambassadors = [];
+  var isHighlight = true;
   for (var r = headerRowIdx + 1; r < rows.length; r++) {
     var row = rows[r];
     if (!row || row.length === 0) continue;
-    pairs.forEach(function(p) {
+    var rowStr = row.map(function(e) { return String(e).toLowerCase(); }).join(' ');
+    if (rowStr.indexOf('cận đạt') >= 0) isHighlight = false;
+
+    pairs.forEach(function(p, pi) {
       var name = row[p.nameIdx];
       if (!name || typeof name !== 'string') return;
       if (name.toLowerCase().indexOf('tổng') >= 0 || name.toLowerCase().indexOf('đại sứ') >= 0) return;
       var numScore = parseFloat(String(row[p.scoreIdx]).replace(/,/g, ''));
       if (isNaN(numScore) || numScore <= 0) return;
       var realId = (p.idIdx !== -1 && row[p.idIdx]) ? String(row[p.idIdx]) : 'u_' + r + '_' + p.nameIdx;
-      ambassadors.push({ id: realId, name: name.trim(), score: numScore });
+      ambassadors.push({
+        id: realId, name: name.trim(), score: numScore,
+        highlight: (pairs.length > 1) ? (pi === 0) : isHighlight
+      });
     });
   }
 
@@ -416,9 +435,12 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
   if (ambassadors.length === 0) return;
 
   var catName = cleanCategoryName(sheetName, categoryType);
+  var eligible = ambassadors.filter(function(a) { return a.highlight !== false; });
+  var almost = ambassadors.filter(function(a) { return a.highlight === false; });
+  
   data[categoryType].push({
     categoryId: 'cat_' + idx, categoryName: catName,
-    topRankers: ambassadors.slice(0, 3), otherRankers: ambassadors.slice(3)
+    topRankers: eligible.slice(0, 3), otherRankers: eligible.slice(3).concat(almost)
   });
 }
 
