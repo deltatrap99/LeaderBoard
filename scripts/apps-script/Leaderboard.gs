@@ -260,6 +260,7 @@ function parseGoldSheet(data, categoryType, rows, headerRow, headerRowIdx, sheet
 
 // ============ RECRUITMENT SHEET ============
 function parseRecruitmentSheet(data, categoryType, rows, headerRow, headerRowIdx, sheetName, idx) {
+  var n1ActiveLabel = 'SL N-1 active', n1RevenueLabel = 'DS N-1 mới';
   var pairs = [];
   headerRow.forEach(function(col, ci) {
     if (typeof col === 'string' && col.toLowerCase().trim().indexOf('tên') >= 0) {
