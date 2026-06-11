@@ -67,7 +67,7 @@ function getLeaderboardData() {
       }
       if (cat.categoryName.toLowerCase().indexOf('quản lý tuyển dụng') >= 0 || cat.categoryName.toLowerCase().indexOf('trang tính20') >= 0 || cat.categoryName.toLowerCase().indexOf('trang tính29') >= 0) {
         if (tab === 'month') {
-          cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Tháng 05';
+          cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Tháng 06';
         } else if (tab === 'quarter') {
           cat.categoryName = 'Giải thưởng Quản lý Tuyển dụng Xuất sắc Quý II/2026';
         }
