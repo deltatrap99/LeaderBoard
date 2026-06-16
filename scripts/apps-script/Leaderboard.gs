@@ -341,14 +341,14 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
       for (var j2 = ci + 1; j2 <= ci + 5 && j2 < headerRow.length; j2++) {
         var c = String(headerRow[j2]).toLowerCase();
         if (c.indexOf('số lượng') >= 0 || c.indexOf('sl') >= 0 || c.indexOf('tuyển sinh') >= 0 || c.indexOf('hv mới') >= 0) {
-          if (score2Idx === -1) { score2Idx = j2; score2Label = String(headerRow[j2]).trim(); }
+          if (scoreIdx === -1) { scoreIdx = j2; scoreLabel = String(headerRow[j2]).trim(); }
         } else if (c.indexOf('doanh số') >= 0 || c.indexOf('doanh thu') >= 0 || c.indexOf('tuyển dụng') >= 0 || c.indexOf('điểm') >= 0 ||
             c.indexOf('tổng số') >= 0 || c.indexOf('hệ số') >= 0 || c.indexOf('thành tích') >= 0 ||
             c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu') >= 0) {
-          if (scoreIdx === -1) { scoreIdx = j2; scoreLabel = String(headerRow[j2]).trim(); }
+          if (score2Idx === -1) { score2Idx = j2; score2Label = String(headerRow[j2]).trim(); }
         }
       }
-      if (scoreIdx === -1 && score2Idx !== -1) { scoreIdx = score2Idx; scoreLabel = score2Label; score2Idx = -1; }
+      if (scoreIdx === -1 && score2Idx !== -1) { scoreIdx = score2Idx; scoreLabel = score2Label; score2Idx = -1; score2Label = ''; }
       if (scoreIdx !== -1) pairs.push({ nameIdx: ci, scoreIdx: scoreIdx, scoreLabel: scoreLabel, score2Idx: score2Idx, score2Label: score2Label, idIdx: idIdx2 });
     }
   });
@@ -360,12 +360,12 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
       if (typeof col === 'string') {
         var c = col.toLowerCase();
         if (nIdx === -1 && c.indexOf('tên') >= 0) nIdx = ci;
-        else if (s2Idx === -1 && (c.indexOf('số lượng') >= 0 || c.indexOf('sl') >= 0 || c.indexOf('tuyển sinh') >= 0 || c.indexOf('hv mới') >= 0)) { s2Idx = ci; s2Label = col.trim(); }
-        else if (sIdx === -1 && (c.indexOf('doanh số') >= 0 || c.indexOf('doanh thu') >= 0 || c.indexOf('điểm') >= 0 || c.indexOf('thành tích') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu') >= 0)) { sIdx = ci; sLabel = col.trim(); }
+        else if (sIdx === -1 && (c.indexOf('số lượng') >= 0 || c.indexOf('sl') >= 0 || c.indexOf('tuyển sinh') >= 0 || c.indexOf('hv mới') >= 0)) { sIdx = ci; sLabel = col.trim(); }
+        else if (s2Idx === -1 && (c.indexOf('doanh số') >= 0 || c.indexOf('doanh thu') >= 0 || c.indexOf('điểm') >= 0 || c.indexOf('thành tích') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu') >= 0)) { s2Idx = ci; s2Label = col.trim(); }
         else if (iIdx === -1 && c.indexOf('mã') >= 0) iIdx = ci;
       }
     });
-    if (sIdx === -1 && s2Idx !== -1) { sIdx = s2Idx; sLabel = s2Label; s2Idx = -1; }
+    if (sIdx === -1 && s2Idx !== -1) { sIdx = s2Idx; sLabel = s2Label; s2Idx = -1; s2Label = ''; }
     if (nIdx !== -1 && sIdx !== -1) {
       pairs.push({ nameIdx: nIdx, scoreIdx: sIdx, scoreLabel: sLabel, score2Idx: s2Idx, score2Label: s2Label, idIdx: iIdx !== -1 ? iIdx : nIdx - 1 });
     }
