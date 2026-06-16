@@ -331,7 +331,8 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
   var pairs = [];
   headerRow.forEach(function(col, ci) {
     if (typeof col === 'string' && col.toLowerCase().indexOf('tên') >= 0) {
-      var scoreIdx = -1, idIdx2 = -1;
+      var scoreIdx = -1, score2Idx = -1, idIdx2 = -1;
+      var scoreLabel = '', score2Label = '';
       for (var j = 0; j < headerRow.length; j++) {
         if (typeof headerRow[j] === 'string' && headerRow[j].toLowerCase().indexOf('mã') >= 0 && Math.abs(j - ci) <= 3) {
           idIdx2 = j; break;
@@ -339,28 +340,34 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
       }
       for (var j2 = ci + 1; j2 <= ci + 5 && j2 < headerRow.length; j2++) {
         var c = String(headerRow[j2]).toLowerCase();
-        if (c.indexOf('doanh số') >= 0 || c.indexOf('tuyển dụng') >= 0 || c.indexOf('điểm') >= 0 ||
+        if (c.indexOf('số lượng') >= 0 || c.indexOf('sl') >= 0 || c.indexOf('tuyển sinh') >= 0 || c.indexOf('hv mới') >= 0) {
+          if (score2Idx === -1) { score2Idx = j2; score2Label = String(headerRow[j2]).trim(); }
+        } else if (c.indexOf('doanh số') >= 0 || c.indexOf('doanh thu') >= 0 || c.indexOf('tuyển dụng') >= 0 || c.indexOf('điểm') >= 0 ||
             c.indexOf('tổng số') >= 0 || c.indexOf('hệ số') >= 0 || c.indexOf('thành tích') >= 0 ||
             c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu') >= 0) {
-          scoreIdx = j2; break;
+          if (scoreIdx === -1) { scoreIdx = j2; scoreLabel = String(headerRow[j2]).trim(); }
         }
       }
-      if (scoreIdx !== -1) pairs.push({ nameIdx: ci, scoreIdx: scoreIdx, idIdx: idIdx2 });
+      if (scoreIdx === -1 && score2Idx !== -1) { scoreIdx = score2Idx; scoreLabel = score2Label; score2Idx = -1; }
+      if (scoreIdx !== -1) pairs.push({ nameIdx: ci, scoreIdx: scoreIdx, scoreLabel: scoreLabel, score2Idx: score2Idx, score2Label: score2Label, idIdx: idIdx2 });
     }
   });
 
   if (pairs.length === 0) {
-    var nIdx = -1, sIdx = -1, iIdx = -1;
+    var nIdx = -1, sIdx = -1, s2Idx = -1, iIdx = -1;
+    var sLabel = '', s2Label = '';
     headerRow.forEach(function(col, ci) {
       if (typeof col === 'string') {
         var c = col.toLowerCase();
         if (nIdx === -1 && c.indexOf('tên') >= 0) nIdx = ci;
-        if (sIdx === -1 && (c.indexOf('doanh số') >= 0 || c.indexOf('điểm') >= 0 || c.indexOf('thành tích') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu') >= 0)) sIdx = ci;
-        if (iIdx === -1 && c.indexOf('mã') >= 0) iIdx = ci;
+        else if (s2Idx === -1 && (c.indexOf('số lượng') >= 0 || c.indexOf('sl') >= 0 || c.indexOf('tuyển sinh') >= 0 || c.indexOf('hv mới') >= 0)) { s2Idx = ci; s2Label = col.trim(); }
+        else if (sIdx === -1 && (c.indexOf('doanh số') >= 0 || c.indexOf('doanh thu') >= 0 || c.indexOf('điểm') >= 0 || c.indexOf('thành tích') >= 0 || c.indexOf('thực đạt') >= 0 || c.indexOf('mục tiêu') >= 0)) { sIdx = ci; sLabel = col.trim(); }
+        else if (iIdx === -1 && c.indexOf('mã') >= 0) iIdx = ci;
       }
     });
+    if (sIdx === -1 && s2Idx !== -1) { sIdx = s2Idx; sLabel = s2Label; s2Idx = -1; }
     if (nIdx !== -1 && sIdx !== -1) {
-      pairs.push({ nameIdx: nIdx, scoreIdx: sIdx, idIdx: iIdx !== -1 ? iIdx : nIdx - 1 });
+      pairs.push({ nameIdx: nIdx, scoreIdx: sIdx, scoreLabel: sLabel, score2Idx: s2Idx, score2Label: s2Label, idIdx: iIdx !== -1 ? iIdx : nIdx - 1 });
     }
   }
 
@@ -378,11 +385,17 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
         var nl = name.toLowerCase();
         if (nl.indexOf('tổng') >= 0 || nl.indexOf('đại sứ') >= 0 || nl.indexOf('chưa có') >= 0) continue;
         var numScore = parseFloat(String(row[p.scoreIdx]).replace(/,/g, ''));
-        if (isNaN(numScore) || numScore <= 0) continue;
+        if (isNaN(numScore)) numScore = 0;
+        var numScore2 = 0;
+        if (p.score2Idx !== -1) {
+          numScore2 = parseFloat(String(row[p.score2Idx]).replace(/,/g, ''));
+          if (isNaN(numScore2)) numScore2 = 0;
+        }
+        if (numScore <= 0 && numScore2 <= 0) continue;
         var realId = (p.idIdx !== -1 && row[p.idIdx]) ? String(row[p.idIdx]) : 'u_' + r + '_' + p.nameIdx;
-        amb.push({ id: realId, name: name.trim(), score: numScore });
+        amb.push({ id: realId, name: name.trim(), score: numScore, score2: numScore2 });
       }
-      amb.sort(function(a, b) { return b.score - a.score; });
+      amb.sort(function(a, b) { return b.score - a.score || (b.score2||0) - (a.score2||0); });
       if (amb.length === 0) return;
 
       var subTitle = '';
@@ -401,9 +414,14 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
         catName = catName.toLowerCase().replace(/(^|\s)(đại|sứ|mới|tháng|quý|doanh|số|từ|triệu|trong|đạt|mốc|cá|nhân)/g, function(m) { return m.charAt(0) + m.slice(1); })
           .replace(/^./, function(c) { return c.toUpperCase(); });
       }
+      var scoreLabels = undefined;
+      if (amb.some(function(a) { return a.score2 !== undefined && a.score2 > 0; })) {
+        scoreLabels = [p.scoreLabel, p.score2Label];
+      }
       data.challenge.push({
         categoryId: 'cat_' + idx + '_p' + pi, categoryName: catName,
-        topRankers: amb.slice(0, 3), otherRankers: amb.slice(3)
+        topRankers: amb.slice(0, 3), otherRankers: amb.slice(3),
+        hasMultipleScores: scoreLabels !== undefined, scoreLabels: scoreLabels
       });
     });
     return;
@@ -423,25 +441,37 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
       if (!name || typeof name !== 'string') return;
       if (name.toLowerCase().indexOf('tổng') >= 0 || name.toLowerCase().indexOf('đại sứ') >= 0) return;
       var numScore = parseFloat(String(row[p.scoreIdx]).replace(/,/g, ''));
-      if (isNaN(numScore) || numScore <= 0) return;
+      if (isNaN(numScore)) numScore = 0;
+      var numScore2 = 0;
+      if (p.score2Idx !== -1) {
+        numScore2 = parseFloat(String(row[p.score2Idx]).replace(/,/g, ''));
+        if (isNaN(numScore2)) numScore2 = 0;
+      }
+      if (numScore <= 0 && numScore2 <= 0) return;
       var realId = (p.idIdx !== -1 && row[p.idIdx]) ? String(row[p.idIdx]) : 'u_' + r + '_' + p.nameIdx;
       ambassadors.push({
-        id: realId, name: name.trim(), score: numScore,
+        id: realId, name: name.trim(), score: numScore, score2: numScore2,
         highlight: (pairs.length > 1) ? (pi === 0) : isHighlight
       });
     });
   }
 
-  ambassadors.sort(function(a, b) { return b.score - a.score; });
+  ambassadors.sort(function(a, b) { return b.score - a.score || (b.score2||0) - (a.score2||0); });
   if (ambassadors.length === 0) return;
 
   var catName = cleanCategoryName(sheetName, categoryType);
   var eligible = ambassadors.filter(function(a) { return a.highlight !== false; });
   var almost = ambassadors.filter(function(a) { return a.highlight === false; });
   
+  var scoreLabels = undefined;
+  if (ambassadors.some(function(a) { return a.score2 !== undefined && a.score2 > 0; })) {
+    scoreLabels = [pairs[0].scoreLabel, pairs[0].score2Label];
+  }
+
   data[categoryType].push({
     categoryId: 'cat_' + idx, categoryName: catName,
-    topRankers: eligible.slice(0, 3), otherRankers: eligible.slice(3).concat(almost)
+    topRankers: eligible.slice(0, 3), otherRankers: eligible.slice(3).concat(almost),
+    hasMultipleScores: scoreLabels !== undefined, scoreLabels: scoreLabels
   });
 }
 

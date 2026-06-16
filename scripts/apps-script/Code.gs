@@ -112,6 +112,9 @@ function cleanCategoryName(sheetName, categoryType) {
       name = 'Đại sứ Vàng Quý I/2026';
     }
   }
+  if (name.toLowerCase().indexOf('xuất sắc ii.2026') >= 0) {
+    name = name.replace(/xuất sắc II\.2026/i, 'xuất sắc Quý II/2026');
+  }
   name = name.replace(/tiêu biểu\s+T$/i, 'tiêu biểu');
   name = name.replace(/tiêu biểu\s+Q$/i, 'tiêu biểu');
   name = name.replace(/cấp q$/i, 'cấp Quản lý');
