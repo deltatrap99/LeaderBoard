@@ -25,6 +25,7 @@ function categorizeSheet(name) {
       n.indexOf('mục lục') >= 0 || n.indexOf('index') >= 0 || n.indexOf('diễn giải') >= 0) return null;
   if (n.indexOf('giải thưởng quý') >= 0 && n.indexOf('tiêu biểu') < 0 && n.indexOf('xuất sắc') < 0) return null;
   if (/tháng\s*0?[345]/.test(n) || n.indexOf('05.2026') >= 0 || n.indexOf('t5') >= 0 || n === 'trang tính20') return null;
+  if (n.indexOf('/05') >= 0 || n.indexOf('icc') >= 0) return null;
   if (n.indexOf('challenge') >= 0 || n.indexOf('cá nhân') >= 0) return null;
 
   if (['trang tính25','trang tính26','trang tính29','trang tính30'].indexOf(n) >= 0) return 'quarter';

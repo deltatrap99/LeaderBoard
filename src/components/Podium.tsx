@@ -4,9 +4,10 @@ import type { Ambassador } from '../data/liveData';
 interface PodiumProps {
   topRankers: Ambassador[];
   theme?: string;
+  scoreLabels?: string[];
 }
 
-export function Podium({ topRankers, theme = 'blue' }: PodiumProps) {
+export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps) {
   const rank1 = topRankers[0];
   const rank2 = topRankers[1];
   const rank3 = topRankers[2];
@@ -116,22 +117,28 @@ export function Podium({ topRankers, theme = 'blue' }: PodiumProps) {
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: rank * 0.15 + 0.5 }}
-              className={`mt-2 px-4 py-1.5 rounded-full shadow-sm ${
+              className={`mt-2 px-4 py-1.5 rounded-full shadow-sm flex flex-col items-center justify-center ${
                 isBlue ? 'bg-white border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.08)]' : 'bg-white/[0.08] border border-white/[0.1]'
               }`}
             >
-              <p className={`font-black tracking-wide ${scoreColor} text-[15px] sm:text-lg`}>{ranker.score.toLocaleString()}</p>
+              {scoreLabels && scoreLabels[0] && (
+                <span className={`text-[9px] sm:text-[10px] mb-0.5 opacity-80 ${isBlue ? 'text-amber-700/70' : 'text-amber-200/60'}`}>{scoreLabels[0]}</span>
+              )}
+              <p className={`font-black tracking-wide ${scoreColor} text-[15px] sm:text-lg leading-none`}>{ranker.score.toLocaleString()}</p>
             </motion.div>
             {ranker.score2 !== undefined && ranker.score2 > 0 && (
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: rank * 0.15 + 0.6 }}
-                className={`mt-1.5 px-3 py-1 rounded-full text-center ${
+                className={`mt-1.5 px-3 py-1 rounded-full text-center flex flex-col items-center justify-center ${
                   isBlue ? 'bg-emerald-50 border border-emerald-200' : 'bg-emerald-900/20 border border-emerald-500/20'
                 }`}
               >
-                <p className={`font-bold text-[12px] sm:text-sm ${isBlue ? 'text-emerald-700' : 'text-emerald-400'}`}>{ranker.score2.toLocaleString()}</p>
+                {scoreLabels && scoreLabels[1] && (
+                  <span className={`text-[8.5px] sm:text-[9px] mb-0.5 opacity-80 ${isBlue ? 'text-emerald-700/70' : 'text-emerald-400/60'}`}>{scoreLabels[1]}</span>
+                )}
+                <p className={`font-bold text-[12px] sm:text-sm leading-none ${isBlue ? 'text-emerald-700' : 'text-emerald-400'}`}>{ranker.score2.toLocaleString()}</p>
               </motion.div>
             )}
           </div>

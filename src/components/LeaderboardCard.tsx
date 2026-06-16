@@ -125,7 +125,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
             ? 'bg-gradient-to-b from-[#e8f0fe] via-[#dce8fa] to-white' 
             : 'bg-gradient-to-b from-[#121e40] via-[#0d1a3c] to-transparent'
         }`}>
-          <Podium topRankers={data.topRankers} theme={theme} />
+          <Podium topRankers={data.topRankers} theme={theme} scoreLabels={data.scoreLabels} />
         </div>
       )}
 
