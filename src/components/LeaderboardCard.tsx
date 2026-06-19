@@ -1,6 +1,6 @@
 import type { CategoryResult } from '../data/liveData';
 import { Podium } from './Podium';
-import { Trophy, TrendingUp, Star, Clock } from 'lucide-react';
+import { Trophy, Star, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { data: CategoryResult, index: number, theme?: string, lastUpdated?: Date | null }) {
@@ -201,15 +201,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                   const rank = isManager ? i + 1 : data.topRankers.length + i + 1;
                   const { isEligible, text: statusText, showBadge: rankerShowBadge } = getEligibilityInfo(ranker, rank);
 
-                  // Format number compactly for mobile
-                  const formatCompact = (n: number) => {
-                    if (typeof window !== 'undefined' && window.innerWidth < 640) {
-                      if (n >= 1_000_000_000) return (n / 1_000_000_000).toFixed(1).replace(/\.0$/, '') + 'B';
-                      if (n >= 1_000_000) return (n / 1_000_000).toFixed(1).replace(/\.0$/, '') + 'M';
-                      if (n >= 1_000) return (n / 1_000).toFixed(0) + 'K';
-                    }
-                    return n.toLocaleString();
-                  };
+
 
                   return (
                   <motion.tr 
