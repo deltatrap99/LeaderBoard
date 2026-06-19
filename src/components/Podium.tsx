@@ -5,9 +5,10 @@ interface PodiumProps {
   topRankers: Ambassador[];
   theme?: string;
   scoreLabels?: string[];
+  categoryName?: string;
 }
 
-export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps) {
+export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }: PodiumProps) {
   const rank1 = topRankers[0];
   const rank2 = topRankers[1];
   const rank3 = topRankers[2];
@@ -19,27 +20,29 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps)
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
 
+  const isEducationExcellence = categoryName?.toLowerCase().includes('giáo dục xuất sắc');
+
   const renderRank = (ranker: Ambassador | undefined, rank: number) => {
     if (!ranker) return <div className="flex-1" />;
     
     const isFirst = rank === 1;
     const isSecond = rank === 2;
     
-    const rankColor = isFirst ? 'bg-gradient-to-t from-yellow-500 via-yellow-400 to-yellow-300' 
-                   : isSecond ? 'bg-gradient-to-t from-gray-400 via-gray-300 to-gray-200'
-                   : 'bg-gradient-to-t from-amber-700 via-amber-600 to-amber-500';
+    const rankColor = isFirst ? 'bg-gradient-to-b from-yellow-300 via-yellow-500 to-yellow-600 border-t-[3px] border-yellow-200 shadow-[inset_0_4px_20px_rgba(255,255,255,0.5)]' 
+                   : isSecond ? 'bg-gradient-to-b from-slate-200 via-slate-400 to-slate-500 border-t-[3px] border-white shadow-[inset_0_4px_20px_rgba(255,255,255,0.6)]'
+                   : 'bg-gradient-to-b from-orange-300 via-orange-500 to-orange-700 border-t-[3px] border-orange-200 shadow-[inset_0_4px_20px_rgba(255,255,255,0.3)]';
     
-    const heightClass = isFirst ? 'h-36 sm:h-44' 
-                      : isSecond ? 'h-28 sm:h-32' 
-                      : 'h-20 sm:h-24';
+    const heightClass = isFirst ? 'h-40 sm:h-48' 
+                      : isSecond ? 'h-32 sm:h-36' 
+                      : 'h-24 sm:h-28';
 
     const avatarBg = isBlue
-      ? (isFirst ? 'bg-gradient-to-br from-amber-50 to-yellow-100 ring-amber-300' 
-        : isSecond ? 'bg-gradient-to-br from-gray-100 to-slate-200 ring-gray-300' 
-        : 'bg-gradient-to-br from-orange-50 to-amber-100 ring-amber-400')
-      : (isFirst ? 'bg-gradient-to-br from-yellow-900/40 to-amber-800/40 ring-yellow-500/50' 
-        : isSecond ? 'bg-gradient-to-br from-gray-700/40 to-slate-600/40 ring-gray-400/50' 
-        : 'bg-gradient-to-br from-amber-900/40 to-orange-800/40 ring-amber-500/50');
+      ? (isFirst ? 'bg-white ring-[4px] ring-amber-300 shadow-[0_0_30px_rgba(251,191,36,0.6)]' 
+        : isSecond ? 'bg-white ring-[4px] ring-slate-300 shadow-[0_0_20px_rgba(148,163,184,0.4)]' 
+        : 'bg-white ring-[4px] ring-orange-300 shadow-[0_0_20px_rgba(251,146,60,0.4)]')
+      : (isFirst ? 'bg-slate-800 ring-[4px] ring-yellow-400 shadow-[0_0_30px_rgba(250,204,21,0.5)]' 
+        : isSecond ? 'bg-slate-800 ring-[4px] ring-gray-400 shadow-[0_0_20px_rgba(156,163,175,0.3)]' 
+        : 'bg-slate-800 ring-[4px] ring-amber-500 shadow-[0_0_20px_rgba(245,158,11,0.3)]');
 
     const scoreColor = isFirst 
       ? (isBlue ? 'text-amber-600' : 'text-yellow-400') 
@@ -49,6 +52,13 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps)
 
     const nameColor = isBlue ? 'text-slate-800 font-extrabold' : 'text-white font-extrabold';
     const idColor = isBlue ? 'text-[#1B3A7A]/60' : 'text-blue-300/70';
+
+    const formatScore = (score: number, label?: string) => {
+      if (label && label.includes('%')) {
+        return (score * 100).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + '%';
+      }
+      return score.toLocaleString('vi-VN');
+    };
 
     return (
       <div className={`flex flex-col justify-end items-center flex-1 px-1 sm:px-2 ${isFirst ? 'z-20' : 'z-10'}`}>
@@ -91,8 +101,11 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps)
           </motion.div>
 
           {/* Avatar */}
-          <div className={`relative ${isFirst ? 'w-18 h-18 sm:w-24 sm:h-24' : 'w-14 h-14 sm:w-20 sm:h-20'} mb-3 shrink-0 z-20`}>
-            <div className={`w-full h-full rounded-full border-2 ring-2 overflow-hidden flex items-center justify-center font-bold text-lg sm:text-xl ${avatarBg}`}>
+          <div className={`relative ${isFirst ? 'w-20 h-20 sm:w-28 sm:h-28' : 'w-16 h-16 sm:w-24 sm:h-24'} mb-4 shrink-0 z-20`}>
+            {isFirst && (
+              <div className="absolute inset-0 bg-yellow-400/20 blur-xl rounded-full scale-150 animate-pulse" />
+            )}
+            <div className={`w-full h-full rounded-full border-4 border-transparent overflow-hidden flex items-center justify-center font-bold text-lg sm:text-2xl relative z-10 ${avatarBg}`}>
               {ranker.avatar ? (
                 <img src={ranker.avatar} alt={ranker.name} className="w-full h-full object-cover" />
               ) : (
@@ -100,7 +113,7 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps)
               )}
             </div>
             {/* Rank badge */}
-            <div className={`absolute -bottom-1.5 -right-1.5 w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-black text-white text-sm sm:text-base shadow-md ${
+            <div className={`absolute -bottom-1.5 -right-1.5 w-7 h-7 sm:w-9 sm:h-9 rounded-full flex items-center justify-center font-black text-white text-sm sm:text-base shadow-md z-20 ${
               isFirst ? 'bg-gradient-to-br from-yellow-400 to-amber-600' 
               : isSecond ? 'bg-gradient-to-br from-gray-300 to-gray-500' 
               : 'bg-gradient-to-br from-amber-500 to-amber-700'
@@ -110,44 +123,80 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels }: PodiumProps)
           </div>
           
           {/* Info */}
-          <div className="text-center mb-4 px-1 min-h-[70px] flex flex-col items-center justify-end z-20">
-            <h3 className={`text-[14px] sm:text-[16px] leading-[1.2] whitespace-normal break-words max-w-[110px] sm:max-w-[130px] ${nameColor}`}>{ranker.name}</h3>
-            <p className={`text-[11px] font-mono font-semibold mt-0.5 ${idColor}`}>Mã: {ranker.id}</p>
+          <div className="text-center mb-5 px-1 min-h-[70px] flex flex-col items-center justify-end z-20">
+            <h3 className={`text-[15px] sm:text-[18px] leading-[1.2] whitespace-normal break-words max-w-[120px] sm:max-w-[140px] drop-shadow-sm ${nameColor}`}>{ranker.name}</h3>
+            <p className={`text-[11px] font-mono font-bold mt-1 ${idColor}`}>Mã: {ranker.id}</p>
+            {isEducationExcellence && (
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: rank * 0.15 + 0.4 }}
+                className={`mt-2 px-3 py-1 rounded-md text-[9px] sm:text-[10px] font-black uppercase tracking-wider relative overflow-hidden group shadow-lg ${
+                isBlue 
+                  ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-amber-950 border border-yellow-200' 
+                  : 'bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-white border border-amber-400/50'
+              }`}>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]" />
+                <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">✈️ 100% CHUYẾN DU LỊCH QUỐC TẾ</span>
+              </motion.div>
+            )}
+            {categoryName?.toLowerCase().includes('quản lý xuất sắc kỳ i') && ranker.score >= 10000000000 && (ranker.score2 || 0) >= 40 && (
+              <motion.div 
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: rank * 0.15 + 0.4 }}
+                className={`mt-2 px-3 py-1 rounded-md text-[9px] sm:text-[10px] font-black uppercase tracking-wider relative overflow-hidden group shadow-lg ${
+                isBlue 
+                  ? 'bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-500 text-amber-950 border border-yellow-200' 
+                  : 'bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-white border border-amber-400/50'
+              }`}>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]" />
+                <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">
+                  ✈️ {ranker.score >= 20000000000 && (ranker.score2 || 0) >= 80 ? '100% CHUYẾN DU LỊCH QUỐC TẾ' : '50% CHUYẾN DU LỊCH QUỐC TẾ'}
+                </span>
+              </motion.div>
+            )}
             <motion.div 
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: rank * 0.15 + 0.5 }}
-              className={`mt-2 px-4 py-1.5 rounded-full shadow-sm flex flex-col items-center justify-center ${
-                isBlue ? 'bg-white border border-slate-200 shadow-[0_2px_8px_rgba(0,0,0,0.08)]' : 'bg-white/[0.08] border border-white/[0.1]'
+              className={`mt-2.5 px-4 py-2 rounded-xl backdrop-blur-md flex flex-col items-center justify-center relative overflow-hidden ${
+                isBlue 
+                  ? 'bg-white/90 border border-white shadow-[0_8px_20px_rgba(0,0,0,0.06)]' 
+                  : 'bg-white/10 border border-white/20 shadow-[0_8px_20px_rgba(0,0,0,0.3)]'
               }`}
             >
+              <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
               {scoreLabels && scoreLabels[0] && (
-                <span className={`text-[9px] sm:text-[10px] mb-0.5 opacity-80 ${isBlue ? 'text-amber-700/70' : 'text-amber-200/60'}`}>{scoreLabels[0]}</span>
+                <span className={`relative z-10 text-[9px] sm:text-[10px] mb-0.5 font-bold tracking-wide uppercase ${isBlue ? 'text-slate-500' : 'text-slate-300'}`}>{scoreLabels[0]}</span>
               )}
-              <p className={`font-black tracking-wide ${scoreColor} text-[15px] sm:text-lg leading-none`}>{ranker.score.toLocaleString()}</p>
+              <p className={`relative z-10 font-black tracking-tight ${scoreColor} text-[16px] sm:text-[20px] leading-none drop-shadow-sm`}>{formatScore(ranker.score, scoreLabels?.[0])}</p>
             </motion.div>
             {ranker.score2 !== undefined && ranker.score2 > 0 && (
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 transition={{ delay: rank * 0.15 + 0.6 }}
-                className={`mt-1.5 px-3 py-1 rounded-full text-center flex flex-col items-center justify-center ${
-                  isBlue ? 'bg-emerald-50 border border-emerald-200' : 'bg-emerald-900/20 border border-emerald-500/20'
+                className={`mt-1.5 px-3.5 py-1.5 rounded-lg backdrop-blur-sm text-center flex flex-col items-center justify-center relative overflow-hidden ${
+                  isBlue 
+                    ? 'bg-emerald-50/90 border border-emerald-100 shadow-sm' 
+                    : 'bg-emerald-900/30 border border-emerald-500/20 shadow-sm'
                 }`}
               >
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent pointer-events-none" />
                 {scoreLabels && scoreLabels[1] && (
-                  <span className={`text-[8.5px] sm:text-[9px] mb-0.5 opacity-80 ${isBlue ? 'text-emerald-700/70' : 'text-emerald-400/60'}`}>{scoreLabels[1]}</span>
+                  <span className={`relative z-10 text-[8.5px] sm:text-[9px] mb-0.5 font-bold uppercase tracking-wide ${isBlue ? 'text-emerald-600/80' : 'text-emerald-400/80'}`}>{scoreLabels[1]}</span>
                 )}
-                <p className={`font-bold text-[12px] sm:text-sm leading-none ${isBlue ? 'text-emerald-700' : 'text-emerald-400'}`}>{ranker.score2.toLocaleString()}</p>
+                <p className={`relative z-10 font-black tracking-tight text-[13px] sm:text-[15px] leading-none ${isBlue ? 'text-emerald-700' : 'text-emerald-400'}`}>{formatScore(ranker.score2, scoreLabels?.[1])}</p>
               </motion.div>
             )}
           </div>
           
           {/* Podium pillar */}
-          <div className={`w-full rounded-t-2xl ${rankColor} ${heightClass} flex justify-center items-start pt-3 relative overflow-hidden shadow-[0_-2px_15px_rgba(0,0,0,0.1)]`}>
-            <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent" />
-            <div className="absolute top-0 left-[-100%] w-[100%] h-full bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg] animate-[shimmer_3s_infinite]" />
-            <span className="font-heading font-black text-white/30 text-4xl sm:text-6xl relative z-10">{rank}</span>
+          <div className={`w-full rounded-t-2xl ${rankColor} ${heightClass} flex justify-center items-start pt-4 relative overflow-hidden`}>
+            <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent pointer-events-none" />
+            <div className="absolute top-0 left-[-100%] w-[100%] h-full bg-gradient-to-r from-transparent via-white/30 to-transparent skew-x-[-25deg] animate-[shimmer_3s_infinite]" />
+            <span className={`font-heading font-black text-4xl sm:text-6xl relative z-10 drop-shadow-md ${isFirst ? 'text-yellow-100' : isSecond ? 'text-white' : 'text-orange-100'}`}>{rank}</span>
           </div>
         </motion.div>
       </div>

@@ -7,26 +7,35 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
   const getInitials = (name: string) => name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   const isBlue = theme === 'blue';
 
-  const getEligibilityInfo = (ranker: any) => {
+  const getEligibilityInfo = (ranker: any, rank?: number) => {
     const catNameLower = data.categoryName.toLowerCase();
     
     if (catNameLower.includes('quản lý xuất sắc kỳ i')) {
-      let targetDS = 10000000000; // 10 tỷ
-      let targetActive = 40;
-      if (catNameLower.includes('phòng') || catNameLower.includes('khu vực')) {
-        targetDS = 20000000000; // 20 tỷ
-        targetActive = 80;
-      }
-      
       const ds = ranker.score || 0;
       const active = ranker.score2 || 0;
-      const passDS = ds >= targetDS;
-      const passActive = active >= targetActive;
       
-      if (passDS && passActive) return { isEligible: true, text: 'ĐẠT ĐIỀU KIỆN' };
-      if (!passDS && !passActive) return { isEligible: false, text: 'Chưa đạt DS & SL Active' };
-      if (!passDS) return { isEligible: false, text: 'Chưa đạt Doanh số' };
-      return { isEligible: false, text: 'Chưa đạt SL Active' };
+      const passDS10 = ds >= 10000000000;
+      const passActive40 = active >= 40;
+      
+      const passDS20 = ds >= 20000000000;
+      const passActive80 = active >= 80;
+      
+      if (rank !== undefined) {
+        if (rank <= 3 && passDS20 && passActive80) {
+          return { isEligible: true, text: '100% CHUYẾN DU LỊCH QUỐC TẾ', showBadge: true };
+        }
+        if (rank <= 8 && passDS10 && passActive40) {
+          return { isEligible: true, text: '50% CHUYẾN DU LỊCH QUỐC TẾ', showBadge: true };
+        }
+      }
+      
+      let reason = 'Chưa đủ điều kiện';
+      if (!passDS10 && !passActive40) reason = 'Chưa đạt DS & SL Active';
+      else if (!passDS10) reason = 'Chưa đạt Doanh số';
+      else if (!passActive40) reason = 'Chưa đạt SL Active';
+      else if (rank && rank > 8) reason = 'Hết suất thưởng';
+      
+      return { isEligible: false, text: reason, showBadge: false };
     }
 
     let isEligible = false;
@@ -41,8 +50,20 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     } else if (catNameLower.includes('đại sứ mới') && /tháng\s*\d+|t\d+/.test(catNameLower)) {
       isEligible = (ranker.score ?? 0) >= 30000000 || (ranker.score2 ?? 0) >= 30000000;
     }
+    let currentBadgeText = badgeText;
+    let currentShowBadge = showBadge;
+    if (isEligible && catNameLower.includes('giáo dục xuất sắc')) {
+      if (rank !== undefined) {
+        if (rank >= 1 && rank <= 3) currentBadgeText = '100% CHUYẾN DU LỊCH QUỐC TẾ';
+        else if (rank >= 4 && rank <= 8) currentBadgeText = '50% CHUYẾN DU LỊCH QUỐC TẾ';
+        else {
+          currentShowBadge = false;
+          isEligible = false;
+        }
+      }
+    }
     
-    return { isEligible, text: isEligible ? badgeText : 'Chưa đủ điều kiện' };
+    return { isEligible, text: isEligible ? currentBadgeText : 'Chưa đủ điều kiện', showBadge: currentShowBadge };
   };
 
   const isManager = data.categoryName.toLowerCase().includes('tiêu biểu');
@@ -69,6 +90,13 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     });
   };
 
+  const formatScore = (score: number, label?: string) => {
+    if (label && label.includes('%')) {
+      return (score * 100).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + '%';
+    }
+    return score.toLocaleString('vi-VN');
+  };
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 30 }}
@@ -88,7 +116,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
               <div className="p-2 bg-white/15 rounded-xl backdrop-blur-sm shrink-0">
                 <Trophy className="w-5 h-5 text-amber-400" />
               </div>
-              <span className="truncate">{data.categoryName}</span>
+              <span className="truncate">{data.categoryName.toLowerCase().includes('kỳ') ? data.categoryName.replace(/\s*-\s*Cấp\s+(Nhóm|Phòng|Khu\s*vực)/i, '') : data.categoryName}</span>
             </h2>
             {data.categorySubtitle && (
               <p className="text-[11px] sm:text-xs text-white/50 font-medium mt-1.5 ml-[52px] leading-relaxed pr-2">
@@ -125,7 +153,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
             ? 'bg-gradient-to-b from-[#e8f0fe] via-[#dce8fa] to-white' 
             : 'bg-gradient-to-b from-[#121e40] via-[#0d1a3c] to-transparent'
         }`}>
-          <Podium topRankers={data.topRankers} theme={theme} scoreLabels={data.scoreLabels} />
+          <Podium topRankers={data.topRankers} theme={theme} scoreLabels={data.scoreLabels} categoryName={data.categoryName} />
         </div>
       )}
 
@@ -170,8 +198,8 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
               )}
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
                 {tableRankers.map((ranker, i) => {
-                  const { isEligible, text: statusText } = getEligibilityInfo(ranker);
                   const rank = isManager ? i + 1 : data.topRankers.length + i + 1;
+                  const { isEligible, text: statusText, showBadge: rankerShowBadge } = getEligibilityInfo(ranker, rank);
 
                   // Format number compactly for mobile
                   const formatCompact = (n: number) => {
@@ -226,7 +254,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                               ? (isBlue ? 'text-amber-800 group-hover:text-amber-950' : 'text-amber-400 group-hover:text-amber-300')
                               : (isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white')
                           }`}>{ranker.name}</p>
-                          {showBadge && (
+                          {rankerShowBadge && (
                             <div className={`hidden sm:flex items-center mt-0.5 px-1.5 py-0.5 rounded border w-fit transition-colors ${
                               isEligible 
                                 ? (isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400')
@@ -239,7 +267,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                             </div>
                           )}
                           {/* Badge cho mobile - Hiển thị thành một chấm màu/text */}
-                          {showBadge && (
+                          {rankerShowBadge && (
                             <div className="flex sm:hidden mt-0.5 items-center gap-1">
                               {isEligible ? (
                                 <div className={`w-1.5 h-1.5 rounded-full ${isBlue ? 'bg-amber-400' : 'bg-amber-500'}`} />
@@ -262,30 +290,31 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                           <span className={`font-black text-[10px] sm:text-base transition-colors ${
                             isBlue ? 'text-[#1B3A7A] group-hover:text-blue-700' : 'text-amber-400/80 group-hover:text-amber-400'
                           }`}>
-                            {ranker.score.toLocaleString()}
+                            {formatScore(ranker.score, data.scoreLabels?.[0])}
                           </span>
                         </td>
                         <td className="px-1 sm:px-4 py-2 sm:py-3.5 text-right">
-                          <span className={`font-black text-[10px] sm:text-base transition-colors ${
-                            isBlue ? 'text-emerald-600 group-hover:text-emerald-700' : 'text-emerald-400/80 group-hover:text-emerald-400'
-                          }`}>
-                            <span className="sm:hidden">{formatCompact(ranker.score2 ?? 0)}</span>
-                            <span className="hidden sm:inline">{(ranker.score2 ?? 0).toLocaleString()}</span>
-                          </span>
+                            <span className={`font-bold tracking-tight text-[12px] sm:text-[14px] ${
+                              isEligible
+                                ? (isBlue ? 'text-emerald-600' : 'text-emerald-400')
+                                : (isBlue ? 'text-emerald-700/60' : 'text-emerald-600/50')
+                            }`}>
+                              {formatScore(ranker.score2 ?? 0, data.scoreLabels?.[1])}
+                            </span>
                         </td>
                       </>
                     ) : (
                       <td className="px-1 sm:px-4 py-2 sm:py-3.5 text-right">
-                        <div className="flex items-center justify-end gap-1 sm:gap-2">
-                          <TrendingUp size={14} className={`hidden sm:block transition-colors ${
-                            isBlue ? 'text-emerald-400/40 group-hover:text-emerald-500' : 'text-emerald-400/30 group-hover:text-emerald-400'
-                          }`} />
-                          <span className={`font-black text-[10px] sm:text-base transition-colors ${
-                            isBlue ? 'text-[#1B3A7A] group-hover:text-blue-700' : 'text-amber-400/80 group-hover:text-amber-400'
+                          <div className={`flex items-center justify-end gap-1.5 font-black tracking-tight text-[13px] sm:text-[15px] ${
+                            isEligible
+                              ? (isBlue ? 'text-[#0F172A]' : 'text-white')
+                              : (isBlue ? 'text-slate-600' : 'text-slate-400')
                           }`}>
-                            {ranker.score.toLocaleString()}
-                          </span>
-                        </div>
+                            {isEligible && (
+                              <svg className={`w-3 h-3 ${isBlue ? 'text-emerald-500' : 'text-emerald-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                            )}
+                            {formatScore(ranker.score, data.scoreLabels?.[0])}
+                          </div>
                       </td>
                     )}
                   </motion.tr>
