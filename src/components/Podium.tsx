@@ -20,7 +20,7 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
 
-  const isEducationExcellence = categoryName?.toLowerCase().includes('giáo dục xuất sắc') && categoryName?.toLowerCase().includes('kỳ');
+  const isEducationExcellence = categoryName?.toLowerCase().includes('giáo dục xuất sắc') && categoryName?.toLowerCase().includes('kỳ') && !categoryName?.toLowerCase().includes('quý');
 
   const renderRank = (ranker: Ambassador | undefined, rank: number) => {
     if (!ranker) return <div className="flex-1" />;

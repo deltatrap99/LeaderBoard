@@ -52,7 +52,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     }
     let currentBadgeText = badgeText;
     let currentShowBadge = showBadge;
-    if (isEligible && catNameLower.includes('giáo dục xuất sắc') && catNameLower.includes('kỳ')) {
+    if (isEligible && catNameLower.includes('giáo dục xuất sắc') && catNameLower.includes('kỳ') && !catNameLower.includes('quý')) {
       if (rank !== undefined) {
         if (rank >= 1 && rank <= 3) currentBadgeText = '100% CHUYẾN DU LỊCH QUỐC TẾ';
         else if (rank >= 4 && rank <= 8) currentBadgeText = '50% CHUYẾN DU LỊCH QUỐC TẾ';
