@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lighter & Princess Heart (Marketing x English)</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #020202;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    canvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    #code-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      color: rgba(0, 255, 255, 0.2);
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 15px;
+      line-height: 1.5;
+      z-index: 1;
+      padding: 20px;
+      box-sizing: border-box;
+      white-space: pre-wrap;
+      text-shadow: 0 0 8px rgba(0, 255, 255, 0.3);
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="code-bg"></div>
+  <canvas id="pinkboard"></canvas>
+
+  <script>
+    // --- 1. Code Background: Sự kết hợp giữa Marketing & Ngôn ngữ Anh ---
+    const codeText = `class GlobalMarketer {
+    constructor(brand, message) {
+        this.brand = brand;
+        this.targetAudience = new Audience("Worldwide");
+        this.language = "English";
+    }
+
+    launchCampaign() {
+        let strategy = new MarketingStrategy({
+            seo: true,
+            content: "Engaging & Persuasive",
+            channels: ["Social Media", "Email", "Web"],
+            budget: "Unlimited"
+        });
+
+        let copywriter = new EnglishLinguist();
+        let copy = copywriter.generateCopy({
+            tone: "Inspiring",
+            keywords: ["Innovation", "Success", "Global", "Growth"],
+            grammar: "Flawless"
+        });
+
+        strategy.setCopy(copy);
+        
+        while(this.targetAudience.engagement < 100) {
+            this.optimizeSEO();
+            this.analyzeMetrics();
+            this.refineMessage(this.language);
+            
+            if (strategy.isViral()) {
+                console.log("Campaign went viral globally!");
+                break;
+            }
+        }
+        return "Market Domination Achieved";
+    }
+
+    refineMessage(lang) {
+        // Applying Advanced English Syntax & Semantics
+        // Decoding consumer psychology through linguistics
+        let neuroLinguisticProgramming = true;
+        let persuasiveRhetoric = "Active";
+        return this.brand.getEssence() + " resonates deeply.";
+    }
+}
+
+// Initializing Brand Identity...
+// Analyzing Consumer Behavior...
+// Translating Value Proposition into Fluent English...
+// Campaign Status: LIVE...`;
+
+    const codeBg = document.getElementById('code-bg');
+    let index = 0;
+    function typeCode() {
+        codeBg.innerHTML += codeText[index];
+        index++;
+        if (index >= codeText.length) {
+            index = 0;
+            codeBg.innerHTML += '\n\n';
+            if(codeBg.innerHTML.length > 2500) {
+                codeBg.innerHTML = codeBg.innerHTML.substring(1000);
+            }
+        }
+        setTimeout(typeCode, 15);
+    }
+    typeCode();
+
+    // --- Khởi tạo hình ảnh Glow chuẩn (Không bị méo hay vuông góc) ---
+    var createGlowImg = function(r, g, b, alpha) {
+        var c = document.createElement('canvas'), ctx = c.getContext('2d');
+        c.width = 40; c.height = 40;
+        ctx.beginPath();
+        ctx.arc(20, 20, 20, 0, Math.PI * 2);
+        var grd = ctx.createRadialGradient(20, 20, 0, 20, 20, 20);
+        grd.addColorStop(0, `rgba(255, 255, 255, 1)`);
+        grd.addColorStop(0.2, `rgba(${r}, ${g}, ${b}, ${alpha})`);
+        grd.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`);
+        ctx.fillStyle = grd;
+        ctx.fill();
+        return c;
+    };
+    var blueGlowImg = createGlowImg(0, 200, 255, 0.8);
+    var heartParticleImg = createGlowImg(255, 42, 112, 0.9);
+
+    // --- 2. Cấu hình Trái Tim ---
+    var settings = {
+      particles: {
+        length:   20000, // Lượng hạt cực lớn để mịn mượt
+        duration:   3.2, // Tăng tuổi thọ để hạt rơi dài xuống ngân hà
+        velocity:  140,  
+        effect: -1.2,    
+        size:      6,    // Hạt nhỏ vừa đủ tinh tế
+      },
+    };
+
+    (function(){var b=0;var c=["ms","moz","webkit","o"];for(var a=0;a<c.length&&!window.requestAnimationFrame;++a){window.requestAnimationFrame=window[c[a]+"RequestAnimationFrame"];window.cancelAnimationFrame=window[c[a]+"CancelAnimationFrame"]||window[c[a]+"CancelRequestAnimationFrame"]}if(!window.requestAnimationFrame){window.requestAnimationFrame=function(h,e){var d=new Date().getTime();var f=Math.max(0,16-(d-b));var g=window.setTimeout(function(){h(d+f)},f);b=d+f;return g}}if(!window.cancelAnimationFrame){window.cancelAnimationFrame=function(d){clearTimeout(d)}}}());
+
+    var Point = (function() {
+      function Point(x, y) {
+        this.x = (typeof x !== 'undefined') ? x : 0;
+        this.y = (typeof y !== 'undefined') ? y : 0;
+      }
+      Point.prototype.clone = function() { return new Point(this.x, this.y); };
+      Point.prototype.length = function(length) {
+        if (typeof length == 'undefined') return Math.sqrt(this.x * this.x + this.y * this.y);
+        this.normalize(); this.x *= length; this.y *= length; return this;
+      };
+      Point.prototype.normalize = function() {
+        var length = this.length(); this.x /= length; this.y /= length; return this;
+      };
+      return Point;
+    })();
+
+    var Particle = (function() {
+      function Particle() {
+        this.position = new Point();
+        this.velocity = new Point();
+        this.acceleration = new Point();
+        this.age = 0;
+      }
+      Particle.prototype.initialize = function(x, y, dx, dy) {
+        this.position.x = x; this.position.y = y;
+        this.velocity.x = dx; this.velocity.y = dy;
+        this.acceleration.x = dx * settings.particles.effect;
+        this.acceleration.y = dy * settings.particles.effect;
+        this.age = 0;
+      };
+      Particle.prototype.update = function(deltaTime) {
+        this.position.x += this.velocity.x * deltaTime;
+        this.position.y += this.velocity.y * deltaTime;
+        this.velocity.x += this.acceleration.x * deltaTime;
+        this.velocity.y += this.acceleration.y * deltaTime;
+        
+        // TRỌNG LỰC DẦN ĐỀU: Hạt bắt đầu rơi nhẹ xuống sau khi co lại
+        this.velocity.y += 25 * deltaTime; 
+
+        this.age += deltaTime;
+      };
+      Particle.prototype.draw = function(context, image) {
+        function ease(t) { return (--t) * t * t + 1; }
+        var scale = ease(this.age / settings.particles.duration);
+        var drawSize = settings.particles.size * scale * 4; 
+        context.globalAlpha = 1 - this.age / settings.particles.duration;
+        context.drawImage(image, this.position.x - drawSize / 2, this.position.y - drawSize / 2, drawSize, drawSize);
+      };
+      return Particle;
+    })();
+
+    var ParticlePool = (function() {
+      var particles, firstActive = 0, firstFree = 0, duration = settings.particles.duration;
+      function ParticlePool(length) {
+        particles = new Array(length);
+        for (var i = 0; i < particles.length; i++) particles[i] = new Particle();
+      }
+      ParticlePool.prototype.add = function(x, y, dx, dy) {
+        particles[firstFree].initialize(x, y, dx, dy);
+        firstFree++;
+        if (firstFree == particles.length) firstFree = 0;
+        if (firstActive == firstFree) firstActive++;
+        if (firstActive == particles.length) firstActive = 0;
+      };
+      ParticlePool.prototype.update = function(deltaTime) {
+        var i;
+        if (firstActive < firstFree) {
+          for (i = firstActive; i < firstFree; i++) particles[i].update(deltaTime);
+        }
+        if (firstFree < firstActive) {
+          for (i = firstActive; i < particles.length; i++) particles[i].update(deltaTime);
+          for (i = 0; i < firstFree; i++) particles[i].update(deltaTime);
+        }
+        while (particles[firstActive].age >= duration && firstActive != firstFree) {
+          firstActive++;
+          if (firstActive == particles.length) firstActive = 0;
+        }
+      };
+      ParticlePool.prototype.draw = function(context, image) {
+        if (firstActive < firstFree) {
+          for (i = firstActive; i < firstFree; i++) particles[i].draw(context, image);
+        }
+        if (firstFree < firstActive) {
+          for (i = firstActive; i < particles.length; i++) particles[i].draw(context, image);
+          for (i = 0; i < firstFree; i++) particles[i].draw(context, image);
+        }
+      };
+      return ParticlePool;
+    })();
+
+    (function(canvas) {
+      var context = canvas.getContext('2d'),
+          particles = new ParticlePool(settings.particles.length),
+          particleRate = settings.particles.length / settings.particles.duration, 
+          time;
+
+      function pointOnHeart(t) {
+        return new Point(
+          160 * Math.pow(Math.sin(t), 3),
+          130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+        );
+      }
+
+      // --- 3. Dải hạt xanh (Galaxy Floor Vortex xoay vòng tròn) ---
+      var groundParticles = [];
+      var numGroundParticles = 5000;
+      for(var i=0; i<numGroundParticles; i++){
+          let r = 450 * Math.sqrt(Math.random()); 
+          let theta = Math.random() * 2 * Math.PI;
+          groundParticles.push({
+              radius: r,
+              theta: theta, 
+              y: 250, 
+              angularVelocity: 0.002 + 1.2 / (r + 50), 
+              vy: Math.random() * -1.5 - 0.2, 
+              baseSize: Math.random() * 1.5 + 0.5,
+              life: Math.random() * Math.PI * 2,
+              speed: Math.random() * 0.04 + 0.01
+          });
+      }
+
+      function render() {
+        requestAnimationFrame(render);
+        var newTime   = new Date().getTime() / 1000,
+            deltaTime = newTime - (time || newTime);
+        time = newTime;
+
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // --- Vẽ Sàn 3D Ngân Hà ---
+        context.globalCompositeOperation = 'lighter'; 
+        const fov = 600;
+        const cameraZ = 300;
+        const pitch = 1.35; 
+        const cosP = Math.cos(pitch);
+        const sinP = Math.sin(pitch);
+
+        for(var i=0; i<numGroundParticles; i++){
+            var p = groundParticles[i];
+            
+            p.theta += p.angularVelocity;
+            p.x = p.radius * Math.cos(p.theta);
+            p.z = p.radius * Math.sin(p.theta);
+            
+            p.y += p.vy; 
+            p.life += p.speed;
+
+            if (p.y < 50) {  
+                p.radius = 450 * Math.sqrt(Math.random());
+                p.theta = Math.random() * 2 * Math.PI;
+                p.y = 280;
+            }
+
+            let ry = p.y * cosP - p.z * sinP;
+            let rz = p.y * sinP + p.z * cosP;
+            
+            let scale3d = fov / (fov + rz + cameraZ);
+            let drawX = canvas.width / 2 + p.x * scale3d;
+            let drawY = canvas.height / 2 + ry * scale3d;
+
+            var twinkle = (Math.sin(p.life) + 1) / 2;
+            context.globalAlpha = twinkle * 0.9;
+            
+            let size = p.baseSize * scale3d * 5; 
+            context.drawImage(blueGlowImg, drawX - size/2, drawY - size/2, size, size);
+        }
+
+        // --- Cập nhật vị trí hạt trái tim ---
+        context.globalAlpha = 1;
+        var amount = particleRate * deltaTime;
+        for (var i = 0; i < amount; i++) {
+          var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+          var dir = pos.clone().length(settings.particles.velocity);
+          
+          // Tạo hạt liên tục ở form trái tim chuẩn (không scale lúc đẻ hạt)
+          particles.add(
+            canvas.width / 2 + pos.x, 
+            canvas.height / 2 - 80 - pos.y, 
+            dir.x, 
+            -dir.y
+          );
+        }
+        particles.update(deltaTime);
+
+        // --- NHỊP ĐẬP TRÁI TIM (Heartbeat Lub-dub) ---
+        var tTime = newTime * 1.5; 
+        // Hàm nhịp tim: 2 nhịp nảy kép giống nhịp đập thật
+        var beat = 1 + 0.12 * Math.pow(Math.sin(Math.PI * tTime), 12) + 0.05 * Math.pow(Math.sin(Math.PI * (tTime + 0.2)), 12);
+        
+        context.save();
+        context.translate(canvas.width / 2, canvas.height / 2 - 80);
+        context.scale(beat, beat);
+        context.translate(-canvas.width / 2, -(canvas.height / 2 - 80));
+        
+        // Vẽ toàn bộ các hạt
+        particles.draw(context, heartParticleImg);
+        
+        context.restore();
+      }
+
+      function onResize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener('resize', onResize);
+
+      setTimeout(function() {
+        onResize();
+        render();
+      }, 10);
+    })(document.getElementById('pinkboard'));
+  </script>
+</body>
+</html>

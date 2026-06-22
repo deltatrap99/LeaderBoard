@@ -1,3 +1,5 @@
+import { GE_LEADERBOARD_DATA } from './mockData';
+
 export interface Ambassador {
   id: string;
   name: string;
@@ -45,12 +47,18 @@ export async function fetchLeaderboardData(_sheetUrl?: string): Promise<Leaderbo
   // Fallback: direct Apps Script call
   const appsScriptUrl = import.meta.env.VITE_APPS_SCRIPT_URL;
   if (appsScriptUrl) {
-    const res = await fetch(`${appsScriptUrl}?action=leaderboard`);
-    if (res.ok) {
-      return await res.json();
+    try {
+      const res = await fetch(`${appsScriptUrl}?action=leaderboard`);
+      if (res.ok) {
+        return await res.json();
+      }
+    } catch {
+      // Fallback below
     }
   }
 
-  // Empty data if everything fails
-  return { month: [], quarter: [], challenge: [], semester: [] };
+  // Nếu không fetch được (ví dụ chạy local không có .env)
+  // Trả về mock data thay vì mảng rỗng để dễ test UI
+  console.warn("Dùng Mock Data do không kết nối được với API");
+  return GE_LEADERBOARD_DATA;
 }

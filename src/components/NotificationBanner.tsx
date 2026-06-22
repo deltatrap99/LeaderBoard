@@ -1,15 +1,25 @@
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Bell, BellRing, X } from 'lucide-react';
 import { useNotifications } from '../hooks/useNotifications';
 
 export function NotificationBanner() {
   const { permission, toast, loading, requestPermission, dismissToast } = useNotifications();
+  const [isDismissed, setIsDismissed] = useState(() => {
+    return typeof window !== 'undefined' ? sessionStorage.getItem('notif_dismissed') === '1' : false;
+  });
+
+  useEffect(() => {
+    const handleDismiss = () => setIsDismissed(true);
+    window.addEventListener('notif_dismissed', handleDismiss);
+    return () => window.removeEventListener('notif_dismissed', handleDismiss);
+  }, []);
 
   return (
     <>
       {/* Permission banner — shown only if user hasn't decided yet */}
       <AnimatePresence>
-        {permission === 'default' && (
+        {permission === 'default' && !isDismissed && (
           <motion.div
             initial={{ y: -80, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -30,7 +40,12 @@ export function NotificationBanner() {
                 </p>
                 <div className="flex gap-2 mt-3">
                   <button
-                    onClick={requestPermission}
+                    onClick={async () => {
+                      await requestPermission();
+                      // Hide the banner if Firebase is not configured or fails silently
+                      sessionStorage.setItem('notif_dismissed', '1');
+                      window.dispatchEvent(new Event('notif_dismissed'));
+                    }}
                     disabled={loading}
                     className="px-4 py-2 bg-amber-400 hover:bg-amber-300 text-blue-900 text-xs font-extrabold rounded-xl transition-colors shadow-sm disabled:opacity-60"
                   >
