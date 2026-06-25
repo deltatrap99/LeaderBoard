@@ -412,7 +412,9 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
         }
       }
       var catName = subTitle || sheetName.trim();
-      catName = catName.replace(/^DANH SÁCH\s+/i, '').replace(/\s*ĐỦ ĐIỀU KIỆN.*/i, '').replace(/\s*NHẬN THƯỞNG.*/i, '');
+      if (!subTitle) {
+        catName = catName.replace(/^DANH SÁCH\s+/i, '').replace(/\s*ĐỦ ĐIỀU KIỆN.*/i, '').replace(/\s*NHẬN THƯỞNG.*/i, '');
+      }
       if (catName === catName.toUpperCase()) {
         catName = catName.toLowerCase().replace(/(^|\s)(đại|sứ|mới|tháng|quý|doanh|số|từ|triệu|trong|đạt|mốc|cá|nhân)/g, function(m) { return m.charAt(0) + m.slice(1); })
           .replace(/^./, function(c) { return c.toUpperCase(); });
