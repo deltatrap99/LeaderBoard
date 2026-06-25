@@ -399,13 +399,16 @@ function parseNormalSheet(data, categoryType, rows, headerRow, headerRowIdx, she
       if (amb.length === 0) return;
 
       var subTitle = '';
-      var titleRow = rows[1] || rows[0];
-      if (titleRow) {
-        for (var ci = p.nameIdx; ci >= Math.max(0, p.nameIdx - 3); ci--) {
-          if (titleRow[ci] && typeof titleRow[ci] === 'string' && titleRow[ci].trim().length > 5) {
-            subTitle = String(titleRow[ci]).trim().replace(/\n/g, ' ');
-            break;
+      for (var tr = headerRowIdx - 1; tr >= Math.max(0, headerRowIdx - 3); tr--) {
+        var titleRow = rows[tr];
+        if (titleRow) {
+          for (var ci = p.nameIdx; ci >= Math.max(0, p.nameIdx - 3); ci--) {
+            if (titleRow[ci] && typeof titleRow[ci] === 'string' && titleRow[ci].trim().length > 5) {
+              subTitle = String(titleRow[ci]).trim().replace(/\n/g, ' ');
+              break;
+            }
           }
+          if (subTitle) break;
         }
       }
       var catName = subTitle || sheetName.trim();
@@ -500,12 +503,16 @@ function parseStackedSheet(data, categoryType, rows, sheetName, idx) {
     var headerRow = bRows[headerRowIdx];
     
     var subIdx = idx + '_' + bIdx;
+    var actualCategory = categoryType;
+    if (title.toLowerCase().indexOf('bứt tốc') >= 0) {
+      actualCategory = 'challenge';
+    }
     if (title.toLowerCase().indexOf('tuyển dụng') >= 0) {
-      parseRecruitmentSheet(data, categoryType, bRows, headerRow, headerRowIdx, title, subIdx);
+      parseRecruitmentSheet(data, actualCategory, bRows, headerRow, headerRowIdx, title, subIdx);
     } else if (title.toLowerCase().indexOf('tiêu biểu') >= 0) {
-      parseManagerSheet(data, categoryType, bRows, headerRow, title, subIdx);
+      parseManagerSheet(data, actualCategory, bRows, headerRow, title, subIdx);
     } else {
-      parseNormalSheet(data, categoryType, bRows, headerRow, headerRowIdx, title, subIdx);
+      parseNormalSheet(data, actualCategory, bRows, headerRow, headerRowIdx, title, subIdx);
     }
   });
 }
