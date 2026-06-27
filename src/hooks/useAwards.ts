@@ -152,9 +152,9 @@ const DEFAULT_AWARDS: Award[] = [
     mechanism: '- Hoàn thành từ 100% mục tiêu cam kết theo cấp bậc\n- Thể hiện dấu ấn và ảnh hưởng tích cực trong đội ngũ và trong hệ thống Đại sứ Giáo dục Galaxy Education\n- Là tấm gương tiêu biểu của tinh thần sáng tạo, đột phá, tích cực và lan tỏa giá trị giáo dục\n- <span class="text-red-600 font-medium">Đại sứ active có học viên đăng kí ít nhất 1 khóa học chính</span>',
     columns: ['Quản lý', 'Thực đạt mục tiêu cam kết', 'Đại sứ mới active trong đội ngũ', 'Số lượng giải', 'Giá trị giải thưởng', 'Điều kiện đủ'],
     tiers: [
-      { label: 'Cấp Nhóm', condition: '>= 100%', condition2: '>= 10', quantity: '1', prizeValue: '500,000', cellValues: ['Cấp Nhóm\n(Trưởng Nhóm, Trưởng Nhóm Cấp Cao)', '>= 100%', '>= 10', '1 giải/ chức danh', '500.000 đ', 'Thông qua đề xuất/ bình chọn/ xét duyệt dựa trên các yếu tố biểu dương khác'] },
-      { label: 'Cấp Phòng', condition: '>= 100%', condition2: '>= 20', quantity: '1', prizeValue: '1,000,000', cellValues: ['Cấp Phòng\n(Trưởng Phòng, Trưởng Phòng Cấp Cao)', '>= 100%', '>= 20', '1 giải/ chức danh', '1.000.000 đ', 'Thông qua đề xuất/ bình chọn/ xét duyệt dựa trên các yếu tố biểu dương khác'] },
-      { label: 'Cấp Khu vực', condition: '>= 100%', condition2: '>= 30', quantity: '1', prizeValue: '2,000,000', cellValues: ['Cấp Khu vực\n(Giám Đốc Khu Vực, Giám Đốc Khu Vực Cấp Cao)', '>= 100%', '>= 30', '1 giải/ chức danh', '2.000.000 đ', 'Thông qua đề xuất/ bình chọn/ xét duyệt dựa trên các yếu tố biểu dương khác'] },
+      { label: 'Cấp Nhóm', condition: '>= 100%', condition2: '>= 10', quantity: '1', prizeValue: '500,000', cellValues: [`Cấp Nhóm\n(Trưởng Nhóm, Trưởng Nhóm Cấp Cao)`, '>= 100%', '>= 10', '1 giải/ chức danh', '500.000 đ', 'Thông qua đề xuất/ bình chọn/ xét duyệt dựa trên các yếu tố biểu dương khác'] },
+      { label: 'Cấp Phòng', condition: '>= 100%', condition2: '>= 20', quantity: '1', prizeValue: '1,000,000', cellValues: [`Cấp Phòng\n(Trưởng Phòng, Trưởng Phòng Cấp Cao)`, '>= 100%', '>= 20', '1 giải/ chức danh', '1.000.000 đ', 'Thông qua đề xuất/ bình chọn/ xét duyệt dựa trên các yếu tố biểu dương khác'] },
+      { label: 'Cấp Khu vực', condition: '>= 100%', condition2: '>= 30', quantity: '1', prizeValue: '2,000,000', cellValues: [`Cấp Khu vực\n(Giám Đốc Khu Vực, Giám Đốc Khu Vực Cấp Cao)`, '>= 100%', '>= 30', '1 giải/ chức danh', '2.000.000 đ', 'Thông qua đề xuất/ bình chọn/ xét duyệt dựa trên các yếu tố biểu dương khác'] },
     ],
     order: 9,
   },
