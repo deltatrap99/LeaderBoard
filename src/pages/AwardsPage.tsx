@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Layout } from '../components/Layout';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { useAwards, type Award } from '../hooks/useAwards';
@@ -190,7 +190,12 @@ function AwardCard({ award, index, theme }: { award: Award; index: number; theme
                                     {valStr}
                                   </span>
                                 ) : (
-                                  valStr
+                                  valStr.split('\n').map((line, i, arr) => (
+                                    <React.Fragment key={i}>
+                                      {line}
+                                      {i < arr.length - 1 && <br />}
+                                    </React.Fragment>
+                                  ))
                                 )}
                               </td>
                             );
