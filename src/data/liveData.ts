@@ -5,11 +5,15 @@ export interface Ambassador {
   name: string;
   avatar?: string;
   score: number;
-  score2?: number;        // Cột thứ 2 (vd: Doanh số N-1 mới)
-  score2Label?: string;   // Label cột 2
+  score2?: number | string;        // Cột thứ 2 (vd: Doanh số N-1 mới, Ngày tham gia)
   scoreLabel?: string;    // Label cột 1 (vd: Số lượng N-1 mới active)
+  score2Label?: string;   // Label cột 2
   region?: string;
   highlight?: boolean;    // Badge highlight cho người đạt target
+  status?: string;        // Ghi chú trạng thái (đủ điều kiện, chưa đủ điều kiện,...)
+  columns?: { label: string; value: string | number }[]; // Mảng các cột dữ liệu động
+  rank?: number;          // Xếp hạng cụ thể (nếu có từ file)
+  hideBadge?: boolean;    // Ẩn badge trạng thái
 }
 
 export interface CategoryResult {
@@ -20,6 +24,7 @@ export interface CategoryResult {
   otherRankers: Ambassador[];
   hasMultipleScores?: boolean;
   scoreLabels?: string[];
+  isUpdating?: boolean;   // Đánh dấu hạng mục đang cập nhật giải
 }
 
 export interface LeaderboardData {

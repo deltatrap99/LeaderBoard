@@ -8,6 +8,10 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
   const isBlue = theme === 'blue';
 
   const getEligibilityInfo = (ranker: any, rank?: number) => {
+    if (ranker.status) {
+      return { isEligible: !!ranker.highlight, text: ranker.status, showBadge: true };
+    }
+
     const catNameLower = data.categoryName.toLowerCase();
     
     if (catNameLower.includes('quản lý xuất sắc kỳ i')) {
@@ -62,6 +66,9 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
         }
       }
     }
+    if (ranker.hideBadge) {
+      return { isEligible, text: '', showBadge: false };
+    }
     
     return { isEligible, text: isEligible ? currentBadgeText : 'Chưa đủ điều kiện', showBadge: currentShowBadge };
   };
@@ -90,7 +97,8 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     });
   };
 
-  const formatScore = (score: number, label?: string) => {
+  const formatScore = (score: number | string, label?: string) => {
+    if (typeof score === 'string') return score;
     if (label && label.includes('%')) {
       return (score * 100).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + '%';
     }
@@ -158,7 +166,14 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
       )}
 
       {/* Table */}
-      {tableRankers.length > 0 && (
+      {data.isUpdating ? (
+        <div className="px-6 py-12 text-center">
+          <div className={`inline-flex items-center justify-center p-3 rounded-full mb-3 ${isBlue ? 'bg-blue-50 text-blue-400' : 'bg-blue-900/30 text-blue-400'}`}>
+            <Clock className="w-6 h-6 animate-pulse" />
+          </div>
+          <p className={`font-medium ${isBlue ? 'text-slate-500' : 'text-white/50'}`}>Hạng mục giải thưởng đang được cập nhật...</p>
+        </div>
+      ) : tableRankers.length > 0 && (
         <div className="px-2 sm:px-6 pb-4 pt-4">
           <div className={`rounded-2xl overflow-x-auto ${
             isBlue 
@@ -166,42 +181,31 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
               : 'border border-white/[0.06] bg-white/[0.02]'
           }`} style={{ WebkitOverflowScrolling: 'touch' as any }}>
             <table className="w-full text-left whitespace-nowrap">
-              <thead className={`font-semibold uppercase text-[8px] sm:text-[10px] tracking-[0.05em] sm:tracking-[0.15em] ${
-                isBlue 
-                  ? 'bg-slate-100 text-slate-400 border-b border-slate-200' 
-                  : 'bg-white/[0.03] text-white/30 border-b border-white/[0.06]'
-              }`}>
+              <thead className={`text-left text-[11px] sm:text-[13px] font-bold uppercase tracking-wider ${isBlue ? 'text-slate-500 bg-slate-50' : 'text-slate-400 bg-white/[0.02]'} border-b ${isBlue ? 'border-slate-200' : 'border-white/10'}`}>
                 <tr>
-                  <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-center w-6 sm:w-16"></th>
-                  <th className="px-0.5 sm:px-4 py-2 sm:py-3.5 w-10 sm:w-28 text-center">Mã</th>
-                  <th className="px-0.5 sm:px-4 py-2 sm:py-3.5">Tên Đại sứ</th>
-                  {data.hasMultipleScores ? (
+                  <th className="py-3 px-2 sm:px-4 text-center w-12 sm:w-16">Hạng</th>
+                  <th className="py-3 px-2 sm:px-4 w-20 sm:w-24">Mã Đại sứ</th>
+                  <th className="py-3 px-2 sm:px-4">Tên Đại sứ</th>
+                  {data.scoreLabels?.map((label, idx) => (
+                      <th key={idx} className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">
+                        {label}
+                      </th>
+                    ))
+                  }
+                  {!data.scoreLabels && (data.hasMultipleScores ? (
                     <>
-                      <th className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">{data.scoreLabels?.[0] || 'SL N-1'}</th>
-                      <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">{data.scoreLabels?.[1] || 'DS N-1'}</th>
+                      <th className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">SL N-1</th>
+                      <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-right whitespace-normal leading-tight">DS N-1</th>
                     </>
                   ) : (
                     <th className="px-1 sm:px-4 py-2 sm:py-3.5 text-right">Thành tích</th>
-                  )}
+                  ))}
                 </tr>
               </thead>
-              {/* Chú thích trên mobile — giải thích nền vàng = Đạt EGC */}
-              {showBadge && (
-                <caption className={`sm:hidden caption-bottom py-1.5 px-3 text-left ${
-                  isBlue ? 'text-amber-700 bg-amber-50/80' : 'text-amber-400 bg-amber-950/30'
-                }`}>
-                  <div className="flex items-center gap-1.5 text-[10px] font-medium">
-                    <Star size={10} className="fill-amber-500 text-amber-500 shrink-0" />
-                    <span>Nền <span className={`inline-block w-3 h-2.5 rounded-sm align-middle mx-0.5 ${isBlue ? 'bg-amber-100 border border-amber-300' : 'bg-amber-500/20 border border-amber-500/30'}`}></span> = {badgeText}</span>
-                  </div>
-                </caption>
-              )}
               <tbody className={`divide-y ${isBlue ? 'divide-slate-100' : 'divide-white/[0.04]'}`}>
                 {tableRankers.map((ranker, i) => {
-                  const rank = isManager ? i + 1 : data.topRankers.length + i + 1;
+                  const rank = ranker.rank || (isManager ? i + 1 : data.topRankers.length + i + 1);
                   const { isEligible, text: statusText, showBadge: rankerShowBadge } = getEligibilityInfo(ranker, rank);
-
-
 
                   return (
                   <motion.tr 
@@ -215,22 +219,16 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                         : (isBlue ? 'hover:bg-blue-50/60' : 'hover:bg-white/[0.04]')
                     }`}
                   >
-                    {/* STT */}
-                    <td className={`px-1 sm:px-4 py-2 sm:py-3.5 text-center font-bold text-[10px] sm:text-sm ${
-                      isBlue ? 'text-slate-300 group-hover:text-[#1B3A7A]' : 'text-white/25 group-hover:text-amber-400'
-                    } transition-colors`}>
+                  <td className="py-3 sm:py-4 px-2 sm:px-4 text-center">
+                    <span className={`font-black text-[13px] sm:text-[15px] ${isBlue ? 'text-slate-400' : 'text-slate-500'}`}>
                       {rank}
-                    </td>
-                    {/* Mã ĐS */}
-                    <td className={`px-0.5 sm:px-4 py-2 sm:py-3.5 text-center font-mono font-medium text-[9px] sm:text-sm ${
-                      isBlue ? 'text-slate-400' : 'text-blue-300/40'
-                    }`}>
+                    </span>
+                  </td>
+                  <td className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-center font-mono font-medium text-[9px] sm:text-sm text-slate-400">
                       {ranker.id}
-                    </td>
-                    {/* Tên Đại sứ */}
-                    <td className="px-0.5 sm:px-4 py-2 sm:py-3.5">
+                  </td>
+                  <td className="px-0.5 sm:px-4 py-2 sm:py-3.5">
                       <div className="flex items-center gap-1 sm:gap-3">
-                        {/* Avatar — ẩn trên mobile để tiết kiệm chỗ */}
                         <div className={`hidden sm:flex w-10 h-10 rounded-full items-center justify-center font-bold text-sm shrink-0 ring-1 overflow-hidden transition-all ${
                           isEligible 
                             ? (isBlue ? 'bg-gradient-to-br from-amber-100 to-yellow-200 text-amber-700 ring-amber-300 group-hover:ring-amber-500' : 'bg-gradient-to-br from-amber-900/60 to-yellow-900/40 text-amber-400 ring-amber-500/30 group-hover:ring-amber-500/60')
@@ -252,13 +250,11 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                                 ? (isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400')
                                 : (isBlue ? 'border-slate-200 bg-slate-100 text-slate-500' : 'border-white/10 bg-white/5 text-white/40')
                             }`}>
-                              {isEligible && <Star className="w-2.5 h-2.5 fill-amber-500 text-amber-500 mr-1" />}
                               <span className={`text-[9px] font-bold uppercase tracking-wider ${!isEligible ? 'opacity-80' : ''}`}>
                                 {statusText}
                               </span>
                             </div>
                           )}
-                          {/* Badge cho mobile - Hiển thị thành một chấm màu/text */}
                           {rankerShowBadge && (
                             <div className="flex sm:hidden mt-0.5 items-center gap-1">
                               {isEligible ? (
@@ -276,7 +272,19 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                       </div>
                     </td>
                     {/* Score columns */}
-                    {data.hasMultipleScores ? (
+                    {ranker.columns && ranker.columns.length > 0 ? (
+                      ranker.columns.map((col, idx) => (
+                        <td key={idx} className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right">
+                          <span className={`font-bold tracking-tight text-[11px] sm:text-[14px] ${
+                            isEligible
+                              ? (isBlue ? (idx === 0 ? 'text-[#1B3A7A]' : 'text-emerald-600') : (idx === 0 ? 'text-amber-400' : 'text-emerald-400'))
+                              : (isBlue ? 'text-slate-600' : 'text-slate-400')
+                          }`}>
+                            {col.value}
+                          </span>
+                        </td>
+                      ))
+                    ) : data.hasMultipleScores ? (
                       <>
                         <td className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-right">
                           <span className={`font-black text-[10px] sm:text-base transition-colors ${

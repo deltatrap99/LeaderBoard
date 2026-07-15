@@ -9,12 +9,12 @@ interface PodiumProps {
 }
 
 export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }: PodiumProps) {
-  const rank1 = topRankers[0];
-  const rank2 = topRankers[1];
-  const rank3 = topRankers[2];
+  const rank1 = topRankers.find(r => r.rank === 1) || (topRankers[0]?.rank === undefined ? topRankers[0] : undefined);
+  const rank2 = topRankers.find(r => r.rank === 2) || (topRankers[1]?.rank === undefined ? topRankers[1] : undefined);
+  const rank3 = topRankers.find(r => r.rank === 3) || (topRankers[2]?.rank === undefined ? topRankers[2] : undefined);
   const isBlue = theme === 'blue';
 
-  if (!rank1) return null;
+  if (!rank1 && !rank2 && !rank3) return null;
 
   const getInitials = (name: string) => {
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
@@ -23,7 +23,8 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
   const isEducationExcellence = categoryName?.toLowerCase().includes('giáo dục xuất sắc') && categoryName?.toLowerCase().includes('kỳ') && !categoryName?.toLowerCase().includes('quý');
 
   const renderRank = (ranker: Ambassador | undefined, rank: number) => {
-    if (!ranker) return <div className="flex-1" />;
+    const isPlaceholder = !ranker;
+    const currentRanker = ranker || { id: '', name: 'Đang cập nhật...', score: 0 } as Ambassador;
     
     const isFirst = rank === 1;
     const isSecond = rank === 2;
@@ -53,7 +54,8 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
     const nameColor = isBlue ? 'text-slate-800 font-extrabold' : 'text-white font-extrabold';
     const idColor = isBlue ? 'text-[#1B3A7A]/60' : 'text-blue-300/70';
 
-    const formatScore = (score: number, label?: string) => {
+    const formatScore = (score: number | string, label?: string) => {
+      if (typeof score === 'string') return score;
       if (label && label.includes('%')) {
         return (score * 100).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + '%';
       }
@@ -61,7 +63,7 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
     };
 
     return (
-      <div className={`flex flex-col justify-end items-center flex-1 px-1 sm:px-2 ${isFirst ? 'z-20' : 'z-10'}`}>
+      <div className={`flex flex-col justify-end items-center flex-1 px-1 sm:px-2 ${isFirst ? 'z-20' : 'z-10'} ${isPlaceholder ? 'opacity-70 grayscale' : ''}`}>
         <motion.div 
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -106,10 +108,12 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
               <div className="absolute inset-0 bg-yellow-400/20 blur-xl rounded-full scale-150 animate-pulse" />
             )}
             <div className={`w-full h-full rounded-full border-4 border-transparent overflow-hidden flex items-center justify-center font-bold text-lg sm:text-2xl relative z-10 ${avatarBg}`}>
-              {ranker.avatar ? (
-                <img src={ranker.avatar} alt={ranker.name} className="w-full h-full object-cover" />
+              {isPlaceholder ? (
+                <span className={isBlue ? 'text-[#1B3A7A] text-2xl sm:text-4xl' : 'text-blue-200 text-2xl sm:text-4xl'}>?</span>
+              ) : currentRanker.avatar ? (
+                <img src={currentRanker.avatar} alt={currentRanker.name} className="w-full h-full object-cover" />
               ) : (
-                <span className={isBlue ? 'text-[#1B3A7A]' : 'text-blue-200'}>{getInitials(ranker.name)}</span>
+                <span className={isBlue ? 'text-[#1B3A7A]' : 'text-blue-200'}>{getInitials(currentRanker.name)}</span>
               )}
             </div>
             {/* Rank badge */}
@@ -124,8 +128,8 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
           
           {/* Info */}
           <div className="text-center mb-5 px-1 min-h-[70px] flex flex-col items-center justify-end z-20">
-            <h3 className={`text-[15px] sm:text-[18px] leading-[1.2] whitespace-normal break-words max-w-[120px] sm:max-w-[140px] drop-shadow-sm ${nameColor}`}>{ranker.name}</h3>
-            <p className={`text-[11px] font-mono font-bold mt-1 ${idColor}`}>Mã: {ranker.id}</p>
+            <h3 className={`text-[15px] sm:text-[18px] leading-[1.2] whitespace-normal break-words max-w-[120px] sm:max-w-[140px] drop-shadow-sm ${nameColor}`}>{currentRanker.name}</h3>
+            {!isPlaceholder && <p className={`text-[11px] font-mono font-bold mt-1 ${idColor}`}>Mã: {currentRanker.id}</p>}
             {isEducationExcellence && (
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
@@ -140,7 +144,7 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
                 <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">✈️ 100% CHUYẾN DU LỊCH QUỐC TẾ</span>
               </motion.div>
             )}
-            {categoryName?.toLowerCase().includes('quản lý xuất sắc kỳ i') && ranker.score >= 10000000000 && (ranker.score2 || 0) >= 40 && (
+            {categoryName?.toLowerCase().includes('quản lý xuất sắc kỳ i') && currentRanker.score >= 10000000000 && (currentRanker.score2 || 0) >= 40 && (
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -152,27 +156,29 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
               }`}>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]" />
                 <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">
-                  ✈️ {ranker.score >= 20000000000 && (ranker.score2 || 0) >= 80 ? '100% CHUYẾN DU LỊCH QUỐC TẾ' : '50% CHUYẾN DU LỊCH QUỐC TẾ'}
+                  ✈️ {currentRanker.score >= 20000000000 && (currentRanker.score2 || 0) >= 80 ? '100% CHUYẾN DU LỊCH QUỐC TẾ' : '50% CHUYẾN DU LỊCH QUỐC TẾ'}
                 </span>
               </motion.div>
             )}
-            <motion.div 
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: rank * 0.15 + 0.5 }}
-              className={`mt-2.5 px-4 py-2 rounded-xl backdrop-blur-md flex flex-col items-center justify-center relative overflow-hidden ${
-                isBlue 
-                  ? 'bg-white/90 border border-white shadow-[0_8px_20px_rgba(0,0,0,0.06)]' 
-                  : 'bg-white/10 border border-white/20 shadow-[0_8px_20px_rgba(0,0,0,0.3)]'
-              }`}
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
-              {scoreLabels && scoreLabels[0] && (
-                <span className={`relative z-10 text-[9px] sm:text-[10px] mb-0.5 font-bold tracking-wide uppercase ${isBlue ? 'text-slate-500' : 'text-slate-300'}`}>{scoreLabels[0]}</span>
+            {!isPlaceholder && (
+              <motion.div 
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ delay: rank * 0.15 + 0.5 }}
+                className={`mt-2.5 px-4 py-2 rounded-xl backdrop-blur-md flex flex-col items-center justify-center relative overflow-hidden ${
+                  isBlue 
+                    ? 'bg-white/90 border border-white shadow-[0_8px_20px_rgba(0,0,0,0.06)]' 
+                    : 'bg-white/10 border border-white/20 shadow-[0_8px_20px_rgba(0,0,0,0.3)]'
+                }`}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent pointer-events-none" />
+                {currentRanker.scoreLabel && (
+                <span className={`relative z-10 text-[9px] sm:text-[10px] mb-0.5 font-bold tracking-wide uppercase ${isBlue ? 'text-slate-500' : 'text-slate-300'}`}>{currentRanker.scoreLabel}</span>
               )}
-              <p className={`relative z-10 font-black tracking-tight ${scoreColor} text-[16px] sm:text-[20px] leading-none drop-shadow-sm`}>{formatScore(ranker.score, scoreLabels?.[0])}</p>
-            </motion.div>
-            {ranker.score2 !== undefined && ranker.score2 > 0 && (
+              <p className={`relative z-10 font-black tracking-tight ${scoreColor} text-[16px] sm:text-[20px] leading-none drop-shadow-sm`}>{formatScore(currentRanker.score, currentRanker.scoreLabel)}</p>
+              </motion.div>
+            )}
+            {!isPlaceholder && currentRanker.score2 !== undefined && currentRanker.score2 !== 0 && currentRanker.score2 !== '' && (
               <motion.div 
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -184,10 +190,10 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
                 }`}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-100/50 to-transparent pointer-events-none" />
-                {scoreLabels && scoreLabels[1] && (
-                  <span className={`relative z-10 text-[8.5px] sm:text-[9px] mb-0.5 font-bold uppercase tracking-wide ${isBlue ? 'text-emerald-600/80' : 'text-emerald-400/80'}`}>{scoreLabels[1]}</span>
+                {currentRanker.score2Label && (
+                  <span className={`relative z-10 text-[8.5px] sm:text-[9px] mb-0.5 font-bold uppercase tracking-wide ${isBlue ? 'text-emerald-600/80' : 'text-emerald-400/80'}`}>{currentRanker.score2Label}</span>
                 )}
-                <p className={`relative z-10 font-black tracking-tight text-[13px] sm:text-[15px] leading-none ${isBlue ? 'text-emerald-700' : 'text-emerald-400'}`}>{formatScore(ranker.score2, scoreLabels?.[1])}</p>
+                <p className={`relative z-10 font-black tracking-tight text-[13px] sm:text-[15px] leading-none ${isBlue ? 'text-emerald-700' : 'text-emerald-400'}`}>{formatScore(currentRanker.score2, currentRanker.score2Label)}</p>
               </motion.div>
             )}
           </div>
