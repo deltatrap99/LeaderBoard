@@ -8,7 +8,7 @@ interface PodiumProps {
   categoryName?: string;
 }
 
-export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }: PodiumProps) {
+export function Podium({ topRankers, theme = 'blue', scoreLabels: _scoreLabels, categoryName }: PodiumProps) {
   const rank1 = topRankers.find(r => r.rank === 1) || (topRankers[0]?.rank === undefined ? topRankers[0] : undefined);
   const rank2 = topRankers.find(r => r.rank === 2) || (topRankers[1]?.rank === undefined ? topRankers[1] : undefined);
   const rank3 = topRankers.find(r => r.rank === 3) || (topRankers[2]?.rank === undefined ? topRankers[2] : undefined);
@@ -144,7 +144,7 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
                 <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">✈️ 100% CHUYẾN DU LỊCH QUỐC TẾ</span>
               </motion.div>
             )}
-            {categoryName?.toLowerCase().includes('quản lý xuất sắc kỳ i') && currentRanker.score >= 10000000000 && (currentRanker.score2 || 0) >= 40 && (
+            {categoryName?.toLowerCase().includes('quản lý xuất sắc kỳ i') && Number(currentRanker.score) >= 10000000000 && Number(currentRanker.score2 || 0) >= 40 && (
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -156,7 +156,7 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels, categoryName }
               }`}>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]" />
                 <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">
-                  ✈️ {currentRanker.score >= 20000000000 && (currentRanker.score2 || 0) >= 80 ? '100% CHUYẾN DU LỊCH QUỐC TẾ' : '50% CHUYẾN DU LỊCH QUỐC TẾ'}
+                  ✈️ {Number(currentRanker.score) >= 20000000000 && Number(currentRanker.score2 || 0) >= 80 ? '100% CHUYẾN DU LỊCH QUỐC TẾ' : '50% CHUYẾN DU LỊCH QUỐC TẾ'}
                 </span>
               </motion.div>
             )}

@@ -1,6 +1,6 @@
 import type { CategoryResult } from '../data/liveData';
 import { Podium } from './Podium';
-import { Trophy, Star, Clock } from 'lucide-react';
+import { Trophy, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { data: CategoryResult, index: number, theme?: string, lastUpdated?: Date | null }) {
