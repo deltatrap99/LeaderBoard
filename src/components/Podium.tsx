@@ -20,7 +20,8 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels: _scoreLabels, 
     return name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
   };
 
-  const isEducationExcellence = categoryName?.toLowerCase().includes('giáo dục xuất sắc') && categoryName?.toLowerCase().includes('kỳ') && !categoryName?.toLowerCase().includes('quý');
+  const isSemesterEducation = categoryName?.toLowerCase().includes('giáo dục xuất sắc') && categoryName?.toLowerCase().includes('kỳ') && !categoryName?.toLowerCase().includes('quý');
+  const isSemesterManager = categoryName?.toLowerCase().includes('quản lý xuất sắc') && categoryName?.toLowerCase().includes('kỳ') && !categoryName?.toLowerCase().includes('quý');
 
   const renderRank = (ranker: Ambassador | undefined, rank: number) => {
     const isPlaceholder = !ranker;
@@ -130,7 +131,8 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels: _scoreLabels, 
           <div className="text-center mb-5 px-1 min-h-[70px] flex flex-col items-center justify-end z-20">
             <h3 className={`text-[15px] sm:text-[18px] leading-[1.2] whitespace-normal break-words max-w-[120px] sm:max-w-[140px] drop-shadow-sm ${nameColor}`}>{currentRanker.name}</h3>
             {!isPlaceholder && <p className={`text-[11px] font-mono font-bold mt-1 ${idColor}`}>Mã: {currentRanker.id}</p>}
-            {isEducationExcellence && (
+            {/* ĐS GD Xuất sắc Kỳ II: Top 1-3 cần DS >= 800M → 100%, Top 4-8 cần DS >= 500M → 50% */}
+            {isSemesterEducation && Number(currentRanker.score) >= 500000000 && (
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -141,10 +143,13 @@ export function Podium({ topRankers, theme = 'blue', scoreLabels: _scoreLabels, 
                   : 'bg-gradient-to-r from-amber-600 via-yellow-500 to-amber-600 text-white border border-amber-400/50'
               }`}>
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent skew-x-[-20deg] group-hover:animate-[shimmer_1.5s_infinite]" />
-                <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">✈️ 100% CHUYẾN DU LỊCH QUỐC TẾ</span>
+                <span className="relative z-10 flex items-center gap-1 drop-shadow-sm">
+                  ✈️ {Number(currentRanker.score) >= 800000000 ? '100% CHUYẾN DU LỊCH QUỐC TẾ' : '50% CHUYẾN DU LỊCH QUỐC TẾ'}
+                </span>
               </motion.div>
             )}
-            {categoryName?.toLowerCase().includes('quản lý xuất sắc kỳ i') && Number(currentRanker.score) >= 10000000000 && Number(currentRanker.score2 || 0) >= 40 && (
+            {/* QL Xuất sắc Kỳ II: DS >= 20B + 80 active → 100%, DS >= 10B + 40 active → 50% */}
+            {isSemesterManager && Number(currentRanker.score) >= 10000000000 && Number(currentRanker.score2 || 0) >= 40 && (
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
