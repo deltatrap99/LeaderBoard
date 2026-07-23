@@ -1,6 +1,6 @@
 /**
- * Script to update api_response.json with latest data from Google Sheets CSVs.
- * ONLY updates numerical data (scores, names, rankings). Does NOT change UI or structure.
+ * Update api_response.json with latest data from Google Sheets CSVs.
+ * ONLY updates numerical data. Preserves existing structure/format exactly.
  */
 const fs = require('fs');
 
@@ -9,393 +9,473 @@ function parseNum(s) {
   return Number(String(s).replace(/\./g, '').replace(/,/g, '.').replace(/[^\d.\-]/g, '')) || 0;
 }
 
+function fmtNum(n) {
+  return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
 function parseCsv(text) {
-  // Simple CSV parser handling quoted fields with newlines
   const rows = [];
   let row = [];
   let inQuotes = false;
   let field = '';
   for (let i = 0; i < text.length; i++) {
     const c = text[i];
-    if (c === '"') {
-      inQuotes = !inQuotes;
-    } else if (c === ',' && !inQuotes) {
-      row.push(field.trim());
-      field = '';
-    } else if ((c === '\n' || c === '\r') && !inQuotes) {
+    if (c === '"') { inQuotes = !inQuotes; }
+    else if (c === ',' && !inQuotes) { row.push(field.trim()); field = ''; }
+    else if ((c === '\n' || c === '\r') && !inQuotes) {
       if (c === '\r' && text[i + 1] === '\n') i++;
       row.push(field.trim());
-      if (row.some(f => f !== '')) rows.push(row);
-      row = [];
-      field = '';
-    } else {
-      field += c;
-    }
+      rows.push(row);
+      row = []; field = '';
+    } else { field += c; }
   }
-  if (field || row.length) { row.push(field.trim()); if (row.some(f => f !== '')) rows.push(row); }
+  if (field || row.length) { row.push(field.trim()); rows.push(row); }
   return rows;
 }
 
 // ==================== LOAD ====================
-const apiData = JSON.parse(fs.readFileSync('api_response.json', 'utf8'));
+const apiData = JSON.parse(fs.readFileSync('/tmp/api_response_backup.json', 'utf8'));
 const t07Rows = parseCsv(fs.readFileSync('/tmp/t07.csv', 'utf8'));
 const q3Rows = parseCsv(fs.readFileSync('/tmp/q3.csv', 'utf8'));
 const k2Rows = parseCsv(fs.readFileSync('/tmp/k2.csv', 'utf8'));
 
-// ==================== HELPERS ====================
-function findSection(rows, sectionNum) {
-  const prefix = sectionNum + '.';
+function findSection(rows, num) {
   for (let i = 0; i < rows.length; i++) {
-    if (rows[i][0] && rows[i][0].startsWith(prefix)) return i;
+    if (rows[i][0] && rows[i][0].startsWith(num + '.')) return i;
   }
   return -1;
 }
 
-function parseEligibleAndAlmost(rows, startIdx, endIdx) {
-  // Find "Danh sách ... đủ điều kiện" and "cận đạt" sections
-  const eligible = [];
-  const almost = [];
-  let headerIdx = -1;
-  let almostColStart = -1;
-
-  for (let i = startIdx; i < endIdx; i++) {
-    const r = rows[i];
-    if (r.some(c => c.includes('Mã Đại sứ'))) {
-      headerIdx = i;
-      // Find which column index starts "cận đạt"
-      for (let j = 0; j < r.length; j++) {
-        if (r[j].includes('Mã Đại sứ') && j > 0) { almostColStart = j; break; }
-      }
-      break;
-    }
-  }
-  if (headerIdx < 0) return { eligible, almost };
-
-  for (let i = headerIdx + 1; i < endIdx; i++) {
-    const r = rows[i];
-    // Eligible (left side)
-    if (r[1] && !r[1].includes('Chưa có') && /^\d+$/.test(r[1])) {
-      eligible.push({ id: r[1], name: r[2], score: parseNum(r[3]) });
-    }
-    // Almost (right side)
-    if (almostColStart && r[almostColStart] && /^\d+$/.test(r[almostColStart])) {
-      almost.push({ id: r[almostColStart], name: r[almostColStart + 1], score: parseNum(r[almostColStart + 2]) });
-    }
-  }
-  return { eligible, almost };
-}
-
 // ==================== THÁNG 7 ====================
-console.log('=== Updating THÁNG 7 ===');
+console.log('=== THÁNG 7 ===');
 
-// Section 1: Đại sứ mới T7
-const s1Start = findSection(t07Rows, '1');
-const s2Start = findSection(t07Rows, '2');
-const s3Start = findSection(t07Rows, '3');
-const s4Start = findSection(t07Rows, '4');
-const t07End = t07Rows.length;
+const s1 = findSection(t07Rows, '1');
+const s2 = findSection(t07Rows, '2');
+const s3 = findSection(t07Rows, '3');
+const s4 = findSection(t07Rows, '4');
 
-// Parse Section 1: Đại sứ mới
+// Section 1: ĐẠI SỨ MỚI THÁNG 7
 {
-  const { eligible, almost } = parseEligibleAndAlmost(t07Rows, s1Start, s2Start);
   const cat = apiData.month.find(c => c.categoryName.includes('ĐẠI SỨ MỚI'));
   if (cat) {
-    const all = [...eligible.map(e => ({ ...e, highlight: true })), ...almost.map(a => ({ ...a, highlight: false }))];
-    cat.topRankers = all.filter(r => r.highlight).slice(0, 3).map(r => ({ id: r.id, name: r.name, score: r.score, score2: 0, highlight: true }));
-    cat.otherRankers = [...all.filter(r => r.highlight).slice(3), ...all.filter(r => !r.highlight)].map(r => ({ id: r.id, name: r.name, score: r.score, score2: 0, highlight: r.highlight }));
-    console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
+    // Find header row with "Mã Đại sứ"
+    let hdr = -1, almostStart = -1;
+    for (let i = s1; i < s2; i++) {
+      if (t07Rows[i][1] === 'Mã Đại sứ') {
+        hdr = i;
+        for (let j = 5; j < t07Rows[i].length; j++) {
+          if (t07Rows[i][j] === 'Mã Đại sứ') { almostStart = j; break; }
+        }
+        break;
+      }
+    }
+    
+    const eligible = [], almost = [];
+    for (let i = hdr + 1; i < s2; i++) {
+      const r = t07Rows[i];
+      // Eligible: col 1=mã, 2=tên, 3=ngày, 4=doanh số, 5=thưởng
+      if (r[1] && /^\d+$/.test(r[1])) {
+        eligible.push({
+          id: r[1], name: r[2],
+          columns: [
+            { label: 'Ngày tham gia', value: r[3] || '' },
+            { label: 'Doanh số cá nhân', value: r[4] || '0' }
+          ],
+          score2: r[3] || '', score2Label: 'Ngày tham gia',
+          score: parseNum(r[4]), scoreLabel: 'Doanh số cá nhân',
+          highlight: true, status: 'đủ điều kiện xét giải'
+        });
+      }
+      // Almost: col 8=mã, 9=tên, 10=ngày, 11=doanh số
+      if (almostStart && r[almostStart] && /^\d+$/.test(r[almostStart])) {
+        almost.push({
+          id: r[almostStart], name: r[almostStart + 1],
+          columns: [
+            { label: 'Ngày tham gia', value: r[almostStart + 2] || '' },
+            { label: 'Doanh số cá nhân', value: r[almostStart + 3] || '0' }
+          ],
+          score2: r[almostStart + 2] || '', score2Label: 'Ngày tham gia',
+          score: parseNum(r[almostStart + 3]), scoreLabel: 'Doanh số cá nhân',
+          highlight: false, status: 'cận đạt'
+        });
+      }
+    }
+    cat.topRankers = eligible.slice(0, 3);
+    cat.otherRankers = [...eligible.slice(3), ...almost];
+    console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
   }
 }
 
-// Parse Section 2: ĐS GD Xuất sắc T7
+// Section 2: ĐS GD XUẤT SẮC THÁNG 7
 {
-  const { eligible, almost } = parseEligibleAndAlmost(t07Rows, s2Start, s3Start);
   const cat = apiData.month.find(c => c.categoryName.includes('GIÁO DỤC XUẤT SẮC'));
   if (cat) {
-    const all = [...eligible.map(e => ({ ...e, highlight: true })), ...almost.map(a => ({ ...a, highlight: false }))];
-    cat.topRankers = all.filter(r => r.highlight).slice(0, 3).map(r => ({ id: r.id, name: r.name, score: r.score, score2: 0, highlight: true }));
-    cat.otherRankers = [...all.filter(r => r.highlight).slice(3), ...all.filter(r => !r.highlight)].map(r => ({ id: r.id, name: r.name, score: r.score, score2: 0, highlight: r.highlight }));
-    console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
-  }
-}
-
-// Parse Section 3: QL Tuyển dụng Xuất sắc T7
-{
-  const { eligible, almost } = parseEligibleAndAlmost(t07Rows, s3Start, s4Start);
-  const cat = apiData.month.find(c => c.categoryName.includes('TUYỂN DỤNG'));
-  if (cat) {
-    const all = [...eligible.map(e => ({ ...e, highlight: true })), ...almost.map(a => ({ ...a, highlight: false }))];
-    // This category has score = SL ĐS mới, score2 = DS ĐS mới
-    // Re-parse with correct columns
-    const eligFull = [];
-    const almostFull = [];
-    let headerIdx = -1;
-    let almostColStart = -1;
-    for (let i = s3Start; i < s4Start; i++) {
-      if (t07Rows[i].some(c => c.includes('Mã Đại sứ'))) {
-        headerIdx = i;
-        for (let j = 4; j < t07Rows[i].length; j++) {
-          if (t07Rows[i][j] && t07Rows[i][j].includes('Mã Đại sứ')) { almostColStart = j; break; }
+    let hdr = -1, almostStart = -1;
+    for (let i = s2; i < s3; i++) {
+      if (t07Rows[i][1] === 'Mã Đại sứ') {
+        hdr = i;
+        for (let j = 5; j < t07Rows[i].length; j++) {
+          if (t07Rows[i][j] === 'Mã Đại sứ') { almostStart = j; break; }
         }
         break;
       }
     }
-    for (let i = (headerIdx || s3Start) + 1; i < s4Start; i++) {
+    
+    const eligible = [], almost = [];
+    for (let i = hdr + 1; i < s3; i++) {
       const r = t07Rows[i];
-      if (r[1] && /^\d+$/.test(r[1]) && !r[1].includes('Chưa')) {
-        eligFull.push({ id: r[1], name: r[2], score: parseNum(r[3]), score2: parseNum(r[4]), highlight: true });
+      if (r[1] && /^\d+$/.test(r[1])) {
+        eligible.push({
+          id: r[1], name: r[2],
+          columns: [{ label: 'Doanh số cá nhân', value: r[3] || '0' }],
+          score: parseNum(r[3]), scoreLabel: 'Doanh số cá nhân',
+          highlight: true, status: 'đủ điều kiện xét giải'
+        });
       }
-      if (almostColStart && r[almostColStart] && /^\d+$/.test(r[almostColStart])) {
-        almostFull.push({ id: r[almostColStart], name: r[almostColStart + 1], score: parseNum(r[almostColStart + 2]), score2: parseNum(r[almostColStart + 3]), highlight: false });
+      if (almostStart && r[almostStart] && /^\d+$/.test(r[almostStart])) {
+        almost.push({
+          id: r[almostStart], name: r[almostStart + 1],
+          columns: [{ label: 'Doanh số cá nhân', value: r[almostStart + 2] || '0' }],
+          score: parseNum(r[almostStart + 2]), scoreLabel: 'Doanh số cá nhân',
+          highlight: false, status: 'cận đạt'
+        });
       }
     }
-    const allFull = [...eligFull, ...almostFull];
-    cat.topRankers = allFull.filter(r => r.highlight).slice(0, 3).map(r => ({
-      id: r.id, name: r.name, score: r.score, score2: r.score2,
-      scoreLabel: cat.scoreLabels?.[0], score2Label: cat.scoreLabels?.[1], highlight: true
-    }));
-    cat.otherRankers = [...allFull.filter(r => r.highlight).slice(3), ...allFull.filter(r => !r.highlight)].map(r => ({
-      id: r.id, name: r.name, score: r.score, score2: r.score2,
-      scoreLabel: cat.scoreLabels?.[0], score2Label: cat.scoreLabels?.[1], highlight: r.highlight
-    }));
-    console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
+    cat.topRankers = eligible.slice(0, 3);
+    cat.otherRankers = [...eligible.slice(3), ...almost];
+    console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
   }
 }
 
-// Parse Section 4: QL Tiêu biểu T7 (multi-level)
+// Section 3: QL TUYỂN DỤNG XUẤT SẮC THÁNG 7
 {
-  const cat = apiData.month.find(c => c.categoryName.includes('TIÊU BIỂU'));
-  if (cat && cat.subCategories) {
-    // Has sub-categories by level
-    console.log(`  ${cat.categoryName}: has subCategories, parsing levels...`);
-    // Parse level data from CSV
-  } else if (cat) {
-    // Single category - parse levels from CSV
-    let headerIdx = -1;
-    let almostColStart = -1;
-    for (let i = s4Start; i < t07End; i++) {
-      if (t07Rows[i].some(c => c.includes('Mã Đại sứ'))) {
-        headerIdx = i;
-        for (let j = 4; j < t07Rows[i].length; j++) {
-          if (t07Rows[i][j] && t07Rows[i][j].includes('Mã Đại sứ')) { almostColStart = j; break; }
+  const cat = apiData.month.find(c => c.categoryName.includes('TUYỂN DỤNG') && c.categoryName.includes('7'));
+  if (cat) {
+    let hdr = -1, almostStart = -1;
+    for (let i = s3; i < s4; i++) {
+      if (t07Rows[i][1] === 'Mã Đại sứ') {
+        hdr = i;
+        for (let j = 5; j < t07Rows[i].length; j++) {
+          if (t07Rows[i][j] === 'Mã Đại sứ') { almostStart = j; break; }
         }
         break;
       }
     }
+    
+    const eligible = [], almost = [];
+    for (let i = hdr + 1; i < s4; i++) {
+      const r = t07Rows[i];
+      // col1=mã, 2=tên, 3=SL ĐS mới, 4=Doanh thu, 5=thưởng
+      if (r[1] && /^\d+$/.test(r[1])) {
+        eligible.push({
+          id: r[1], name: r[2],
+          columns: [
+            { label: 'SL Đại sứ mới PSDT', value: r[3] || '0' },
+            { label: 'Doanh thu ĐS mới', value: r[4] || '0' }
+          ],
+          score: parseNum(r[3]), scoreLabel: 'SL Đại sứ mới PSDT',
+          score2: parseNum(r[4]), score2Label: 'Doanh thu ĐS mới',
+          highlight: true, status: 'đủ điều kiện xét giải'
+        });
+      }
+      if (almostStart && r[almostStart] && /^\d+$/.test(r[almostStart])) {
+        almost.push({
+          id: r[almostStart], name: r[almostStart + 1],
+          columns: [
+            { label: 'SL Đại sứ mới PSDT', value: r[almostStart + 2] || '0' },
+            { label: 'Doanh thu ĐS mới', value: r[almostStart + 3] || '0' }
+          ],
+          score: parseNum(r[almostStart + 2]), scoreLabel: 'SL Đại sứ mới PSDT',
+          score2: parseNum(r[almostStart + 3]), score2Label: 'Doanh thu ĐS mới',
+          highlight: false, status: 'cận đạt'
+        });
+      }
+    }
+    cat.topRankers = eligible.slice(0, 3);
+    cat.otherRankers = [...eligible.slice(3), ...almost];
+    console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
+  }
+}
 
-    // Parse eligible and almost for each level
+// Section 4: QL TIÊU BIỂU THÁNG 7
+{
+  const cat = apiData.month.find(c => c.categoryName.includes('TIÊU BIỂU') && c.categoryName.includes('7'));
+  if (cat) {
+    let hdr = -1, almostStart = -1;
+    for (let i = s4; i < t07Rows.length; i++) {
+      if (t07Rows[i][1] === 'Mã Đại sứ') {
+        hdr = i;
+        for (let j = 5; j < t07Rows[i].length; j++) {
+          if (t07Rows[i][j] === 'Mã Đại sứ') { almostStart = j; break; }
+        }
+        break;
+      }
+    }
+    
     let currentLevel = '';
-    const levels = {};
-    for (let i = (headerIdx || s4Start) + 1; i < t07End; i++) {
+    const eligible = [], almost = [];
+    for (let i = hdr + 1; i < t07Rows.length; i++) {
       const r = t07Rows[i];
       if (r[0] && r[0].startsWith('Cấp')) currentLevel = r[0];
       if (!currentLevel) continue;
-      if (!levels[currentLevel]) levels[currentLevel] = { eligible: [], almost: [] };
-
+      
+      // Eligible: col0=cấp/empty, 1=mã, 2=tên, 3=cấp bậc, 4=% đạt, 5=SL ĐS active
       if (r[1] && /^\d+$/.test(r[1])) {
-        levels[currentLevel].eligible.push({
-          id: r[1], name: r[2], region: r[3],
-          score: parseNum(r[4]), score2: parseNum(r[5]), highlight: true
+        eligible.push({
+          id: r[1], name: r[2], region: currentLevel,
+          columns: [
+            { label: 'Cấp bậc', value: r[3] || '' },
+            { label: 'Thực đạt mục tiêu cam kết', value: r[4] || '' },
+            { label: 'Số đại sứ mới active trong đội ngũ', value: r[5] || '0' }
+          ],
+          score: parseNum(r[4]), scoreLabel: 'Thực đạt mục tiêu cam kết',
+          score2: parseNum(r[5]), score2Label: 'Số đại sứ mới active trong đội ngũ',
+          highlight: true, status: 'đủ điều kiện xét giải'
         });
       }
-      if (almostColStart && r[almostColStart] && /^\d+$/.test(r[almostColStart])) {
-        levels[currentLevel].almost.push({
-          id: r[almostColStart], name: r[almostColStart + 1], region: r[almostColStart + 2],
-          score: parseNum(r[almostColStart + 3]), score2: parseNum(r[almostColStart + 4]), highlight: false
+      if (almostStart && r[almostStart] && /^\d+$/.test(r[almostStart])) {
+        almost.push({
+          id: r[almostStart], name: r[almostStart + 1], region: currentLevel,
+          columns: [
+            { label: 'Cấp bậc', value: r[almostStart + 2] || '' },
+            { label: 'Thực đạt mục tiêu cam kết', value: r[almostStart + 3] || '' },
+            { label: 'Số đại sứ mới active trong đội ngũ', value: r[almostStart + 4] || '0' }
+          ],
+          score: parseNum(r[almostStart + 3]), scoreLabel: 'Thực đạt mục tiêu cam kết',
+          score2: parseNum(r[almostStart + 4]), score2Label: 'Số đại sứ mới active trong đội ngũ',
+          highlight: false, status: 'cận đạt'
         });
       }
     }
-
-    // Update the single category with all level data combined
-    const allRankers = [];
-    for (const [level, data] of Object.entries(levels)) {
-      [...data.eligible, ...data.almost].forEach(r => {
-        allRankers.push({ ...r, scoreLabel: 'Thực đạt mục tiêu cam kết', score2Label: 'Số đại sứ mới active trong đội ngũ' });
-      });
-    }
-    cat.topRankers = allRankers.filter(r => r.highlight).slice(0, 3);
-    cat.otherRankers = [...allRankers.filter(r => r.highlight).slice(3), ...allRankers.filter(r => !r.highlight)];
-    console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
+    cat.topRankers = eligible.slice(0, 3);
+    cat.otherRankers = [...eligible.slice(3), ...almost];
+    console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
   }
 }
 
 // ==================== QUÝ III ====================
-console.log('\n=== Updating QUÝ III ===');
+console.log('\n=== QUÝ III ===');
 
-// Section 1: Top 3 ĐS GD Xuất sắc Q3
+const q1 = findSection(q3Rows, '1');
+const q2 = findSection(q3Rows, '2');
+const q3s = findSection(q3Rows, '3');
+const q4 = findSection(q3Rows, '4');
+
+// Section 1: TOP 3 ĐS GD XUẤT SẮC QUÝ III
 {
   const cat = apiData.quarter.find(c => c.categoryName.includes('TOP 3'));
   if (cat) {
-    // Find header row
-    let headerIdx = -1;
-    for (let i = 0; i < q3Rows.length; i++) {
-      if (q3Rows[i][0] === 'Mã Đại sứ' && q3Rows[i].includes('Doanh số quý')) { headerIdx = i; break; }
+    let hdr = -1;
+    for (let i = q1; i < q2; i++) {
+      if (q3Rows[i][0] === 'Mã Đại sứ') { hdr = i; break; }
     }
-    if (headerIdx >= 0) {
-      const rankers = [];
-      for (let i = headerIdx + 1; i < q3Rows.length; i++) {
+    const rankers = [];
+    if (hdr >= 0) {
+      for (let i = hdr + 1; i < q2; i++) {
         const r = q3Rows[i];
-        if (r[0] && /^\d+$/.test(r[0])) {
-          rankers.push({
-            id: r[0], name: r[1], score: parseNum(r[3]), score2: parseNum(r[2]),
-            scoreLabel: 'Doanh số quý', score2Label: 'Số HV tuyển sinh',
-            highlight: true, region: r[4]
-          });
-        } else break;
+        if (!r[0] || !/^\d+$/.test(r[0])) break;
+        rankers.push({
+          id: r[0], name: r[1], highlight: true,
+          columns: [
+            { label: 'Số HV tuyển sinh', value: r[2] || '0' },
+            { label: 'Doanh số quý', value: r[3] || '0' },
+            { label: 'Team', value: r[4] || '' }
+          ],
+          score: parseNum(r[2]), scoreLabel: 'Số HV tuyển sinh',
+          score2: parseNum(r[3]), score2Label: 'Doanh số quý',
+          rank: parseNum(r[5]), hideBadge: true
+        });
       }
-      cat.topRankers = rankers.slice(0, 3);
-      cat.otherRankers = rankers.slice(3);
-      console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
     }
+    cat.topRankers = rankers.slice(0, 3);
+    cat.otherRankers = rankers.slice(3);
+    cat.scoreLabels = ['Số HV tuyển sinh', 'Doanh số quý', 'Team'];
+    console.log(`  ${cat.categoryName}: ${rankers.length} rankers`);
   }
 }
 
-// Section 2: Đại sứ Vàng Q3
+// Section 2: ĐẠI SỨ VÀNG QUÝ III
 {
-  const s2 = findSection(q3Rows, '2');
-  const s3 = findSection(q3Rows, '3');
   const cat = apiData.quarter.find(c => c.categoryName.includes('VÀNG'));
-  if (cat && s2 >= 0) {
-    const end = s3 >= 0 ? s3 : q3Rows.length;
-    let eligHeader = -1, almostColStart = -1;
-    for (let i = s2; i < end; i++) {
-      if (q3Rows[i].some(c => c === 'Mã Đại sứ')) {
-        eligHeader = i;
-        for (let j = 4; j < q3Rows[i].length; j++) {
-          if (q3Rows[i][j] === 'Mã Đại sứ') { almostColStart = j; break; }
+  if (cat) {
+    let hdr = -1, almostStart = -1;
+    for (let i = q2; i < q3s; i++) {
+      if (q3Rows[i][0] === 'Mã Đại sứ') {
+        hdr = i;
+        for (let j = 5; j < q3Rows[i].length; j++) {
+          if (q3Rows[i][j] === 'Mã Đại sứ') { almostStart = j; break; }
         }
         break;
       }
     }
     const eligible = [], almost = [];
-    if (eligHeader >= 0) {
-      for (let i = eligHeader + 1; i < end; i++) {
+    if (hdr >= 0) {
+      for (let i = hdr + 1; i < q3s; i++) {
         const r = q3Rows[i];
         if (r[0] && /^\d+$/.test(r[0])) {
-          eligible.push({ id: r[0], name: r[1], score: parseNum(r[2]), score2: parseNum(r[3]), region: r[4], highlight: true });
+          eligible.push({
+            id: r[0], name: r[1], highlight: true,
+            columns: [
+              { label: 'Số HV tuyển sinh', value: r[2] || '0' },
+              { label: 'Doanh số quý', value: r[3] || '0' },
+              { label: 'Team', value: r[4] || '' }
+            ],
+            score: parseNum(r[2]), scoreLabel: 'Số HV tuyển sinh',
+            score2: parseNum(r[3]), score2Label: 'Doanh số quý',
+            status: 'đủ điều kiện xét giải'
+          });
         }
-        if (almostColStart && r[almostColStart] && /^\d+$/.test(r[almostColStart])) {
-          almost.push({ id: r[almostColStart], name: r[almostColStart+1], score: parseNum(r[almostColStart+2]), score2: parseNum(r[almostColStart+3]), region: r[almostColStart+4], highlight: false });
+        if (almostStart && r[almostStart] && /^\d+$/.test(r[almostStart])) {
+          almost.push({
+            id: r[almostStart], name: r[almostStart+1], highlight: false,
+            columns: [
+              { label: 'Số HV tuyển sinh', value: r[almostStart+2] || '0' },
+              { label: 'Doanh số quý', value: r[almostStart+3] || '0' },
+              { label: 'Team', value: r[almostStart+4] || '' }
+            ],
+            score: parseNum(r[almostStart+2]), scoreLabel: 'Số HV tuyển sinh',
+            score2: parseNum(r[almostStart+3]), score2Label: 'Doanh số quý',
+            status: 'cận đạt'
+          });
         }
       }
     }
-    const all = [...eligible, ...almost];
-    cat.topRankers = all.filter(r => r.highlight).slice(0, 3).map(r => ({
-      id: r.id, name: r.name, score: r.score, score2: r.score2, highlight: true,
-      scoreLabel: 'Số HV tuyển sinh', score2Label: 'Doanh số quý'
-    }));
-    cat.otherRankers = [...all.filter(r => r.highlight).slice(3), ...all.filter(r => !r.highlight)].map(r => ({
-      id: r.id, name: r.name, score: r.score, score2: r.score2, highlight: r.highlight,
-      scoreLabel: 'Số HV tuyển sinh', score2Label: 'Doanh số quý'
-    }));
-    console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
+    cat.topRankers = eligible.slice(0, 3);
+    cat.otherRankers = [...eligible.slice(3), ...almost];
+    cat.scoreLabels = ['Số HV tuyển sinh', 'Doanh số quý', 'Team'];
+    console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
   }
 }
 
-// Section 3: QL Tuyển dụng Q3
+// Section 3: QL TUYỂN DỤNG XUẤT SẮC QUÝ III
 {
-  const s3 = findSection(q3Rows, '3');
-  const s4 = findSection(q3Rows, '4');
-  const cat = apiData.quarter.find(c => c.categoryName.includes('TUYỂN DỤNG'));
-  if (cat && s3 >= 0) {
-    const end = s4 >= 0 ? s4 : q3Rows.length;
-    let eligHeader = -1, almostColStart = -1;
-    for (let i = s3; i < end; i++) {
+  const cat = apiData.quarter.find(c => c.categoryName.includes('TUYỂN DỤNG') && c.categoryName.includes('III'));
+  if (cat) {
+    let hdr = -1, almostStart = -1;
+    const end = q4 >= 0 ? q4 : q3Rows.length;
+    for (let i = q3s; i < end; i++) {
       if (q3Rows[i][0] === 'Mã Đại sứ') {
-        eligHeader = i;
-        for (let j = 4; j < q3Rows[i].length; j++) {
-          if (q3Rows[i][j] === 'Mã Đại sứ') { almostColStart = j; break; }
+        hdr = i;
+        for (let j = 5; j < q3Rows[i].length; j++) {
+          if (q3Rows[i][j] === 'Mã Đại sứ') { almostStart = j; break; }
         }
         break;
       }
     }
     const eligible = [], almost = [];
-    if (eligHeader >= 0) {
-      for (let i = eligHeader + 1; i < end; i++) {
+    if (hdr >= 0) {
+      for (let i = hdr + 1; i < end; i++) {
         const r = q3Rows[i];
         if (r[0] && /^\d+$/.test(r[0])) {
-          eligible.push({ id: r[0], name: r[1], score: parseNum(r[2]), score2: parseNum(r[3]), region: r[4], highlight: true });
+          eligible.push({
+            id: r[0], name: r[1], highlight: true,
+            columns: [
+              { label: 'Số lượng Đại sứ mới active', value: r[2] || '0' },
+              { label: 'Tổng doanh số Đại sứ mới active', value: r[3] || '0' },
+              { label: 'Team', value: r[4] || '' }
+            ],
+            score: parseNum(r[2]), scoreLabel: 'Số lượng Đại sứ mới active',
+            score2: parseNum(r[3]), score2Label: 'Tổng doanh số Đại sứ mới active',
+            status: 'đủ điều kiện xét giải'
+          });
         }
-        if (almostColStart && r[almostColStart] && /^\d+$/.test(r[almostColStart])) {
-          almost.push({ id: r[almostColStart], name: r[almostColStart+1], score: parseNum(r[almostColStart+2]), score2: parseNum(r[almostColStart+3]), region: r[almostColStart+4], highlight: false });
+        if (almostStart && r[almostStart] && /^\d+$/.test(r[almostStart])) {
+          almost.push({
+            id: r[almostStart], name: r[almostStart+1], highlight: false,
+            columns: [
+              { label: 'Số lượng Đại sứ mới active', value: r[almostStart+2] || '0' },
+              { label: 'Tổng doanh số Đại sứ mới active', value: r[almostStart+3] || '0' },
+              { label: 'Team', value: r[almostStart+4] || '' }
+            ],
+            score: parseNum(r[almostStart+2]), scoreLabel: 'Số lượng Đại sứ mới active',
+            score2: parseNum(r[almostStart+3]), score2Label: 'Tổng doanh số Đại sứ mới active',
+            status: 'cận đạt'
+          });
         }
       }
     }
-    const all = [...eligible, ...almost];
-    cat.topRankers = all.filter(r => r.highlight).slice(0, 3);
-    cat.otherRankers = [...all.filter(r => r.highlight).slice(3), ...all.filter(r => !r.highlight)];
-    console.log(`  ${cat.categoryName}: ${cat.topRankers.length} top + ${cat.otherRankers.length} others`);
+    cat.topRankers = eligible.slice(0, 3);
+    cat.otherRankers = [...eligible.slice(3), ...almost];
+    cat.scoreLabels = ['Số lượng Đại sứ mới active', 'Tổng doanh số Đại sứ mới active', 'Team'];
+    console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
   }
 }
 
 // ==================== KỲ II ====================
-console.log('\n=== Updating KỲ II ===');
-
-// Parse both side-by-side tables
+console.log('\n=== KỲ II ===');
 {
-  // Find header row
-  let headerIdx1 = -1, headerIdx2 = -1;
+  let hdr = -1, rightStart = -1;
   for (let i = 0; i < k2Rows.length; i++) {
     if (k2Rows[i][0] === 'Mã Đại sứ' && k2Rows[i].includes('Doanh số Kỳ II')) {
-      headerIdx1 = i;
-      // Find second table header start
+      hdr = i;
       for (let j = 6; j < k2Rows[i].length; j++) {
-        if (k2Rows[i][j] === 'Mã Đại sứ') { headerIdx2 = j; break; }
+        if (k2Rows[i][j] === 'Mã Đại sứ') { rightStart = j; break; }
       }
       break;
     }
   }
 
-  // Parse Giải ĐS GD Xuất sắc Kỳ II (left table)
+  // Left: ĐS GD Xuất sắc Kỳ II
   const cat1 = apiData.semester.find(c => c.categoryName.includes('ĐẠI SỨ GIÁO DỤC'));
-  if (cat1 && headerIdx1 >= 0) {
+  if (cat1 && hdr >= 0) {
     const rankers = [];
-    for (let i = headerIdx1 + 1; i < k2Rows.length; i++) {
+    for (let i = hdr + 1; i < k2Rows.length; i++) {
       const r = k2Rows[i];
-      if (r[0] && /^\d+$/.test(r[0])) {
-        const cols = [];
-        cols.push({ label: 'Doanh số Kỳ II', value: r[2] || '0' });
-        cols.push({ label: 'Số HV tuyển sinh', value: r[3] || '0' });
-        cols.push({ label: 'Team', value: r[4] || '' });
-        rankers.push({
-          id: r[0], name: r[1], highlight: true, columns: cols,
-          score: parseNum(r[2]), scoreLabel: 'Doanh số Kỳ II',
-          score2: parseNum(r[3]), score2Label: 'Số HV tuyển sinh',
-          rank: parseNum(r[5]), hideBadge: true
-        });
-      }
+      if (!r[0] || !/^\d+$/.test(r[0])) continue;
+      rankers.push({
+        id: r[0], name: r[1], highlight: true,
+        columns: [
+          { label: 'Doanh số Kỳ II', value: r[2] || '0' },
+          { label: 'Số HV tuyển sinh', value: r[3] || '0' },
+          { label: 'Team', value: r[4] || '' }
+        ],
+        score: parseNum(r[2]), scoreLabel: 'Doanh số Kỳ II',
+        score2: parseNum(r[3]), score2Label: 'Số HV tuyển sinh',
+        rank: parseNum(r[5]), hideBadge: true
+      });
     }
     cat1.topRankers = rankers.slice(0, 3);
     cat1.otherRankers = rankers.slice(3);
     cat1.scoreLabels = ['Doanh số Kỳ II', 'Số HV tuyển sinh', 'Team'];
-    console.log(`  ${cat1.categoryName}: ${cat1.topRankers.length} top + ${cat1.otherRankers.length} others`);
+    console.log(`  ${cat1.categoryName}: ${rankers.length} rankers`);
   }
 
-  // Parse Giải QL Xuất sắc Kỳ II (right table)
+  // Right: QL Xuất sắc Kỳ II
   const cat2 = apiData.semester.find(c => c.categoryName.includes('QUẢN LÝ'));
-  if (cat2 && headerIdx2 >= 0) {
+  if (cat2 && rightStart >= 0) {
     const rankers = [];
-    for (let i = headerIdx1 + 1; i < k2Rows.length; i++) {
+    for (let i = hdr + 1; i < k2Rows.length; i++) {
       const r = k2Rows[i];
-      if (r[headerIdx2] && /^\d+$/.test(r[headerIdx2])) {
-        const cols = [];
-        cols.push({ label: 'Doanh số Kỳ II', value: r[headerIdx2 + 2] || '0' });
-        cols.push({ label: 'Số ĐS Active', value: r[headerIdx2 + 3] || '0' });
-        rankers.push({
-          id: r[headerIdx2], name: r[headerIdx2 + 1], highlight: true, columns: cols,
-          score: parseNum(r[headerIdx2 + 2]), scoreLabel: 'Doanh số Kỳ II',
-          score2: parseNum(r[headerIdx2 + 3]), score2Label: 'Số ĐS Active',
-          rank: parseNum(r[headerIdx2 + 4]), hideBadge: true
-        });
-      }
+      if (!r[rightStart] || !/^\d+$/.test(r[rightStart])) continue;
+      rankers.push({
+        id: r[rightStart], name: r[rightStart + 1], highlight: true,
+        columns: [
+          { label: 'Doanh số Kỳ II', value: r[rightStart + 2] || '0' },
+          { label: 'Số ĐS Active', value: r[rightStart + 3] || '0' }
+        ],
+        score: parseNum(r[rightStart + 2]), scoreLabel: 'Doanh số Kỳ II',
+        score2: parseNum(r[rightStart + 3]), score2Label: 'Số ĐS Active',
+        rank: parseNum(r[rightStart + 4]), hideBadge: true
+      });
     }
     cat2.topRankers = rankers.slice(0, 3);
     cat2.otherRankers = rankers.slice(3);
     cat2.scoreLabels = ['Doanh số Kỳ II', 'Số ĐS Active'];
-    console.log(`  ${cat2.categoryName}: ${cat2.topRankers.length} top + ${cat2.otherRankers.length} others`);
+    console.log(`  ${cat2.categoryName}: ${rankers.length} rankers`);
   }
 }
 
 // ==================== SAVE ====================
 fs.writeFileSync('api_response.json', JSON.stringify(apiData));
-console.log('\n✅ api_response.json updated successfully!');
+console.log('\n✅ Done!');
+
+// Verify
+const verify = JSON.parse(fs.readFileSync('api_response.json', 'utf8'));
+console.log('\n=== VERIFY ===');
+['month', 'quarter', 'semester'].forEach(tab => {
+  verify[tab]?.forEach(c => {
+    const t = c.topRankers?.[0];
+    if (t) console.log(`${c.categoryName}: #1 = ${t.name}, score=${t.score}, columns=${JSON.stringify(t.columns?.map(c=>c.value))}`);
+    else console.log(`${c.categoryName}: no rankers`);
+  });
+});
