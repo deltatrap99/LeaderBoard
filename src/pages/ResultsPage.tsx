@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Layout } from '../components/Layout';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { fetchResultsData, type ResultsData, type ResultSection } from '../data/resultsData';
+import { q2ResultsData } from '../data/q2Results';
+import { t06ResultsData } from '../data/t06Results';
 import { t05ResultsData } from '../data/t05Results';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Medal, Star, Crown, ChevronDown, ChevronUp, Award, Sparkles, Users, TrendingUp, Target } from 'lucide-react';
@@ -206,24 +208,36 @@ function ResultSectionCard({ section, index, theme }: { section: ResultSection; 
   );
 }
 
-type ResultPeriod = 'q1' | 't04' | 't05';
+type ResultPeriod = 'q2' | 't06' | 't05' | 'q1' | 't04';
 
 const RESULT_PERIODS: { key: ResultPeriod; label: string; icon: string }[] = [
-  { key: 'q1', label: 'Quý I', icon: '⭐' },
+  { key: 'q2', label: 'Quý II', icon: '🏆' },
+  { key: 't06', label: 'Tháng 6', icon: '🌟' },
   { key: 't05', label: 'Tháng 5', icon: '🔥' },
+  { key: 'q1', label: 'Quý I', icon: '⭐' },
   { key: 't04', label: 'Tháng 4', icon: '📅' },
 ];
 
 const PERIOD_HERO: Record<ResultPeriod, { title: string; subtitle: string; description: string }> = {
-  q1: {
-    title: 'Quý I / 2026',
+  q2: {
+    title: 'Quý II / 2026',
     subtitle: 'Kết quả chính thức',
-    description: 'Danh sách các Đại sứ đạt giải chính thức trong chương trình Galaxy Elite Awards Quý I/2026',
+    description: 'Danh sách các Đại sứ và Quản lý xuất sắc đạt giải chính thức trong chương trình Thi đua Quý II/2026',
+  },
+  t06: {
+    title: 'Tháng 06 / 2026',
+    subtitle: 'Kết quả chính thức',
+    description: 'Danh sách các Đại sứ và Quản lý xuất sắc đạt giải Thưởng thi đua Tháng 06/2026',
   },
   t05: {
     title: 'Tháng 05 / 2026',
     subtitle: 'Kết quả chính thức',
     description: 'Danh sách các Đại sứ đạt giải Thưởng bứt phá vượt giới hạn Tháng 5/2026',
+  },
+  q1: {
+    title: 'Quý I / 2026',
+    subtitle: 'Kết quả chính thức',
+    description: 'Danh sách các Đại sứ đạt giải chính thức trong chương trình Galaxy Elite Awards Quý I/2026',
   },
   t04: {
     title: 'Tháng 04 / 2026',
@@ -232,23 +246,32 @@ const PERIOD_HERO: Record<ResultPeriod, { title: string; subtitle: string; descr
   },
 };
 
+const STATIC_DATA_MAP: Record<string, ResultsData> = {
+  q2: q2ResultsData,
+  t06: t06ResultsData,
+  t05: t05ResultsData,
+};
+
 export function ResultsPage() {
   const { settings } = useSiteSettings();
   const [theme, setTheme] = useState<'blue' | 'dark'>(settings.defaultTheme || 'blue');
-  const [activePeriod, setActivePeriod] = useState<ResultPeriod>('q1');
+  const [activePeriod, setActivePeriod] = useState<ResultPeriod>('q2');
   const [data, setData] = useState<ResultsData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const isBlue = theme === 'blue';
   const hero = PERIOD_HERO[activePeriod];
-  const displayData = activePeriod === 't05' ? t05ResultsData : data;
+  const displayData = STATIC_DATA_MAP[activePeriod] || data;
 
   useEffect(() => {
-    fetchResultsData()
-      .then(d => { setData(d); setLoading(false); })
-      .catch(e => { setError(String(e)); setLoading(false); });
-  }, []);
+    if (!STATIC_DATA_MAP[activePeriod]) {
+      setLoading(true);
+      fetchResultsData(activePeriod)
+        .then(d => { setData(d); setLoading(false); })
+        .catch(e => { setError(String(e)); setLoading(false); });
+    }
+  }, [activePeriod]);
 
   const heroContent = (
     <>

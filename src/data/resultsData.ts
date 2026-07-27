@@ -21,10 +21,10 @@ export interface ResultsData {
  * Fetch results data from Vercel API (cached, pre-parsed JSON).
  * Fallback: fetch directly from Apps Script URL.
  */
-export async function fetchResultsData(): Promise<ResultsData> {
+export async function fetchResultsData(period: string = 'q1'): Promise<ResultsData> {
   // Try Vercel API first
   try {
-    const res = await fetch('/api/results');
+    const res = await fetch(`/api/results?period=${period}`);
     if (res.ok) {
       return await res.json();
     }
