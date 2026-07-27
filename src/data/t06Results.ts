@@ -20,8 +20,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Bích",
             "05/06/2026",
             "178.984.000 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -30,8 +29,7 @@ export const t06ResultsData: ResultsData = {
             "Phan Thị Chi Hoài",
             "31/05/2026",
             "120.874.200 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -40,8 +38,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Hồng Quyên",
             "07/04/2026",
             "105.996.000 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -50,8 +47,7 @@ export const t06ResultsData: ResultsData = {
             "Lê Hồng Phúc",
             "23/06/2026",
             "95.930.800 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -60,8 +56,7 @@ export const t06ResultsData: ResultsData = {
             "Đinh Oanh",
             "14/10/2025",
             "86.438.000 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -70,8 +65,7 @@ export const t06ResultsData: ResultsData = {
             "Ngô Hương Thảo",
             "11/02/2025",
             "63.119.600 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -80,8 +74,7 @@ export const t06ResultsData: ResultsData = {
             "Phạm Bích Hợp",
             "21/12/2025",
             "56.635.200 ₫",
-            "299.000 ₫",
-            ""
+            "299.000 ₫"
           ]
         },
         {
@@ -90,8 +83,7 @@ export const t06ResultsData: ResultsData = {
             "Lưu Thị Hà Trang",
             "29/04/2026",
             "43.092.000 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -100,8 +92,7 @@ export const t06ResultsData: ResultsData = {
             "Phan Hữu Trung",
             "24/06/2026",
             "40.405.600 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -110,8 +101,7 @@ export const t06ResultsData: ResultsData = {
             "Tran Thi Dieu Huong",
             "01/06/2026",
             "36.206.800 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -120,8 +110,7 @@ export const t06ResultsData: ResultsData = {
             "Dao Hana",
             "09/01/2026",
             "35.142.000 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -130,8 +119,7 @@ export const t06ResultsData: ResultsData = {
             "Lê Thị Thanh Lương",
             "02/02/2023",
             "34.332.400 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -140,8 +128,7 @@ export const t06ResultsData: ResultsData = {
             "Lê Hải Nguyên",
             "09/10/2023",
             "33.541.200 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -150,8 +137,7 @@ export const t06ResultsData: ResultsData = {
             "Sam Thương",
             "19/06/2026",
             "30.702.000 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -160,8 +146,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Hương",
             "09/01/2026",
             "30.249.600 ₫",
-            "199.000 ₫",
-            ""
+            "199.000 ₫"
           ]
         },
         {
@@ -170,8 +155,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Lan Hương",
             "20/02/2026",
             "29.321.600 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -180,8 +164,7 @@ export const t06ResultsData: ResultsData = {
             "Phạm Hương",
             "30/07/2025",
             "28.728.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -190,8 +173,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Hồng",
             "05/06/2026",
             "28.728.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -200,8 +182,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Hiếu",
             "20/06/2026",
             "28.728.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -210,8 +191,7 @@ export const t06ResultsData: ResultsData = {
             "NGUYỄN THỊ MƠ",
             "06/06/2026",
             "27.702.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -220,8 +200,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thuỳ Ngân",
             "14/10/2025",
             "26.280.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -230,8 +209,7 @@ export const t06ResultsData: ResultsData = {
             "Lê Thị Hương",
             "13/06/2026",
             "25.599.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -240,8 +218,7 @@ export const t06ResultsData: ResultsData = {
             "Đinh Thị Tú Anh",
             "17/05/2026",
             "22.800.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -250,8 +227,7 @@ export const t06ResultsData: ResultsData = {
             "VÕ THỊ ĐÔNG",
             "06/06/2026",
             "22.764.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -260,8 +236,7 @@ export const t06ResultsData: ResultsData = {
             "Trần Vinh",
             "15/04/2026",
             "21.924.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -270,8 +245,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thơm",
             "09/04/2026",
             "21.714.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -280,8 +254,7 @@ export const t06ResultsData: ResultsData = {
             "Do Huyen",
             "22/06/2026",
             "21.672.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -290,8 +263,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Hạnh",
             "30/10/2025",
             "21.602.400 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -300,8 +272,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Hiền",
             "22/10/2025",
             "21.546.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -310,8 +281,7 @@ export const t06ResultsData: ResultsData = {
             "Vu Hoa",
             "30/03/2026",
             "21.546.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -320,8 +290,7 @@ export const t06ResultsData: ResultsData = {
             "Phạm Thị Duyên",
             "09/04/2026",
             "21.546.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -330,8 +299,7 @@ export const t06ResultsData: ResultsData = {
             "Dương Tiên",
             "28/06/2026",
             "21.546.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -340,8 +308,7 @@ export const t06ResultsData: ResultsData = {
             "Vũ Vui",
             "08/05/2026",
             "19.828.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -350,8 +317,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Tuyết",
             "05/04/2026",
             "18.222.400 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -360,8 +326,7 @@ export const t06ResultsData: ResultsData = {
             "Hoang Trong Hau",
             "30/06/2026",
             "18.039.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -370,8 +335,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Thảo Uyên",
             "14/06/2026",
             "15.184.400 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -380,8 +344,7 @@ export const t06ResultsData: ResultsData = {
             "Bùi Thị Xuyến",
             "26/02/2026",
             "15.120.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -390,8 +353,7 @@ export const t06ResultsData: ResultsData = {
             "Vũ Thành Quỳnh",
             "20/04/2026",
             "15.120.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -400,8 +362,7 @@ export const t06ResultsData: ResultsData = {
             "Phan Thị Thanh",
             "06/06/2026",
             "15.120.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -410,8 +371,7 @@ export const t06ResultsData: ResultsData = {
             "Lê Liễu",
             "26/03/2026",
             "15.015.840 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -420,8 +380,7 @@ export const t06ResultsData: ResultsData = {
             "Hoàng Dung",
             "23/06/2026",
             "14.660.800 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -430,8 +389,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Hằng",
             "19/06/2026",
             "14.560.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -440,8 +398,7 @@ export const t06ResultsData: ResultsData = {
             "Ngọ Trang",
             "30/06/2026",
             "14.364.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -450,8 +407,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Hải Tâm",
             "21/06/2026",
             "13.977.600 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -460,8 +416,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Hương Thảo",
             "26/12/2025",
             "13.723.200 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -470,8 +425,7 @@ export const t06ResultsData: ResultsData = {
             "Hoàng Thị Thành Vinh",
             "17/06/2026",
             "13.338.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -480,8 +434,7 @@ export const t06ResultsData: ResultsData = {
             "Trần Như Mai",
             "10/08/2025",
             "12.718.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -490,8 +443,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyen Thi Thuy Hang",
             "19/05/2026",
             "12.423.600 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -500,8 +452,7 @@ export const t06ResultsData: ResultsData = {
             "Đinh Thị Liên",
             "04/06/2026",
             "12.423.600 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -510,8 +461,7 @@ export const t06ResultsData: ResultsData = {
             "Tô Hằng",
             "18/09/2025",
             "10.960.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         },
         {
@@ -520,8 +470,7 @@ export const t06ResultsData: ResultsData = {
             "Lê Thị Thùy Dương",
             "20/10/2025",
             "10.200.000 ₫",
-            "99.000 ₫",
-            ""
+            "99.000 ₫"
           ]
         }
       ]
@@ -539,30 +488,21 @@ export const t06ResultsData: ResultsData = {
           "cells": [
             "1086",
             "Vương Thị Huế",
-            "799.578.000 ₫",
-            "",
-            "",
-            ""
+            "799.578.000 ₫"
           ]
         },
         {
           "cells": [
             "2086",
             "Lê Thanh Thúy",
-            "735.136.640 ₫",
-            "",
-            "",
-            ""
+            "735.136.640 ₫"
           ]
         },
         {
           "cells": [
             "10899",
             "Nguyễn Thị Hường",
-            "714.120.000 ₫",
-            "",
-            "",
-            ""
+            "714.120.000 ₫"
           ]
         }
       ]
@@ -584,8 +524,7 @@ export const t06ResultsData: ResultsData = {
         "Tên Đại sứ",
         "Cấp bậc",
         "Thực đạt mục tiêu cam kết",
-        "Số đại sứ mới active trong đội ngũ",
-        "Tích tỉ lệ thực đạt"
+        "Số đại sứ mới active trong đội ngũ"
       ],
       "entries": [
         {
@@ -595,8 +534,7 @@ export const t06ResultsData: ResultsData = {
             "Vũ Oanh",
             "Trưởng nhóm",
             "387,50%",
-            "5",
-            "387,50%"
+            "5"
           ]
         },
         {
@@ -606,8 +544,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Hảo",
             "Trưởng phòng",
             "1023,40%",
-            "13",
-            "1330,43%"
+            "13"
           ]
         },
         {
@@ -617,8 +554,7 @@ export const t06ResultsData: ResultsData = {
             "Nguyễn Thị Hường",
             "GĐ khu vực",
             "353,75%",
-            "31",
-            "731,09%"
+            "31"
           ]
         }
       ]
@@ -636,210 +572,147 @@ export const t06ResultsData: ResultsData = {
           "cells": [
             "12155",
             "Phan Thị Huệ",
-            "355.278.000 ₫",
-            "",
-            "",
-            ""
+            "355.278.000 ₫"
           ]
         },
         {
           "cells": [
             "7250",
             "Hoàng Thị Huyền",
-            "283.064.840 ₫",
-            "",
-            "",
-            ""
+            "283.064.840 ₫"
           ]
         },
         {
           "cells": [
             "13578",
             "Phạm Giang",
-            "272.189.280 ₫",
-            "",
-            "",
-            ""
+            "272.189.280 ₫"
           ]
         },
         {
           "cells": [
             "13221",
             "Phạm Hằng",
-            "246.111.000 ₫",
-            "",
-            "",
-            ""
+            "246.111.000 ₫"
           ]
         },
         {
           "cells": [
             "10067",
             "Nguyễn Thị Như Hằng",
-            "243.858.000 ₫",
-            "",
-            "",
-            ""
+            "243.858.000 ₫"
           ]
         },
         {
           "cells": [
             "9362",
             "Nguyễn Thị Kim Phương",
-            "240.615.800 ₫",
-            "",
-            "",
-            ""
+            "240.615.800 ₫"
           ]
         },
         {
           "cells": [
             "5221",
             "Nguyễn Thị Kim Cúc",
-            "232.897.800 ₫",
-            "",
-            "",
-            ""
+            "232.897.800 ₫"
           ]
         },
         {
           "cells": [
             "2905",
             "Lê Thị Thanh Yên",
-            "217.147.920 ₫",
-            "",
-            "",
-            ""
+            "217.147.920 ₫"
           ]
         },
         {
           "cells": [
             "2269",
             "Nguyễn Thị  Thuận",
-            "212.606.000 ₫",
-            "",
-            "",
-            ""
+            "212.606.000 ₫"
           ]
         },
         {
           "cells": [
             "5996",
             "Nguyễn Thị Quế",
-            "207.497.000 ₫",
-            "",
-            "",
-            ""
+            "207.497.000 ₫"
           ]
         },
         {
           "cells": [
             "13848",
             "Mai Hương",
-            "207.241.800 ₫",
-            "",
-            "",
-            ""
+            "207.241.800 ₫"
           ]
         },
         {
           "cells": [
             "11059",
             "Nguyễn Vang",
-            "192.942.000 ₫",
-            "",
-            "",
-            ""
+            "192.942.000 ₫"
           ]
         },
         {
           "cells": [
             "12773",
             "Vũ Hoàng Hà",
-            "182.664.840 ₫",
-            "",
-            "",
-            ""
+            "182.664.840 ₫"
           ]
         },
         {
           "cells": [
             "15239",
             "Nguyễn Bích",
-            "178.984.000 ₫",
-            "",
-            "",
-            ""
+            "178.984.000 ₫"
           ]
         },
         {
           "cells": [
             "7659",
             "Vũ Thị Thu Thủy",
-            "176.181.060 ₫",
-            "",
-            "",
-            ""
+            "176.181.060 ₫"
           ]
         },
         {
           "cells": [
             "11329",
             "Nguyễn Hương",
-            "166.653.600 ₫",
-            "",
-            "",
-            ""
+            "166.653.600 ₫"
           ]
         },
         {
           "cells": [
             "10263",
             "Thiều Hương",
-            "162.560.000 ₫",
-            "",
-            "",
-            ""
+            "162.560.000 ₫"
           ]
         },
         {
           "cells": [
             "12163",
             "Trần Thị Hương",
-            "161.622.000 ₫",
-            "",
-            "",
-            ""
+            "161.622.000 ₫"
           ]
         },
         {
           "cells": [
             "10920",
             "Bùi Tuyết Chinh",
-            "155.922.000 ₫",
-            "",
-            "",
-            ""
+            "155.922.000 ₫"
           ]
         },
         {
           "cells": [
             "2401",
             "Nguyễn Thị Nhàn",
-            "154.543.600 ₫",
-            "",
-            "",
-            ""
+            "154.543.600 ₫"
           ]
         },
         {
           "cells": [
             "9679",
             "Trần Quý",
-            "150.474.000 ₫",
-            "",
-            "",
-            ""
+            "150.474.000 ₫"
           ]
         }
       ]

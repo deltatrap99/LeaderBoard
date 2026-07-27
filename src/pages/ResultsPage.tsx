@@ -173,7 +173,7 @@ function ResultSectionCard({ section, index, theme }: { section: ResultSection; 
                               )}
                             </td>
                           )}
-                          {entry.cells.map((cell, ci) => {
+                          {entry.cells.slice(0, section.columns.length).map((cell, ci) => {
                             const isMoney = isMoneyColumn(section.columns[ci] || '');
                             const isName = section.columns[ci]?.toLowerCase().includes('tên') || section.columns[ci]?.toLowerCase().includes('họ và') || section.columns[ci]?.toLowerCase().includes('quản lý');
                             const isPrize = section.columns[ci]?.toLowerCase().includes('thưởng');
@@ -190,7 +190,7 @@ function ResultSectionCard({ section, index, theme }: { section: ResultSection; 
                                         : `font-medium ${isBlue ? 'text-slate-600' : 'text-white/60'}`
                                 }`}
                               >
-                                {cell || '—'}
+                                {cell || ''}
                               </td>
                             );
                           })}

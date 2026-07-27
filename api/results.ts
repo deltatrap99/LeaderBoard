@@ -100,6 +100,12 @@ function processResultsCsv(text: string, periodPrefix: string, mainTitle: string
       columns = rawHeaderRow.filter(c => c !== '');
     }
 
+    // Remove 'Tích tỉ lệ thực đạt' column if present
+    const removeIdx = columns.findIndex(c => c.toLowerCase().includes('tích tỉ lệ') || c.toLowerCase().includes('tích tỷ lệ'));
+    if (removeIdx !== -1) {
+      columns.splice(removeIdx, 1);
+    }
+
     const entries: any[] = [];
     for (let j = headerRowIdx + 1; j < sec.rows.length; j++) {
       const row = sec.rows[j];
@@ -113,6 +119,13 @@ function processResultsCsv(text: string, periodPrefix: string, mainTitle: string
       } else {
         cells = row.filter(c => c !== '');
       }
+
+      if (removeIdx !== -1 && cells.length > removeIdx) {
+        cells.splice(removeIdx, 1);
+      }
+
+      // Slice cells to columns length so no extra empty cells exist
+      cells = cells.slice(0, columns.length);
 
       cells = cells.map((cell, ci) => {
         const colName = (columns[ci] || '').toLowerCase();
