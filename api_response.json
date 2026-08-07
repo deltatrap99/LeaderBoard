@@ -1,1 +1,3817 @@
-{"month":[{"categoryId":"cat_month_n10kfg","categoryName":"1. THƯỞNG ĐẠI SỨ MỚI THÁNG 7","topRankers":[{"id":"15526","name":"Bùi Quân","columns":[{"label":"Ngày tham gia","value":"05/07/2026"},{"label":"Doanh số cá nhân","value":"148.914.000"}],"score2":"05/07/2026","score2Label":"Ngày tham gia","score":148914000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15471","name":"Trần Trung Thu","columns":[{"label":"Ngày tham gia","value":"01/07/2026"},{"label":"Doanh số cá nhân","value":"108.576.000"}],"score2":"01/07/2026","score2Label":"Ngày tham gia","score":108576000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15389","name":"VŨ THỊ NAM","columns":[{"label":"Ngày tham gia","value":"24/06/2026"},{"label":"Doanh số cá nhân","value":"89.640.000"}],"score2":"24/06/2026","score2Label":"Ngày tham gia","score":89640000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"}],"otherRankers":[{"id":"15448","name":"Phùng Thị Hằng","columns":[{"label":"Ngày tham gia","value":"29/06/2026"},{"label":"Doanh số cá nhân","value":"86.652.000"}],"score2":"29/06/2026","score2Label":"Ngày tham gia","score":86652000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12783","name":"Hoàng Lan","columns":[{"label":"Ngày tham gia","value":"26/07/2025"},{"label":"Doanh số cá nhân","value":"79.344.000"}],"score2":"26/07/2025","score2Label":"Ngày tham gia","score":79344000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15615","name":"Lê Lệ","columns":[{"label":"Ngày tham gia","value":"18/07/2026"},{"label":"Doanh số cá nhân","value":"73.080.000"}],"score2":"18/07/2026","score2Label":"Ngày tham gia","score":73080000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15489","name":"Nguyen Le Minh Anh","columns":[{"label":"Ngày tham gia","value":"02/07/2026"},{"label":"Doanh số cá nhân","value":"41.108.000"}],"score2":"02/07/2026","score2Label":"Ngày tham gia","score":41108000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15585","name":"Cao Thị Thanh Tân","columns":[{"label":"Ngày tham gia","value":"14/07/2026"},{"label":"Doanh số cá nhân","value":"35.496.000"}],"score2":"14/07/2026","score2Label":"Ngày tham gia","score":35496000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15399","name":"Vũ Xoan","columns":[{"label":"Ngày tham gia","value":"25/06/2026"},{"label":"Doanh số cá nhân","value":"32.403.000"}],"score2":"25/06/2026","score2Label":"Ngày tham gia","score":32403000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15619","name":"Trần Tú Oanh","columns":[{"label":"Ngày tham gia","value":"19/07/2026"},{"label":"Doanh số cá nhân","value":"31.863.000"}],"score2":"19/07/2026","score2Label":"Ngày tham gia","score":31863000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15525","name":"Hoàng Giang","columns":[{"label":"Ngày tham gia","value":"05/07/2026"},{"label":"Doanh số cá nhân","value":"29.856.000"}],"score2":"05/07/2026","score2Label":"Ngày tham gia","score":29856000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"14465","name":"Trung Kiên","columns":[{"label":"Ngày tham gia","value":"15/01/2026"},{"label":"Doanh số cá nhân","value":"28.188.000"}],"score2":"15/01/2026","score2Label":"Ngày tham gia","score":28188000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15577","name":"Trần Thị Hoàn","columns":[{"label":"Ngày tham gia","value":"13/07/2026"},{"label":"Doanh số cá nhân","value":"27.786.000"}],"score2":"13/07/2026","score2Label":"Ngày tham gia","score":27786000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15033","name":"VU THI QUYNH CHI","columns":[{"label":"Ngày tham gia","value":"28/04/2026"},{"label":"Doanh số cá nhân","value":"25.839.000"}],"score2":"28/04/2026","score2Label":"Ngày tham gia","score":25839000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15488","name":"Lê Thị Hằng Liên","columns":[{"label":"Ngày tham gia","value":"01/07/2026"},{"label":"Doanh số cá nhân","value":"25.599.000"}],"score2":"01/07/2026","score2Label":"Ngày tham gia","score":25599000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"14235","name":"Chu Thị Nga","columns":[{"label":"Ngày tham gia","value":"28/11/2025"},{"label":"Doanh số cá nhân","value":"21.924.000"}],"score2":"28/11/2025","score2Label":"Ngày tham gia","score":21924000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15129","name":"Lê Thảo Huệ","columns":[{"label":"Ngày tham gia","value":"15/05/2026"},{"label":"Doanh số cá nhân","value":"21.924.000"}],"score2":"15/05/2026","score2Label":"Ngày tham gia","score":21924000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15490","name":"PHẠM THỊ THANH THUÝ","columns":[{"label":"Ngày tham gia","value":"02/07/2026"},{"label":"Doanh số cá nhân","value":"21.924.000"}],"score2":"02/07/2026","score2Label":"Ngày tham gia","score":21924000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15579","name":"Hoàng Thị Ngà","columns":[{"label":"Ngày tham gia","value":"13/07/2026"},{"label":"Doanh số cá nhân","value":"21.924.000"}],"score2":"13/07/2026","score2Label":"Ngày tham gia","score":21924000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15542","name":"Mai Thúy","columns":[{"label":"Ngày tham gia","value":"06/07/2026"},{"label":"Doanh số cá nhân","value":"21.096.000"}],"score2":"06/07/2026","score2Label":"Ngày tham gia","score":21096000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15484","name":"Trần Mạnh Hùng","columns":[{"label":"Ngày tham gia","value":"01/07/2026"},{"label":"Doanh số cá nhân","value":"17.640.000"}],"score2":"01/07/2026","score2Label":"Ngày tham gia","score":17640000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15134","name":"Đoàn Thị Hương Sen","columns":[{"label":"Ngày tham gia","value":"15/05/2026"},{"label":"Doanh số cá nhân","value":"16.550.000"}],"score2":"15/05/2026","score2Label":"Ngày tham gia","score":16550000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15547","name":"Nguyễn Hạnh","columns":[{"label":"Ngày tham gia","value":"07/07/2026"},{"label":"Doanh số cá nhân","value":"16.240.000"}],"score2":"07/07/2026","score2Label":"Ngày tham gia","score":16240000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15386","name":"Vũ Hiền","columns":[{"label":"Ngày tham gia","value":"24/06/2026"},{"label":"Doanh số cá nhân","value":"15.360.000"}],"score2":"24/06/2026","score2Label":"Ngày tham gia","score":15360000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15510","name":"Nguyễn Đức Thắng","columns":[{"label":"Ngày tham gia","value":"04/07/2026"},{"label":"Doanh số cá nhân","value":"14.540.600"}],"score2":"04/07/2026","score2Label":"Ngày tham gia","score":14540600,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15479","name":"Phạm Liên Dung","columns":[{"label":"Ngày tham gia","value":"01/07/2026"},{"label":"Doanh số cá nhân","value":"13.400.000"}],"score2":"01/07/2026","score2Label":"Ngày tham gia","score":13400000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15313","name":"Huỳnh Thị Diễm Lộc","columns":[{"label":"Ngày tham gia","value":"14/06/2026"},{"label":"Doanh số cá nhân","value":"13.200.000"}],"score2":"14/06/2026","score2Label":"Ngày tham gia","score":13200000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15501","name":"Hoàng Hồng","columns":[{"label":"Ngày tham gia","value":"03/07/2026"},{"label":"Doanh số cá nhân","value":"12.764.000"}],"score2":"03/07/2026","score2Label":"Ngày tham gia","score":12764000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15611","name":"Phạm Thị Kim Thương","columns":[{"label":"Ngày tham gia","value":"17/07/2026"},{"label":"Doanh số cá nhân","value":"11.424.000"}],"score2":"17/07/2026","score2Label":"Ngày tham gia","score":11424000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15415","name":"Nguyễn Vân","columns":[{"label":"Ngày tham gia","value":"26/06/2026"},{"label":"Doanh số cá nhân","value":"10.956.680"}],"score2":"26/06/2026","score2Label":"Ngày tham gia","score":10956680,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15235","name":"TÔ TRANG","columns":[{"label":"Ngày tham gia","value":"04/06/2026"},{"label":"Doanh số cá nhân","value":"10.920.000"}],"score2":"04/06/2026","score2Label":"Ngày tham gia","score":10920000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"11468","name":"Bùi Dung","columns":[{"label":"Ngày tham gia","value":"22/02/2025"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"22/02/2025","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14938","name":"Tạ Thị Thu Hà","columns":[{"label":"Ngày tham gia","value":"07/04/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"07/04/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15332","name":"Phí Thị Phương Thảo","columns":[{"label":"Ngày tham gia","value":"17/06/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"17/06/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15481","name":"Nguyễn Huyền","columns":[{"label":"Ngày tham gia","value":"01/07/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"01/07/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15515","name":"Đặng Duyên","columns":[{"label":"Ngày tham gia","value":"04/07/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"04/07/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15519","name":"Huyền Trang","columns":[{"label":"Ngày tham gia","value":"04/07/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"04/07/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15523","name":"Nguyen Thao","columns":[{"label":"Ngày tham gia","value":"05/07/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"05/07/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15561","name":"Hàn Thơm","columns":[{"label":"Ngày tham gia","value":"10/07/2026"},{"label":"Doanh số cá nhân","value":"7.680.000"}],"score2":"10/07/2026","score2Label":"Ngày tham gia","score":7680000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"11624","name":"Nguyễn Thị Quỳnh Tam","columns":[{"label":"Ngày tham gia","value":"18/03/2025"},{"label":"Doanh số cá nhân","value":"7.560.000"}],"score2":"18/03/2025","score2Label":"Ngày tham gia","score":7560000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13593","name":"Lê Hà","columns":[{"label":"Ngày tham gia","value":"22/09/2025"},{"label":"Doanh số cá nhân","value":"7.560.000"}],"score2":"22/09/2025","score2Label":"Ngày tham gia","score":7560000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14833","name":"Vũ Thu","columns":[{"label":"Ngày tham gia","value":"25/03/2026"},{"label":"Doanh số cá nhân","value":"7.560.000"}],"score2":"25/03/2026","score2Label":"Ngày tham gia","score":7560000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15426","name":"Phạm Quy","columns":[{"label":"Ngày tham gia","value":"27/06/2026"},{"label":"Doanh số cá nhân","value":"7.560.000"}],"score2":"27/06/2026","score2Label":"Ngày tham gia","score":7560000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15514","name":"Trần Thùy Loan","columns":[{"label":"Ngày tham gia","value":"04/07/2026"},{"label":"Doanh số cá nhân","value":"7.560.000"}],"score2":"04/07/2026","score2Label":"Ngày tham gia","score":7560000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15578","name":"Phùng Thị Thu Hằng","columns":[{"label":"Ngày tham gia","value":"13/07/2026"},{"label":"Doanh số cá nhân","value":"7.560.000"}],"score2":"13/07/2026","score2Label":"Ngày tham gia","score":7560000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15265","name":"Đào Huyền","columns":[{"label":"Ngày tham gia","value":"08/06/2026"},{"label":"Doanh số cá nhân","value":"7.320.000"}],"score2":"08/06/2026","score2Label":"Ngày tham gia","score":7320000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14875","name":"Nguyễn Giang","columns":[{"label":"Ngày tham gia","value":"30/03/2026"},{"label":"Doanh số cá nhân","value":"6.988.800"}],"score2":"30/03/2026","score2Label":"Ngày tham gia","score":6988800,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15560","name":"Nguyễn Thị Thúy","columns":[{"label":"Ngày tham gia","value":"10/07/2026"},{"label":"Doanh số cá nhân","value":"6.700.000"}],"score2":"10/07/2026","score2Label":"Ngày tham gia","score":6700000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15610","name":"An Đức Tuấn","columns":[{"label":"Ngày tham gia","value":"17/07/2026"},{"label":"Doanh số cá nhân","value":"5.760.000"}],"score2":"17/07/2026","score2Label":"Ngày tham gia","score":5760000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15485","name":"Phan Ngàn","columns":[{"label":"Ngày tham gia","value":"01/07/2026"},{"label":"Doanh số cá nhân","value":"2.520.000"}],"score2":"01/07/2026","score2Label":"Ngày tham gia","score":2520000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15591","name":"Nguyễn Thị Huệ","columns":[{"label":"Ngày tham gia","value":"14/07/2026"},{"label":"Doanh số cá nhân","value":"2.448.000"}],"score2":"14/07/2026","score2Label":"Ngày tham gia","score":2448000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15575","name":"Nguyễn Thị Uyên","columns":[{"label":"Ngày tham gia","value":"13/07/2026"},{"label":"Doanh số cá nhân","value":"1.404.000"}],"score2":"13/07/2026","score2Label":"Ngày tham gia","score":1404000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15601","name":"Dương Thị Ngân","columns":[{"label":"Ngày tham gia","value":"15/07/2026"},{"label":"Doanh số cá nhân","value":"1.404.000"}],"score2":"15/07/2026","score2Label":"Ngày tham gia","score":1404000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15498","name":"Đinh Hồng","columns":[{"label":"Ngày tham gia","value":"03/07/2026"},{"label":"Doanh số cá nhân","value":"936.000"}],"score2":"03/07/2026","score2Label":"Ngày tham gia","score":936000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15507","name":"Nguyễn Thị Mến","columns":[{"label":"Ngày tham gia","value":"03/07/2026"},{"label":"Doanh số cá nhân","value":"784.000"}],"score2":"03/07/2026","score2Label":"Ngày tham gia","score":784000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15299","name":"quyet quyet","columns":[{"label":"Ngày tham gia","value":"12/06/2026"},{"label":"Doanh số cá nhân","value":"274.500"}],"score2":"12/06/2026","score2Label":"Ngày tham gia","score":274500,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15470","name":"Lý Phạm","columns":[{"label":"Ngày tham gia","value":"30/06/2026"},{"label":"Doanh số cá nhân","value":"274.500"}],"score2":"30/06/2026","score2Label":"Ngày tham gia","score":274500,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"}],"hasMultipleScores":true,"scoreLabels":["Ngày tham gia","Doanh số cá nhân"],"isUpdating":false},{"categoryId":"cat_month_c238k","categoryName":"2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 7","topRankers":[{"id":"2086","name":"Lê Thanh Thúy","columns":[{"label":"Doanh số cá nhân","value":"755.879.800"}],"score":755879800,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"10899","name":"Nguyễn Thị Hường","columns":[{"label":"Doanh số cá nhân","value":"437.842.000"}],"score":437842000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"3289","name":"Nguyễn Thị Thu Hà","columns":[{"label":"Doanh số cá nhân","value":"323.153.200"}],"score":323153200,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"}],"otherRankers":[{"id":"2772","name":"Nguyễn Thị Hảo","columns":[{"label":"Doanh số cá nhân","value":"288.053.000"}],"score":288053000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12814","name":"Phan Hiên","columns":[{"label":"Doanh số cá nhân","value":"273.157.280"}],"score":273157280,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12773","name":"Vũ Hoàng Hà","columns":[{"label":"Doanh số cá nhân","value":"256.948.200"}],"score":256948200,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"13919","name":"Nguyễn Thúy Hằng","columns":[{"label":"Doanh số cá nhân","value":"212.184.000"}],"score":212184000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12900","name":"Huỳnh Thị Thanh Tuyền","columns":[{"label":"Doanh số cá nhân","value":"200.440.600"}],"score":200440600,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15362","name":"Do Huyen","columns":[{"label":"Doanh số cá nhân","value":"186.822.000"}],"score":186822000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"10650","name":"Trịnh Thị Thu Hà","columns":[{"label":"Doanh số cá nhân","value":"180.420.480"}],"score":180420480,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"2784","name":"Phạm Thị Thu Thủy","columns":[{"label":"Doanh số cá nhân","value":"161.383.100"}],"score":161383100,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"2905","name":"Lê Thị Thanh Yên","columns":[{"label":"Doanh số cá nhân","value":"157.323.760"}],"score":157323760,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"6000","name":"Nguyễn Thị Hân","columns":[{"label":"Doanh số cá nhân","value":"156.600.000"}],"score":156600000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"4135","name":"Lê Thị Thanh Trang","columns":[{"label":"Doanh số cá nhân","value":"154.080.000"}],"score":154080000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"13717","name":"Phạm Thị Minh","columns":[{"label":"Doanh số cá nhân","value":"151.662.000"}],"score":151662000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"7659","name":"Vũ Thị Thu Thủy","columns":[{"label":"Doanh số cá nhân","value":"150.564.740"}],"score":150564740,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15526","name":"Bùi Quân","columns":[{"label":"Doanh số cá nhân","value":"148.914.000"}],"score":148914000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12008","name":"Thạch Thị Đào Liên","columns":[{"label":"Doanh số cá nhân","value":"148.266.000"}],"score":148266000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"10449","name":"Nguyen Thi Hong","columns":[{"label":"Doanh số cá nhân","value":"148.175.000"}],"score":148175000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"2909","name":"Lê Thị Minh Phượng","columns":[{"label":"Doanh số cá nhân","value":"141.776.000"}],"score":141776000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12586","name":"Trần Thị Thu Thanh","columns":[{"label":"Doanh số cá nhân","value":"130.976.700"}],"score":130976700,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"14343","name":"Nguyen Duyen","columns":[{"label":"Doanh số cá nhân","value":"130.180.000"}],"score":130180000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"2779","name":"Giáp Thị Quyên","columns":[{"label":"Doanh số cá nhân","value":"129.996.000"}],"score":129996000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"6050","name":"Nguyễn Thị Thu Phương","columns":[{"label":"Doanh số cá nhân","value":"122.021.200"}],"score":122021200,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"14709","name":"Ha Nai Ly","columns":[{"label":"Doanh số cá nhân","value":"121.743.080"}],"score":121743080,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"11776","name":"Lê Hoa","columns":[{"label":"Doanh số cá nhân","value":"120.942.000"}],"score":120942000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"4563","name":"Phan thanh hà","columns":[{"label":"Doanh số cá nhân","value":"118.367.980"}],"score":118367980,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"1586","name":"Nguyễn Thị Hồng Hạnh","columns":[{"label":"Doanh số cá nhân","value":"112.022.000"}],"score":112022000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"11126","name":"Thái Vui","columns":[{"label":"Doanh số cá nhân","value":"108.780.000"}],"score":108780000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"15471","name":"Trần Trung Thu","columns":[{"label":"Doanh số cá nhân","value":"108.576.000"}],"score":108576000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"10067","name":"Nguyễn Thị Như Hằng","columns":[{"label":"Doanh số cá nhân","value":"107.532.000"}],"score":107532000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"2121","name":"Mai Thị Tố Nga","columns":[{"label":"Doanh số cá nhân","value":"106.186.000"}],"score":106186000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"12723","name":"Giang Hồng Diệp","columns":[{"label":"Doanh số cá nhân","value":"105.178.000"}],"score":105178000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"14265","name":"Bùi Thị Bạch Tuyết","columns":[{"label":"Doanh số cá nhân","value":"104.332.000"}],"score":104332000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"9193","name":"Văn Dung","columns":[{"label":"Doanh số cá nhân","value":"102.876.000"}],"score":102876000,"scoreLabel":"Doanh số cá nhân","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"9300","name":"Mai Thị Thuỳ","columns":[{"label":"Doanh số cá nhân","value":"95.708.000"}],"score":95708000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"2269","name":"Nguyễn Thị  Thuận","columns":[{"label":"Doanh số cá nhân","value":"94.968.000"}],"score":94968000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"10594","name":"Phan Quỳnh Hoa","columns":[{"label":"Doanh số cá nhân","value":"94.319.000"}],"score":94319000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"5141","name":"Nguyễn Thị Hương","columns":[{"label":"Doanh số cá nhân","value":"90.801.200"}],"score":90801200,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13843","name":"Phan Thị Tuấn Oanh","columns":[{"label":"Doanh số cá nhân","value":"90.369.000"}],"score":90369000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"10552","name":"Nguyễn Thị Thu Hà","columns":[{"label":"Doanh số cá nhân","value":"89.845.600"}],"score":89845600,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15389","name":"VŨ THỊ NAM","columns":[{"label":"Doanh số cá nhân","value":"89.640.000"}],"score":89640000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"8950","name":"Phan Thi Lan Anh","columns":[{"label":"Doanh số cá nhân","value":"89.491.800"}],"score":89491800,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"11306","name":"Ngô Hương Thảo","columns":[{"label":"Doanh số cá nhân","value":"88.032.240"}],"score":88032240,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"12767","name":"Vũ Thị Thanh Tâm","columns":[{"label":"Doanh số cá nhân","value":"88.006.500"}],"score":88006500,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13517","name":"Nguyễn Thị Thu Hà","columns":[{"label":"Doanh số cá nhân","value":"86.688.000"}],"score":86688000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13809","name":"Nguyễn Hồi","columns":[{"label":"Doanh số cá nhân","value":"86.652.000"}],"score":86652000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15448","name":"Phùng Thị Hằng","columns":[{"label":"Doanh số cá nhân","value":"86.652.000"}],"score":86652000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"12190","name":"Nguyễn Thị Sâm","columns":[{"label":"Doanh số cá nhân","value":"86.040.000"}],"score":86040000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"12779","name":"Nguyễn Minh Nguyệt","columns":[{"label":"Doanh số cá nhân","value":"84.444.000"}],"score":84444000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"5826","name":"Nguyễn Thị Vân","columns":[{"label":"Doanh số cá nhân","value":"83.131.000"}],"score":83131000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13222","name":"Lê Mạnh","columns":[{"label":"Doanh số cá nhân","value":"82.960.000"}],"score":82960000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14093","name":"Nguyễn Thị Hương Giang","columns":[{"label":"Doanh số cá nhân","value":"80.598.000"}],"score":80598000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14816","name":"Vũ Thị Quy","columns":[{"label":"Doanh số cá nhân","value":"80.388.000"}],"score":80388000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"12317","name":"Bùi Thị Tú Anh","columns":[{"label":"Doanh số cá nhân","value":"80.122.000"}],"score":80122000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"12783","name":"Hoàng Lan","columns":[{"label":"Doanh số cá nhân","value":"79.344.000"}],"score":79344000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13995","name":"Hoàng Thị Thúy Mai","columns":[{"label":"Doanh số cá nhân","value":"79.204.400"}],"score":79204400,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14665","name":"Khuất Thị Là","columns":[{"label":"Doanh số cá nhân","value":"79.134.000"}],"score":79134000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"4448","name":"Hoàng Anh Tú","columns":[{"label":"Doanh số cá nhân","value":"76.872.000"}],"score":76872000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"1086","name":"Vương Thị Huế","columns":[{"label":"Doanh số cá nhân","value":"76.754.000"}],"score":76754000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"11902","name":"Phạm Thị Nương","columns":[{"label":"Doanh số cá nhân","value":"76.662.000"}],"score":76662000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"9362","name":"Nguyễn Thị Kim Phương","columns":[{"label":"Doanh số cá nhân","value":"76.584.560"}],"score":76584560,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"10250","name":"Phạm Thị Hướng","columns":[{"label":"Doanh số cá nhân","value":"75.146.000"}],"score":75146000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"14342","name":"Nguyễn Thị Mỹ Hạnh","columns":[{"label":"Doanh số cá nhân","value":"74.172.000"}],"score":74172000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"15615","name":"Lê Lệ","columns":[{"label":"Doanh số cá nhân","value":"73.080.000"}],"score":73080000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"12155","name":"Phan Thị Huệ","columns":[{"label":"Doanh số cá nhân","value":"71.876.000"}],"score":71876000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"10923","name":"Vũ Oanh","columns":[{"label":"Doanh số cá nhân","value":"71.708.400"}],"score":71708400,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"13578","name":"Phạm Giang","columns":[{"label":"Doanh số cá nhân","value":"71.074.400"}],"score":71074400,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"11990","name":"Phạm Thị Huệ","columns":[{"label":"Doanh số cá nhân","value":"70.982.000"}],"score":70982000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"},{"id":"2112","name":"Nguyễn Thị Ngoan","columns":[{"label":"Doanh số cá nhân","value":"70.928.000"}],"score":70928000,"scoreLabel":"Doanh số cá nhân","highlight":false,"status":"cận đạt"}],"hasMultipleScores":false,"scoreLabels":["Doanh số cá nhân"],"isUpdating":false},{"categoryId":"cat_month_p2cv98","categoryName":"3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 7","topRankers":[{"id":"15313","name":"Huỳnh Thị Diễm Lộc","columns":[{"label":"SL Đại sứ mới PSDT","value":"5"},{"label":"Doanh thu ĐS mới","value":"47.778.000"}],"score":5,"scoreLabel":"SL Đại sứ mới PSDT","score2":47778000,"score2Label":"Doanh thu ĐS mới","highlight":true,"status":"đủ điều kiện xét giải"}],"otherRankers":[{"id":"15313","name":"Huỳnh Thị Diễm Lộc","columns":[{"label":"SL Đại sứ mới PSDT","value":"5"},{"label":"Doanh thu ĐS mới","value":"47.778.000"}],"score":5,"scoreLabel":"SL Đại sứ mới PSDT","score2":47778000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"10899","name":"Nguyễn Thị Hường","columns":[{"label":"SL Đại sứ mới PSDT","value":"3"},{"label":"Doanh thu ĐS mới","value":"22.680.000"}],"score":3,"scoreLabel":"SL Đại sứ mới PSDT","score2":22680000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"13952","name":"Ngô Thị Hồng Dung","columns":[{"label":"SL Đại sứ mới PSDT","value":"2"},{"label":"Doanh thu ĐS mới","value":"108.576.000"}],"score":2,"scoreLabel":"SL Đại sứ mới PSDT","score2":108576000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"3289","name":"Nguyễn Thị Thu Hà","columns":[{"label":"SL Đại sứ mới PSDT","value":"2"},{"label":"Doanh thu ĐS mới","value":"54.327.000"}],"score":2,"scoreLabel":"SL Đại sứ mới PSDT","score2":54327000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"15025","name":"Ngô Kim Anh","columns":[{"label":"SL Đại sứ mới PSDT","value":"2"},{"label":"Doanh thu ĐS mới","value":"18.480.000"}],"score":2,"scoreLabel":"SL Đại sứ mới PSDT","score2":18480000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"5792","name":"Bùi Thị Hằng","columns":[{"label":"SL Đại sứ mới PSDT","value":"2"},{"label":"Doanh thu ĐS mới","value":"17.945.480"}],"score":2,"scoreLabel":"SL Đại sứ mới PSDT","score2":17945480,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"11306","name":"Ngô Hương Thảo","columns":[{"label":"SL Đại sứ mới PSDT","value":"2"},{"label":"Doanh thu ĐS mới","value":"15.476.600"}],"score":2,"scoreLabel":"SL Đại sứ mới PSDT","score2":15476600,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"11278","name":"Nguyễn Thị Kim Oanh","columns":[{"label":"SL Đại sứ mới PSDT","value":"1"},{"label":"Doanh thu ĐS mới","value":"148.914.000"}],"score":1,"scoreLabel":"SL Đại sứ mới PSDT","score2":148914000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"10552","name":"Nguyễn Thị Thu Hà","columns":[{"label":"SL Đại sứ mới PSDT","value":"1"},{"label":"Doanh thu ĐS mới","value":"108.576.000"}],"score":1,"scoreLabel":"SL Đại sứ mới PSDT","score2":108576000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"},{"id":"12043","name":"Vũ Thị Ninh","columns":[{"label":"SL Đại sứ mới PSDT","value":"1"},{"label":"Doanh thu ĐS mới","value":"89.640.000"}],"score":1,"scoreLabel":"SL Đại sứ mới PSDT","score2":89640000,"score2Label":"Doanh thu ĐS mới","highlight":false,"status":"cận đạt"}],"hasMultipleScores":true,"scoreLabels":["SL Đại sứ mới PSDT","Doanh thu ĐS mới"],"isUpdating":false},{"categoryId":"cat_month_dukz55","categoryName":"4. QUẢN LÝ TIÊU BIỂU THÁNG 7","topRankers":[{"id":"2086","name":"Lê Thanh Thúy","region":"Cấp Khu vực","columns":[{"label":"Cấp bậc","value":"GĐ khu vực cấp cao"},{"label":"Thực đạt mục tiêu cam kết","value":"126,34%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"17"}],"score":126.34,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":17,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":true,"status":"đủ điều kiện xét giải"},{"id":"10899","name":"Nguyễn Thị Hường","region":"Cấp Khu vực","columns":[{"label":"Cấp bậc","value":"GĐ khu vực cấp cao"},{"label":"Thực đạt mục tiêu cam kết","value":"118,30%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"18"}],"score":118.3,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":18,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":true,"status":"đủ điều kiện xét giải"}],"otherRankers":[{"id":"11278","name":"Nguyễn Thị Kim Oanh","region":"Cấp Nhóm","columns":[{"label":"Cấp bậc","value":"Trưởng nhóm"},{"label":"Thực đạt mục tiêu cam kết","value":"342,02%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"2"}],"score":342.02,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":2,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"10920","name":"Bùi Tuyết Chinh","region":"Cấp Nhóm","columns":[{"label":"Cấp bậc","value":"Trưởng nhóm cấp cao"},{"label":"Thực đạt mục tiêu cam kết","value":"258,73%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"2"}],"score":258.73,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":2,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"2779","name":"Giáp Thị Quyên","region":"Cấp Nhóm","columns":[{"label":"Cấp bậc","value":"Trưởng nhóm"},{"label":"Thực đạt mục tiêu cam kết","value":"256%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"0"}],"score":256,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":0,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"12190","name":"Nguyễn Thị Sâm","region":"Cấp Nhóm","columns":[{"label":"Cấp bậc","value":"Trưởng nhóm"},{"label":"Thực đạt mục tiêu cam kết","value":"256%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"0"}],"score":256,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":0,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"10923","name":"Vũ Oanh","region":"Cấp Nhóm","columns":[{"label":"Cấp bậc","value":"Trưởng nhóm cấp cao"},{"label":"Thực đạt mục tiêu cam kết","value":"251%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"1"}],"score":251,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":1,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"2784","name":"Phạm Thị Thu Thủy","region":"Cấp Phòng","columns":[{"label":"Cấp bậc","value":"Trưởng phòng"},{"label":"Thực đạt mục tiêu cam kết","value":"215%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"1"}],"score":215,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":1,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"10895","name":"Nguyễn Thị Mai","region":"Cấp Phòng","columns":[{"label":"Cấp bậc","value":"Trưởng phòng"},{"label":"Thực đạt mục tiêu cam kết","value":"172%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"3"}],"score":172,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":3,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"3289","name":"Nguyễn Thị Thu Hà","region":"Cấp Phòng","columns":[{"label":"Cấp bậc","value":"Trưởng phòng"},{"label":"Thực đạt mục tiêu cam kết","value":"171%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"4"}],"score":171,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":4,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"10386","name":"Le Vinh","region":"Cấp Phòng","columns":[{"label":"Cấp bậc","value":"Trưởng phòng"},{"label":"Thực đạt mục tiêu cam kết","value":"146%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"0"}],"score":146,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":0,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"2112","name":"Nguyễn Thị Ngoan","region":"Cấp Phòng","columns":[{"label":"Cấp bậc","value":"Trưởng phòng"},{"label":"Thực đạt mục tiêu cam kết","value":"132%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"1"}],"score":132,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":1,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"2772","name":"Nguyễn Thị Hảo","region":"Cấp Khu vực","columns":[{"label":"Cấp bậc","value":"GĐ khu vực"},{"label":"Thực đạt mục tiêu cam kết","value":"169%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"11"}],"score":169,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":11,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"10911","name":"Phạm Thị Huệ","region":"Cấp Khu vực","columns":[{"label":"Cấp bậc","value":"GĐ khu vực"},{"label":"Thực đạt mục tiêu cam kết","value":"127%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"10"}],"score":127,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":10,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"2121","name":"Mai Thị Tố Nga","region":"Cấp Khu vực","columns":[{"label":"Cấp bậc","value":"GĐ khu vực"},{"label":"Thực đạt mục tiêu cam kết","value":"108%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"4"}],"score":108,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":4,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"},{"id":"9769","name":"Trần Thị Ngọc Dung","region":"Cấp Khu vực","columns":[{"label":"Cấp bậc","value":"GĐ khu vực"},{"label":"Thực đạt mục tiêu cam kết","value":"101%"},{"label":"Số đại sứ mới active trong đội ngũ","value":"2"}],"score":101,"scoreLabel":"Thực đạt mục tiêu cam kết","score2":2,"score2Label":"Số đại sứ mới active trong đội ngũ","highlight":false,"status":"cận đạt"}],"hasMultipleScores":true,"scoreLabels":["Cấp bậc","Thực đạt mục tiêu cam kết","Số đại sứ mới active trong đội ngũ"],"isUpdating":false}],"quarter":[{"categoryId":"cat_quarter_lx17w","categoryName":"1. TOP 3 ĐẠI SỨ GIÁO DỤC XUẤT SẮC QUÝ III","topRankers":[{"id":"2086","name":"Lê Thanh Thúy","highlight":true,"columns":[{"label":"Số HV tuyển sinh","value":"39"},{"label":"Doanh số quý","value":"755.879.800"},{"label":"Team","value":"2086"}],"score":39,"scoreLabel":"Số HV tuyển sinh","score2":755879800,"score2Label":"Doanh số quý","rank":3,"hideBadge":true},{"id":"10899","name":"Nguyễn Thị Hường","highlight":true,"columns":[{"label":"Số HV tuyển sinh","value":"31"},{"label":"Doanh số quý","value":"437.842.000"},{"label":"Team","value":"10899"}],"score":31,"scoreLabel":"Số HV tuyển sinh","score2":437842000,"score2Label":"Doanh số quý","rank":0,"hideBadge":true}],"otherRankers":[],"hasMultipleScores":true,"scoreLabels":["Số HV tuyển sinh","Doanh số quý","Team"],"isUpdating":false},{"categoryId":"cat_quarter_bojryk","categoryName":"2. ĐẠI SỨ VÀNG QUÝ III","topRankers":[],"otherRankers":[{"id":"1586","name":"Nguyễn Thị Hồng Hạnh","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"18"},{"label":"Doanh số quý","value":"112.022.000"},{"label":"Team","value":"9769"}],"score":18,"scoreLabel":"Số HV tuyển sinh","score2":112022000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"2772","name":"Nguyễn Thị Hảo","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"14"},{"label":"Doanh số quý","value":"288.053.000"},{"label":"Team","value":"2772"}],"score":14,"scoreLabel":"Số HV tuyển sinh","score2":288053000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"11306","name":"Ngô Hương Thảo","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"14"},{"label":"Doanh số quý","value":"88.032.240"},{"label":"Team","value":"2772"}],"score":14,"scoreLabel":"Số HV tuyển sinh","score2":88032240,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12723","name":"Giang Hồng Diệp","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"13"},{"label":"Doanh số quý","value":"105.178.000"},{"label":"Team","value":"9769"}],"score":13,"scoreLabel":"Số HV tuyển sinh","score2":105178000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12814","name":"Phan Hiên","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"12"},{"label":"Doanh số quý","value":"273.157.280"},{"label":"Team","value":"10899"}],"score":12,"scoreLabel":"Số HV tuyển sinh","score2":273157280,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"14613","name":"Nguyễn Hồng","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"12"},{"label":"Doanh số quý","value":"100.318.000"},{"label":"Team","value":"2086"}],"score":12,"scoreLabel":"Số HV tuyển sinh","score2":100318000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"13919","name":"Nguyễn Thúy Hằng","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"11"},{"label":"Doanh số quý","value":"212.184.000"},{"label":"Team","value":"2086"}],"score":11,"scoreLabel":"Số HV tuyển sinh","score2":212184000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"7659","name":"Vũ Thị Thu Thủy","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"11"},{"label":"Doanh số quý","value":"150.564.740"},{"label":"Team","value":"2086"}],"score":11,"scoreLabel":"Số HV tuyển sinh","score2":150564740,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"13450","name":"Phạm Thị Quyên","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"11"},{"label":"Doanh số quý","value":"101.262.000"},{"label":"Team","value":"9769"}],"score":11,"scoreLabel":"Số HV tuyển sinh","score2":101262000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12773","name":"Vũ Hoàng Hà","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"10"},{"label":"Doanh số quý","value":"256.948.200"},{"label":"Team","value":"10899"}],"score":10,"scoreLabel":"Số HV tuyển sinh","score2":256948200,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12900","name":"Huỳnh Thị Thanh Tuyền","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"10"},{"label":"Doanh số quý","value":"200.440.600"},{"label":"Team","value":"2772"}],"score":10,"scoreLabel":"Số HV tuyển sinh","score2":200440600,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"13717","name":"Phạm Thị Minh","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"10"},{"label":"Doanh số quý","value":"151.662.000"},{"label":"Team","value":"10899"}],"score":10,"scoreLabel":"Số HV tuyển sinh","score2":151662000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"11776","name":"Lê Hoa","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"10"},{"label":"Doanh số quý","value":"120.942.000"},{"label":"Team","value":"9769"}],"score":10,"scoreLabel":"Số HV tuyển sinh","score2":120942000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"15362","name":"Do Huyen","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"186.822.000"},{"label":"Team","value":"10899"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":186822000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"10449","name":"Nguyen Thi Hong","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"148.175.000"},{"label":"Team","value":"2086"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":148175000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12586","name":"Trần Thị Thu Thanh","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"130.976.700"},{"label":"Team","value":"2772"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":130976700,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"2121","name":"Mai Thị Tố Nga","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"106.186.000"},{"label":"Team","value":"2086"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":106186000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"10552","name":"Nguyễn Thị Thu Hà","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"89.845.600"},{"label":"Team","value":"9960"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":89845600,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12767","name":"Vũ Thị Thanh Tâm","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"88.006.500"},{"label":"Team","value":"2086"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":88006500,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12779","name":"Nguyễn Minh Nguyệt","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"84.444.000"},{"label":"Team","value":"10899"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":84444000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"5996","name":"Nguyễn Thị Quế","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"9"},{"label":"Doanh số quý","value":"49.701.680"},{"label":"Team","value":"2086"}],"score":9,"scoreLabel":"Số HV tuyển sinh","score2":49701680,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"2784","name":"Phạm Thị Thu Thủy","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"161.383.100"},{"label":"Team","value":"2086"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":161383100,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"2905","name":"Lê Thị Thanh Yên","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"157.323.760"},{"label":"Team","value":"2772"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":157323760,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12008","name":"Thạch Thị Đào Liên","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"148.266.000"},{"label":"Team","value":"10899"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":148266000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"6050","name":"Nguyễn Thị Thu Phương","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"122.021.200"},{"label":"Team","value":"2086"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":122021200,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"8950","name":"Phan Thi Lan Anh","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"89.491.800"},{"label":"Team","value":"2086"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":89491800,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"1086","name":"Vương Thị Huế","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"76.754.000"},{"label":"Team","value":"9769"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":76754000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"12087","name":"Đào Thị Thúy","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"66.034.000"},{"label":"Team","value":"10899"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":66034000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"11704","name":"Đặng Ngọc","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"8"},{"label":"Doanh số quý","value":"65.250.000"},{"label":"Team","value":"9769"}],"score":8,"scoreLabel":"Số HV tuyển sinh","score2":65250000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"3289","name":"Nguyễn Thị Thu Hà","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"323.153.200"},{"label":"Team","value":"2772"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":323153200,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"2909","name":"Lê Thị Minh Phượng","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"141.776.000"},{"label":"Team","value":"9769"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":141776000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"14343","name":"Nguyen Duyen","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"130.180.000"},{"label":"Team","value":"2086"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":130180000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"2779","name":"Giáp Thị Quyên","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"129.996.000"},{"label":"Team","value":"9769"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":129996000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"14709","name":"Ha Nai Ly","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"121.743.080"},{"label":"Team","value":"2086"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":121743080,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"14265","name":"Bùi Thị Bạch Tuyết","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"104.332.000"},{"label":"Team","value":"10899"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":104332000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"9193","name":"Văn Dung","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"102.876.000"},{"label":"Team","value":"10899"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":102876000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"9146","name":"Nguyễn Thị Thuận","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"101.064.000"},{"label":"Team","value":"2086"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":101064000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"10066","name":"Nguyễn Thị Ngọc Lan","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"60.316.800"},{"label":"Team","value":"9960"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":60316800,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"7277","name":"Nguyễn Thị Huệ","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"57.842.800"},{"label":"Team","value":"10899"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":57842800,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"14787","name":"Nguyễn Thị Lan Anh","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"53.760.000"},{"label":"Team","value":"9769"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":53760000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"11278","name":"Nguyễn Thị Kim Oanh","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"50.661.600"},{"label":"Team","value":"10899"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":50661600,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"15577","name":"Trần Thị Hoàn","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"7"},{"label":"Doanh số quý","value":"27.786.000"},{"label":"Team","value":"2086"}],"score":7,"scoreLabel":"Số HV tuyển sinh","score2":27786000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"10650","name":"Trịnh Thị Thu Hà","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"6"},{"label":"Doanh số quý","value":"180.420.480"},{"label":"Team","value":"2086"}],"score":6,"scoreLabel":"Số HV tuyển sinh","score2":180420480,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"11126","name":"Thái Vui","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"6"},{"label":"Doanh số quý","value":"108.780.000"},{"label":"Team","value":"10899"}],"score":6,"scoreLabel":"Số HV tuyển sinh","score2":108780000,"score2Label":"Doanh số quý","status":"cận đạt"},{"id":"10594","name":"Phan Quỳnh Hoa","highlight":false,"columns":[{"label":"Số HV tuyển sinh","value":"6"},{"label":"Doanh số quý","value":"94.319.000"},{"label":"Team","value":"2772"}],"score":6,"scoreLabel":"Số HV tuyển sinh","score2":94319000,"score2Label":"Doanh số quý","status":"cận đạt"}],"hasMultipleScores":true,"scoreLabels":["Số HV tuyển sinh","Doanh số quý","Team"],"isUpdating":false},{"categoryId":"cat_quarter_09ao2lg","categoryName":"3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC QUÝ III","topRankers":[],"otherRankers":[{"id":"15313","name":"Huỳnh Thị Diễm Lộc","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"5"},{"label":"Tổng doanh số Đại sứ mới active","value":"47.778.000"},{"label":"Team","value":"2086"}],"score":5,"scoreLabel":"Số lượng Đại sứ mới active","score2":47778000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"10899","name":"Nguyễn Thị Hường","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"3"},{"label":"Tổng doanh số Đại sứ mới active","value":"22.680.000"},{"label":"Team","value":"10899"}],"score":3,"scoreLabel":"Số lượng Đại sứ mới active","score2":22680000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"13952","name":"Ngô Thị Hồng Dung","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"2"},{"label":"Tổng doanh số Đại sứ mới active","value":"108.576.000"},{"label":"Team","value":"2772"}],"score":2,"scoreLabel":"Số lượng Đại sứ mới active","score2":108576000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"3289","name":"Nguyễn Thị Thu Hà","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"2"},{"label":"Tổng doanh số Đại sứ mới active","value":"54.327.000"},{"label":"Team","value":"2772"}],"score":2,"scoreLabel":"Số lượng Đại sứ mới active","score2":54327000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"15025","name":"Ngô Kim Anh","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"2"},{"label":"Tổng doanh số Đại sứ mới active","value":"18.480.000"},{"label":"Team","value":"2086"}],"score":2,"scoreLabel":"Số lượng Đại sứ mới active","score2":18480000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"5792","name":"Bùi Thị Hằng","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"2"},{"label":"Tổng doanh số Đại sứ mới active","value":"17.945.480"},{"label":"Team","value":"2086"}],"score":2,"scoreLabel":"Số lượng Đại sứ mới active","score2":17945480,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"11306","name":"Ngô Hương Thảo","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"2"},{"label":"Tổng doanh số Đại sứ mới active","value":"15.476.600"},{"label":"Team","value":"2772"}],"score":2,"scoreLabel":"Số lượng Đại sứ mới active","score2":15476600,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"11278","name":"Nguyễn Thị Kim Oanh","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"1"},{"label":"Tổng doanh số Đại sứ mới active","value":"148.914.000"},{"label":"Team","value":"10899"}],"score":1,"scoreLabel":"Số lượng Đại sứ mới active","score2":148914000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"10552","name":"Nguyễn Thị Thu Hà","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"1"},{"label":"Tổng doanh số Đại sứ mới active","value":"108.576.000"},{"label":"Team","value":"9960"}],"score":1,"scoreLabel":"Số lượng Đại sứ mới active","score2":108576000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"12043","name":"Vũ Thị Ninh","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"1"},{"label":"Tổng doanh số Đại sứ mới active","value":"89.640.000"},{"label":"Team","value":"2772"}],"score":1,"scoreLabel":"Số lượng Đại sứ mới active","score2":89640000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"13667","name":"Nguyễn Thị Huyền","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"1"},{"label":"Tổng doanh số Đại sứ mới active","value":"86.652.000"},{"label":"Team","value":"10899"}],"score":1,"scoreLabel":"Số lượng Đại sứ mới active","score2":86652000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"11788","name":"Đinh Thị Hoài Oanh","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"1"},{"label":"Tổng doanh số Đại sứ mới active","value":"79.344.000"},{"label":"Team","value":"9769"}],"score":1,"scoreLabel":"Số lượng Đại sứ mới active","score2":79344000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"},{"id":"5826","name":"Nguyễn Thị Vân","highlight":false,"columns":[{"label":"Số lượng Đại sứ mới active","value":"1"},{"label":"Tổng doanh số Đại sứ mới active","value":"41.108.000"},{"label":"Team","value":"2772"}],"score":1,"scoreLabel":"Số lượng Đại sứ mới active","score2":41108000,"score2Label":"Tổng doanh số Đại sứ mới active","status":"cận đạt"}],"hasMultipleScores":true,"scoreLabels":["Số lượng Đại sứ mới active","Tổng doanh số Đại sứ mới active","Team"],"isUpdating":false},{"categoryId":"cat_quarter_7p35vc","categoryName":"4. QUẢN LÝ TIÊU BIỂU QUÝ III","topRankers":[],"otherRankers":[],"hasMultipleScores":false,"scoreLabels":[],"isUpdating":true}],"semester":[{"categoryId":"cat_semester_gk70uo","categoryName":"1. GIẢI ĐẠI SỨ GIÁO DỤC XUẤT SẮC KỲ II","topRankers":[{"id":"2086","name":"Lê Thanh Thúy","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"755.879.800"},{"label":"Số HV tuyển sinh","value":"38"},{"label":"Team","value":"2086"}],"score":755879800,"scoreLabel":"Doanh số Kỳ II","score2":38,"score2Label":"Số HV tuyển sinh","rank":1,"hideBadge":true},{"id":"10899","name":"Nguyễn Thị Hường","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"437.842.000"},{"label":"Số HV tuyển sinh","value":"30"},{"label":"Team","value":"10899"}],"score":437842000,"scoreLabel":"Doanh số Kỳ II","score2":30,"score2Label":"Số HV tuyển sinh","rank":2,"hideBadge":true},{"id":"3289","name":"Nguyễn Thị Thu Hà","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"323.153.200"},{"label":"Số HV tuyển sinh","value":"7"},{"label":"Team","value":"2772"}],"score":323153200,"scoreLabel":"Doanh số Kỳ II","score2":7,"score2Label":"Số HV tuyển sinh","rank":3,"hideBadge":true}],"otherRankers":[{"id":"2772","name":"Nguyễn Thị Hảo","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"288.053.000"},{"label":"Số HV tuyển sinh","value":"14"},{"label":"Team","value":"2772"}],"score":288053000,"scoreLabel":"Doanh số Kỳ II","score2":14,"score2Label":"Số HV tuyển sinh","rank":4,"hideBadge":true},{"id":"12814","name":"Phan Hiên","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"273.157.280"},{"label":"Số HV tuyển sinh","value":"12"},{"label":"Team","value":"10899"}],"score":273157280,"scoreLabel":"Doanh số Kỳ II","score2":12,"score2Label":"Số HV tuyển sinh","rank":5,"hideBadge":true},{"id":"12773","name":"Vũ Hoàng Hà","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"256.948.200"},{"label":"Số HV tuyển sinh","value":"10"},{"label":"Team","value":"10899"}],"score":256948200,"scoreLabel":"Doanh số Kỳ II","score2":10,"score2Label":"Số HV tuyển sinh","rank":6,"hideBadge":true},{"id":"13919","name":"Nguyễn Thúy Hằng","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"212.184.000"},{"label":"Số HV tuyển sinh","value":"11"},{"label":"Team","value":"2086"}],"score":212184000,"scoreLabel":"Doanh số Kỳ II","score2":11,"score2Label":"Số HV tuyển sinh","rank":7,"hideBadge":true},{"id":"12900","name":"Huỳnh Thị Thanh Tuyền","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"200.440.600"},{"label":"Số HV tuyển sinh","value":"10"},{"label":"Team","value":"2772"}],"score":200440600,"scoreLabel":"Doanh số Kỳ II","score2":10,"score2Label":"Số HV tuyển sinh","rank":8,"hideBadge":true},{"id":"15362","name":"Do Huyen","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"186.822.000"},{"label":"Số HV tuyển sinh","value":"9"},{"label":"Team","value":"10899"}],"score":186822000,"scoreLabel":"Doanh số Kỳ II","score2":9,"score2Label":"Số HV tuyển sinh","rank":9,"hideBadge":true},{"id":"10650","name":"Trịnh Thị Thu Hà","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"180.420.480"},{"label":"Số HV tuyển sinh","value":"6"},{"label":"Team","value":"2086"}],"score":180420480,"scoreLabel":"Doanh số Kỳ II","score2":6,"score2Label":"Số HV tuyển sinh","rank":10,"hideBadge":true},{"id":"2784","name":"Phạm Thị Thu Thủy","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"161.383.100"},{"label":"Số HV tuyển sinh","value":"8"},{"label":"Team","value":"2086"}],"score":161383100,"scoreLabel":"Doanh số Kỳ II","score2":8,"score2Label":"Số HV tuyển sinh","rank":11,"hideBadge":true},{"id":"2905","name":"Lê Thị Thanh Yên","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"157.323.760"},{"label":"Số HV tuyển sinh","value":"8"},{"label":"Team","value":"2772"}],"score":157323760,"scoreLabel":"Doanh số Kỳ II","score2":8,"score2Label":"Số HV tuyển sinh","rank":12,"hideBadge":true},{"id":"6000","name":"Nguyễn Thị Hân","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"156.600.000"},{"label":"Số HV tuyển sinh","value":"2"},{"label":"Team","value":"2086"}],"score":156600000,"scoreLabel":"Doanh số Kỳ II","score2":2,"score2Label":"Số HV tuyển sinh","rank":13,"hideBadge":true},{"id":"4135","name":"Lê Thị Thanh Trang","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"154.080.000"},{"label":"Số HV tuyển sinh","value":"4"},{"label":"Team","value":"9769"}],"score":154080000,"scoreLabel":"Doanh số Kỳ II","score2":4,"score2Label":"Số HV tuyển sinh","rank":14,"hideBadge":true},{"id":"13717","name":"Phạm Thị Minh","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"151.662.000"},{"label":"Số HV tuyển sinh","value":"10"},{"label":"Team","value":"10899"}],"score":151662000,"scoreLabel":"Doanh số Kỳ II","score2":10,"score2Label":"Số HV tuyển sinh","rank":15,"hideBadge":true},{"id":"7659","name":"Vũ Thị Thu Thủy","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"150.564.740"},{"label":"Số HV tuyển sinh","value":"9"},{"label":"Team","value":"2086"}],"score":150564740,"scoreLabel":"Doanh số Kỳ II","score2":9,"score2Label":"Số HV tuyển sinh","rank":16,"hideBadge":true},{"id":"15526","name":"Bùi Quân","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"148.914.000"},{"label":"Số HV tuyển sinh","value":"5"},{"label":"Team","value":"10899"}],"score":148914000,"scoreLabel":"Doanh số Kỳ II","score2":5,"score2Label":"Số HV tuyển sinh","rank":17,"hideBadge":true},{"id":"12008","name":"Thạch Thị Đào Liên","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"148.266.000"},{"label":"Số HV tuyển sinh","value":"8"},{"label":"Team","value":"10899"}],"score":148266000,"scoreLabel":"Doanh số Kỳ II","score2":8,"score2Label":"Số HV tuyển sinh","rank":18,"hideBadge":true},{"id":"10449","name":"Nguyen Thi Hong","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"148.175.000"},{"label":"Số HV tuyển sinh","value":"9"},{"label":"Team","value":"2086"}],"score":148175000,"scoreLabel":"Doanh số Kỳ II","score2":9,"score2Label":"Số HV tuyển sinh","rank":19,"hideBadge":true},{"id":"2909","name":"Lê Thị Minh Phượng","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"141.776.000"},{"label":"Số HV tuyển sinh","value":"7"},{"label":"Team","value":"9769"}],"score":141776000,"scoreLabel":"Doanh số Kỳ II","score2":7,"score2Label":"Số HV tuyển sinh","rank":20,"hideBadge":true}],"hasMultipleScores":true,"scoreLabels":["Doanh số Kỳ II","Số HV tuyển sinh","Team"],"isUpdating":false},{"categoryId":"cat_semester_muao5","categoryName":"2. GIẢI QUẢN LÝ XUẤT SẮC KỲ II","topRankers":[{"id":"2086","name":"Lê Thanh Thúy","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"5.605.696.810"},{"label":"Số ĐS Active","value":"139"}],"score":5605696810,"scoreLabel":"Doanh số Kỳ II","score2":139,"score2Label":"Số ĐS Active","rank":1,"hideBadge":true},{"id":"10899","name":"Nguyễn Thị Hường","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"5.594.331.360"},{"label":"Số ĐS Active","value":"152"}],"score":5594331360,"scoreLabel":"Doanh số Kỳ II","score2":152,"score2Label":"Số ĐS Active","rank":2,"hideBadge":true},{"id":"2772","name":"Nguyễn Thị Hảo","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"3.489.938.740"},{"label":"Số ĐS Active","value":"90"}],"score":3489938740,"scoreLabel":"Doanh số Kỳ II","score2":90,"score2Label":"Số ĐS Active","rank":3,"hideBadge":true}],"otherRankers":[{"id":"10911","name":"Phạm Thị Huệ","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"2.999.531.860"},{"label":"Số ĐS Active","value":"99"}],"score":2999531860,"scoreLabel":"Doanh số Kỳ II","score2":99,"score2Label":"Số ĐS Active","rank":4,"hideBadge":true},{"id":"2121","name":"Mai Thị Tố Nga","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"2.554.478.680"},{"label":"Số ĐS Active","value":"62"}],"score":2554478680,"scoreLabel":"Doanh số Kỳ II","score2":62,"score2Label":"Số ĐS Active","rank":5,"hideBadge":true},{"id":"9769","name":"Trần Thị Ngọc Dung","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"2.413.677.200"},{"label":"Số ĐS Active","value":"75"}],"score":2413677200,"scoreLabel":"Doanh số Kỳ II","score2":75,"score2Label":"Số ĐS Active","rank":6,"hideBadge":true},{"id":"9960","name":"Đường Thị Thương","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"1.598.127.820"},{"label":"Số ĐS Active","value":"56"}],"score":1598127820,"scoreLabel":"Doanh số Kỳ II","score2":56,"score2Label":"Số ĐS Active","rank":7,"hideBadge":true},{"id":"2784","name":"Phạm Thị Thu Thủy","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"1.415.577.260"},{"label":"Số ĐS Active","value":"25"}],"score":1415577260,"scoreLabel":"Doanh số Kỳ II","score2":25,"score2Label":"Số ĐS Active","rank":8,"hideBadge":true},{"id":"11126","name":"Thái Vui","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"1.361.235.560"},{"label":"Số ĐS Active","value":"39"}],"score":1361235560,"scoreLabel":"Doanh số Kỳ II","score2":39,"score2Label":"Số ĐS Active","rank":9,"hideBadge":true},{"id":"2059","name":"Nguyễn Văn Hưng","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"1.356.335.580"},{"label":"Số ĐS Active","value":"40"}],"score":1356335580,"scoreLabel":"Doanh số Kỳ II","score2":40,"score2Label":"Số ĐS Active","rank":10,"hideBadge":true},{"id":"4249","name":"Vũ Thị Mận","highlight":true,"columns":[{"label":"Doanh số Kỳ II","value":"1.104.686.720"},{"label":"Số ĐS Active","value":"31"}],"score":1104686720,"scoreLabel":"Doanh số Kỳ II","score2":31,"score2Label":"Số ĐS Active","rank":11,"hideBadge":true}],"hasMultipleScores":true,"scoreLabels":["Doanh số Kỳ II","Số ĐS Active"],"isUpdating":false}],"challenge":[]}
+{
+  "month": [
+    {
+      "categoryId": "cat_month_dsm",
+      "categoryName": "1. THƯỞNG ĐẠI SỨ MỚI THÁNG 8",
+      "topRankers": [
+        {
+          "id": "15728",
+          "name": "Bùi Thị Quế",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "29/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "86.814.000"
+            }
+          ],
+          "score2": "29/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 86814000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15453",
+          "name": "Nguyễn Thị Khuyên",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "30/06/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "28.188.000"
+            }
+          ],
+          "score2": "30/06/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 28188000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "13415",
+          "name": "Nguyễn Tuyết",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "07/09/2025"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "22.657.600"
+            }
+          ],
+          "score2": "07/09/2025",
+          "score2Label": "Ngày tham gia",
+          "score": 22657600,
+          "scoreLabel": "Doanh số cá nhân"
+        }
+      ],
+      "otherRankers": [
+        {
+          "id": "14998",
+          "name": "PHẠM THỊ HOÀI ÂN",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "16/04/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "15.600.000"
+            }
+          ],
+          "score2": "16/04/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 15600000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "13750",
+          "name": "Dương Thị Hương",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "02/10/2025"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "14.616.000"
+            }
+          ],
+          "score2": "02/10/2025",
+          "score2Label": "Ngày tham gia",
+          "score": 14616000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15781",
+          "name": "Nguyễn Thị Lài",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "03/08/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "11.719.680"
+            }
+          ],
+          "score2": "03/08/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 11719680,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15562",
+          "name": "Phan Thị Hạnh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "11/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "9.920.000"
+            }
+          ],
+          "score2": "11/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 9920000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15517",
+          "name": "Trần Anh Tuấn",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "04/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "8.525.000"
+            }
+          ],
+          "score2": "04/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 8525000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15642",
+          "name": "Lê Thu Phương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "21/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "8.525.000"
+            }
+          ],
+          "score2": "21/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 8525000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15721",
+          "name": "Phạm Mạnh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "29/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "7.308.000"
+            }
+          ],
+          "score2": "29/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 7308000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15756",
+          "name": "Phạm Thảo",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "01/08/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "6.960.000"
+            }
+          ],
+          "score2": "01/08/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 6960000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15757",
+          "name": "Trịnh Sơn",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "01/08/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "6.960.000"
+            }
+          ],
+          "score2": "01/08/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 6960000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15793",
+          "name": "Đinh Xuân Nam",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "05/08/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "6.960.000"
+            }
+          ],
+          "score2": "05/08/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 6960000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "9579",
+          "name": "Nguyễn Thị Thành",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "25/01/2024"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "2.340.000"
+            }
+          ],
+          "score2": "25/01/2024",
+          "score2Label": "Ngày tham gia",
+          "score": 2340000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15583",
+          "name": "ĐẶNG HẠ",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "13/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "2.229.000"
+            }
+          ],
+          "score2": "13/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 2229000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15423",
+          "name": "Nguyễn Phương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "27/06/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "1.960.000"
+            }
+          ],
+          "score2": "27/06/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 1960000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15801",
+          "name": "Nguyễn Liên",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "05/08/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "1.372.500"
+            }
+          ],
+          "score2": "05/08/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 1372500,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15719",
+          "name": "Đỗ Thuỳ Dung",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Ngày tham gia",
+              "value": "29/07/2026"
+            },
+            {
+              "label": "Doanh số cá nhân",
+              "value": "549.000"
+            }
+          ],
+          "score2": "29/07/2026",
+          "score2Label": "Ngày tham gia",
+          "score": 549000,
+          "scoreLabel": "Doanh số cá nhân"
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Ngày tham gia",
+        "Doanh số cá nhân"
+      ]
+    },
+    {
+      "categoryId": "cat_month_dsgd",
+      "categoryName": "2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 8",
+      "topRankers": [
+        {
+          "id": "10899",
+          "name": "Nguyễn Thị Hường",
+          "highlight": true,
+          "status": "đủ điều kiện xét giải",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "161.988.600"
+            }
+          ],
+          "score": 161988600,
+          "scoreLabel": "Doanh số cá nhân"
+        }
+      ],
+      "otherRankers": [
+        {
+          "id": "15728",
+          "name": "Bùi Thị Quế",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "86.814.000"
+            }
+          ],
+          "score": 86814000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15471",
+          "name": "Trần Trung Thu",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "84.016.000"
+            }
+          ],
+          "score": 84016000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "11163",
+          "name": "Nguyễn Nhài",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "82.137.600"
+            }
+          ],
+          "score": 82137600,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "12773",
+          "name": "Vũ Hoàng Hà",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "76.128.000"
+            }
+          ],
+          "score": 76128000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "12814",
+          "name": "Phan Hiên",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "70.114.000"
+            }
+          ],
+          "score": 70114000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "2086",
+          "name": "Lê Thanh Thúy",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "65.066.000"
+            }
+          ],
+          "score": 65066000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "12972",
+          "name": "Vũ Thủy",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "59.996.000"
+            }
+          ],
+          "score": 59996000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "11990",
+          "name": "Phạm Thị Huệ",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "54.972.000"
+            }
+          ],
+          "score": 54972000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "11776",
+          "name": "Lê Hoa",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "51.012.000"
+            }
+          ],
+          "score": 51012000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "10650",
+          "name": "Trịnh Thị Thu Hà",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "47.352.000"
+            }
+          ],
+          "score": 47352000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "1586",
+          "name": "Nguyễn Thị Hồng Hạnh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "46.410.000"
+            }
+          ],
+          "score": 46410000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "12586",
+          "name": "Trần Thị Thu Thanh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "43.848.000"
+            }
+          ],
+          "score": 43848000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "10449",
+          "name": "Nguyen Thi Hong",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "43.695.000"
+            }
+          ],
+          "score": 43695000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "13919",
+          "name": "Nguyễn Thúy Hằng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "43.470.000"
+            }
+          ],
+          "score": 43470000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "1788",
+          "name": "Nguyễn Thị Thuỳ",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "42.432.000"
+            }
+          ],
+          "score": 42432000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "14343",
+          "name": "Nguyen Duyen",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "41.272.200"
+            }
+          ],
+          "score": 41272200,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "14050",
+          "name": "Nguyễn Hạnh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "40.872.000"
+            }
+          ],
+          "score": 40872000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "10425",
+          "name": "Trịnh Lan Phương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "39.636.000"
+            }
+          ],
+          "score": 39636000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "12868",
+          "name": "Phạm Biên",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "37.622.000"
+            }
+          ],
+          "score": 37622000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "13995",
+          "name": "Hoàng Thị Thúy Mai",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "37.528.000"
+            }
+          ],
+          "score": 37528000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "6000",
+          "name": "Nguyễn Thị Hân",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "37.166.000"
+            }
+          ],
+          "score": 37166000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "13653",
+          "name": "Nguyễn Kim Cúc",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "35.688.000"
+            }
+          ],
+          "score": 35688000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "14645",
+          "name": "Lý Minh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "35.262.000"
+            }
+          ],
+          "score": 35262000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "11126",
+          "name": "Thái Vui",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "34.884.000"
+            }
+          ],
+          "score": 34884000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "10740",
+          "name": "Hoàng Thanh Xuân",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "33.192.000"
+            }
+          ],
+          "score": 33192000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15577",
+          "name": "Trần Thị Hoàn",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "33.075.500"
+            }
+          ],
+          "score": 33075500,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "14709",
+          "name": "Ha Nai Ly",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "32.736.000"
+            }
+          ],
+          "score": 32736000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "10250",
+          "name": "Phạm Thị Hướng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "32.595.360"
+            }
+          ],
+          "score": 32595360,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "13717",
+          "name": "Phạm Thị Minh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "31.466.000"
+            }
+          ],
+          "score": 31466000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "9679",
+          "name": "Trần Quý",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "29.845.200"
+            }
+          ],
+          "score": 29845200,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "9362",
+          "name": "Nguyễn Thị Kim Phương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "29.336.200"
+            }
+          ],
+          "score": 29336200,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "11902",
+          "name": "Phạm Thị Nương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "29.232.000"
+            }
+          ],
+          "score": 29232000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "15526",
+          "name": "Bùi Quân",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "28.866.000"
+            }
+          ],
+          "score": 28866000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "5141",
+          "name": "Nguyễn Thị Hương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "28.854.000"
+            }
+          ],
+          "score": 28854000,
+          "scoreLabel": "Doanh số cá nhân"
+        },
+        {
+          "id": "12843",
+          "name": "Nguyễn Thị Thu Hương",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Doanh số cá nhân",
+              "value": "28.728.000"
+            }
+          ],
+          "score": 28728000,
+          "scoreLabel": "Doanh số cá nhân"
+        }
+      ],
+      "hasMultipleScores": false,
+      "scoreLabels": [
+        "Doanh số cá nhân"
+      ]
+    },
+    {
+      "categoryId": "cat_month_qltd",
+      "categoryName": "3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 8",
+      "topRankers": [],
+      "otherRankers": [
+        {
+          "id": "3716",
+          "name": "Nguyễn Thanh Hồng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "2"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "18.445.000"
+            }
+          ],
+          "score": 2,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 18445000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "10923",
+          "name": "Vũ Oanh",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "86.814.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 86814000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "10711",
+          "name": "Nguyễn Thị Bích Lộc",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "28.188.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 28188000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "10464",
+          "name": "Lê Thủy",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "22.657.600"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 22657600,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "13144",
+          "name": "Đỗ Thị Hoà",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "15.600.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 15600000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "13324",
+          "name": "Nguyễn Hiên",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "14.616.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 14616000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "4249",
+          "name": "Vũ Thị Mận",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "11.719.680"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 11719680,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "14532",
+          "name": "Phạm Thị Ngọc Bích",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "8.525.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 8525000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "15699",
+          "name": "Global OYL",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "7.308.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 7308000,
+          "score2Label": "Doanh thu ĐS mới"
+        },
+        {
+          "id": "11773",
+          "name": "Nguyễn Thị Loan",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "SL Đại sứ mới PSDT",
+              "value": "1"
+            },
+            {
+              "label": "Doanh thu ĐS mới",
+              "value": "6.960.000"
+            }
+          ],
+          "score": 1,
+          "scoreLabel": "SL Đại sứ mới PSDT",
+          "score2": 6960000,
+          "score2Label": "Doanh thu ĐS mới"
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "SL Đại sứ mới PSDT",
+        "Doanh thu ĐS mới"
+      ]
+    },
+    {
+      "categoryId": "cat_month_qltb",
+      "categoryName": "4. QUẢN LÝ TIÊU BIỂU THÁNG 8",
+      "topRankers": [],
+      "otherRankers": [
+        {
+          "id": "11278",
+          "name": "Nguyễn Thị Kim Oanh",
+          "region": "Cấp Nhóm",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng nhóm"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "94,83%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "1"
+            }
+          ],
+          "score": 94.83,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 1,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "10449",
+          "name": "Nguyen Thi Hong",
+          "region": "Cấp Nhóm",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng nhóm"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "64,21%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "0"
+            }
+          ],
+          "score": 64.21,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 0,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "1586",
+          "name": "Nguyễn Thị Hồng Hạnh",
+          "region": "Cấp Nhóm",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng nhóm"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "55%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "2"
+            }
+          ],
+          "score": 55,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 2,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "13324",
+          "name": "Nguyễn Hiên",
+          "region": "Cấp Nhóm",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng nhóm"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "54%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "2"
+            }
+          ],
+          "score": 54,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 2,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "10923",
+          "name": "Vũ Oanh",
+          "region": "Cấp Nhóm",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng nhóm cấp cao"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "52%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "1"
+            }
+          ],
+          "score": 52,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 1,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "2784",
+          "name": "Phạm Thị Thu Thủy",
+          "region": "Cấp Phòng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng phòng"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "37%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "2"
+            }
+          ],
+          "score": 37,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 2,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "10895",
+          "name": "Nguyễn Thị Mai",
+          "region": "Cấp Phòng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng phòng"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "37%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "3"
+            }
+          ],
+          "score": 37,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 3,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "12814",
+          "name": "Phan Hiên",
+          "region": "Cấp Phòng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng phòng"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "33%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "0"
+            }
+          ],
+          "score": 33,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 0,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "11126",
+          "name": "Thái Vui",
+          "region": "Cấp Phòng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng phòng cấp cao"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "30%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "1"
+            }
+          ],
+          "score": 30,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 1,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "9960",
+          "name": "Đường Thị Thương",
+          "region": "Cấp Phòng",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "Trưởng phòng cấp cao"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "26%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "0"
+            }
+          ],
+          "score": 26,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 0,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "2772",
+          "name": "Nguyễn Thị Hảo",
+          "region": "Cấp Khu vực",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "GĐ khu vực"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "27%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "2"
+            }
+          ],
+          "score": 27,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 2,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "10899",
+          "name": "Nguyễn Thị Hường",
+          "region": "Cấp Khu vực",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "GĐ khu vực cấp cao"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "23%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "7"
+            }
+          ],
+          "score": 23,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 7,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "10911",
+          "name": "Phạm Thị Huệ",
+          "region": "Cấp Khu vực",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "GĐ khu vực"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "22%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "4"
+            }
+          ],
+          "score": 22,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 4,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "2086",
+          "name": "Lê Thanh Thúy",
+          "region": "Cấp Khu vực",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "GĐ khu vực cấp cao"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "16%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "6"
+            }
+          ],
+          "score": 16,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 6,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        },
+        {
+          "id": "2121",
+          "name": "Mai Thị Tố Nga",
+          "region": "Cấp Khu vực",
+          "highlight": false,
+          "status": "cận đạt",
+          "columns": [
+            {
+              "label": "Cấp bậc",
+              "value": "GĐ khu vực"
+            },
+            {
+              "label": "Thực đạt mục tiêu cam kết",
+              "value": "12%"
+            },
+            {
+              "label": "Số đại sứ mới active trong đội ngũ",
+              "value": "5"
+            }
+          ],
+          "score": 12,
+          "scoreLabel": "Thực đạt mục tiêu cam kết",
+          "score2": 5,
+          "score2Label": "Số đại sứ mới active trong đội ngũ"
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Cấp bậc",
+        "Thực đạt mục tiêu cam kết",
+        "Số đại sứ mới active trong đội ngũ"
+      ]
+    }
+  ],
+  "quarter": [
+    {
+      "categoryId": "cat_q3_top3",
+      "categoryName": "1. TOP 3 ĐẠI SỨ GIÁO DỤC XUẤT SẮC QUÝ III",
+      "topRankers": [
+        {
+          "id": "10899",
+          "name": "Nguyễn Thị Hường",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "73"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "700.485.600"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 73,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 700485600,
+          "score2Label": "Doanh số quý",
+          "rank": 1,
+          "hideBadge": true
+        },
+        {
+          "id": "2086",
+          "name": "Lê Thanh Thúy",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "58"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "1.077.553.800"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 58,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 1077553800,
+          "score2Label": "Doanh số quý",
+          "rank": 2,
+          "hideBadge": true
+        }
+      ],
+      "otherRankers": [],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Số HV tuyển sinh",
+        "Doanh số quý",
+        "Team"
+      ]
+    },
+    {
+      "categoryId": "cat_q3_vang",
+      "categoryName": "2. ĐẠI SỨ VÀNG QUÝ III",
+      "topRankers": [],
+      "otherRankers": [
+        {
+          "id": "1586",
+          "name": "Nguyễn Thị Hồng Hạnh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "28"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "184.412.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 28,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 184412000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "11306",
+          "name": "Ngô Hương Thảo",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "21"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "173.517.600"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 21,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 173517600,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12814",
+          "name": "Phan Hiên",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "19"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "442.345.280"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 19,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 442345280,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "2772",
+          "name": "Nguyễn Thị Hảo",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "19"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "372.297.000"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 19,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 372297000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12723",
+          "name": "Giang Hồng Diệp",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "18"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "177.682.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 18,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 177682000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12087",
+          "name": "Đào Thị Thúy",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "17"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "181.151.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 17,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 181151000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "1086",
+          "name": "Vương Thị Huế",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "17"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "159.446.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 17,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 159446000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "2784",
+          "name": "Phạm Thị Thu Thủy",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "16"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "247.198.700"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 16,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 247198700,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12586",
+          "name": "Trần Thị Thu Thanh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "16"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "225.654.700"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 16,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 225654700,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12773",
+          "name": "Vũ Hoàng Hà",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "15"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "342.973.200"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 15,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 342973200,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "10449",
+          "name": "Nguyen Thi Hong",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "15"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "278.474.000"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 15,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 278474000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "7659",
+          "name": "Vũ Thị Thu Thủy",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "15"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "213.308.840"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 15,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 213308840,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "9362",
+          "name": "Nguyễn Thị Kim Phương",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "15"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "154.293.760"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 15,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 154293760,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12900",
+          "name": "Huỳnh Thị Thanh Tuyền",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "253.954.800"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 253954800,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "2121",
+          "name": "Mai Thị Tố Nga",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "253.027.000"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 253027000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13717",
+          "name": "Phạm Thị Minh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "238.532.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 238532000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "6050",
+          "name": "Nguyễn Thị Thu Phương",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "213.441.200"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 213441200,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "11776",
+          "name": "Lê Hoa",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "172.526.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 172526000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "10386",
+          "name": "Le Vinh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "160.305.200"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 160305200,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "8950",
+          "name": "Phan Thi Lan Anh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "158.292.800"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 158292800,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "10425",
+          "name": "Trịnh Lan Phương",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "128.190.400"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 128190400,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13450",
+          "name": "Phạm Thị Quyên",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "120.474.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 14,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 120474000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13919",
+          "name": "Nguyễn Thúy Hằng",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "255.654.000"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 13,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 255654000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "14343",
+          "name": "Nguyen Duyen",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "225.771.100"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 13,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 225771100,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "14613",
+          "name": "Nguyễn Hồng",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "114.700.600"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 13,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 114700600,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "6120",
+          "name": "Đặng Thị Diệu Linh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "114.184.000"
+            },
+            {
+              "label": "Team",
+              "value": "6120"
+            }
+          ],
+          "score": 13,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 114184000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "5996",
+          "name": "Nguyễn Thị Quế",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "69.924.680"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 13,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 69924680,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "11163",
+          "name": "Nguyễn Nhài",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "12"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "255.092.800"
+            },
+            {
+              "label": "Team",
+              "value": "9960"
+            }
+          ],
+          "score": 12,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 255092800,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "9146",
+          "name": "Nguyễn Thị Thuận",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "12"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "149.808.000"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 12,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 149808000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "11990",
+          "name": "Phạm Thị Huệ",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "12"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "140.714.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 12,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 140714000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12767",
+          "name": "Vũ Thị Thanh Tâm",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "12"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "105.201.500"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 12,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 105201500,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "15577",
+          "name": "Trần Thị Hoàn",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "12"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "81.671.100"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 12,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 81671100,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "5826",
+          "name": "Nguyễn Thị Vân",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "183.978.000"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 183978000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "2779",
+          "name": "Giáp Thị Quyên",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "173.718.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 173718000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13734",
+          "name": "Nguyễn Thị Thảo",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "152.560.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 152560000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "4777",
+          "name": "Nguyễn Thị Hương",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "114.901.880"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 114901880,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12779",
+          "name": "Nguyễn Minh Nguyệt",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "113.298.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 113298000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "9679",
+          "name": "Trần Quý",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "104.682.000"
+            },
+            {
+              "label": "Team",
+              "value": "9960"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 104682000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "10552",
+          "name": "Nguyễn Thị Thu Hà",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "98.373.800"
+            },
+            {
+              "label": "Team",
+              "value": "9960"
+            }
+          ],
+          "score": 11,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 98373800,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "10650",
+          "name": "Trịnh Thị Thu Hà",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "269.063.480"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 269063480,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "9300",
+          "name": "Mai Thị Thuỳ",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "251.639.200"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 251639200,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "15526",
+          "name": "Bùi Quân",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "222.818.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 222818000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "15471",
+          "name": "Trần Trung Thu",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "214.862.000"
+            },
+            {
+              "label": "Team",
+              "value": "9960"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 214862000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "15362",
+          "name": "Do Huyen",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "194.130.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 194130000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "12008",
+          "name": "Thạch Thị Đào Liên",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "159.826.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 159826000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13995",
+          "name": "Hoàng Thị Thúy Mai",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "142.055.600"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 142055600,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13952",
+          "name": "Ngô Thị Hồng Dung",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "120.260.000"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 120260000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        },
+        {
+          "id": "9193",
+          "name": "Văn Dung",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Doanh số quý",
+              "value": "118.452.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 10,
+          "scoreLabel": "Số HV tuyển sinh",
+          "score2": 118452000,
+          "score2Label": "Doanh số quý",
+          "status": "cận đạt"
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Số HV tuyển sinh",
+        "Doanh số quý",
+        "Team"
+      ]
+    },
+    {
+      "categoryId": "cat_q3_qltd",
+      "categoryName": "3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC QUÝ III",
+      "topRankers": [],
+      "otherRankers": [
+        {
+          "id": "15313",
+          "name": "Huỳnh Thị Diễm Lộc",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "6"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "104.166.600"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 6,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 104166600,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "5826",
+          "name": "Nguyễn Thị Vân",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "90.116.400"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 90116400,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "3289",
+          "name": "Nguyễn Thị Thu Hà",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "63.483.000"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 63483000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "1699",
+          "name": "Hoàng Thị Tuyết Mai",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "51.418.000"
+            },
+            {
+              "label": "Team",
+              "value": "1699"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 51418000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "15025",
+          "name": "Ngô Kim Anh",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "40.416.000"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 40416000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "3716",
+          "name": "Nguyễn Thanh Hồng",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "25.765.000"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 25765000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "9146",
+          "name": "Nguyễn Thị Thuận",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "25.566.000"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 25566000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "10899",
+          "name": "Nguyễn Thị Hường",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "3"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "24.640.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 3,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 24640000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13952",
+          "name": "Ngô Thị Hồng Dung",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "2"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "162.997.200"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 2,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 162997200,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "13144",
+          "name": "Đỗ Thị Hoà",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "2"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "37.524.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 2,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 37524000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "11614",
+          "name": "Đinh Thị Hoa Sen",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "2"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "35.262.000"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 2,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 35262000,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "11306",
+          "name": "Ngô Hương Thảo",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "2"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "30.503.600"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 2,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 30503600,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        },
+        {
+          "id": "4249",
+          "name": "Vũ Thị Mận",
+          "highlight": false,
+          "columns": [
+            {
+              "label": "Số lượng Đại sứ mới active",
+              "value": "2"
+            },
+            {
+              "label": "Tổng doanh số Đại sứ mới active",
+              "value": "27.959.680"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 2,
+          "scoreLabel": "Số lượng Đại sứ mới active",
+          "score2": 27959680,
+          "score2Label": "Tổng doanh số Đại sứ mới active",
+          "status": "cận đạt"
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Số lượng Đại sứ mới active",
+        "Tổng doanh số Đại sứ mới active",
+        "Team"
+      ]
+    },
+    {
+      "categoryId": "cat_q3_qltb",
+      "categoryName": "4. QUẢN LÝ TIÊU BIỂU QUÝ III",
+      "topRankers": [],
+      "otherRankers": [],
+      "hasMultipleScores": false,
+      "scoreLabels": []
+    }
+  ],
+  "semester": [
+    {
+      "categoryId": "cat_k2_dsgd",
+      "categoryName": "1. GIẢI ĐẠI SỨ GIÁO DỤC XUẤT SẮC KỲ II",
+      "topRankers": [
+        {
+          "id": "2086",
+          "name": "Lê Thanh Thúy",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "1.077.553.800"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "60"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 1077553800,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 60,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 100,
+          "hideBadge": true
+        },
+        {
+          "id": "10899",
+          "name": "Nguyễn Thị Hường",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "700.485.600"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "73"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 700485600,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 73,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 50,
+          "hideBadge": true
+        },
+        {
+          "id": "12814",
+          "name": "Phan Hiên",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "442.345.280"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "19"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 442345280,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 19,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        }
+      ],
+      "otherRankers": [
+        {
+          "id": "2772",
+          "name": "Nguyễn Thị Hảo",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "372.297.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "19"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 372297000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 19,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "12773",
+          "name": "Vũ Hoàng Hà",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "342.973.200"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "15"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 342973200,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 15,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "3289",
+          "name": "Nguyễn Thị Thu Hà",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "323.153.200"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "7"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 323153200,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 7,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "10449",
+          "name": "Nguyen Thi Hong",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "278.474.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "15"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 278474000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 15,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "10650",
+          "name": "Trịnh Thị Thu Hà",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "269.063.480"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "11"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 269063480,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 11,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "13919",
+          "name": "Nguyễn Thúy Hằng",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "255.654.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 255654000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 13,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "11163",
+          "name": "Nguyễn Nhài",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "255.092.800"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "12"
+            },
+            {
+              "label": "Team",
+              "value": "9960"
+            }
+          ],
+          "score": 255092800,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 12,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "12900",
+          "name": "Huỳnh Thị Thanh Tuyền",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "253.954.800"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 253954800,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 14,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "2121",
+          "name": "Mai Thị Tố Nga",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "253.027.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 253027000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 14,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "9300",
+          "name": "Mai Thị Thuỳ",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "251.639.200"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Team",
+              "value": "9769"
+            }
+          ],
+          "score": 251639200,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 10,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "2784",
+          "name": "Phạm Thị Thu Thủy",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "247.198.700"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "16"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 247198700,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 16,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "13717",
+          "name": "Phạm Thị Minh",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "238.532.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 238532000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 14,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "14343",
+          "name": "Nguyen Duyen",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "225.771.100"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "13"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 225771100,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 13,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "12586",
+          "name": "Trần Thị Thu Thanh",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "225.654.700"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "16"
+            },
+            {
+              "label": "Team",
+              "value": "2772"
+            }
+          ],
+          "score": 225654700,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 16,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "15526",
+          "name": "Bùi Quân",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "222.818.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Team",
+              "value": "10899"
+            }
+          ],
+          "score": 222818000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 10,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "15471",
+          "name": "Trần Trung Thu",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "214.862.000"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "10"
+            },
+            {
+              "label": "Team",
+              "value": "9960"
+            }
+          ],
+          "score": 214862000,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 10,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "6050",
+          "name": "Nguyễn Thị Thu Phương",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "213.441.200"
+            },
+            {
+              "label": "Số HV tuyển sinh",
+              "value": "14"
+            },
+            {
+              "label": "Team",
+              "value": "2086"
+            }
+          ],
+          "score": 213441200,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 14,
+          "score2Label": "Số HV tuyển sinh",
+          "rank": 0,
+          "hideBadge": true
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Doanh số Kỳ II",
+        "Số HV tuyển sinh",
+        "Team"
+      ]
+    },
+    {
+      "categoryId": "cat_k2_qlxs",
+      "categoryName": "2. GIẢI QUẢN LÝ XUẤT SẮC KỲ II",
+      "topRankers": [
+        {
+          "id": "2086",
+          "name": "Lê Thanh Thúy",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "8.866.538.910"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "180"
+            }
+          ],
+          "score": 8866538910,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 180,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "10899",
+          "name": "Nguyễn Thị Hường",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "8.806.358.480"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "185"
+            }
+          ],
+          "score": 8806358480,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 185,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "2772",
+          "name": "Nguyễn Thị Hảo",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "5.534.326.040"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "117"
+            }
+          ],
+          "score": 5534326040,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 117,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        }
+      ],
+      "otherRankers": [
+        {
+          "id": "10911",
+          "name": "Phạm Thị Huệ",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "4.956.157.080"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "116"
+            }
+          ],
+          "score": 4956157080,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 116,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "2121",
+          "name": "Mai Thị Tố Nga",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "4.288.416.120"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "83"
+            }
+          ],
+          "score": 4288416120,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 83,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "9769",
+          "name": "Trần Thị Ngọc Dung",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "3.782.926.780"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "97"
+            }
+          ],
+          "score": 3782926780,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 97,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "11126",
+          "name": "Thái Vui",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "2.569.987.660"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "48"
+            }
+          ],
+          "score": 2569987660,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 48,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "9960",
+          "name": "Đường Thị Thương",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "2.524.065.420"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "68"
+            }
+          ],
+          "score": 2524065420,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 68,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "2784",
+          "name": "Phạm Thị Thu Thủy",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "2.173.345.760"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "34"
+            }
+          ],
+          "score": 2173345760,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 34,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "2059",
+          "name": "Nguyễn Văn Hưng",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "2.158.717.860"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "50"
+            }
+          ],
+          "score": 2158717860,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 50,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        },
+        {
+          "id": "4249",
+          "name": "Vũ Thị Mận",
+          "highlight": true,
+          "columns": [
+            {
+              "label": "Doanh số Kỳ II",
+              "value": "1.832.407.820"
+            },
+            {
+              "label": "Số ĐS Active",
+              "value": "40"
+            }
+          ],
+          "score": 1832407820,
+          "scoreLabel": "Doanh số Kỳ II",
+          "score2": 40,
+          "score2Label": "Số ĐS Active",
+          "rank": 0,
+          "hideBadge": true
+        }
+      ],
+      "hasMultipleScores": true,
+      "scoreLabels": [
+        "Doanh số Kỳ II",
+        "Số ĐS Active"
+      ]
+    }
+  ],
+  "challenge": []
+}
