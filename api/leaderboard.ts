@@ -7,7 +7,7 @@ const CACHE_TTL = 30 * 60 * 1000; // 30 phút
 
 const SHEET_ID = '1LktWs8p4xbTToJJaEu2y6RBwj5W26daoVFKiKMNHhJs';
 const SHEETS = {
-  month: '211234930',
+  month: '2082250939',
   quarter: '1375120696',
   semester: '1782144566',
 };
@@ -99,7 +99,7 @@ function parseMonthData(t07: string[][]) {
       }
     }
     categories.push({
-      categoryId: 'cat_month_dsm', categoryName: '1. THƯỞNG ĐẠI SỨ MỚI THÁNG 7',
+      categoryId: 'cat_month_dsm', categoryName: '1. THƯỞNG ĐẠI SỨ MỚI THÁNG 8',
       topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Ngày tham gia', 'Doanh số cá nhân']
     });
@@ -129,7 +129,7 @@ function parseMonthData(t07: string[][]) {
       }
     }
     categories.push({
-      categoryId: 'cat_month_dsgd', categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 7',
+      categoryId: 'cat_month_dsgd', categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 8',
       topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: false, scoreLabels: ['Doanh số cá nhân']
     });
@@ -161,7 +161,7 @@ function parseMonthData(t07: string[][]) {
       }
     }
     categories.push({
-      categoryId: 'cat_month_qltd', categoryName: '3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 7',
+      categoryId: 'cat_month_qltd', categoryName: '3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 8',
       topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['SL Đại sứ mới PSDT', 'Doanh thu ĐS mới']
     });
@@ -205,7 +205,7 @@ function parseMonthData(t07: string[][]) {
       }
     }
     categories.push({
-      categoryId: 'cat_month_qltb', categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 7',
+      categoryId: 'cat_month_qltb', categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 8',
       topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Cấp bậc', 'Thực đạt mục tiêu cam kết', 'Số đại sứ mới active trong đội ngũ']
     });
