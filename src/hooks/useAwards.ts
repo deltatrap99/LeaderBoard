@@ -27,15 +27,15 @@ export interface Award {
 // Default awards data from "Diễn giải Tháng 5" sheet
 const DEFAULT_AWARDS: Award[] = [
   // ============================================================
-  // I. Chương trình Thưởng Tháng 07 Năm 2026
+  // I. Chương trình Thưởng Tháng 08 Năm 2026
   // ============================================================
   {
-    id: 'dai-su-moi-t07',
+    id: 'dai-su-moi-t08',
     title: 'Thưởng Đại sứ mới',
-    period: 'Tháng 07 Năm 2026',
+    period: 'Tháng 08 Năm 2026',
     category: 'month',
     mechanism: 'Thưởng Đại sứ mới lần đầu phát sinh doanh số, ghi nhận nỗ lực triển khai bán hàng trong giai đoạn đầu tham gia cộng đồng và đạt khởi đầu tích cực với doanh số tổng tháng từ 3 triệu trở lên.',
-    columns: ['Tháng đầu tiên phát sinh doanh số >=', 'Giá trị giải thưởng', 'Số lượng giải Tháng 7'],
+    columns: ['Tháng đầu tiên phát sinh doanh số >=', 'Giá trị giải thưởng', 'Số lượng giải Tháng 8'],
     tiers: [
       { label: '>= 10,000,000', condition: '>= 10,000,000', quantity: '30', prizeValue: '99,000', cellValues: ['10.000.000 ₫', '99.000 ₫', '30'] },
       { label: '>= 30,000,000', condition: '>= 30,000,000', quantity: '20', prizeValue: '199,000', cellValues: ['30.000.000 ₫', '199.000 ₫', '20'] },
@@ -44,9 +44,9 @@ const DEFAULT_AWARDS: Award[] = [
     order: 1,
   },
   {
-    id: 'ds-gd-xuat-sac-t07',
+    id: 'ds-gd-xuat-sac-t08',
     title: 'Đại sứ Giáo dục xuất sắc',
-    period: 'Tháng 07 Năm 2026',
+    period: 'Tháng 08 Năm 2026',
     category: 'month',
     mechanism: 'Thưởng Đại sứ đạt Top doanh số cá nhân, nhằm tôn vinh thành tích nổi bật và đóng góp tích cực trong hoạt động triển khai bán hàng.',
     columns: ['Giải', 'Doanh số >=', 'Số lượng giải', 'Giá trị giải thưởng'],
@@ -58,9 +58,9 @@ const DEFAULT_AWARDS: Award[] = [
     order: 2,
   },
   {
-    id: 'ql-tuyen-dung-t07',
+    id: 'ql-tuyen-dung-t08',
     title: 'Quản lý tuyển dụng xuất sắc',
-    period: 'Tháng 07 Năm 2026',
+    period: 'Tháng 08 Năm 2026',
     category: 'month',
     mechanism: '- Thưởng ghi nhận Đại sứ tuyển dụng hiệu quả, đóng góp vào tăng trưởng đội ngũ\n- Đại sứ active có học viên đăng kí ít nhất 1 khóa học chính',
     columns: ['Giải', 'Số lượng Đại sứ mới active', 'Tổng doanh số Đại sứ mới active', 'Số lượng giải', 'Giá trị giải thưởng'],
@@ -70,9 +70,9 @@ const DEFAULT_AWARDS: Award[] = [
     order: 3,
   },
   {
-    id: 'ql-tieu-bieu-t07',
+    id: 'ql-tieu-bieu-t08',
     title: 'Quản lý tiêu biểu',
-    period: 'Tháng 07 Năm 2026',
+    period: 'Tháng 08 Năm 2026',
     category: 'month',
     mechanism: 'Điều kiện đề cử & xét giải:\n- Hoàn thành từ 100% mục tiêu cam kết theo cấp bậc\n- Thể hiện dấu ấn và ảnh hưởng tích cực trong đội ngũ và trong hệ thống Đại sứ Giáo dục Galaxy Education\n- Là tấm gương tiêu biểu của tinh thần sáng tạo, đột phá, tích cực và lan tỏa giá trị giáo dục\n- Đại sứ active có học viên đăng kí ít nhất 1 khóa học chính',
     columns: ['Quản lý', 'Thực đạt mục tiêu cam kết', 'Đại sứ mới active trong đội ngũ', 'Số lượng giải', 'Giá trị giải thưởng', 'Điều kiện đủ'],
