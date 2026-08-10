@@ -4,6 +4,7 @@ import { useSiteSettings } from '../hooks/useSiteSettings';
 import { fetchResultsData, type ResultsData, type ResultSection } from '../data/resultsData';
 import { q2ResultsData } from '../data/q2Results';
 import { t06ResultsData } from '../data/t06Results';
+import { t07ResultsData } from '../data/t07Results';
 import { t05ResultsData } from '../data/t05Results';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Trophy, Medal, Star, Crown, ChevronDown, ChevronUp, Award, Sparkles, Users, TrendingUp, Target } from 'lucide-react';
@@ -208,9 +209,10 @@ function ResultSectionCard({ section, index, theme }: { section: ResultSection; 
   );
 }
 
-type ResultPeriod = 'q2' | 't06' | 't05' | 'q1' | 't04';
+type ResultPeriod = 'q2' | 't07' | 't06' | 't05' | 'q1' | 't04';
 
 const RESULT_PERIODS: { key: ResultPeriod; label: string; icon: string }[] = [
+  { key: 't07', label: 'Tháng 7', icon: '📅' },
   { key: 'q2', label: 'Quý II', icon: '🏆' },
   { key: 't06', label: 'Tháng 6', icon: '🌟' },
   { key: 't05', label: 'Tháng 5', icon: '🔥' },
@@ -223,6 +225,11 @@ const PERIOD_HERO: Record<ResultPeriod, { title: string; subtitle: string; descr
     title: 'Quý II / 2026',
     subtitle: 'Kết quả chính thức',
     description: 'Danh sách các Đại sứ và Quản lý xuất sắc đạt giải chính thức trong chương trình Thi đua Quý II/2026',
+  },
+  t07: {
+    title: 'Tháng 07 / 2026',
+    subtitle: 'Kết quả chính thức',
+    description: 'Danh sách các Đại sứ và Quản lý xuất sắc đạt giải chính thức trong chương trình Thi đua Tháng 07/2026',
   },
   t06: {
     title: 'Tháng 06 / 2026',
@@ -248,6 +255,7 @@ const PERIOD_HERO: Record<ResultPeriod, { title: string; subtitle: string; descr
 
 const STATIC_DATA_MAP: Record<string, ResultsData> = {
   q2: q2ResultsData,
+  t07: t07ResultsData,
   t06: t06ResultsData,
   t05: t05ResultsData,
 };

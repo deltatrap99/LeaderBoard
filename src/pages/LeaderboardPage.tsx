@@ -32,7 +32,7 @@ export function LeaderboardPage() {
     document.title = settings.pageTitle || 'Bảng thi đua Galaxy Elite Awards 2026';
   }, [settings.pageTitle]);
 
-  // Fetch lần đầu (Không tự động tải lại để tránh tốn dung lượng)
+  // Fetch lần đầu và tự động làm mới mỗi 30 phút
   useEffect(() => {
     const doFetch = () => {
       fetchLeaderboardData(settings.sheetUrl).then(d => {
@@ -46,6 +46,10 @@ export function LeaderboardPage() {
     };
 
     doFetch();
+
+    // Tự động cập nhật mỗi 30 phút (1.800.000ms)
+    const interval = setInterval(doFetch, 30 * 60 * 1000);
+    return () => clearInterval(interval);
   }, [settings.sheetUrl]);
 
   const currentData = data ? data[activeTab] : [];

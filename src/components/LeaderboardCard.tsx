@@ -9,7 +9,8 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
 
   const getEligibilityInfo = (ranker: any, rank?: number) => {
     if (ranker.status) {
-      return { isEligible: !!ranker.highlight, text: ranker.status, showBadge: true };
+      // Always show badge with status text for all rankers
+      return { isEligible: !!ranker.highlight, text: ranker.status, showBadge: showBadge };
     }
 
     const catNameLower = data.categoryName.toLowerCase();
@@ -74,13 +75,15 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
   };
 
   const isManager = data.categoryName.toLowerCase().includes('tiêu biểu');
+  const isNewAmbassador = data.categoryName.toLowerCase().includes('đại sứ mới');
+  const isKyII = data.categoryName.includes('KỲ II');
   let badgeText = 'ĐẠT ĐIỀU KIỆN';
   let showBadge = true;
   if (isManager) badgeText = 'ĐẠT CHỈ TIÊU';
   else if (data.categoryName.toLowerCase().includes('vàng')) badgeText = 'ĐẠT EGC';
-  else if (data.categoryName.toLowerCase().includes('đại sứ mới')) {
-    badgeText = '';
-    showBadge = false;
+  else if (isNewAmbassador) {
+    badgeText = 'ĐỦ ĐIỀU KIỆN';
+    showBadge = true; // Always show status for new ambassador
   }
 
   const hasPodium = !isManager && data.topRankers.length > 0;
@@ -183,7 +186,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
             <table className="w-full text-left whitespace-nowrap">
               <thead className={`text-left text-[11px] sm:text-[13px] font-bold uppercase tracking-wider ${isBlue ? 'text-slate-500 bg-slate-50' : 'text-slate-400 bg-white/[0.02]'} border-b ${isBlue ? 'border-slate-200' : 'border-white/10'}`}>
                 <tr>
-                  <th className="py-3 px-2 sm:px-4 text-center w-12 sm:w-16">Hạng</th>
+                  {!isKyII && !isManager && <th className="py-3 px-2 sm:px-4 text-center w-12 sm:w-16">Hạng</th>}
                   <th className="py-3 px-2 sm:px-4 w-20 sm:w-24">Mã Đại sứ</th>
                   <th className="py-3 px-2 sm:px-4">Tên Đại sứ</th>
                   {data.scoreLabels?.map((label, idx) => (
@@ -219,11 +222,13 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                         : (isBlue ? 'hover:bg-blue-50/60' : 'hover:bg-white/[0.04]')
                     }`}
                   >
+                  {!isKyII && !isManager && (
                   <td className="py-3 sm:py-4 px-2 sm:px-4 text-center">
                     <span className={`font-black text-[13px] sm:text-[15px] ${isBlue ? 'text-slate-400' : 'text-slate-500'}`}>
                       {rank}
                     </span>
                   </td>
+                  )}
                   <td className="px-0.5 sm:px-4 py-2 sm:py-3.5 text-center font-mono font-medium text-[9px] sm:text-sm text-slate-400">
                       {ranker.id}
                   </td>
@@ -267,7 +272,8 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                               )}
                             </div>
                           )}
-                          {ranker.region && <p className={`text-[10px] mt-0.5 ${isBlue ? 'text-slate-400' : 'text-white/25'} hidden sm:block`}>{ranker.region}</p>}
+                          {/* Bỏ region dưới tên cho QL Tiêu biểu vì đã có cột Cấp bậc riêng */}
+                          {ranker.region && !isManager && <p className={`text-[10px] mt-0.5 ${isBlue ? 'text-slate-400' : 'text-white/25'} hidden sm:block`}>{ranker.region}</p>}
                         </div>
                       </div>
                     </td>
