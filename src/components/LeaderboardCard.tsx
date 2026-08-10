@@ -89,6 +89,12 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
   const hasPodium = !isManager && data.topRankers.length > 0;
   const tableRankers = isManager ? [...data.topRankers, ...data.otherRankers] : data.otherRankers;
 
+  // Check if table already has a status/condition column (to avoid showing duplicate badges under names)
+  const hasStatusColumn = data.scoreLabels?.some((l: string) => {
+    const ll = l.toLowerCase();
+    return ll.includes('trạng thái') || ll.includes('điều kiện') || ll.includes('đạt/cận') || ll.includes('đạt/chưa');
+  }) ?? false;
+
   const formatLastUpdated = (date: Date) => {
     return date.toLocaleString('vi-VN', {
       day: '2-digit',
@@ -100,7 +106,8 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
     });
   };
 
-  const formatScore = (score: number | string, label?: string) => {
+  const formatScore = (score: number | string | undefined | null, label?: string) => {
+    if (score == null) return '—';
     if (typeof score === 'string') return score;
     if (label && label.includes('%')) {
       return (score * 100).toLocaleString('vi-VN', { maximumFractionDigits: 2 }) + '%';
@@ -154,7 +161,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
         isBlue ? 'bg-amber-50 text-amber-800 border-amber-100/50' : 'bg-amber-500/10 text-amber-200/80 border-amber-500/20'
       }`}>
         <span className={isBlue ? 'text-amber-500 font-black' : 'text-amber-400 font-black'}>*</span> 
-        <span>Kết quả đạt giải chính thức sẽ được công bố sau khi tổng kết kỳ xét giải dựa trên dữ liệu đã được đối soát theo quy định của Galaxy Education.</span>
+        <span>Đây chỉ là kết quả tạm tính. Kết quả đạt giải chính thức sẽ được công bố sau khi tổng kết kỳ xét giải dựa trên dữ liệu đã được đối soát theo quy định của Galaxy Education.</span>
       </div>
       
       {/* Podium */}
@@ -249,7 +256,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                               ? (isBlue ? 'text-amber-800 group-hover:text-amber-950' : 'text-amber-400 group-hover:text-amber-300')
                               : (isBlue ? 'text-slate-700 group-hover:text-slate-900' : 'text-white/80 group-hover:text-white')
                           }`}>{ranker.name}</p>
-                          {rankerShowBadge && (
+                          {rankerShowBadge && !hasStatusColumn && (
                             <div className={`hidden sm:flex items-center mt-0.5 px-1.5 py-0.5 rounded border w-fit transition-colors ${
                               isEligible 
                                 ? (isBlue ? 'border-amber-300/50 bg-amber-100/50 text-amber-700' : 'border-amber-500/30 bg-amber-500/10 text-amber-400')
@@ -260,7 +267,7 @@ export function LeaderboardCard({ data, index, theme = 'blue', lastUpdated }: { 
                               </span>
                             </div>
                           )}
-                          {rankerShowBadge && (
+                          {rankerShowBadge && !hasStatusColumn && (
                             <div className="flex sm:hidden mt-0.5 items-center gap-1">
                               {isEligible ? (
                                 <div className={`w-1.5 h-1.5 rounded-full ${isBlue ? 'bg-amber-400' : 'bg-amber-500'}`} />
