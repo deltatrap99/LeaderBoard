@@ -281,8 +281,8 @@ function parseQuarterData(q3: string[][]) {
     const hasEligible = allRankers.some(r => r.highlight);
     categories.push({
       categoryId: 'cat_q3_vang', categoryName: '2. ĐẠI SỨ VÀNG QUÝ III',
-      topRankers: hasEligible ? allRankers.filter(r => r.highlight).slice(0, 3) : [],
-      otherRankers: hasEligible ? [...allRankers.filter(r => r.highlight).slice(3), ...allRankers.filter(r => !r.highlight)] : allRankers,
+      topRankers: [],
+      otherRankers: allRankers,
       hasMultipleScores: true, scoreLabels: ['Số HV tuyển sinh', 'Doanh số quý', 'Team']
     });
   }

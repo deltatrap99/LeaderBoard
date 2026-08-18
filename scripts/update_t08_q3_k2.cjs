@@ -38,15 +38,20 @@ function findSection(rows, num) {
   return -1;
 }
 
+function checkEligible(status) {
+  const s = (status || '').toLowerCase();
+  return (s.includes('đủ điều kiện') || s.includes('đạt điều kiện')) && !s.includes('chưa');
+}
+
 // ==================== LOAD ====================
 const apiData = JSON.parse(fs.readFileSync('api_response.json', 'utf8'));
-const t08Rows = parseCsv(fs.readFileSync('/tmp/t08.csv', 'utf8'));
-const q3Rows  = parseCsv(fs.readFileSync('/tmp/q3.csv',  'utf8'));
-const k2Rows  = parseCsv(fs.readFileSync('/tmp/k2.csv',  'utf8'));
+const t08Rows = parseCsv(fs.readFileSync('t08.csv', 'utf8'));
+const q3Rows  = parseCsv(fs.readFileSync('q3.csv',  'utf8'));
+const k2Rows  = parseCsv(fs.readFileSync('k2.csv',  'utf8'));
 
 // Backup
-fs.writeFileSync('/tmp/api_response_backup.json', JSON.stringify(apiData));
-console.log('Backed up api_response.json -> /tmp/api_response_backup.json');
+fs.writeFileSync('api_response_backup.json', JSON.stringify(apiData));
+console.log('Backed up api_response.json -> api_response_backup.json');
 
 // ==================== THÁNG 8 ====================
 console.log('\n=== THÁNG 8 ===');
@@ -85,13 +90,13 @@ const s4 = findSection(t08Rows, '4');
         score2: r[3] || '', score2Label: 'Ngày tham gia',
         score: parseNum(r[4]), scoreLabel: 'Doanh số cá nhân',
       };
-      if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+      if (checkEligible(status)) {
         entry.highlight = true;
         entry.status = 'đủ điều kiện xét giải';
         eligible.push(entry);
       } else {
         entry.highlight = false;
-        entry.status = 'cận đạt';
+        entry.status = 'chưa đủ điều kiện';
         almost.push(entry);
       }
     }
@@ -120,11 +125,11 @@ const s4 = findSection(t08Rows, '4');
         columns: [{ label: 'Doanh số cá nhân', value: r[3] || '0' }],
         score: parseNum(r[3]), scoreLabel: 'Doanh số cá nhân',
       };
-      if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+      if (checkEligible(status)) {
         entry.highlight = true; entry.status = 'đủ điều kiện xét giải';
         eligible.push(entry);
       } else {
-        entry.highlight = false; entry.status = 'cận đạt';
+        entry.highlight = false; entry.status = 'chưa đủ điều kiện';
         almost.push(entry);
       }
     }
@@ -157,11 +162,11 @@ const s4 = findSection(t08Rows, '4');
         score: parseNum(r[3]), scoreLabel: 'SL Đại sứ mới PSDT',
         score2: parseNum(r[4]), score2Label: 'Doanh thu ĐS mới',
       };
-      if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+      if (checkEligible(status)) {
         entry.highlight = true; entry.status = 'đủ điều kiện xét giải';
         eligible.push(entry);
       } else {
-        entry.highlight = false; entry.status = 'cận đạt';
+        entry.highlight = false; entry.status = 'chưa đủ điều kiện';
         almost.push(entry);
       }
     }
@@ -197,11 +202,11 @@ const s4 = findSection(t08Rows, '4');
         score: parseNum(r[4]), scoreLabel: 'Thực đạt mục tiêu cam kết',
         score2: parseNum(r[5]), score2Label: 'Số đại sứ mới active trong đội ngũ',
       };
-      if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+      if (checkEligible(status)) {
         entry.highlight = true; entry.status = 'đủ điều kiện xét giải';
         eligible.push(entry);
       } else {
-        entry.highlight = false; entry.status = 'cận đạt';
+        entry.highlight = false; entry.status = 'chưa đủ điều kiện';
         almost.push(entry);
       }
     }
@@ -279,12 +284,14 @@ console.log('Q3 sections at rows:', q3s1, q3s2, q3s3, q3s4);
   const cat = apiData.quarter.find(c => c.categoryName.includes('VÀNG'));
   if (cat) {
     let hdr = -1;
-    for (let i = 0; i < q3Rows.length; i++) {
+    const startRow = q3s2 >= 0 ? q3s2 : 0;
+    const endRow = q3s3 >= 0 ? q3s3 : q3Rows.length;
+    for (let i = startRow; i < endRow; i++) {
       if (q3Rows[i][0] === 'Mã Đại sứ' || q3Rows[i][0] === 'Mã ĐS') { hdr = i; break; }
     }
     const eligible = [], almost = [];
     if (hdr >= 0) {
-      for (let i = hdr + 1; i < q3Rows.length; i++) {
+      for (let i = hdr + 1; i < endRow; i++) {
         const r = q3Rows[i];
         if (!r[0] || !/^\d+$/.test(r[0])) continue;
         const status = (r[5] || '').trim();
@@ -298,17 +305,17 @@ console.log('Q3 sections at rows:', q3s1, q3s2, q3s3, q3s4);
           score: parseNum(r[2]), scoreLabel: 'Số HV tuyển sinh',
           score2: parseNum(r[3]), score2Label: 'Doanh số quý',
         };
-        if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+        if (checkEligible(status)) {
           entry.highlight = true; entry.status = 'đủ điều kiện xét giải';
           eligible.push(entry);
         } else {
-          entry.highlight = false; entry.status = 'cận đạt';
+          entry.highlight = false; entry.status = 'chưa đủ điều kiện';
           almost.push(entry);
         }
       }
     }
-    cat.topRankers = eligible.slice(0, 3);
-    cat.otherRankers = [...eligible.slice(3), ...almost];
+    cat.topRankers = [];
+    cat.otherRankers = [...eligible, ...almost];
     cat.scoreLabels = ['Số HV tuyển sinh', 'Doanh số quý', 'Team'];
     console.log(`  ${cat.categoryName}: ${eligible.length} eligible + ${almost.length} almost`);
   }
@@ -341,11 +348,11 @@ console.log('Q3 sections at rows:', q3s1, q3s2, q3s3, q3s4);
           score: parseNum(r[2]), scoreLabel: 'Số lượng Đại sứ mới active',
           score2: parseNum(r[3]), score2Label: 'Tổng doanh số Đại sứ mới active',
         };
-        if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+        if (checkEligible(status)) {
           entry.highlight = true; entry.status = 'đủ điều kiện xét giải';
           eligible.push(entry);
         } else {
-          entry.highlight = false; entry.status = 'cận đạt';
+          entry.highlight = false; entry.status = 'chưa đủ điều kiện';
           almost.push(entry);
         }
       }
@@ -385,11 +392,11 @@ console.log('Q3 sections at rows:', q3s1, q3s2, q3s3, q3s4);
           score: parseNum(r[4]), scoreLabel: 'Thực đạt mục tiêu cam kết',
           score2: parseNum(r[5]), score2Label: 'Số đại sứ mới active trong đội ngũ',
         };
-        if (status.includes('Đủ điều kiện') || status.includes('đủ điều kiện')) {
+        if (checkEligible(status)) {
           entry.highlight = true; entry.status = 'đủ điều kiện xét giải';
           eligible.push(entry);
         } else {
-          entry.highlight = false; entry.status = 'cận đạt';
+          entry.highlight = false; entry.status = 'chưa đủ điều kiện';
           almost.push(entry);
         }
       }
@@ -439,10 +446,10 @@ console.log('\n=== KỲ II ===');
         score2: parseNum(r[3]), score2Label: 'Số HV tuyển sinh',
         rank: i - hdr, hideBadge: true
       };
-      if (status.includes('Đạt điều kiện') || status.includes('đạt điều kiện')) {
-        entry.highlight = true; eligible.push(entry);
+      if (checkEligible(status)) {
+        entry.highlight = true; entry.status = 'đủ điều kiện xét giải'; eligible.push(entry);
       } else {
-        entry.highlight = false; almost.push(entry);
+        entry.highlight = false; entry.status = 'chưa đủ điều kiện'; almost.push(entry);
       }
     }
     cat1.topRankers = [...eligible, ...almost].slice(0, 3);
@@ -469,10 +476,10 @@ console.log('\n=== KỲ II ===');
         score2: parseNum(r[rightStart + 3]), score2Label: 'Số ĐS Active',
         rank: i - hdr, hideBadge: true
       };
-      if (status.includes('Đạt điều kiện') || status.includes('đạt điều kiện')) {
-        entry.highlight = true; eligible.push(entry);
+      if (checkEligible(status)) {
+        entry.highlight = true; entry.status = 'đủ điều kiện xét giải'; eligible.push(entry);
       } else {
-        entry.highlight = false; almost.push(entry);
+        entry.highlight = false; entry.status = 'chưa đủ điều kiện'; almost.push(entry);
       }
     }
     cat2.topRankers = [...eligible, ...almost].slice(0, 3);
