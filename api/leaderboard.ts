@@ -132,23 +132,12 @@ function parseMonthData(t07: string[][]) {
         });
       }
     }
-    // Phân top theo ngưỡng DS và gán đúng rank cho podium
-    // Top 1 bục (rank=1): DS >= 200M | Top 2 bục (rank=2): >= 150M | Top 3 bục (rank=3): >= 100M
-    const top1 = allRankers.filter(r => r.score >= 200000000);
-    const top2 = allRankers.filter(r => r.score >= 150000000 && r.score < 200000000);
-    const top3 = allRankers.filter(r => r.score >= 100000000 && r.score < 150000000);
-    const below = allRankers.filter(r => r.score < 100000000);
-    // Gán rank để Podium component biết đặt đúng slot (slot trống → placeholder)
-    const podiumRankers: any[] = [];
-    if (top1.length > 0) podiumRankers.push({...top1[0], rank: 1});
-    if (top2.length > 0) podiumRankers.push({...top2[0], rank: 2});
-    if (top3.length > 0) podiumRankers.push({...top3[0], rank: 3});
-    const tableRest = [
-      ...top1.slice(1), ...top2.slice(1), ...top3.slice(1), ...below
-    ];
+    const eligible = allRankers.filter(r => r.highlight);
+    const almost = allRankers.filter(r => !r.highlight);
     categories.push({
       categoryId: 'cat_month_dsgd', categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 8',
-      topRankers: podiumRankers, otherRankers: tableRest,
+      topRankers: eligible.slice(0, 3), 
+      otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: false, scoreLabels: ['Doanh số cá nhân']
     });
   }
@@ -211,9 +200,12 @@ function parseMonthData(t07: string[][]) {
         });
       }
     }
+    const eligible = allRankers.filter(r => r.highlight);
+    const almost = allRankers.filter(r => !r.highlight);
     categories.push({
       categoryId: 'cat_month_qltb', categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 8',
-      topRankers: [], otherRankers: allRankers,
+      topRankers: eligible.slice(0, 3), 
+      otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Cấp bậc', 'Thực đạt mục tiêu cam kết', 'Số đại sứ mới active trong đội ngũ']
     });
   }
@@ -346,9 +338,12 @@ function parseQuarterData(q3: string[][]) {
         });
       }
     }
+    const eligible = allRankers.filter(r => r.highlight);
+    const almost = allRankers.filter(r => !r.highlight);
     categories.push({
       categoryId: 'cat_q3_qltb', categoryName: '4. QUẢN LÝ TIÊU BIỂU QUÝ III',
-      topRankers: [], otherRankers: allRankers,
+      topRankers: eligible.slice(0, 3), 
+      otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Cấp bậc', 'Thực đạt mục tiêu cam kết', 'Số đại sứ mới active trong đội ngũ']
     });
   }
@@ -392,9 +387,11 @@ function parseSemesterData(k2: string[][]) {
         if (elig) eligible.push(entry); else almost.push(entry);
       }
     }
+    const allSorted = [...eligible, ...almost];
     categories.push({
       categoryId: 'cat_k2_dsgd', categoryName: '1. GIẢI ĐẠI SỨ GIÁO DỤC XUẤT SẮC KỲ II',
-      topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
+      topRankers: allSorted.slice(0, 3), 
+      otherRankers: allSorted.slice(3),
       hasMultipleScores: true, scoreLabels: ['Doanh số Kỳ II', 'Số HV tuyển sinh', 'Team']
     });
   }
@@ -421,9 +418,11 @@ function parseSemesterData(k2: string[][]) {
         if (elig) eligible.push(entry); else almost.push(entry);
       }
     }
+    const allSorted = [...eligible, ...almost];
     categories.push({
       categoryId: 'cat_k2_qlxs', categoryName: '2. GIẢI QUẢN LÝ XUẤT SẮC KỲ II',
-      topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
+      topRankers: allSorted.slice(0, 3), 
+      otherRankers: allSorted.slice(3),
       hasMultipleScores: true, scoreLabels: ['Doanh số Kỳ II', 'Số ĐS Active']
     });
   }
