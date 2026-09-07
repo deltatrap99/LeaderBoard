@@ -1,7 +1,6 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
-import { Flame, ArrowRight, Calendar, User } from 'lucide-react';
+import { Flame, ArrowRight, Calendar } from 'lucide-react';
 import { viralArticles } from '../data/viralArticles';
 
 export function ContentViralPage() {
