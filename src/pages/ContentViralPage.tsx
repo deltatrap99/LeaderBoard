@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Layout } from '../components/Layout';
-import { Flame, ArrowRight, Calendar } from 'lucide-react';
+import { Flame, ArrowRight, Calendar, Eye } from 'lucide-react';
 import { viralArticles } from '../data/viralArticles';
 
 export function ContentViralPage() {
@@ -33,6 +33,7 @@ export function ContentViralPage() {
                 <div className="p-6 flex flex-col flex-1">
                   <div className="flex items-center gap-4 text-xs font-medium text-white/50 mb-3">
                     <div className="flex items-center gap-1.5"><Calendar size={14}/> {article.date}</div>
+                    <div className="flex items-center gap-1.5 ml-2 text-amber-400/80"><Eye size={14}/> {article.views?.toLocaleString('vi-VN')} lượt xem</div>
                   </div>
                   <Link to={`/content-viral/${article.slug}`} className="hover:underline decoration-amber-400">
                     <h2 className="text-xl font-semibold text-white mb-3 line-clamp-2 leading-snug group-hover:text-amber-400 transition-colors">{article.title}</h2>

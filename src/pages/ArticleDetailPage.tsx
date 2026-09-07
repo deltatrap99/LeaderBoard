@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Layout } from '../components/Layout';
-import { ArrowLeft, Share2, Check } from 'lucide-react';
+import { ArrowLeft, Share2, Check, Eye } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { viralArticles } from '../data/viralArticles';
@@ -54,7 +54,7 @@ export function ArticleDetailPage() {
                   </div>
                   <div>
                     <div className="text-slate-900 font-bold text-base">{article.author}</div>
-                    <div className="text-slate-500 text-sm">{article.authorRole} • {article.date}</div>
+                    <div className="text-slate-500 text-sm flex items-center gap-3"><span>{article.authorRole} • {article.date}</span> <span className="flex items-center gap-1 text-slate-400"><Eye size={14} /> {article.views?.toLocaleString('vi-VN')} lượt xem</span></div>
                   </div>
                 </div>
                 
