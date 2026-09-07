@@ -211,9 +211,7 @@
           "score": 128845200,
           "scoreLabel": "Doanh số cá nhân",
           "rank": 3
-        }
-      ],
-      "otherRankers": [
+        },
         {
           "id": "10899",
           "name": "Nguyễn Thị Hường",
@@ -226,8 +224,11 @@
             }
           ],
           "score": 121689000,
-          "scoreLabel": "Doanh số cá nhân"
-        },
+          "scoreLabel": "Doanh số cá nhân",
+          "rank": 3
+        }
+      ],
+      "otherRankers": [
         {
           "id": "15878",
           "name": "Chu Hang",

@@ -131,21 +131,20 @@ function buildT08_DSGDXuatSac() {
   const top3 = all.filter(r => r.score >= 100000000 && r.score < 150000000);
   const below = all.filter(r => r.score < 100000000);
 
-  // Gán rank để Podium component biết đặt đúng slot
-  const podium = [];
-  if (top1.length > 0) podium.push({...top1[0], rank: 1});
-  if (top2.length > 0) podium.push({...top2[0], rank: 2});
-  if (top3.length > 0) podium.push({...top3[0], rank: 3});
-  // Slot nào không có người -> rank đó undefined -> Podium hiển thị placeholder
+  // TẤT CẢ đại sứ đủ điều kiện đều vào podium (topRankers) với đúng rank
+  // Podium component dùng rank để xác định slot; nhiều người cùng rank -> hiện ở bảng bên dưới podium
+  const podium = [
+    ...top1.map(r => ({...r, rank: 1})),
+    ...top2.map(r => ({...r, rank: 2})),
+    ...top3.map(r => ({...r, rank: 3})),
+  ];
 
-  const rest = [...top1.slice(1), ...top2.slice(1), ...top3.slice(1), ...below];
-
-  console.log(`T08 DS GD XS: podium=${podium.length} (top1=${top1.length},top2=${top2.length},top3=${top3.length}) rest=${rest.length}`);
+  console.log(`T09 DS GD XS: podium=${podium.length} (top1=${top1.length},top2=${top2.length},top3=${top3.length}) below=${below.length}`);
   return {
     categoryId: 'cat_t09_dsgd',
     categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 9',
     topRankers: podium,
-    otherRankers: rest,
+    otherRankers: below,
     hasMultipleScores: false,
     scoreLabels: ['Doanh số cá nhân']
   };
