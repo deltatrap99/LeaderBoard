@@ -104,7 +104,7 @@ function parseMonthData(t07: string[][]) {
       }
     }
     categories.push({
-      categoryId: 'cat_month_dsm', categoryName: '1. THƯỞNG ĐẠI SỨ MỚI THÁNG 8',
+      categoryId: 'cat_month_dsm', categoryName: '1. THƯỞNG ĐẠI SỨ MỚI THÁNG 9',
       topRankers: eligible.slice(0, 3), otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Ngày tham gia', 'Doanh số cá nhân']
     });
@@ -173,7 +173,7 @@ function parseMonthData(t07: string[][]) {
     }
     const hasEligible = allRankers.some(r => r.highlight);
     categories.push({
-      categoryId: 'cat_month_qltd', categoryName: '3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 8',
+      categoryId: 'cat_month_qltd', categoryName: '3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 9',
       // Nếu chưa ai đủ ĐK: topRankers=[] -> không hiện podium
       topRankers: hasEligible ? allRankers.filter(r => r.highlight).slice(0, 3) : [],
       otherRankers: hasEligible ? [...allRankers.filter(r => r.highlight).slice(3), ...allRankers.filter(r => !r.highlight)] : allRankers,
@@ -211,7 +211,7 @@ function parseMonthData(t07: string[][]) {
     const eligible = allRankers.filter(r => r.highlight);
     const almost = allRankers.filter(r => !r.highlight);
     categories.push({
-      categoryId: 'cat_month_qltb', categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 8',
+      categoryId: 'cat_month_qltb', categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 9',
       topRankers: eligible.slice(0, 3), 
       otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Cấp bậc', 'Thực đạt mục tiêu cam kết', 'Số đại sứ mới active trong đội ngũ']
