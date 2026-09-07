@@ -132,20 +132,20 @@ function parseMonthData(t07: string[][]) {
         });
       }
     }
-    // Phân tầng theo ngưỡng DS và gán rank — TẤT CẢ đủ ĐK vào topRankers
+    // Phân tầng theo ngưỡng DS — mỗi bục 1 người (cao nhất trong tier), còn lại highlight ở bảng
     const top1 = allRankers.filter(r => r.score >= 200000000);
     const top2 = allRankers.filter(r => r.score >= 150000000 && r.score < 200000000);
     const top3 = allRankers.filter(r => r.score >= 100000000 && r.score < 150000000);
     const below = allRankers.filter(r => r.score < 100000000);
-    const podiumRankers = [
-      ...top1.map(r => ({...r, rank: 1})),
-      ...top2.map(r => ({...r, rank: 2})),
-      ...top3.map(r => ({...r, rank: 3})),
-    ];
+    const podiumRankers = [];
+    if (top1.length > 0) podiumRankers.push({...top1[0], rank: 1});
+    if (top2.length > 0) podiumRankers.push({...top2[0], rank: 2});
+    if (top3.length > 0) podiumRankers.push({...top3[0], rank: 3});
+    const tableRest = [...top1.slice(1), ...top2.slice(1), ...top3.slice(1), ...below];
     categories.push({
       categoryId: 'cat_month_dsgd', categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 9',
       topRankers: podiumRankers,
-      otherRankers: below,
+      otherRankers: tableRest,
       hasMultipleScores: false, scoreLabels: ['Doanh số cá nhân']
     });
   }
