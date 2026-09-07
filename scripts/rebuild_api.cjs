@@ -41,7 +41,13 @@ function findSection(rows, num) {
 }
 
 // ===== LOAD CSVs =====
-const t08 = parseCsv(fs.readFileSync('/tmp/t08.csv', 'utf8'));
+const GID_T09 = '1571813907';
+const GID_Q3  = '1375120696';
+const GID_K2  = '1782144566';
+const SHEET_ID = '1LktWs8p4xbTToJJaEu2y6RBwj5W26daoVFKiKMNHhJs';
+const base = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/export?format=csv&gid=';
+
+const t08 = parseCsv(fs.readFileSync('/tmp/t09.csv', 'utf8'));
 const q3  = parseCsv(fs.readFileSync('/tmp/q3.csv',  'utf8'));
 const k2  = parseCsv(fs.readFileSync('/tmp/k2.csv',  'utf8'));
 
@@ -50,9 +56,9 @@ const s2 = findSection(t08, '2');
 const s3 = findSection(t08, '3');
 const s4 = findSection(t08, '4');
 
-// ===================== THÁNG 8 =====================
+// ===================== THÁNG 9 =====================
 
-// 1. THƯỞNG ĐẠI SỨ MỚI THÁNG 8
+// 1. THƯỞNG ĐẠI SỨ MỚI THÁNG 9
 // Cols: [blank], Mã, Tên, Ngày tham gia, Doanh số cá nhân, Thưởng, Đạt/cận đạt
 // Bỏ cột Thưởng. Badge status dưới tên.
 function buildT08_DSMoi() {
@@ -83,8 +89,8 @@ function buildT08_DSMoi() {
   }
   console.log(`T08 ĐS Mới: ${eligible.length} đủ ĐK + ${almost.length} chưa`);
   return {
-    categoryId: 'cat_month_dsm',
-    categoryName: '1. THƯỞNG ĐẠI SỨ MỚI THÁNG 8',
+    categoryId: 'cat_t09_dsm',
+    categoryName: '1. THƯỞNG ĐẠI SỨ MỚI THÁNG 9',
     topRankers: eligible.slice(0, 3),
     otherRankers: [...eligible.slice(3), ...almost],
     hasMultipleScores: true,
@@ -92,7 +98,7 @@ function buildT08_DSMoi() {
   };
 }
 
-// 2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 8
+// 2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 9
 // Top 1: DS >= 200M, Top 2: DS >= 150M, Top 3: DS >= 100M
 // Cols: [blank], Mã, Tên, Doanh số, [blank], Đạt/cận đạt
 // Badge status dưới tên.
@@ -136,8 +142,8 @@ function buildT08_DSGDXuatSac() {
 
   console.log(`T08 DS GD XS: podium=${podium.length} (top1=${top1.length},top2=${top2.length},top3=${top3.length}) rest=${rest.length}`);
   return {
-    categoryId: 'cat_month_dsgd',
-    categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 8',
+    categoryId: 'cat_t09_dsgd',
+    categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 9',
     topRankers: podium,
     otherRankers: rest,
     hasMultipleScores: false,
@@ -145,7 +151,7 @@ function buildT08_DSGDXuatSac() {
   };
 }
 
-// 3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 8
+// 3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 9
 // Chưa có ai đủ ĐK -> topRankers=[] -> không hiện podium
 // Cols: [blank], Mã, Tên, SL ĐS mới PSDT, Doanh thu ĐS mới, Thưởng, Đạt/cận đạt
 function buildT08_QLTuyenDung() {
@@ -176,8 +182,8 @@ function buildT08_QLTuyenDung() {
   const hasElig = all.some(r => r.highlight);
   console.log(`T08 QL Tuyển dụng: ${all.length} người, hasElig=${hasElig}`);
   return {
-    categoryId: 'cat_month_qltd',
-    categoryName: '3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 8',
+    categoryId: 'cat_t09_qltd',
+    categoryName: '3. QUẢN LÝ TUYỂN DỤNG XUẤT SẮC THÁNG 9',
     topRankers: hasElig ? all.filter(r => r.highlight).slice(0, 3) : [],
     otherRankers: hasElig
       ? [...all.filter(r => r.highlight).slice(3), ...all.filter(r => !r.highlight)]
@@ -187,7 +193,7 @@ function buildT08_QLTuyenDung() {
   };
 }
 
-// 4. QUẢN LÝ TIÊU BIỂU THÁNG 8
+// 4. QUẢN LÝ TIÊU BIỂU THÁNG 9
 // Chỉ bảng, bỏ region dưới tên (đã có cột Cấp bậc)
 // Cols: Cấp, Mã, Tên, Cấp bậc, Thực đạt, SL ĐS active, Thưởng, Đạt/cận đạt
 function buildT08_QLTieuBieu() {
@@ -221,8 +227,8 @@ function buildT08_QLTieuBieu() {
   }
   console.log(`T08 QL Tiêu biểu: ${all.length} người`);
   return {
-    categoryId: 'cat_month_qltb',
-    categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 8',
+    categoryId: 'cat_t09_qltb',
+    categoryName: '4. QUẢN LÝ TIÊU BIỂU THÁNG 9',
     topRankers: [],   // isManager -> always table only
     otherRankers: all,
     hasMultipleScores: true,
