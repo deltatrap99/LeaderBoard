@@ -3,6 +3,8 @@ import { LeaderboardPage } from './pages/LeaderboardPage';
 import { AwardsPage } from './pages/AwardsPage';
 import { PoliciesPage } from './pages/PoliciesPage';
 import { ResultsPage } from './pages/ResultsPage';
+import { ContentViralPage } from './pages/ContentViralPage';
+import { ArticleDetailPage } from './pages/ArticleDetailPage';
 import { LoginPage } from './pages/LoginPage';
 import { AdminDashboard } from './pages/AdminDashboard';
 import { AdminOverview } from './pages/admin/AdminOverview';
@@ -21,6 +23,8 @@ function App() {
         <Route path="/awards" element={<AwardsPage />} />
         <Route path="/policies" element={<PoliciesPage />} />
         <Route path="/results" element={<ResultsPage />} />
+        <Route path="/content-viral" element={<ContentViralPage />} />
+        <Route path="/content-viral/:slug" element={<ArticleDetailPage />} />
         <Route path="/login" element={<LoginPage />} />
 
         {/* Admin (protected) */}

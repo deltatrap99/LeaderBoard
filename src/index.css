@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800;900&family=Nunito+Sans:opsz,wght@6..12,700;6..12,800;6..12,900&display=swap');
 
 @theme {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import logo from '../assets/ge-logo.png';
-import { Moon, Sun, Sparkles, Award, BarChart3, Gift, FileText, Medal } from 'lucide-react';
+import { Moon, Sun, Sparkles, Award, BarChart3, Gift, FileText, Medal , Flame} from 'lucide-react';
 
 interface LayoutProps {
   heroContent: React.ReactNode;
@@ -62,6 +62,18 @@ export function Layout({ heroContent, bodyContent, theme = 'blue', onToggleTheme
             <a href="/results" className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 text-white shadow-[0_4px_15px_rgba(245,158,11,0.4)] hover:shadow-[0_6px_20px_rgba(245,158,11,0.6)] hover:scale-105 transition-all duration-300 no-underline">
               <Sparkles size={12} />
               Kết quả Thi đua
+            </a>
+            {/* Content Viral */}
+            <a
+              href="/content-viral"
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 sm:px-5 py-2.5 text-[11px] sm:text-sm font-semibold transition-all duration-200 border-b-2 whitespace-nowrap shrink-0 no-underline ${
+                currentPath === '/content-viral'
+                  ? 'text-amber-400 border-amber-400'
+                  : 'text-white/50 border-transparent hover:text-white/80 hover:border-white/20'
+              }`}
+            >
+              <Flame size={14} />
+              Content Viral - Kể sao cho cuốn
             </a>
           </div>
         </div>
