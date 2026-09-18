@@ -16,7 +16,7 @@ function parseFile(filename, categoryType) {
   const results = [];
 
   // Find category boundaries: rows starting with "1.", "2.", "3.", "4." or known titles
-  const categoryTitlePattern = /^[1-4]\.\s/;
+  const categoryTitlePattern = /^[1-5]\.\s/;
   const categoryStarts = [];
 
   for (let i = 0; i < rows.length; i++) {
@@ -365,8 +365,91 @@ function parseFile(filename, categoryType) {
   if (categoryType === 'quarter') {
     const qlTbResults = parseQuarterQLTieuBieu(rows);
     results.push(...qlTbResults);
+    
+    // Parse "5. ĐẠI SỨ BỨT TỐC THÁNG 9"
+    const buttocResults = parseQuarterButtoc(rows);
+    results.push(...buttocResults);
   }
 
+  return results;
+}
+
+/**
+ * Parse Q3's "5. ĐẠI SỨ BỨT TỐC THÁNG 9" section.
+ * CSV format: header row col1="Mã ĐS", col2="Họ và tên", col3="Doanh thu tháng 9", col4="Team", col5="Đạt/cận đạt"
+ */
+function parseQuarterButtoc(rows) {
+  const results = [];
+  
+  // Find section 5 start
+  let s5 = -1;
+  for (let i = 0; i < rows.length; i++) {
+    const firstCell = String(rows[i]?.[0] || '').trim();
+    if (firstCell.startsWith('5.') && firstCell.length > 5) {
+      s5 = i;
+      break;
+    }
+  }
+  
+  if (s5 === -1) {
+    console.log('  Đại sứ bứt tốc: Section 5 not found');
+    return results;
+  }
+  
+  // Find header row
+  let hdr = -1;
+  for (let i = s5; i < rows.length; i++) {
+    const cell1 = String(rows[i][1] || '').trim().toLowerCase();
+    if (cell1 === 'mã đs' || cell1 === 'mã đại sứ') {
+      hdr = i;
+      break;
+    }
+  }
+  
+  if (hdr === -1) {
+    console.log('  Đại sứ bứt tốc: Header not found');
+    return results;
+  }
+  
+  const allRankers = [];
+  for (let i = hdr + 1; i < rows.length; i++) {
+    const r = rows[i];
+    if (!r) continue;
+    const id = String(r[1] || '').trim();
+    const name = String(r[2] || '').trim();
+    if (!id || !/^\d+$/.test(id)) continue;
+    if (!name) continue;
+    
+    const statusRaw = String(r[5] || '').trim().toLowerCase();
+    const elig = statusRaw.includes('đủ điều kiện') && !statusRaw.includes('chưa');
+    
+    allRankers.push({
+      id,
+      name,
+      highlight: elig,
+      status: elig ? 'đủ điều kiện xét giải' : 'chưa đủ điều kiện',
+      columns: [
+        { label: 'Doanh thu tháng 9', value: String(r[3] || '0').trim() },
+        { label: 'Team', value: String(r[4] || '').trim() }
+      ],
+      score: formatNumber(String(r[3] || '0')),
+      scoreLabel: 'Doanh thu tháng 9'
+    });
+  }
+  
+  const eligible = allRankers.filter(a => a.highlight);
+  const almost = allRankers.filter(a => !a.highlight);
+  
+  results.push({
+    categoryId: 'cat_quarter_buttoc',
+    categoryName: '5. ĐẠI SỨ BỨT TỐC THÁNG 09',
+    topRankers: eligible.slice(0, 3),
+    otherRankers: [...eligible.slice(3), ...almost],
+    hasMultipleScores: true,
+    scoreLabels: ['Doanh thu tháng 9', 'Team']
+  });
+  
+  console.log(`  Đại sứ bứt tốc: ${allRankers.length} people (${eligible.length} eligible)`);
   return results;
 }
 
@@ -378,9 +461,19 @@ function parseFile(filename, categoryType) {
 function parseQuarterQLTieuBieu(rows) {
   const results = [];
   
+  // Find section 5 boundary (to stop before it)
+  let s5 = rows.length;
+  for (let i = 0; i < rows.length; i++) {
+    const firstCell = String(rows[i]?.[0] || '').trim();
+    if (firstCell.startsWith('5.') && firstCell.length > 5) {
+      s5 = i;
+      break;
+    }
+  }
+  
   // Find the header row for QL Tiêu biểu data section
   let dataStartIdx = -1;
-  for (let i = 0; i < rows.length; i++) {
+  for (let i = 0; i < s5; i++) {
     const row = rows[i];
     // Look for the header: "Mã Đại sứ,Họ và tên,Cấp bậc,..."
     const col1 = String(row[1] || '').trim().toLowerCase();
@@ -399,7 +492,7 @@ function parseQuarterQLTieuBieu(rows) {
   const levelGroups = {};
   let currentLevel = '';
   
-  for (let j = dataStartIdx; j < rows.length; j++) {
+  for (let j = dataStartIdx; j < s5; j++) {
     const row = rows[j];
     if (!row) continue;
     
@@ -517,7 +610,9 @@ function parseSemesterFile(rows, categoryType) {
     // Left side
     const leftId = String(row[0] || '').trim();
     const leftName = String(row[1] || '').trim();
-    if (leftName && leftName.length > 1 && !leftName.toLowerCase().includes('chưa có')) {
+    // Skip header rows and non-data rows
+    if (leftName && leftName.length > 1 && !leftName.toLowerCase().includes('chưa có')
+        && !leftName.toLowerCase().includes('tên đại sứ') && /^\d+$/.test(leftId)) {
       const doanh = String(row[2] || '').trim();
       const soHV = String(row[3] || '').trim();
       const team = String(row[4] || '').trim();
@@ -549,7 +644,9 @@ function parseSemesterFile(rows, categoryType) {
     if (splitCol !== -1) {
       const rightId = String(row[splitCol] || '').trim();
       const rightName = String(row[splitCol + 1] || '').trim();
-      if (rightName && rightName.length > 1 && !rightName.toLowerCase().includes('chưa có')) {
+      // Skip header rows and non-data rows
+      if (rightName && rightName.length > 1 && !rightName.toLowerCase().includes('chưa có')
+          && !rightName.toLowerCase().includes('tên đại sứ') && /^\d+$/.test(rightId)) {
         const doanh = String(row[splitCol + 2] || '').trim();
         const soDS = String(row[splitCol + 3] || '').trim();
         const thuong = String(row[splitCol + 4] || '').trim();
@@ -613,11 +710,23 @@ function parseSemesterFile(rows, categoryType) {
 }
 
 // Build the leaderboard data
+const quarterResults = parseFile('q3.csv', 'quarter');
+// Move "Đại sứ bứt tốc" from quarter to challenge
+const buttocIdx = quarterResults.findIndex(c => c.categoryId === 'cat_quarter_buttoc');
+let challengeData = [];
+if (buttocIdx >= 0) {
+  const buttoc = quarterResults.splice(buttocIdx, 1)[0];
+  // No podium for bứt tốc, only table
+  const allRankers = [...(buttoc.topRankers || []), ...(buttoc.otherRankers || [])];
+  buttoc.topRankers = [];
+  buttoc.otherRankers = allRankers;
+  challengeData.push(buttoc);
+}
 const data = {
   month: parseFile('t7.csv', 'month'),
-  quarter: parseFile('q3.csv', 'quarter'),
+  quarter: quarterResults,
   semester: parseFile('k2.csv', 'semester'),
-  challenge: []
+  challenge: challengeData
 };
 
 // Ensure "4. QUẢN LÝ TIÊU BIỂU QUÝ III" is present in quarter results

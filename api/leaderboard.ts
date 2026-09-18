@@ -226,6 +226,7 @@ function parseQuarterData(q3: string[][]) {
   const q2s = findSection(q3, '2');
   const q3s = findSection(q3, '3');
   const q4s = findSection(q3, '4');
+  const q5s = findSection(q3, '5');
   const categories: any[] = [];
 
   // 1. Top 3 ĐS GD Xuất sắc Q3
@@ -255,7 +256,7 @@ function parseQuarterData(q3: string[][]) {
     });
   }
 
-  // 2. Đại sứ Vàng Q3 - chưa có ai đủ ĐK -> không hiện podium
+  // 2. Đại sứ Vàng Q3
   {
     let hdr = -1;
     for (let i = q2s; i < q3s; i++) {
@@ -278,7 +279,6 @@ function parseQuarterData(q3: string[][]) {
         });
       }
     }
-    const hasEligible = allRankers.some(r => r.highlight);
     categories.push({
       categoryId: 'cat_q3_vang', categoryName: '2. ĐẠI SỨ VÀNG QUÝ III',
       topRankers: [],
@@ -287,9 +287,9 @@ function parseQuarterData(q3: string[][]) {
     });
   }
 
-  // 3. QL Tuyển dụng Q3 - chưa ai đủ ĐK -> không hiện podium
+  // 3. QL Tuyển dụng Q3
   {
-    const end = q4s >= 0 ? q4s : q3.length;
+    const end = q4s >= 0 ? q4s : (q5s >= 0 ? q5s : q3.length);
     let hdr = -1;
     for (let i = q3s; i < end; i++) {
       if (q3[i][0] === 'Mã Đại sứ') { hdr = i; break; }
@@ -320,17 +320,18 @@ function parseQuarterData(q3: string[][]) {
     });
   }
 
-  // 4. QL Tiêu biểu Q3 - parse thực từ sheet
-  // Cols: Cấp Trưởng Nhóm/..., col1=Mã, col2=Tên, col3=Cấp bậc, col4=Thực đạt, col5=Số ĐS active, col6=Đạt
+  // 4. QL Tiêu biểu Q3
+  // New format: sub-levels like "Cấp Trưởng Nhóm", "Cấp Trưởng Nhóm cấp cao", etc.
   if (q4s >= 0) {
+    const end4 = q5s >= 0 ? q5s : q3.length;
     let hdr = -1;
-    for (let i = q4s; i < q3.length; i++) {
-      if (q3[i][1] === 'Mã Đại sứ') { hdr = i; break; }
+    for (let i = q4s; i < end4; i++) {
+      if (q3[i][1] === 'Mã Đại sứ' && (q3[i][2] || '').includes('Họ và tên')) { hdr = i; break; }
     }
     let currentLevel = '';
     const allRankers: any[] = [];
     if (hdr >= 0) {
-      for (let i = hdr + 1; i < q3.length; i++) {
+      for (let i = hdr + 1; i < end4; i++) {
         const r = q3[i];
         if (r[0] && r[0].startsWith('Cấp')) currentLevel = r[0];
         if (!r[1] || !/^\d+$/.test(r[1])) continue;
@@ -353,6 +354,39 @@ function parseQuarterData(q3: string[][]) {
       topRankers: eligible.slice(0, 3), 
       otherRankers: [...eligible.slice(3), ...almost],
       hasMultipleScores: true, scoreLabels: ['Cấp bậc', 'Thực đạt mục tiêu cam kết', 'Số đại sứ mới active trong đội ngũ']
+    });
+  }
+
+  // 5. Đại sứ bứt tốc Tháng 9
+  if (q5s >= 0) {
+    let hdr = -1;
+    for (let i = q5s; i < q3.length; i++) {
+      const cell1 = (q3[i][1] || '').trim().toLowerCase();
+      if (cell1 === 'mã đs' || cell1 === 'mã đại sứ') { hdr = i; break; }
+    }
+    const allRankers: any[] = [];
+    if (hdr >= 0) {
+      for (let i = hdr + 1; i < q3.length; i++) {
+        const r = q3[i];
+        if (!r[1] || !/^\d+$/.test(r[1].trim())) continue;
+        const statusRaw = (r[5] || '').trim();
+        const elig = isEligibleStatus(statusRaw);
+        allRankers.push({
+          id: r[1].trim(), name: (r[2] || '').trim(),
+          highlight: elig,
+          status: elig ? 'đủ điều kiện xét giải' : 'chưa đủ điều kiện',
+          columns: [{ label: 'Doanh thu tháng 9', value: r[3] || '0' }, { label: 'Team', value: r[4] || '' }],
+          score: parseNum(r[3]), scoreLabel: 'Doanh thu tháng 9',
+        });
+      }
+    }
+    const eligibleBT = allRankers.filter(r => r.highlight);
+    const almostBT = allRankers.filter(r => !r.highlight);
+    categories.push({
+      categoryId: 'cat_q3_buttoc', categoryName: '5. ĐẠI SỨ BỨT TỐC THÁNG 09',
+      topRankers: eligibleBT.slice(0, 3),
+      otherRankers: [...eligibleBT.slice(3), ...almostBT],
+      hasMultipleScores: true, scoreLabels: ['Doanh thu tháng 9', 'Team']
     });
   }
 
@@ -456,11 +490,24 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       fetchCsv(SHEETS.semester),
     ]);
 
+    const quarterCategories = parseQuarterData(quarterCsv);
+    // Move "Đại sứ bứt tốc" from quarter to challenge
+    const buttocIdx = quarterCategories.findIndex((c: any) => c.categoryId === 'cat_q3_buttoc');
+    let challengeCategories: any[] = [];
+    if (buttocIdx >= 0) {
+      const buttoc = quarterCategories.splice(buttocIdx, 1)[0];
+      // No podium for bứt tốc, only table
+      const allRankers = [...(buttoc.topRankers || []), ...(buttoc.otherRankers || [])];
+      buttoc.topRankers = [];
+      buttoc.otherRankers = allRankers;
+      challengeCategories.push(buttoc);
+    }
+
     const data = {
       month: parseMonthData(monthCsv),
-      quarter: parseQuarterData(quarterCsv),
+      quarter: quarterCategories,
       semester: parseSemesterData(semesterCsv),
-      challenge: [],
+      challenge: challengeCategories,
     };
 
     cache = { data, timestamp: Date.now() };
