@@ -132,16 +132,18 @@ function parseMonthData(t07: string[][]) {
         });
       }
     }
-    // Phân tầng theo ngưỡng DS — mỗi bục 1 người (cao nhất trong tier), còn lại highlight ở bảng
-    const top1 = allRankers.filter(r => r.score >= 200000000);
-    const top2 = allRankers.filter(r => r.score >= 150000000 && r.score < 200000000);
-    const top3 = allRankers.filter(r => r.score >= 100000000 && r.score < 150000000);
+    // Sắp xếp tất cả theo doanh số giảm dần, gán Top 1/2/3 theo thứ tự với ngưỡng tối thiểu
+    const sorted = allRankers.filter(r => r.score >= 100000000).sort((a, b) => b.score - a.score);
     const below = allRankers.filter(r => r.score < 100000000);
-    const podiumRankers = [];
-    if (top1.length > 0) podiumRankers.push({...top1[0], rank: 1});
-    if (top2.length > 0) podiumRankers.push({...top2[0], rank: 2});
-    if (top3.length > 0) podiumRankers.push({...top3[0], rank: 3});
-    const tableRest = [...top1.slice(1), ...top2.slice(1), ...top3.slice(1), ...below];
+    const thresholds = [200000000, 150000000, 100000000]; // Top 1 >= 200M, Top 2 >= 150M, Top 3 >= 100M
+    const podiumRankers: any[] = [];
+    for (let i = 0; i < Math.min(3, sorted.length); i++) {
+      if (sorted[i].score >= thresholds[i]) {
+        podiumRankers.push({...sorted[i], rank: i + 1});
+      }
+    }
+    const podiumIds = new Set(podiumRankers.map((r: any) => r.id));
+    const tableRest = [...sorted.filter((r: any) => !podiumIds.has(r.id)), ...below];
     categories.push({
       categoryId: 'cat_month_dsgd', categoryName: '2. ĐẠI SỨ GIÁO DỤC XUẤT SẮC THÁNG 9',
       topRankers: podiumRankers,
